@@ -14,3 +14,6 @@ or here: https://forum.manjaro.org/t/new-desktop-jade-on-the-works-update-1/1722
 ![desktop](jade.png)
 
 
+optional: paper icon theme
+
+
