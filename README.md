@@ -3,7 +3,7 @@ JADE a linux desktop built with web techonlogies, HTML5, Javascript, Python, CSS
 
 JADE is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.
 
-At the moment it only offers basic functionality, runs applications, shuts down your system, allows access to recently used files, displays the current time and total disk usage in a pleasant way to the user. 
+At the moment it only offers basic functionality, runs applications, shuts down your system, allows access to recently used files, provides application search functionality displays the current time and total disk usage in a pleasant way to the user. 
 
 ### Why web techonlogies?
 Most ( Non-Technical ) people i know, dont know how to use a computer properly, most dont know what linux is or that they carry it in their pockets in a daily basis. But they all have one thing in common, they all use the browser to buy, go to social networks or check their email.
