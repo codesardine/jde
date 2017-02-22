@@ -1,4 +1,4 @@
-# JADE
+##JADE
 JADE a linux desktop built with web techonlogies, HTML5, Javascript, Python, CSS, Gtk, Webkit2.
 
 JADE is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.
@@ -30,5 +30,7 @@ dependencies:
 * paper-icon-theme-git (aur)
 * manjaro-xdg-menu
 * python-xdg
+
+[manifest file configuration.](https://github.com/codesardine/Jade-Application-Kit/wiki/Application-manifest-file)
 
 
