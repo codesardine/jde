@@ -12,9 +12,7 @@ Most ( Non-Technical ) people i know, dont know how to use a computer properly, 
 
 I built JADE out of my desire of learning python and i was in need of an interface for my living room PC, that was easy to use and hack into.
 
-This is a Protoype desktop, developer build preview, and it is unfinished. JADE is subject to changes at any time and is not ready for daily use.
-
- 
+This is a Protoype desktop, developer build preview, and it is unfinished. JADE is subject to changes at any time and is not ready for daily use, also i dont code for around 20 years so the code might suck balls, that will get improved with time.
 
 you can reach me here:
 [Twitter Codesardine](https://twitter.com/codesardine)
