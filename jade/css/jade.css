@@ -19,7 +19,7 @@ body {
 }
 
 #background:before {
-    background-image: url(lava.jpg);
+    background-image: url(../img/dashboard.jpg);
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;
@@ -34,35 +34,35 @@ body {
 }
 
 #background.office:before {
-    background-image: url(office.jpg);
+    background-image: url(../img/office.jpg);
 }
 
 #background.development:before {
-    background-image: url(development.jpg);
+    background-image: url(../img/development.jpg);
 }
 
 #background.education:before {
-    background-image: url(education.jpg);
+    background-image: url(../img/education.jpg);
 }
 
 #background.multimedia:before {
-    background-image: url(multimedia.jpg);
+    background-image: url(../img/multimedia.jpg);
 }
 
 #background.games:before {
-    background-image: url(games.jpg);
+    background-image: url(../img/games.jpg);
 }
 
 #background.graphics:before {
-    background-image: url(graphics.jpg);
+    background-image: url(../img/graphics.jpg);
 }
 
 #background.internet:before {
-    background-image: url(internet.jpg);
+    background-image: url(../img/internet.jpg);
 }
 
 #background.system:before {
-    background-image: url(system.jpg);
+    background-image: url(../img/system.jpg);
 }
 
 header {

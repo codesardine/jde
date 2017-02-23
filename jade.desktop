@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Jade
+Comment=Jade is a Desktop Dashboard that provides minimal desktop environment functionality
+Exec=jade
+Icon=jade.svg
+Terminal=false
