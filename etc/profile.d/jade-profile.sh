@@ -4,5 +4,6 @@
 
 export JTERMINAL=deepin-terminal
 export JFILEMANAGER=nautilus
-export JSOFTWAREINSTALLER=pamac-install
-export JSETTINGS=manjaro-settings-manager 
+export JSOFTWAREINSTALLER=pamac-manager
+export JSETTINGS=manjaro-settings-manager
+export JBROWSER=chromium

@@ -82,6 +82,7 @@ def fetchIcon(iconName):
 dashboardIcon = fetchIcon("app-launcher")
 favoriteApplicationsIcon = fetchIcon("emblem-favorite")
 recentUsedFilesIcon = fetchIcon("document-open-recent")
+browserIcon = fetchIcon("browser")
 FileManagerIcon = fetchIcon("file-manager")
 softwareInstallerIcon = fetchIcon("org.gnome.Software")
 settings = fetchIcon("system-settings")
@@ -100,6 +101,7 @@ ui_html_contents = '''%s''' % (html % (
     diskUsage(),
     favoriteApplicationsIcon,
     recentUsedFilesIcon,
+    browserIcon,
     FileManagerIcon,
     softwareInstallerIcon,
     settings,
