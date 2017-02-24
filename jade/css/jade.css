@@ -450,7 +450,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 div.marginleft:hover {
-    margin-left: 20px !important;
+    margin-left: 10px !important;
 }
 
 video#background-video {
@@ -478,4 +478,26 @@ img.distibutor-logo {
 .notes p:first-of-type,
 .favorit-applications-button {
     cursor: default;
+}
+
+
+/* tooltips */
+
+.backdrop {}
+
+.material-tooltip {
+    padding: 20px;
+}
+
+
+/* improve selection visibility */
+
+#main-dashboard a,
+.notes {
+    filter: grayscale(20%) opacity(98%) brightness(96%);
+}
+
+#main-dashboard a:hover,
+.notes:hover {
+    filter: grayscale(0%) opacity(100%) brightness(100%);
 }
