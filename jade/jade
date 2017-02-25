@@ -42,6 +42,8 @@ with open('ui.html', 'r') as file:
 
 
 def fetchIcon(iconName):
+
+    iconNotFound = "stock_dialog-error"  # TODO need a more generic name
     # some img's come with full icon path
 
     if iconName.endswith(".png" or ".svg"):
@@ -56,7 +58,7 @@ def fetchIcon(iconName):
                     pass
 
                 else:
-                    iconName = "stock_dialog-error"  #TODO need a more generic name
+                    iconName = iconNotFound
 
                 return iconName
 
@@ -68,7 +70,7 @@ def fetchIcon(iconName):
             # xpm not suported by webkit dont load.
 
             if iconName is None or iconName.endswith(".xpm"):
-                iconName = "stock_dialog-error"  #TODO need a more generic name
+                iconName = iconNotFound
                 iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
                 iconName = iconName.get_filename()
 
@@ -78,23 +80,25 @@ def fetchIcon(iconName):
             print("Something went wrong loading application icon: " + str(err))
             pass
 
+##  icon names ##
 
-dashboardIcon = fetchIcon("app-launcher")
+dashboardIcon            = fetchIcon("app-launcher")
 favoriteApplicationsIcon = fetchIcon("emblem-favorite")
-recentUsedFilesIcon = fetchIcon("document-open-recent")
-browserIcon = fetchIcon("browser")
-FileManagerIcon = fetchIcon("file-manager")
-softwareInstallerIcon = fetchIcon("org.gnome.Software")
-settings = fetchIcon("system-settings")
-terminalIcon = fetchIcon("deepin-terminal")  #TODO need a generic name
-userIcon = fetchIcon("system-users")
-logoutIcon = fetchIcon("system-log-out")
-shutdownIcon = fetchIcon("system-shutdown")
-rebootIcon = fetchIcon("system-reboot")
-hibernateIcon = fetchIcon("system-hibernate")
-suspendIcon = fetchIcon("system-suspend")
-sleepIcon = fetchIcon("system-hibernate")
-distributorLogoIcon = fetchIcon("distributor-logo-manjaro")  #TODO need a generic name
+recentUsedFilesIcon      = fetchIcon("document-open-recent")
+browserIcon              = fetchIcon("browser")
+FileManagerIcon          = fetchIcon("file-manager")
+softwareInstallerIcon    = fetchIcon("org.gnome.Software")
+settings                 = fetchIcon("system-settings")
+terminalIcon             = fetchIcon("deepin-terminal")  #TODO need a generic name
+userIcon                 = fetchIcon("system-users")
+logoutIcon               = fetchIcon("system-log-out")
+shutdownIcon             = fetchIcon("system-shutdown")
+rebootIcon               = fetchIcon("system-reboot")
+hibernateIcon            = fetchIcon("system-hibernate")
+suspendIcon              = fetchIcon("system-suspend")
+sleepIcon                = fetchIcon("system-hibernate")
+distributorLogoIcon      = fetchIcon("distributor-logo-manjaro")  #TODO need a generic name
+searchIcon               = fetchIcon("search")
 
 ui_html_contents = '''%s''' % (html % (
     dashboardIcon,
@@ -118,64 +122,66 @@ ui_html_contents = '''%s''' % (html % (
 ))
 
 AK.Api.html = ui_html_contents
-AK.Api.html += "<div id='search-icon'><img src='%s'></div>" % (fetchIcon("search"))
+AK.Api.html += "<div id='search-icon'><img src='%s'></div>" % searchIcon
 
 
-def get_menu(menu, depth=0):
-    category = menu.getName()
-    category = category.lower()
-    category = category.replace(" ", "-")
-    menuIcon = "applications-" + menu.getName().lower()
+def jade_build_menu(application_category, depth=0):
 
-    if menuIcon == "applications-education":
-        menuIcon = "applications-science"
+    categoryName = application_category.getName()
+    category = categoryName.lower().replace(" ", "-")
+    categoryIcon = "applications-" + categoryName.lower()
 
-    elif menuIcon is None:
-        menuIcon = "applications-other"
+    if  categoryIcon == "applications-education":
+        categoryIcon = "applications-science"
+
+    elif  categoryIcon is None:
+        categoryIcon = "applications-other"
+
+    categoryIcon = fetchIcon(categoryIcon)
 
     if depth == 0:
         pass
 
     else:
         category_description = ""
-        if category == "games":
+        if categoryName == "Games":
             category_description = "Break time, let's play some games!"
 
-        elif category == "accessories":
+        elif categoryName == "Accessories":
             category_description = "Useful bits & bobs"
 
-        elif category == "development":
+        elif categoryName == "Development":
             category_description = "Change the world, build awesome software!"
 
-        elif category == "education":
+        elif categoryName == "Education":
             category_description = "Knowledge is power, educate yourself!"
 
-        elif category == "graphics":
+        elif categoryName == "Graphics":
             category_description = "Get those creative juices flowing!"
 
-        elif category == "internet":
+        elif categoryName == "Internet":
             category_description = "Be social, go online and talk to everyone!"
 
-        elif category == "multimedia":
+        elif categoryName == "Multimedia":
             category_description = "Listen to music, watch a film, or create your next masterpiece!"
 
-        elif category == "office":
+        elif categoryName == "Office":
             category_description = "I know! this sucks, get to work!"
 
-        elif category == "system":
+        elif categoryName == "System":
             category_description = "Administer your system and change configurations!"
 
         AK.Api.html += "<div id='%s" % (
             category) + "-msg' class='category-msg'><h5>%s<br>%s</h5><img class='category-icon %s' src='%s'></div>" % (
-            category, category_description, menu.getName(), fetchIcon(menuIcon))
+            category, category_description, categoryName, categoryIcon)
         AK.Api.html += "<div id='%s' class='category-container row'>" % category
         AK.Api.html += "<li class='application-category %s'><a href='#' onclick=\"display('#%s, #%s-msg ');grid('#%s');\">" % (
-            category, category, category, category) + menu.getName() + "</a></li>"
+            category, category, category, category) + categoryName + "</a></li>"
 
     depth += 1
-    for entry in menu.getEntries():
+    for entry in application_category.getEntries():
         if isinstance(entry, xdg.Menu.Menu):
-            get_menu(entry, depth)
+            jade_build_menu(entry, depth)
 
         elif isinstance(entry, xdg.Menu.MenuEntry):
             terminal = entry.DesktopEntry.getTerminal()
@@ -219,20 +225,17 @@ def get_menu(menu, depth=0):
 
 
 def menu():
-    menu = xdg.Menu.parse('/etc/xdg/menus/manjaro-applications.menu')
-    get_menu(menu)
+    applications = xdg.Menu.parse('/etc/xdg/menus/manjaro-applications.menu')
+    jade_build_menu(applications)
 
 
 menu()
 
 
-def recentlyUsed(application=None):
+def recentlyUsed():
     recentManager = Gtk.RecentManager.get_default()
 
     AK.Api.html += "<div id='recently-used-files' class='col m12'><div class='box row'><div class='center recent-files-msg'>Recently Used Files <a id='recent-files-button-close' href='#'>Close</a></div>"
-
-    if application is not None:
-        pass
 
     for item in recentManager.get_items():
         itemName = item.get_uri().split("/")[-1].strip()
@@ -268,19 +271,18 @@ class Jade(AK.AppWindow):
                 navigation_type = navigation_action.get_navigation_type()
                 uri = navigation_request.get_uri()
 
-                if uri.startswith("shell:"):
-                    uri = uri.replace('shell:', '')
-
+                def execute_command(uri):
                     subprocess.Popen(uri, shell=True)
                     decision.ignore()
                     return True
+
+                if uri.startswith("shell:"):
+                    uri = uri.replace('shell:', '')
+                    execute_command(uri)
 
                 elif uri.startswith("xdg-open:"):
                     uri = uri.replace('xdg-open:', 'xdg-open ')
-                    print(uri)
-                    subprocess.Popen(uri, shell=True)
-                    decision.ignore()
-                    return True
+                    execute_command(uri)
 
             return False
 
