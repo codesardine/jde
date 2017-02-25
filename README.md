@@ -29,6 +29,7 @@ Dependencies:
 * manjaro-xdg-menu
 * python-xdg
 
+Jade can be run as normal application window, or as a Desktop Enviroment by selecting the window type hint in the manifest file.
 [manifest file configuration.](https://github.com/codesardine/Jade-Application-Kit/wiki/Application-manifest-file)
 
 Development:
