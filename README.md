@@ -26,7 +26,7 @@ or here: https://forum.manjaro.org/t/new-desktop-jade-on-the-works-update-1/1722
 Dependencies: 
 * [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit)
 * paper-icon-theme-git (aur)
-* manjaro-xdg-menu
+* [jade-menu-data](https://github.com/codesardine/Jade-menu-data)
 * python-xdg
 
 Jade can be run as normal application window, or as a Desktop Enviroment by selecting the window type hint in the manifest file.

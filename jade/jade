@@ -224,8 +224,8 @@ def jade_build_menu(application_category, depth=0):
     AK.Api.html += "</div>"
 
 
-def menu():
-    applications = xdg.Menu.parse('/etc/xdg/menus/manjaro-applications.menu')
+def menu():# /etc/xdg/menus
+    applications = xdg.Menu.parse('/etc/xdg/menus/jade-applications.menu')
     jade_build_menu(applications)
 
 
