@@ -1,5 +1,6 @@
 ##JADE
 JADE a linux desktop built with web techonlogies, HTML5, Javascript, Python, CSS, Gtk, Webkit2.
+JADE is under the GPL license, and backgrounds images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
 
 JADE is a modern DE. Jade does not try to hide things way from the user, and reduces nested clicking for a modern workflow. Jade is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.
 
@@ -10,7 +11,7 @@ Most ( Non-Technical ) people i know, dont know how to use a computer properly, 
 
 ### Why did i build this?
 
-I built JADE out of my desire of learning python and i was in need of an interface for my personal use, in the living room PC that was easy to use and hack into. Later on i decided to adapt Jade for desktop use, family end friends said this seems easy to use in comparison to their current PC interfaces. So i decided to release Jade under the GPL license, maybe someone else will like to use it.
+I built JADE out of my desire of learning python and i was in need of an interface for my personal use, in the living room PC that was easy to use and hack into. Later on i decided to adapt Jade for desktop use. I decided to release Jade, maybe someone else will like to use it.
 
 This is a Protoype desktop, developer build preview, and it is unfinished. JADE is subject to changes at any time and is not ready for daily use.
 
@@ -24,10 +25,10 @@ or here: https://forum.manjaro.org/t/new-desktop-jade-on-the-works-update-1/1722
 
 
 Dependencies: 
-* [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit)
-* paper-icon-theme-git (aur)
-* [jade-menu-data](https://github.com/codesardine/Jade-menu-data)
-* python-xdg
+* [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit) - [pkgbuild available](https://github.com/codesardine/Jade-Application-Kit/blob/master/PKGBUILD)
+* paper-icon-theme-git ( available in the aur )
+* [jade-menu-data](https://github.com/codesardine/Jade-menu-data) - [pkgbuild available](https://github.com/codesardine/Jade-menu-data/blob/master/PKGBUILD)
+* python-xdg ( available in the repos )
 
 Jade can be run as normal application window, or as a Desktop Enviroment by selecting the window type hint in the manifest file.
 [manifest file configuration.](https://github.com/codesardine/Jade-Application-Kit/wiki/Application-manifest-file)
