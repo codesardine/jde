@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Backup Files
-.*~
+*~
 
 # Distribution / packaging
 .Python
