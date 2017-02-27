@@ -155,6 +155,9 @@ $(document).ready(function() {
         } else if ($(this).hasClass("system")) {
             $("#background").attr("class", "");
             $("#background").addClass("system");
+        } else if ($(this).hasClass("settings")) {
+            $("#background").attr("class", "");
+            $("#background").addClass("settings");
         } else { $("#background").attr("class", ""); }
 
     })

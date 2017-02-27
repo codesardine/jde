@@ -44,41 +44,42 @@ with open('ui.html', 'r') as file:
 def fetchIcon(iconName):
 
     iconNotFound = "stock_dialog-error"  # TODO need a more generic name
-    # some img's come with full icon path
 
+     # if img's come with full icon path we just return them.
     if iconName.endswith(".png" or ".svg"):
-        return iconName
 
-    else:
-        try:
-            def checkIcon(iconName):
-                checkIcon = Gtk.IconTheme.get_default().has_icon(iconName)
+        # if img's come with icon name and extension but no path, lets fix that.
+        if iconName.endswith(".png" or ".svg") and iconName.startswith("/"):
+            return iconName
 
-                if checkIcon:
-                    pass
+        elif iconName.endswith(".png" or ".svg") and not iconName.startswith("/"):
 
-                else:
-                    iconName = iconNotFound
-
-                return iconName
-
-            checkIcon(iconName)
-
-            iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
-            iconName = iconName.get_filename()
-
-            # xpm not suported by webkit dont load.
-
-            if iconName is None or iconName.endswith(".xpm"):
-                iconName = iconNotFound
+            if iconName.endswith(".png"):
+                iconName = iconName.replace(".png", "")
                 iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
                 iconName = iconName.get_filename()
 
-            return iconName
+            elif iconName.endswith(".svg"):
+                iconName = iconName.replace(".svg", "")
 
-        except Exception as err:
-            print("Something went wrong loading application icon: " + str(err))
-            pass
+        else:
+            iconName = iconNotFound
+            iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
+            iconName = iconName.get_filename()
+
+    else:
+
+        iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
+        iconName = iconName.get_filename()
+
+        # xpm not suported by webkit dont load.
+
+    if iconName.endswith(".xpm"):
+        iconName = iconNotFound
+        iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
+        iconName = iconName.get_filename()
+
+    return iconName
 
 ##  icon names ##
 
@@ -137,8 +138,6 @@ def jade_build_menu(application_category, depth=0):
     elif  categoryIcon is None:
         categoryIcon = "applications-other"
 
-    categoryIcon = fetchIcon(categoryIcon)
-
     if depth == 0:
         pass
 
@@ -169,7 +168,16 @@ def jade_build_menu(application_category, depth=0):
             category_description = "I know! this sucks, get to work!"
 
         elif categoryName == "System":
-            category_description = "Administer your system and change configurations!"
+            category_description = "Administer your computer like a Pro!"
+
+        elif categoryName == "Settings":
+            category_description = "Change your Settings and configurations!"
+            categoryIcon = "preferences-other"
+
+        elif categoryName == "Other":
+            category_description = "Applications with no category live here!"
+
+        categoryIcon = fetchIcon(categoryIcon)
 
         AK.Api.html += "<div id='%s" % (
             category) + "-msg' class='category-msg'><h5>%s<br>%s</h5><img class='category-icon %s' src='%s'></div>" % (

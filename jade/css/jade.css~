@@ -65,7 +65,7 @@ body {
     background-image: url(../img/system.jpg);
 }
 
-#background.settings:before {
+#background.system:before {
     background-image: url(../img/settings.jpg);
 }
 
