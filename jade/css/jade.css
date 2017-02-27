@@ -469,7 +469,7 @@ video#background-video {
     transform: translateX(-50%) translateY(-50%);
 }
 
-img.distibutor-logo {
+img.distributor-logo {
     position: absolute;
     width: 5%;
     bottom: 20px;
