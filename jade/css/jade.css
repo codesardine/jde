@@ -330,7 +330,8 @@ div.box {
 #reboot,
 #poweroff,
 #hibernate,
-.username {
+.username,
+.settings a {
     background-color: #fff;
     color: #525252;
 }
@@ -342,35 +343,37 @@ div.box {
 #reboot,
 #poweroff,
 #hibernate,
-.username {
+.username,
+.settings a {
     border-top: 1px solid #b1b1b1;
     position: relative;
     box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
 }
 
-.shortcuts a {
+.mini-dashboard-shortcuts a {
     position: relative;
 }
 
-.shortcuts .row {
+.mini-dashboard-shortcuts .row {
     margin-top: -8px;
 }
 
-.shortcuts img {
+.mini-dashboard-shortcuts img {
     margin-bottom: 20%;
     filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
-.mini-dashboard div:first-of-type a {
+.mini-dashboard-left div:first-of-type a {
     border-top: 8px solid rgb(96, 125, 139);
     position: relative;
 }
 
-.username {
+.mini-dashboard-exit .username {
     border-top: 8px solid#ff9800;
 }
 
-.mini-dashboard .box {
+.mini-dashboard-left .box,
+.mini-dashboard-exit .box {
     padding: 10px;
 }
 
@@ -411,15 +414,8 @@ div.box {
     margin-left: 40px;
 }
 
-.recent-img,
-.favorites-img,
-.users-img,
-.logout-img,
-.poweroff-img,
-.reboot-img,
-.hibernate-img,
-.suspend-img,
-.sleep-img {
+.mini-dashboard-exit img,
+.mini-dashboard-left img {
     width: 30px;
     position: absolute;
     right: 5px;

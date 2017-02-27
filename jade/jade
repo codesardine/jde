@@ -185,8 +185,13 @@ def jade_build_menu(application_category, depth=0):
             category) + "-msg' class='category-msg'><h5>%s<br>%s</h5><img class='category-icon %s' src='%s'></div>" % (
             category, category_description, categoryName, categoryIcon)
         AK.Api.html += "<div id='%s' class='category-container row'>" % category
-        AK.Api.html += "<li class='application-category %s'><a href='#' onclick=\"display('#%s, #%s-msg ');grid('#%s');\">" % (
-            category, category, category, category) + categoryName + "</a></li>"
+
+        tag = "li"
+        if categoryName == "Settings":
+            tag = "div"
+
+        AK.Api.html += "<" + tag + " class='application-category %s'><a href='#' onclick=\"display('#%s, #%s-msg ');grid('#%s');\">" % (
+            category, category, category, category) + categoryName + "</a></" + tag + ">"
 
     depth += 1
     for entry in application_category.getEntries():

@@ -21,10 +21,10 @@
 </head>
 
 <body>
-    <video playsinline loop id="background-video">
+    <!-- <video playsinline loop id="background-video">
     
     <source src="video.mp4" type="video/mp4">
-</video>
+</video>-->
     <div id='background'>
         <div id='overlay'>
             <header class='container-fluid'>
@@ -53,22 +53,22 @@
                 <div class='search-results row'>
                 </div>
                 <div id="main-dashboard" class='row'>
-                    <div class="col contents l4 xl3">
-                        <div class="mini-dashboard row">
+                    <div class="col l4 xl3">
+                        <div class="mini-dashboard-left row">
                             <!--<div class="col m12"><a href='#' class="box col m12 favorit-applications-button">Favorite Applications<img src="%s" class="favorites-img"></a></div>-->
                             <div class="col m12"><a href='#' class="box col m12 recent-files-button">Recently Used Files<img src="%s" class="recent-img"></a></div>
                         </div>
                     </div>
-                    <div class="col l1 shortcuts">
+                    <div class="col l1 mini-dashboard-shortcuts">
                         <div class="row">
-                            <a href='shell:$JADE_BROWSER' class="browser"><img src="%s" data-position="left" data-delay="50" data-tooltip="Browse the internet." class="col l12 xl10 offset-xl1 tooltipped"></a>
-                            <a href='shell:$JADE_FILE_MANAGER' class="file-manager"><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse your files."></a>
-                            <a href='shell:$JADE_SOFTWARE_INSTALLER' class="software"><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications"></a>
-                            <a href='shell:$JADE_SETTINGS' class="settings"><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings."></a>
-                            <a href='shell:$JADE_TERMINAL' class="terminal"><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use the command line."></a>
+                            <a href='shell:$JADE_BROWSER'><img src="%s" data-position="left" data-delay="50" data-tooltip="Browse the internet." class="col l12 xl10 offset-xl1 tooltipped"></a>
+                            <a href='shell:$JADE_FILE_MANAGER'><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse your files."></a>
+                            <a href='shell:$JADE_SOFTWARE_INSTALLER'><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications"></a>
+                            <a href='shell:$JADE_SETTINGS'><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings."></a>
+                            <a href='shell:$JADE_TERMINAL'><img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use the command line."></a>
                         </div>
                     </div>
-                    <div class="col contents l4 xl5">
+                    <div class="col l4 xl5">
                         <div class="box notes">
                             <p>Quick Notes</p>
                             <p contenteditable="true">
@@ -76,8 +76,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col contents l3 xl2">
-                        <div class="mini-dashboard exit row">
+                    <div class="col l3 xl2">
+                        <div class="mini-dashboard-exit row">
                             <div class="col m12">
                                 <div class="box col m12 username">%s<img src="%s" class="users-img"></div>
                             </div>
