@@ -361,7 +361,7 @@ div.box {
     filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
 }
 
-.favorit-applications-button {
+.mini-dashboard div:first-of-type a {
     border-top: 8px solid rgb(96, 125, 139);
     position: relative;
 }
