@@ -252,7 +252,7 @@ def recentlyUsed():
         itemPath = item.get_uri()
         uri = "xdg-open:" + itemPath
         AK.Api.html += "<div class='used-container-files col l4 xl3 center'><a href = ' " + uri + "'><img src='%s'><div class='filename'>" % (
-            fetchIcon("font")) + itemName + "</div></a></div>"
+            fetchIcon("emblem-documents")) + itemName + "</div></a></div>"
 
         # content_type = Gio.content_type_from_mime_type(mime)
         # icon = Gio.content_type_get_icon(content_type)
