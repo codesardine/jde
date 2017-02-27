@@ -131,6 +131,8 @@ def jade_build_menu(application_category, depth=0):
     categoryName = application_category.getName()
     category = categoryName.lower().replace(" ", "-")
     categoryIcon = "applications-" + categoryName.lower()
+    #categoryIcon = application_category.getIcon()
+    category_description = application_category.getComment()
 
     if  categoryIcon == "applications-education":
         categoryIcon = "applications-science"
@@ -142,7 +144,7 @@ def jade_build_menu(application_category, depth=0):
         pass
 
     else:
-        category_description = ""
+
         if categoryName == "Games":
             category_description = "Break time, let's play some games!"
 
