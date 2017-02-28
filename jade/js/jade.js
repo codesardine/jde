@@ -61,11 +61,15 @@ $(document).ready(function() {
     $(".category-msg, #search-icon").appendTo(".msg");
     $("#recently-used-files").appendTo(".dashboard");
     $(".recent-files-msg").appendTo(".display-msg");
-    
+
+    // help category comes first!
+    $(".application-category.help").prependTo("#nav-mobile");
+
+    // settings
     $(".application-category.settings").addClass("col m12").appendTo(".mini-dashboard-left");
     $(".application-category.settings a").addClass("box col m12");
     $(".application-category.settings").removeClass("application-category");
-    $(".category-icon.Settings").clone().appendTo( ".settings a" );
+    $(".category-icon.Settings").clone().appendTo(".settings a");
     $(".settings a img").attr("class", "");
 
     // application info slider
