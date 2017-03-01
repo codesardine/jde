@@ -24,7 +24,7 @@ from gi.repository import Gtk, WebKit2, GLib, GObject, Gio, Gdk
 
 userName = pwd.getpwuid(os.getuid())[4]
 userName = userName.replace(",", " ")
-
+path = os.path.dirname(os.path.realpath(__file__))
 
 def diskUsage():
     contents = []
@@ -37,7 +37,7 @@ def diskUsage():
             return diskusage
 
 
-with open('ui.html', 'r') as file:
+with open(path + '/ui.html', 'r') as file:
     html = file.read()
 
 
@@ -213,7 +213,7 @@ menu()
 def recentlyUsed():
     recentManager = Gtk.RecentManager.get_default()
 
-    AK.Api.html += "<div id='recently-used-files' class='col m12'><div class='box row'><div class='center recent-files-msg'>Recently Used Files <a id='recent-files-button-close' href='#'>Close</a></div>"
+    AK.Api.html += "<div id='recently-used-files' class='col m12'><div class='row'><div class='center recent-files-msg'>Recently Used Files <a id='recent-files-button-close' href='#'>Close</a></div>"
 
     for item in recentManager.get_items():
         itemName = item.get_uri().split("/")[-1].strip()
