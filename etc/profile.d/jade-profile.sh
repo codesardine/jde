@@ -1,10 +1,51 @@
 #!/bin/sh
 
-# set default applications for the dashboard
+# set default application shortcuts for the dashboard
 
-export JADE_TERMINAL=deepin-terminal
-export JADE_FILE_MANAGER=nautilus
-export JADE_SOFTWARE_INSTALLER=pamac-manager
-export JADE_SETTINGS=manjaro-settings-manager
-export JADE_BROWSER=chromium
-export JADE_DISTRIBUTOR_WELCOME_SCREEN=manjaro-welcome
+for terminal in xfce-terminal terminix konsole xfce-term term deepin-terminal gnome-terminal; do
+    if which "$terminal" &>/dev/null; then
+        echo "Default JADE terminal = ${terminal}"
+	export JADE_TERMINAL=$terminal
+        break
+    fi
+done
+
+for file_manager in nautilus dde-file-manager nemo thunar phanteon-files dolphin; do
+    if which "$terminal" &>/dev/null; then
+        echo "Default JADE File Manager ${file_manager}"
+	export JADE_FILE_MANAGER=$file_manager
+        break
+    fi
+done
+
+for software_installer in gnome-software pamac-manager; do
+    if which "$software_installer" &>/dev/null; then
+        echo "Default JADE Software Installer ${software_installer}"
+	export JADE_SOFTWARE_INSTALLER=$software_installer
+        break
+    fi
+done
+
+for settings in gnome-settings manjaro-settings-manager; do
+    if which "$settings" &>/dev/null; then
+        echo "Default JADE Settings ${settings}"
+	export JADE_SETTINGS=$settings
+        break
+    fi
+done
+
+for browser in chromium firefox midori; do
+    if which "$browser" &>/dev/null; then
+        echo "Default JADE Browser ${browser}"
+	export JADE_BROWSER=$browser
+        break
+    fi
+done
+
+for welcome_screen in manjaro-welcome; do
+    if which "$welcome_screen" &>/dev/null; then
+        echo "Default JADE Welcome Screen ${welcome_screen}"
+	export JADE_DISTRIBUTOR_WELCOME_SCREEN=$welcome_screen
+        break
+    fi
+done
