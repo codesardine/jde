@@ -40,7 +40,7 @@ $(document).ready(function() {
 
     // double click for shutdown
     jQuery(function($) {
-        $('.exit a').click(function() {
+        $('.mini-dashboard-exit a').click(function() {
             return false;
         }).dblclick(function() {
             window.location = this.href;
@@ -140,53 +140,35 @@ $(document).ready(function() {
         })
         // backgrounds
     $("li.application-category").click(function() {
-        
+
         if ($(this).hasClass("office")) {
             emptyClass("#background");
             $("#background").addClass("office");
-        }
-        
-         else if ($(this).hasClass("development")) {
+        } else if ($(this).hasClass("development")) {
             emptyClass("#background");
             $("#background").addClass("development");
-        } 
-       
-        else if ($(this).hasClass("education")) {
+        } else if ($(this).hasClass("education")) {
             emptyClass("#background");
             $("#background").addClass("education");
-        }
-        
-         else if ($(this).hasClass("multimedia")) {
+        } else if ($(this).hasClass("multimedia")) {
             emptyClass("#background");
             $("#background").addClass("multimedia");
-        }
-         
-         else if ($(this).hasClass("games")) {
+        } else if ($(this).hasClass("games")) {
             emptyClass("#background");
             $("#background").addClass("games");
-        }
-         
-         else if ($(this).hasClass("graphics")) {
+        } else if ($(this).hasClass("graphics")) {
             emptyClass("#background");
             $("#background").addClass("graphics");
-        } 
-        
-        else if ($(this).hasClass("internet")) {
+        } else if ($(this).hasClass("internet")) {
             emptyClass("#background");
             $("#background").addClass("internet");
-        }
-         
-         else if ($(this).hasClass("system")) {
+        } else if ($(this).hasClass("system")) {
             emptyClass("#background");
             $("#background").addClass("system");
-        } 
-        
-        else if ($(this).hasClass("settings")) {
+        } else if ($(this).hasClass("settings")) {
             emptyClass("#background");
             $("#background").addClass("settings");
-        } 
-        
-        else { emptyClass("#background"); }
+        } else { emptyClass("#background"); }
 
     })
 
