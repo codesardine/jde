@@ -114,6 +114,7 @@ nav a {
 
 nav a:hover {
     color: #fff;
+    background-color: #009688 !important;
 }
 
 nav ul {
@@ -131,16 +132,21 @@ nav ul {
 .application-box img {
     width: 50px;
     position: absolute;
-    right: 0px;
     z-index: 1;
     margin-top: -20px;
     margin-right: -20px;
+}
+
+.application-icon {
+    right: 0px;
 }
 
 .info-icon {
     width: 34px !important;
     margin-top: 10px !important;
     margin-right: 0px !important;
+    right: 4px;
+    padding-left: 4px;
 }
 
 .application-comment {
@@ -191,14 +197,6 @@ a:focus {
     outline-color: #fff;
 }
 
-.lock-screen {
-    float: right;
-    margin-right: 130px;
-    margin-top: -28px;
-    background-color: orange;
-    text-transform: none;
-}
-
 #search-container {
     width: 200px;
     margin-left: 40px;
@@ -222,13 +220,23 @@ a:focus {
     z-index: 1;
 }
 
+::-webkit-scrollbar,
+ ::-webkit-scrollbar-button,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track:hover,
+::-webkit-scrollbar-track:active,
+::-webkit-scrollbar-corner,
 .application-comment,
 .category-container,
 .info-icon,
 .search-results,
 .category-msg,
 #search-icon,
-#recently-used-files {
+#recently-used-files,
+.hide {
     display: none;
 }
 
@@ -272,14 +280,6 @@ a:focus {
     color: #525252;
 }
 
-div.box {
-    padding: 10px;
-    background: #fff;
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
-    min-height: 256px;
-    color: #525252;
-}
-
 .notes p:first-child {
     background-color: #1b1b1b;
     width: 120px;
@@ -293,9 +293,13 @@ div.box {
     text-decoration: none;
     background: #ffeb3b !important;
     border-top: 8px solid rgb(209, 203, 68);
+    padding: 10px;
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+    min-height: 256px;
+    color: #525252;
 }
 
-.box p {
+.notes p {
     padding: 6px;
 }
 
@@ -372,9 +376,10 @@ div.box {
     border-top: 8px solid#ff9800;
 }
 
-.mini-dashboard-left .box,
-.mini-dashboard-exit .box {
-    padding: 10px;
+.mini-dashboard-left a,
+.mini-dashboard-exit a,
+.mini-dashboard-exit .username {
+    padding: 10px !important;
 }
 
 .recent-files-msg,
@@ -402,8 +407,12 @@ div.box {
     display: none;
 }
 
-#recently-used-files .box {
-    margin-bottom: 0px
+#recently-used-files .row {
+    margin-bottom: 0px;
+    min-height: 100%;
+    padding: 10px;
+    background: #fff;
+    color: #525252;
 }
 
 #recently-used-files a {
@@ -420,18 +429,6 @@ div.box {
     position: absolute;
     right: 5px;
     top: 6px;
-}
-
-::-webkit-scrollbar,
- ::-webkit-scrollbar-button,
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-thumb:hover,
-::-webkit-scrollbar-thumb:active,
-::-webkit-scrollbar-track,
-::-webkit-scrollbar-track:hover,
-::-webkit-scrollbar-track:active,
-::-webkit-scrollbar-corner {
-    display: none;
 }
 
 input:not([type]):focus:not([readonly]),

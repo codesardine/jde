@@ -12,13 +12,17 @@ function grid(element) { $(element).masonry('layout'); }
 var dashboardTimeoutID;
 
 function dashboardStartTimer() {
-    dashboardTimeoutID = window.setTimeout(showDashboard, 20000);
+    dashboardTimeoutID = window.setTimeout(showDashboard, 40000);
+}
+
+function emptyClass(element) {
+    $(element).attr("class", "");
 }
 
 function showDashboard() {
 
     $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").fadeOut(1000).promise().done(function() {
-        $("#background").attr("class", "");
+        emptyClass("#background");
         $("#main-dashboard").fadeIn(1000);
     })
 }
@@ -70,7 +74,7 @@ $(document).ready(function() {
     $(".application-category.settings a").addClass("box col m12");
     $(".application-category.settings").removeClass("application-category");
     $(".category-icon.Settings").clone().appendTo(".settings a");
-    $(".settings a img").attr("class", "");
+    emptyClass(".settings a img");
 
     // application info slider
     $(".application-box").hover(function() {
@@ -91,17 +95,16 @@ $(document).ready(function() {
     var orange = "#ff9800"
     var brown = "#795548"
     var grey = "#9e9e9e"
-    var colors = [red, blue, teal, pink, green, orange, brown, grey];
+    var colors = [red, blue, pink, green, orange];
 
     // apply colors to application container background
     $('.application-box').css('background-color', function(index) {
         return colors[index % colors.length];
     });
 
-    // apply ramdom colors to menu backgrounds
+
     $(".application-category a").hover(function() {
 
-        $(this).css('background-color', colors[Math.floor(Math.random() * colors.length)]);
         $(this).addClass("card").fadeIn("fast");
     }, function() {
         $(".application-category a").removeClass("card");
@@ -129,42 +132,61 @@ $(document).ready(function() {
 
     })
 
+
     $(".dashboard-button a").click(function() {
-            $("#background").attr("class", "");
+            emptyClass("#background");
             showDashboard()
 
         })
         // backgrounds
     $("li.application-category").click(function() {
-        console.log(this.className)
+        
         if ($(this).hasClass("office")) {
-            $("#background").attr("class", "");
+            emptyClass("#background");
             $("#background").addClass("office");
-        } else if ($(this).hasClass("development")) {
-            $("#background").attr("class", "");
+        }
+        
+         else if ($(this).hasClass("development")) {
+            emptyClass("#background");
             $("#background").addClass("development");
-        } else if ($(this).hasClass("education")) {
-            $("#background").attr("class", "");
+        } 
+       
+        else if ($(this).hasClass("education")) {
+            emptyClass("#background");
             $("#background").addClass("education");
-        } else if ($(this).hasClass("multimedia")) {
-            $("#background").attr("class", "");
+        }
+        
+         else if ($(this).hasClass("multimedia")) {
+            emptyClass("#background");
             $("#background").addClass("multimedia");
-        } else if ($(this).hasClass("games")) {
-            $("#background").attr("class", "");
+        }
+         
+         else if ($(this).hasClass("games")) {
+            emptyClass("#background");
             $("#background").addClass("games");
-        } else if ($(this).hasClass("graphics")) {
-            $("#background").attr("class", "");
+        }
+         
+         else if ($(this).hasClass("graphics")) {
+            emptyClass("#background");
             $("#background").addClass("graphics");
-        } else if ($(this).hasClass("internet")) {
-            $("#background").attr("class", "");
+        } 
+        
+        else if ($(this).hasClass("internet")) {
+            emptyClass("#background");
             $("#background").addClass("internet");
-        } else if ($(this).hasClass("system")) {
-            $("#background").attr("class", "");
+        }
+         
+         else if ($(this).hasClass("system")) {
+            emptyClass("#background");
             $("#background").addClass("system");
-        } else if ($(this).hasClass("settings")) {
-            $("#background").attr("class", "");
+        } 
+        
+        else if ($(this).hasClass("settings")) {
+            emptyClass("#background");
             $("#background").addClass("settings");
-        } else { $("#background").attr("class", ""); }
+        } 
+        
+        else { emptyClass("#background"); }
 
     })
 
