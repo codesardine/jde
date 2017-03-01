@@ -40,44 +40,41 @@ def diskUsage():
 with open(path + '/ui.html', 'r') as file:
     html = file.read()
 
-
 def fetchIcon(iconName):
 
-    iconNotFound = "stock_dialog-error"  # TODO need a more generic name
+    iconNotFound = "image-missing"
+    iconTheme = Gtk.IconTheme.get_default()
 
-     # if img's come with full icon path we just return them.
     if iconName.endswith(".png" or ".svg"):
 
-        # if img's come with icon name and extension but no path, lets fix that.
         if iconName.endswith(".png" or ".svg") and iconName.startswith("/"):
-            return iconName
+            return iconName # if img's come with full icon path we just return them.
 
+        # if img's come with icon name and extension but no path, lets fix that.
         elif iconName.endswith(".png" or ".svg") and not iconName.startswith("/"):
 
             if iconName.endswith(".png"):
                 iconName = iconName.replace(".png", "")
-                iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
-                iconName = iconName.get_filename()
 
             elif iconName.endswith(".svg"):
                 iconName = iconName.replace(".svg", "")
 
-        else:
-            iconName = iconNotFound
-            iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
-            iconName = iconName.get_filename()
+    # xpm not suported by webkit dont load.
+    elif iconName.endswith(".xpm"):
+        iconName = iconNotFound
 
     else:
+        checkicon = iconTheme.has_icon(iconName)
 
-        iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
-        iconName = iconName.get_filename() if iconName != None else None # temporary fix for icon not found
+        if checkicon:
+            pass
 
-        # xpm not suported by webkit dont load.
+        elif iconName is not None:
+            print("Icon Not found in this theme --> " + iconName)
+            iconName = iconNotFound
 
-    if iconName.endswith(".xpm") if iconName != None else None: # temporary fix for icon not found:
-        iconName = iconNotFound
-        iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
-        iconName = iconName.get_filename()
+        iconTheme = iconTheme.lookup_icon(iconName, 64, 0)
+        iconName = iconTheme.get_filename()# if iconName != None else None # temporary fix for icon not found
 
     return iconName
 
