@@ -74,10 +74,10 @@ def fetchIcon(iconName):
 
         # xpm not suported by webkit dont load.
 
-    if iconName.endswith(".xpm"):
+    if iconName.endswith(".xpm") if iconName != None else None: # temporary fix for icon not found:
         iconName = iconNotFound
         iconName = Gtk.IconTheme.get_default().lookup_icon(iconName, 64, 0)
-        iconName = iconName.get_filename() if iconName != None else None # temporary fix for icon not found
+        iconName = iconName.get_filename()
 
     return iconName
 
@@ -98,7 +98,7 @@ rebootIcon               = fetchIcon("system-reboot")
 hibernateIcon            = fetchIcon("system-hibernate")
 suspendIcon              = fetchIcon("system-suspend")
 sleepIcon                = fetchIcon("system-hibernate")
-distributorLogoIcon      = fetchIcon("distributor-logo")  #TODO need a generic name
+distributorLogoIcon      = fetchIcon("distributor-logo-manjaro")  #TODO need a generic name
 searchIcon               = fetchIcon("search")
 
 ui_html_contents = '''%s''' % (html % (
