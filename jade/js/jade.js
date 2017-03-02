@@ -21,9 +21,9 @@ function emptyClass(element) {
 
 function showDashboard() {
 
-    $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").fadeOut(1000).promise().done(function() {
+    $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").fadeOut("slow").promise().done(function() {
         emptyClass("#background");
-        $("#main-dashboard").fadeIn(1000);
+        $("#main-dashboard").fadeIn("slow");
     })
 }
 
@@ -35,12 +35,19 @@ $(document).mousemove(function() {
     dashboardClearTimer();
     dashboardStartTimer();
 });
+
+// send messages to the backend
+function sendMsg(msg) {
+    document.title = "msg:" + msg
+}
+
 // DOCUMENT READY
 $(document).ready(function() {
 
     // double click for shutdown
     jQuery(function($) {
         $('.mini-dashboard-exit a').click(function() {
+            sendMsg("Double click to use!");
             return false;
         }).dblclick(function() {
             window.location = this.href;

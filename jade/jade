@@ -11,16 +11,14 @@ import os
 import pwd
 import xdg.Menu
 import xdg.DesktopEntry
-
-try:
-    import gi
-except ImportError:
-    print("PyGObject not found")
-    sys.exit(0)
-
+import gi
+gi.require_version('Gio', '2.0')
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 from gi.repository import Gtk, WebKit2, GLib, GObject, Gio, Gdk
+
+Application=Gio.Application.new ("com.jade.desktop", Gio.ApplicationFlags.FLAGS_NONE)
+Application.register()
 
 userName = pwd.getpwuid(os.getuid())[4]
 userName = userName.replace(",", " ")
@@ -178,9 +176,9 @@ def jade_build_menu(application_category, depth=0):
                 # print(keywords)
 
                 AK.Api.html += "<div class='application-wrapper col l4 xl3' id='%s'>" % app_id
-                AK.Api.html += "<a class='application-box card'  href = 'shell:%s'>" % app_exec
-                AK.Api.html += "<img class='application-icon' src='%s'>" % (fetchIcon(app_icon))
-                AK.Api.html += "<img class='info-icon' src='%s'>" % (fetchIcon("help-faq"))
+                AK.Api.html += "<a class='application-box card'  onclick='sendMsg(\"Launching %s\");' href = 'shell:%s'>" % (app_name, app_exec)
+                AK.Api.html += "<img class='application-icon' src='%s'>" % fetchIcon(app_icon)
+                AK.Api.html += "<img class='info-icon' src='%s'>" % fetchIcon("help-faq")
                 AK.Api.html += "<h5 class='application-name card'>%s</h5>" % app_name
 
                 if app_comment == "":
@@ -257,6 +255,21 @@ class Jade(AK.AppWindow):
 
             return False
 
+        def on_title_changed(webview, title):
+
+                print(title)
+
+                title = webview.get_title()
+
+                if title.startswith("msg:"):
+                    msg = title.replace('msg:', '')
+                    Notification = Gio.Notification.new("JADE")
+                    Notification.set_body(msg)
+                    icon = Gio.ThemedIcon.new("dialog-information")
+                    Notification.set_icon(icon)
+                    Application.send_notification(None, Notification)
+
+        self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
         settings = self.webview.get_settings()
         settings.set_enable_smooth_scrolling(self)
