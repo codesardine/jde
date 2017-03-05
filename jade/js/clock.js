@@ -1,19 +1,19 @@
 function timeDate() {
     var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+    var seconds = today.getSeconds();
+    var updateMinutes = checkTime(minutes);
+    var updateSeconds = checkTime(seconds);
+    document.getElementById('time').innerHTML = hours + ":" + updateMinutes + ":" + updateSeconds;
     document.getElementById('date').innerHTML = today.toDateString();
-
-    t = setTimeout('timeDate()', 200)
+    var updateTime = setTimeout('timeDate()', 200);
 }
+
 function checkTime(i) {
-    if ( i < 10 ) {
+    if (i < 10) {
         i = "0" + i;
     }
-    return i
+    return i;
 }
-window.onload=timeDate;
+window.onload = timeDate;
