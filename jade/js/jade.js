@@ -11,8 +11,9 @@ function grid(element) { $(element).masonry('layout'); }
 //show hide dashboard
 var dashboardTimeoutID;
 
+// dashboard timer 1 min
 function dashboardStartTimer() {
-    dashboardTimeoutID = window.setTimeout(showDashboard, 40000);
+    dashboardTimeoutID = window.setTimeout(showDashboard, 60000);
 }
 
 function emptyClass(element) {
@@ -24,7 +25,7 @@ function showDashboard() {
     $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").hide();
     emptyClass("#background");
     $("#main-dashboard").show();
-   
+
 }
 
 function dashboardClearTimer() {
