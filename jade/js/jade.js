@@ -8,35 +8,39 @@ function display(element) {
 
 function grid(element) { $(element).masonry('layout'); }
 
-//show hide dashboard
-var dashboardTimeoutID;
-
-// dashboard timer 1 min
-function dashboardStartTimer() {
-    dashboardTimeoutID = window.setTimeout(showDashboard, 60000);
-}
-
 function emptyClass(element) {
     $(element).attr("class", "");
 }
 
+//show hide dashboard
 function showDashboard() {
-
+    $(document).off("mousemove keydown");
     $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").hide();
     emptyClass("#background");
     $("#main-dashboard").show();
 
 }
 
-function dashboardClearTimer() {
-    window.clearTimeout(dashboardTimeoutID);
+// detect mouse or keyboard usage and set a dashboard timer
+function detectUsage() {
+
+    var dashboardTimeoutID;
+
+    // dashboard timer 1 min
+    function dashboardStartTimer() {
+        dashboardTimeoutID = window.setTimeout(showDashboard, 60000);
+    }
+
+    function dashboardClearTimer() {
+
+        window.clearTimeout(dashboardTimeoutID);
+    }
+    $(document).on("mousemove keydown", function() {
+
+        dashboardClearTimer();
+        dashboardStartTimer();
+    });
 }
-
-$(document).mousemove(function() {
-    dashboardClearTimer();
-    dashboardStartTimer();
-});
-
 // send messages to the backend
 function notifySend(msg) {
     document.title = "notify:" + msg;
@@ -46,7 +50,7 @@ function notifySend(msg) {
 $(document).ready(function() {
 
     // double click for shutdown
-    jQuery(function($) {
+    $(function($) {
         $('.mini-dashboard-exit a').click(function() {
             notifySend("Double click to use!");
             return false;
@@ -135,19 +139,19 @@ $(document).ready(function() {
     })
 
     $("#recent-files-button-close").click(function() {
-        $("#recently-used-files, .recent-files-msg, .category-container").hide();
-        $("#main-dashboard").show();
-
+        showDashboard();
     })
 
 
     $(".dashboard-button a").click(function() {
             emptyClass("#background");
-            showDashboard()
+            showDashboard();
 
         })
         // backgrounds
     $("li.application-category").click(function() {
+
+        detectUsage();
 
         if ($(this).hasClass("office")) {
             emptyClass("#background");
@@ -179,6 +183,4 @@ $(document).ready(function() {
         } else { emptyClass("#background"); }
 
     })
-
-
 });
