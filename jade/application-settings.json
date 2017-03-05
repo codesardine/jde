@@ -25,6 +25,6 @@
 
     "webkit": {
 
-        "debug": "yes"
+        "debug": ""
     }
 }
