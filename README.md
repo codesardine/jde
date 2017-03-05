@@ -1,5 +1,7 @@
 ##JADE
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&utm_medium=referral&utm_content=codesardine/Jadesktop&utm_campaign=badger)
+
 JADE is a serveless linux desktop, built with Python and web techonlogies on top of Webkit2 using the Gtk toolkit, the front end is build using HTML5, Javascript, and CSS.
 JADE is under the GPL license, and backgrounds images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
 
