@@ -21,10 +21,10 @@ function emptyClass(element) {
 
 function showDashboard() {
 
-    $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").fadeOut("slow").promise().done(function() {
-        emptyClass("#background");
-        $("#main-dashboard").fadeIn("slow");
-    })
+    $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").hide();
+    emptyClass("#background");
+    $("#main-dashboard").show();
+   
 }
 
 function dashboardClearTimer() {
