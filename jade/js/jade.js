@@ -37,8 +37,8 @@ $(document).mousemove(function() {
 });
 
 // send messages to the backend
-function sendMsg(msg) {
-    document.title = "msg:" + msg
+function notifySend(msg) {
+    document.title = "notify:" + msg;
 }
 
 // DOCUMENT READY
@@ -47,7 +47,7 @@ $(document).ready(function() {
     // double click for shutdown
     jQuery(function($) {
         $('.mini-dashboard-exit a').click(function() {
-            sendMsg("Double click to use!");
+            notifySend("Double click to use!");
             return false;
         }).dblclick(function() {
             window.location = this.href;
@@ -93,15 +93,15 @@ $(document).ready(function() {
         $(this).find("p").slideUp("fast");
     });
 
-    var red = "#f44336"
-    var pink = "#e91e63"
-    var blue = "#2196f3"
-    var teal = "#009688"
-    var green = "#4caf50"
-    var yellow = "#ffeb3b"
-    var orange = "#ff9800"
-    var brown = "#795548"
-    var grey = "#9e9e9e"
+    var red = "#f44336";
+    var pink = "#e91e63";
+    var blue = "#2196f3";
+    var teal = "#009688";
+    var green = "#4caf50";
+    var yellow = "#ffeb3b";
+    var orange = "#ff9800";
+    var brown = "#795548";
+    var grey = "#9e9e9e";
     var colors = [red, blue, pink, green, orange];
 
     // apply colors to application container background

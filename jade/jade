@@ -176,7 +176,7 @@ def jade_build_menu(application_category, depth=0):
                 # print(keywords)
 
                 AK.Api.html += "<div class='application-wrapper col l4 xl3' id='%s'>" % app_id
-                AK.Api.html += "<a class='application-box card'  onclick='sendMsg(\"Launching %s\");' href = 'shell:%s'>" % (app_name, app_exec)
+                AK.Api.html += "<a class='application-box card'  onclick='notifySend(\"Launching %s\");' href = 'shell:%s'>" % (app_name, app_exec)
                 AK.Api.html += "<img class='application-icon' src='%s'>" % fetchIcon(app_icon)
                 AK.Api.html += "<img class='info-icon' src='%s'>" % fetchIcon("help-faq")
                 AK.Api.html += "<h5 class='application-name card'>%s</h5>" % app_name
@@ -257,16 +257,16 @@ class Jade(AK.AppWindow):
 
         def on_title_changed(webview, title):
 
-                print(title)
+                titleName = webview.get_title()
 
-                title = webview.get_title()
-
-                if title.startswith("msg:"):
-                    msg = title.replace('msg:', '')
-                    Notification = Gio.Notification.new("JADE")
+                if titleName.startswith("notify:"):
+                    msg = titleName.replace('notify:', '')
+                    Notification = Gio.Notification.new("Desktop")
+                    Notification.set_title("JADE Says...")
                     Notification.set_body(msg)
                     icon = Gio.ThemedIcon.new("dialog-information")
                     Notification.set_icon(icon)
+                    Notification.set_priority(1)
                     Application.send_notification(None, Notification)
 
         self.webview.connect("notify::title", on_title_changed)

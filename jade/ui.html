@@ -64,19 +64,19 @@
                     </div>
                     <div class="col l1 mini-dashboard-shortcuts">
                         <div class="row">
-                            <a onclick="sendMsg('Launching Browser');" href='shell:$JADE_BROWSER'>
+                            <a onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
                                 <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="50" data-tooltip="Browse the internet.">
                             </a>
-                            <a onclick="sendMsg('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
+                            <a onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
                                 <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse your files.">
                             </a>
-                            <a onclick="sendMsg('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
+                            <a onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
                                 <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications">
                             </a>
-                            <a onclick="sendMsg('Launching Settings');" href='shell:$JADE_SETTINGS'>
+                            <a onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
                                 <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings.">
                             </a>
-                            <a onclick="sendMsg('Launching Terminal');" href='shell:$JADE_TERMINAL'>
+                            <a onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
                                 <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use the command line.">
                             </a>
                         </div>
@@ -131,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <a onclick="sendMsg('Launching Welcome Screen');" href="shell:$JADE_DISTRIBUTOR_WELCOME_SCREEN">
+        <a onclick="notifySend('Launching Welcome Screen');" href="shell:$JADE_DISTRIBUTOR_WELCOME_SCREEN">
             <img src="%s" class="distributor-logo tooltipped" data-position="left" data-delay="0" data-tooltip="Launch Welcome Screen.">
         </a>
         <img src="" class="jade-logo">
