@@ -75,9 +75,7 @@ $(document).ready(function() {
     $(".application-category").appendTo(".menu");
     $(".category-container").appendTo(".dashboard");
     $(".category-msg, #search-icon").appendTo(".msg");
-    $("#recently-used-files").appendTo(".dashboard");
-    $(".recent-files-msg").appendTo(".display-msg");
-
+    
     // help category comes first!
     $(".application-category.help").prependTo("#nav-mobile");
 
@@ -133,6 +131,7 @@ $(document).ready(function() {
     })
 
     $(".recent-files-button").click(function() {
+    	  document.title = "recent"
         $("#main-dashboard").hide();
         $("#recently-used-files, .recent-files-msg").show();
 

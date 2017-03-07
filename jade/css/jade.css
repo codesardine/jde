@@ -408,15 +408,11 @@ a:focus {
 }
 
 #recently-used-files .row {
-    margin-bottom: 0px;
-    min-height: 100%;
     padding: 10px;
-    background: #fff;
-    color: #525252;
 }
 
-#recently-used-files a {
-    color: #525252;
+#recently-used-files .filename {
+    color: #fff;
 }
 
 .recent-files-button-close {

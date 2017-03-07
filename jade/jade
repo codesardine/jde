@@ -204,13 +204,12 @@ menu()
 def recentlyUsed():
     recentManager = Gtk.RecentManager.get_default()
 
-    AK.Api.html += "<div id='recently-used-files' class='col m12'><div class='row'><div class='center recent-files-msg'>Recently Used Files <a id='recent-files-button-close' href='#'>Close</a></div>"
-
+    recent_html = ""
     for item in recentManager.get_items():
         itemName = item.get_uri().split("/")[-1].strip()
         itemPath = item.get_uri()
         uri = "xdg-open:" + itemPath
-        AK.Api.html += "<div class='used-container-files col l4 xl3 center'><a href = ' " + uri + "'><img src='%s'><div class='filename'>" % (
+        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = ' " + uri + "'><img src='%s'><div class='filename'>" % (
             fetchIcon("emblem-documents")) + itemName + "</div></a></div>"
 
         # content_type = Gio.content_type_from_mime_type(mime)
@@ -219,10 +218,10 @@ def recentlyUsed():
 
         # print(icon)
 
-    AK.Api.html += "</div></div>"
+    return recent_html
 
 
-recentlyUsed()
+
 
 AK.Api.html += "</body></html>"
 
@@ -268,6 +267,10 @@ class Jade(AK.AppWindow):
                     Notification.set_icon(icon)
                     Notification.set_priority(1)
                     Application.send_notification(None, Notification)
+                    
+                elif titleName.startswith("recent"):
+                	  recent_html = recentlyUsed()
+                	  self.webview.run_javascript('$("#recently-used-files .row").html("' + recent_html + '");')
 
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
@@ -280,3 +283,5 @@ w.add(Jade())
 w.connect('destroy', Gtk.main_quit)
 w.show_all()
 Gtk.main()
+
+recentlyUsed()
