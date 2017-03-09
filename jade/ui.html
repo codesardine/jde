@@ -39,11 +39,11 @@
                     <div class="display-msg">
                     <div class='center recent-files-msg'>Recently Used Files <a id='recent-files-button-close' href='#'>Close</a></div>
                         <div class='center dashboard-button'>
-                            <a href="#!"><img style='width: 34px;' src="%s"></a>
+                            <a href="#!"><img style='width: 34px;' src="%(dashboardIcon)s"></a>
                         </div>
                     </div>
                     <div class="msg"></div>
-                    <div class='disk-usage'>%s</div>
+                    <div class='disk-usage'>%(diskUsage)s</div>
                     <div id="time">00:00</div>
                     <div id="date"></div>
                     <div id="search-container">
@@ -60,9 +60,9 @@
                 <div id="main-dashboard" class='row'>
                     <div class="col l4 xl3">
                         <div class="mini-dashboard-left row">
-                            <!--<div class="col m12"><a href='#' class="box col m12 favorit-applications-button">Favorite Applications<img src="%s" class="favorites-img"></a></div>-->
+                            <!--<div class="col m12"><a href='#' class="box col m12 favorit-applications-button">Favorite Applications<img src="%(favoriteApplicationsIcon)s" class="favorites-img"></a></div>-->
                             <div class="col m12">
-                                <a href='#' class="box col m12 recent-files-button">Recently Used Files<img src="%s" class="recent-img">
+                                <a href='#' class="box col m12 recent-files-button">Recently Used Files<img src="%(recentUsedFilesIcon)s" class="recent-img">
                                 </a>
                             </div>
                         </div>
@@ -70,19 +70,19 @@
                     <div class="col l1 mini-dashboard-shortcuts">
                         <div class="row">
                             <a onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
-                                <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="50" data-tooltip="Browse the internet.">
+                                <img src="%(browserIcon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="50" data-tooltip="Browse the internet.">
                             </a>
                             <a onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
-                                <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse your files.">
+                                <img src="%(FileManagerIcon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse your files.">
                             </a>
                             <a onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
-                                <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications">
+                                <img src="%(softwareInstallerIcon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications">
                             </a>
                             <a onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
-                                <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings.">
+                                <img src="%(settingsIcon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings.">
                             </a>
                             <a onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
-                                <img src="%s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use the command line.">
+                                <img src="%(terminalIcon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use the command line.">
                             </a>
                         </div>
                     </div>
@@ -97,38 +97,38 @@
                     <div class="col l3 xl2">
                         <div class="mini-dashboard-exit row">
                             <div class="col m12">
-                                <div class="col m12 username">%s
-                                    <img src="%s" class="users-img">
+                                <div class="col m12 username">%(userName)s
+                                    <img src="%(userIcon)s" class="users-img">
                                 </div>
                             </div>
                             <div class="marginleft col m12">
                                 <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log out the current user." id='login' href="shell:loginctl terminate-session $XDG_SESSION_ID">Log Out
-                                    <img src="%s" class="logout-img">
+                                    <img src="%(logoutIcon)s" class="logout-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
                                 <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power off this computer." id='poweroff' href="shell:systemctl poweroff">Power Off
-                                    <img src="%s" class="poweroff-img">
+                                    <img src="%(shutdownIcon)s" class="poweroff-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
                                 <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart this computer." id='reboot' href="shell:systemctl reboot">Reboot
-                                    <img src="%s" class="reboot-img">
+                                    <img src="%(rebootIcon)s" class="reboot-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
                                 <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power down this computer while retaining its current state, for next time you power it on." id='hibernate' href="shell:systemctl hibernate">Hibernate
-                                    <img src="%s" class="hibernate-img">
+                                    <img src="%(hibernateIcon)s" class="hibernate-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
                                 <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend this computer in low power mode." id='suspend' href="shell:systemctl suspend">Suspend
-                                    <img src="%s" class="suspend-img">
+                                    <img src="%(suspendIcon)s" class="suspend-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
                                 <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby power mode." id='sleep' href="shell:systemctl hybrid-sleep">Sleep
-                                    <img src="%s" class="sleep-img">
+                                    <img src="%(sleepIcon)s" class="sleep-img">
                                 </a>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
             </div>
         </div>
         <a onclick="notifySend('Launching Welcome Screen');" href="shell:$JADE_DISTRIBUTOR_WELCOME_SCREEN">
-            <img src="%s" class="distributor-logo tooltipped" data-position="left" data-delay="0" data-tooltip="Launch Welcome Screen.">
+            <img src="%(distributorLogoIcon)s" class="distributor-logo tooltipped" data-position="left" data-delay="0" data-tooltip="Launch Welcome Screen.">
         </a>
         <img src="" class="jade-logo">
     </div>

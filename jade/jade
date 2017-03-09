@@ -38,10 +38,12 @@ def diskUsage():
 with open(path + '/ui.html', 'r') as file:
     html = file.read()
 
+
 def fetchIcon(iconName):
 
     iconNotFound = "image-missing"
     iconTheme = Gtk.IconTheme.get_default()
+    iconTheme.append_search_path("/usr/share/pixmaps/")
 
     if iconName.endswith(".png" or ".svg"):
 
@@ -49,13 +51,8 @@ def fetchIcon(iconName):
             return iconName # if img's come with full icon path we just return them.
 
         # if img's come with icon name and extension but no path, lets fix that.
-        elif iconName.endswith(".png" or ".svg") and not iconName.startswith("/"):
-
-            if iconName.endswith(".png"):
-                iconName = iconName.replace(".png", "")
-
-            elif iconName.endswith(".svg"):
-                iconName = iconName.replace(".svg", "")
+        else:
+            iconName = iconName.replace(' ', '')[:-4]
 
     # xpm not suported by webkit dont load.
     elif iconName.endswith(".xpm"):
@@ -67,13 +64,13 @@ def fetchIcon(iconName):
         if checkicon:
             pass
 
-        elif iconName is not None:
+        else:
             print("Icon Not found in this theme --> " + iconName)
             iconName = iconNotFound
 
         iconTheme = iconTheme.lookup_icon(iconName, 64, 0)
-        iconName = iconTheme.get_filename()# if iconName != None else None # temporary fix for icon not found
-
+        iconName = iconTheme.get_filename()
+    
     return iconName
 
 ##  icon names ##
@@ -84,7 +81,7 @@ recentUsedFilesIcon      = fetchIcon("document-open-recent")
 browserIcon              = fetchIcon("browser")
 FileManagerIcon          = fetchIcon("file-manager")
 softwareInstallerIcon    = fetchIcon("org.gnome.Software")
-settings                 = fetchIcon("system-settings")
+settingsIcon             = fetchIcon("system-settings")
 terminalIcon             = fetchIcon("deepin-terminal")  #TODO need a generic name
 userIcon                 = fetchIcon("system-users")
 logoutIcon               = fetchIcon("system-log-out")
@@ -96,29 +93,12 @@ sleepIcon                = fetchIcon("system-hibernate")
 distributorLogoIcon      = fetchIcon("distributor-logo-manjaro")  #TODO need a generic name
 searchIcon               = fetchIcon("search")
 
-ui_html_contents = '''%s''' % (html % (
-    dashboardIcon,
-    diskUsage(),
-    favoriteApplicationsIcon,
-    recentUsedFilesIcon,
-    browserIcon,
-    FileManagerIcon,
-    softwareInstallerIcon,
-    settings,
-    terminalIcon,
-    userName,
-    userIcon,
-    logoutIcon,
-    shutdownIcon,
-    rebootIcon,
-    hibernateIcon,
-    suspendIcon,
-    sleepIcon,
-    distributorLogoIcon,
-))
+diskUsage = diskUsage()
+
+ui_html_contents = '''%s''' % (html % locals())
 
 AK.Api.html = ui_html_contents
-AK.Api.html += "<div id='search-icon'><img src='%s'></div>" % searchIcon
+AK.Api.html += "<div id='search-icon'><img src='%(searchIcon)s'></div>" % locals() 
 
 
 def jade_build_menu(application_category, depth=0):
@@ -135,17 +115,22 @@ def jade_build_menu(application_category, depth=0):
 
         categoryIcon = fetchIcon(categoryIconName)
 
-        AK.Api.html += "<div id='%s" % (
-            category) + "-msg' class='category-msg'><h5>%s<br>%s</h5><img class='category-icon %s' src='%s'></div>" % (
-            category, category_description, categoryName, categoryIcon)
-        AK.Api.html += "<div id='%s' class='category-container row'>" % category
+        AK.Api.html += '''<div id='%(category)s-msg' class='category-msg'>
+                          <h5>%(category)s<br>%(category_description)s</h5>
+                          <img class='category-icon %(categoryName)s' src='%(categoryIcon)s'>
+                          </div>
+                          <div id='%(category)s' class='category-container row'>''' % locals()
 
         tag = "li"
         if categoryName == "Settings":
             tag = "div"
 
-        AK.Api.html += "<" + tag + " class='application-category %s'><a href='#' onclick=\"display('#%s, #%s-msg ');grid('#%s');\">" % (
-            category, category, category, category) + categoryName + "</a></" + tag + ">"
+        AK.Api.html += "<" + tag + ''' class='application-category %(category)s'>
+                        <a href='#' onclick=\"
+                        display('#%(category)s, #%(category)s-msg');
+                        grid('#%(category)s');
+                        \">%(categoryName)s
+                        </a></''' % locals() + tag + ">" 
 
     depth += 1
     for entry in application_category.getEntries():
@@ -154,32 +139,37 @@ def jade_build_menu(application_category, depth=0):
 
         elif isinstance(entry, xdg.Menu.MenuEntry):
             terminal = entry.DesktopEntry.getTerminal()
+            
             if terminal == "true":
                 pass
+                
             else:
                 app_exec = entry.DesktopEntry.getExec()
                 app_icon = entry.DesktopEntry.getIcon()
+                app_icon = fetchIcon(app_icon)
                 app_exec = app_exec.split('%')[0].strip()
-
-                app_id = entry.DesktopEntry.getName()
-                app_name = app_id
-
+                
+                generic_name = entry.DesktopEntry.getGenericName()
+                app_name = entry.DesktopEntry.getName()
+                app_id = app_name
+                infoIcon = fetchIcon("help-faq")
+					
                 app_id = app_id.lower()
                 app_id = app_id.replace(" ", "-")
                 app_id = app_id.replace(")", " ")
                 app_id = app_id.replace("(", " ")
                 app_id = app_id.replace("/", "-")
-                generic_name = entry.DesktopEntry.getGenericName()
+                
                 app_comment = entry.DesktopEntry.getComment()
-                # keywords = entry.DesktopEntry.getKeywords()
+                keywords = entry.DesktopEntry.getKeywords()
+                keywords = " ".join(keywords)
 
-                # print(keywords)
-
-                AK.Api.html += "<div class='application-wrapper col l4 xl3' id='%s'>" % app_id
-                AK.Api.html += "<a class='application-box card'  onclick='notifySend(\"Launching %s\");' href = 'shell:%s'>" % (app_name, app_exec)
-                AK.Api.html += "<img class='application-icon' src='%s'>" % fetchIcon(app_icon)
-                AK.Api.html += "<img class='info-icon' src='%s'>" % fetchIcon("help-faq")
-                AK.Api.html += "<h5 class='application-name card'>%s</h5>" % app_name
+                AK.Api.html += '''<div class='application-wrapper col l4 xl3' id='%(app_id)s'>
+                                  <a class='application-box card'  onclick='notifySend(\"Launching %(app_name)s\");' href = 'shell:%(app_exec)s'>
+                                  <img class='application-icon' src='%(app_icon)s'>
+                                  <img class='info-icon' src='%(infoIcon)s'>
+                                  <h5 class='application-name card'>%(app_name)s</h5>
+                                  <div style='display:none;'>%(keywords)s</div>''' % locals()
 
                 if app_comment == "":
                     app_comment = "Description not available."
@@ -187,18 +177,20 @@ def jade_build_menu(application_category, depth=0):
                 if generic_name == "":
                     generic_name = "Generic name not available."
 
-                AK.Api.html += "<p class='application-comment'>Application description:<br>%s<br><br>%s</p></a></div>" % (
-                    generic_name, app_comment)
+                AK.Api.html += '''<p class='application-comment'>Application description:
+                	                <br>%(generic_name)s<br>
+                	                <br>%(app_comment)s
+                	                </p></a></div>''' % locals() 
 
     AK.Api.html += "</div>"
 
 
-def menu():# /etc/xdg/menus
+def jade_menu():                 # /etc/xdg/menus
     applications = xdg.Menu.parse('/etc/xdg/menus/jade-applications.menu')
     jade_build_menu(applications)
 
 
-menu()
+jade_menu()
 
 
 def recentlyUsed():
@@ -220,30 +212,30 @@ def recentlyUsed():
 
     return recent_html
 
-
-
-
 AK.Api.html += "</body></html>"
 
 
 class Jade(AK.AppWindow):
     def __init__(self):
         super(Jade, self).__init__()
-
+        
         def on_decide_policy(webview, decision, decision_type):
 
             if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
 
                 navigation_action = decision.get_navigation_action()
                 navigation_request = navigation_action.get_request()
-                navigation_type = navigation_action.get_navigation_type()
+                #navigation_type = navigation_action.get_navigation_type()
                 uri = navigation_request.get_uri()
 
                 def execute_command(uri):
-                    subprocess.Popen(uri, shell=True)
-                    decision.ignore()
-                    return True
-
+                	 #applicationName = webview.get_title()
+                	 #applicationName = applicationName.replace('notify:Launching ', '')
+                	 process = subprocess.Popen(uri, shell=True)
+                	 #print(applicationName + " pid number " + str(process.pid))
+                	 decision.ignore()
+                	 return True
+               	  
                 if uri.startswith("shell:"):
                     uri = uri.replace('shell:', '')
                     execute_command(uri)
@@ -283,5 +275,3 @@ w.add(Jade())
 w.connect('destroy', Gtk.main_quit)
 w.show_all()
 Gtk.main()
-
-recentlyUsed()

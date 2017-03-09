@@ -1,6 +1,6 @@
 // show hide applications
 function display(element) {
-    $(".category-msg").addClass('animated slideInLeft');
+    $(".category-msg").addClass("animated slideInLeft");
     $(".category-container, .search-results, .category-msg, #search-icon, #main-dashboard, #recently-used-files, .recent-files-msg").hide();
     $(element).show();
     $(".dashboard-button").show();
@@ -51,7 +51,7 @@ $(document).ready(function() {
 
     // double click for shutdown
     $(function($) {
-        $('.mini-dashboard-exit a').click(function() {
+        $(".mini-dashboard-exit a").click(function() {
             notifySend("Double click to use!");
             return false;
         }).dblclick(function() {
@@ -64,7 +64,7 @@ $(document).ready(function() {
                     return false;
             }
         });
-    })
+    });
 
     $('.category-container').masonry({
         itemSelector: '.col',
@@ -148,37 +148,37 @@ $(document).ready(function() {
 
         })
         // backgrounds
-    $("li.application-category").click(function() {
+    $("li.application-category, .settings").click(function() {
 
         detectUsage();
 
         if ($(this).hasClass("office")) {
             emptyClass("#background");
-            $("#background").addClass("office");
+            $("#background").addClass("office-background");
         } else if ($(this).hasClass("development")) {
             emptyClass("#background");
-            $("#background").addClass("development");
+            $("#background").addClass("development-background");
         } else if ($(this).hasClass("education")) {
             emptyClass("#background");
-            $("#background").addClass("education");
+            $("#background").addClass("education-background");
         } else if ($(this).hasClass("multimedia")) {
             emptyClass("#background");
-            $("#background").addClass("multimedia");
-        } else if ($(this).hasClass("games")) {
+            $("#background").addClass("multimedia-background");
+        } else if ($(this).hasClass("gaming")) {
             emptyClass("#background");
-            $("#background").addClass("games");
+            $("#background").addClass("games-background");
         } else if ($(this).hasClass("graphics")) {
             emptyClass("#background");
-            $("#background").addClass("graphics");
-        } else if ($(this).hasClass("internet")) {
+            $("#background").addClass("graphics-background");
+        } else if ($(this).hasClass("go-online")) {
             emptyClass("#background");
-            $("#background").addClass("internet");
+            $("#background").addClass("internet-background");
         } else if ($(this).hasClass("system")) {
             emptyClass("#background");
-            $("#background").addClass("system");
+            $("#background").addClass("system-background");
         } else if ($(this).hasClass("settings")) {
             emptyClass("#background");
-            $("#background").addClass("settings");
+            $("#background").addClass("settings-background");
         } else { emptyClass("#background"); }
 
     })

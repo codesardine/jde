@@ -33,39 +33,39 @@ body {
     z-index: -2;
 }
 
-#background.office:before {
+#background.office-background:before {
     background-image: url(../img/office.jpg);
 }
 
-#background.development:before {
+#background.development-background:before {
     background-image: url(../img/development.jpg);
 }
 
-#background.education:before {
+#background.education-background:before {
     background-image: url(../img/education.jpg);
 }
 
-#background.multimedia:before {
+#background.multimedia-background:before {
     background-image: url(../img/multimedia.jpg);
 }
 
-#background.games:before {
+#background.games-background:before {
     background-image: url(../img/games.jpg);
 }
 
-#background.graphics:before {
+#background.graphics-background:before {
     background-image: url(../img/graphics.jpg);
 }
 
-#background.internet:before {
+#background.internet-background:before {
     background-image: url(../img/internet.jpg);
 }
 
-#background.system:before {
+#background.system-background:before {
     background-image: url(../img/system.jpg);
 }
 
-#background.settings:before {
+#background.settings-background:before {
     background-image: url(../img/settings.jpg);
 }
 
