@@ -3,7 +3,7 @@
 
         "name": "Jade",
         "description": "Desktop environment for linux with html front end",
-        "version": "a0.9",
+        "version": "a0.10",
         "author": "Vitor Lopes",
         "url": "https://github.com/codesardine/Jadesktop/",
         "license": "GPL",
