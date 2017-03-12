@@ -458,11 +458,18 @@ video#background-video {
     transform: translateX(-50%) translateY(-50%);
 }
 
-img.distributor-logo {
+img.distributor-logo, img.jade-logo {
     position: absolute;
     width: 5%;
     bottom: 20px;
+}
+
+img.distributor-logo {
     right: 10px;
+}
+
+img.jade-logo {
+    left: 10px;
 }
 
 .msg,

@@ -12,7 +12,7 @@
     },
 
     "window": {
-        "icon": "",
+        "icon": "/opt/jade/img/jade-logo.svg",
         "hint_type": "",
         "width": 1600,
         "height": 1200,
@@ -25,6 +25,6 @@
 
     "webkit": {
 
-        "debug": "no"
+        "debug": ""
     }
 }
