@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 try:
-    from j import AK
+    from j.AK import Api, AppWindow
 
 except Exception as err:
     print("Ops something went wrong: " + str(err))
@@ -10,13 +10,8 @@ import os
 import pwd
 import subprocess
 
-import gi
 import xdg.DesktopEntry
 import xdg.Menu
-
-gi.require_version('Gio', '2.0')
-gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0')
 
 from gi.repository import Gtk, WebKit2, Gio
 from functools import lru_cache as cache
@@ -91,30 +86,30 @@ def fetch_icon(icon_name):
 
 #  icon names
 
-dashboard_icon             = fetch_icon("app-launcher")
+dashboard_icon = fetch_icon("app-launcher")
 favorite_applications_icon = fetch_icon("emblem-favorite")
-recent_used_files_icon     = fetch_icon("document-open-recent")
-browser_icon               = fetch_icon("browser")
-file_manager_icon          = fetch_icon("file-manager")
-software_installer_icon    = fetch_icon("org.gnome.Software")
-settings_icon              = fetch_icon("system-settings")
-terminal_icon              = fetch_icon("deepin-terminal")  # TODO need a generic name
-user_icon                  = fetch_icon("system-users")
-logout_icon                = fetch_icon("system-log-out")
-shutdown_icon              = fetch_icon("system-shutdown")
-reboot_icon                = fetch_icon("system-reboot")
-hibernate_icon             = fetch_icon("system-hibernate")
-suspend_icon               = fetch_icon("system-suspend")
-sleep_icon                 = fetch_icon("system-hibernate")
-distributor_logo_icon      = fetch_icon("distributor-logo-manjaro")  # TODO need a generic name
-search_icon                = fetch_icon("search")
+recent_used_files_icon = fetch_icon("document-open-recent")
+browser_icon = fetch_icon("browser")
+file_manager_icon = fetch_icon("file-manager")
+software_installer_icon = fetch_icon("org.gnome.Software")
+settings_icon = fetch_icon("system-settings")
+terminal_icon = fetch_icon("deepin-terminal")  # TODO need a generic name
+user_icon = fetch_icon("system-users")
+logout_icon = fetch_icon("system-log-out")
+shutdown_icon = fetch_icon("system-shutdown")
+reboot_icon = fetch_icon("system-reboot")
+hibernate_icon = fetch_icon("system-hibernate")
+suspend_icon = fetch_icon("system-suspend")
+sleep_icon = fetch_icon("system-hibernate")
+distributor_logo_icon = fetch_icon("distributor-logo-manjaro")  # TODO need a generic name
+search_icon = fetch_icon("search")
 
 disk_usage = disk_usage()
 
 ui_html_contents = '''%s''' % (html % locals())
 
-AK.Api.html = ui_html_contents
-AK.Api.html += "<div id='search-icon'><img src='%(search_icon)s'></div>" % locals()
+Api.html = ui_html_contents
+Api.html += "<div id='search-icon'><img src='%(search_icon)s'></div>" % locals()
 
 
 def jade_build_menu(application_category, iteration=0):
@@ -135,7 +130,7 @@ def jade_build_menu(application_category, iteration=0):
 
         category_icon = fetch_icon(category_icon_name)
 
-        AK.Api.html += '''<div id='%(category)s-msg' class='category-msg'>
+        Api.html += '''<div id='%(category)s-msg' class='category-msg'>
                           <h5>%(category)s<br>%(category_description)s</h5>
                           <img class='category-icon %(category_name)s' src='%(category_icon)s'>
                           </div>
@@ -145,7 +140,7 @@ def jade_build_menu(application_category, iteration=0):
         if category_name == "Settings":
             tag = "div"
 
-        AK.Api.html += "<" + tag + ''' class='application-category %(category)s'>
+        Api.html += "<" + tag + ''' class='application-category %(category)s'>
                         <a href='#' onclick=\"
                         display('#%(category)s, #%(category)s-msg');
                         grid('#%(category)s');
@@ -186,7 +181,7 @@ def jade_build_menu(application_category, iteration=0):
                 #    application_keywords = "<span>" + application_keywords + "</span>"
                 #    print(application_keywords)
 
-                AK.Api.html += '''<div class='application-wrapper col l4 xl3'>
+                Api.html += '''<div class='application-wrapper col l4 xl3'>
                                   <a class='application-box card'  onclick='notifySend(\"Launching %(application_name)s\");' href = 'shell:%(application_executable)s'>
                                   <img class='application-icon' src='%(application_icon)s'>
                                   <img class='info-icon' src='%(info_icon)s'>
@@ -199,13 +194,13 @@ def jade_build_menu(application_category, iteration=0):
                 if not application_generic_name:
                     application_generic_name = "Generic name not available."
 
-                AK.Api.html += '''<p class='application-comment'>Application description:<br>
+                Api.html += '''<p class='application-comment'>Application description:<br>
                                     <br>%(application_generic_name)s<br>
                                     <br>%(application_comment)s
                                     </p>
                                     </a></div>''' % locals()
 
-    AK.Api.html += "</div>"
+    Api.html += "</div>"
 
 
 def jade_menu():  # /etc/xdg/menus
@@ -241,17 +236,19 @@ def recently_used():
     return recent_html
 
 
-AK.Api.html += "</body></html>"
+Api.html += "</body></html>"
 
 
-class JadeWindow(AK.AppWindow):
+class JadeWindow(AppWindow):
     """
     extends AK.AppWindow functionality
     """
 
     def __init__(self):
+
         super(JadeWindow, self).__init__()
 
+        @cache(maxsize=None)
         def on_decide_policy(webview, decision, decision_type):
 
             """
@@ -291,7 +288,7 @@ class JadeWindow(AK.AppWindow):
                     execute(command)
 
             return False
-
+        
         def on_title_changed(webview, title):
 
             """
@@ -317,14 +314,14 @@ class JadeWindow(AK.AppWindow):
 
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
+
         settings = self.webview.get_settings()
         settings.set_enable_smooth_scrolling(self)
-        settings.set_default_charset("UTF-8")
+
+        self.connect("delete-event", Gtk.main_quit)
+        self.show_all()
 
 
 jade_menu()
-w = JadeWindow()
-w.add(JadeWindow())
-w.connect('destroy', Gtk.main_quit)
-w.show_all()
+JadeWindow()
 Gtk.main()
