@@ -1,12 +1,14 @@
-##JADE
+## JADE
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codesardine/Jadesktop&amp;utm_campaign=Badge_Grade)
 
 JADE is a serveless linux desktop, built with Python and web techonlogies on top of Webkit2 using the Gtk toolkit, the front end is build using HTML5, Javascript, and CSS.
 JADE is under the GPL license, and backgrounds images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
 
+Every developer has a vision of what a DE should be this is mine.
+ 
 JADE is a modern DE. Jade does not try to hide things way from the user, and reduces nested clicking for a modern workflow. Jade is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.
 
-At the moment it only offers basic functionality, runs applications, shuts down your system, allows access to recently used files, provides application search, displays the current time and total disk usage in a pleasant way to the user. 
+At the moment it only offers basic functionality, provides access to installed applications, shuts down your system, allows access to recently used files, provides application search, displays the current time and total disk usage in a pleasant way to the user. 
 
 ### Why web techonlogies?
 
@@ -41,11 +43,9 @@ Jade can be run as normal application window, or as a Desktop Enviroment by sele
 
 Development:
 
-I will be adding more functionality as i need it without bloat, as i want it simple and snappy. If you have an idea that is a good fit open an issue. 
+I will be adding more functionality as i need it without bloat. If you have an idea that is a good fit open an issue. 
 
 If there is something you can't find or do inside the interface open an issue, as i consider interface design problems a bug.
-
-If you find a problem in the code open an issue.
 
 Issues might take me a while to resolve but i will eventually fix them when i get spare time.
 
