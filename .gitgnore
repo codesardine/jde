@@ -1,13 +1,11 @@
-# Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL files /Backup Files
+*~
 __pycache__/
 *.py[cod]
 *$py.class
 
 # C extensions
 *.so
-
-# Backup Files
-*~
 
 # Distribution / packaging
 .Python
