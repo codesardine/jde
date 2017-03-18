@@ -39,7 +39,7 @@
                          $("#search-container").append("<div id='search-msg'>You have " + elementsNumber + " matches!</div>");
                      }
                  }
-             })
+             });
          }
      });
      $("#search").keypress(function(event) {
@@ -51,5 +51,5 @@
              var launch = $(".search-results .application-wrapper .application-box").attr("href");
              window.location.href = launch;
          }
-     })
- })
+     });
+ });

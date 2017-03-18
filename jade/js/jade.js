@@ -75,7 +75,7 @@ $(document).ready(function() {
     $(".application-category").appendTo(".menu");
     $(".category-container").appendTo(".dashboard");
     $(".category-msg, #search-icon").appendTo(".msg");
-    
+
     // help category comes first!
     $(".application-category.help").prependTo("#nav-mobile");
 
@@ -128,26 +128,26 @@ $(document).ready(function() {
     }, function() {
         $(this).find(".info-icon").fadeOut("slow");
         $(this).find(".application-icon").fadeIn("slow");
-    })
+    });
 
     $(".recent-files-button").click(function() {
-    	  document.title = "recent"
+        document.title = "recent";
         $("#main-dashboard").hide();
         $("#recently-used-files, .recent-files-msg").show();
 
-    })
+    });
 
     $("#recent-files-button-close").click(function() {
         showDashboard();
-    })
+    });
 
 
     $(".dashboard-button a").click(function() {
-            emptyClass("#background");
-            showDashboard();
+        emptyClass("#background");
+        showDashboard();
 
-        })
-        // backgrounds
+    });
+    // backgrounds
     $("li.application-category, .settings").click(function() {
 
         detectUsage();
@@ -181,5 +181,5 @@ $(document).ready(function() {
             $("#background").addClass("settings-background");
         } else { emptyClass("#background"); }
 
-    })
+    });
 });
