@@ -54,10 +54,10 @@ done
 
 #default welcome screen
 
-for welcome_screen in manjaro-welcome manjaro-hello; do
-    if which "$welcome_screen" &>/dev/null; then
+#for welcome_screen in manjaro-hello; do
+    #if which "$welcome_screen" &>/dev/null; then
         #echo "Default JADE Welcome Screen ${welcome_screen}"
-	export JADE_DISTRIBUTOR_WELCOME_SCREEN=$welcome_screen
-        break
-    fi
-done
+	#export JADE_DISTRIBUTOR_WELCOME_SCREEN=$welcome_screen
+        #break
+    #fi
+#done

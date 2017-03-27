@@ -105,7 +105,7 @@ reboot_icon                = fetch_icon("system-reboot")
 hibernate_icon             = fetch_icon("system-hibernate")
 suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
-distributor_logo_icon      = fetch_icon("distributor-logo-manjaro")  # TODO need a generic name
+#distributor_logo_icon      = fetch_icon("distributor-logo-manjaro")  # TODO need a generic name
 search_icon                = fetch_icon("search")
 
 disk_usage = disk_usage()
