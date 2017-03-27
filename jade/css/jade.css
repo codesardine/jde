@@ -139,6 +139,7 @@ nav ul {
 
 .application-icon {
     right: 0px;
+    filter: drop-shadow(-1px 1px 1px rgba(36, 36, 36, 0.5));
 }
 
 .info-icon {
@@ -489,7 +490,7 @@ img.jade-logo {
 
 #main-dashboard a,
 .notes {
-    filter: grayscale(20%) opacity(98%) brightness(96%);
+    filter: grayscale(24%) opacity(96%) brightness(94%);
 }
 
 #main-dashboard a:hover,
