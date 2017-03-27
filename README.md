@@ -26,7 +26,7 @@ you can reach me here:
 or here: https://forum.manjaro.org/t/new-desktop-jade-on-the-works-update-1/17228/40
 
 
-![desktop](jade.png)
+![desktop](jade.jpg)
 
 
 Instalation and dependencies: 
