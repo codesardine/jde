@@ -1,10 +1,10 @@
 # Author: Vitor Lopes <vmnlop@gmail.com>
 
-_pkgname=jade
+_pkgname=jadesktop
 pkgname="$_pkgname-git"
-pkgver=0.a13
-pkgrel=3
-pkgdesc="JADE, a linux desktop built with html5, css, javascript and python."
+pkgver=0.a15
+pkgrel=4
+pkgdesc="JADE, a linux desktop built with HTML5, CSS, JavaScript and Python."
 arch=('any')
 url="https://github.com/codesardine/Jadesktop"
 license=('GPL')
@@ -29,7 +29,6 @@ package() {
     cp -r $srcdir/$_pkgname/etc $pkgdir/
     mkdir -p "$pkgdir/opt/jade"
     cp -r $srcdir/$_pkgname/jade $pkgdir/opt
-    chmod 644 $pkgdir/usr/share/applications/jade.desktop
     chmod 644 $pkgdir/etc/xdg/autostart/jade.desktop
     chmod 755 $pkgdir/usr/bin/jade
 }
