@@ -57,36 +57,48 @@ def fetch_icon(icon_name):
     """
     icon_not_found = "image-missing"
     icon_theme = Gtk.IconTheme.get_default()
-    # icon_theme.add_search_path("/usr/share/pixmaps/")
+
 
     if icon_name.endswith(".png" or ".svg"):
 
-        if icon_name.endswith(".png" or ".svg") and icon_name.startswith("/"):
-            return icon_name  # if img's come with full icon path we just return them.
+        if  icon_name.startswith("/"):
+            return icon_name  # if image has full icon path we just return them.
 
-        # if img's come with icon name and extension but no path, lets fix that.
+        # if image has icon name and extension, but no path, lets fix that.
         else:
-            icon_name = icon_name.replace(' ', '')[:-4]  # TODO this stop working can't find the files in pixmaps folder
+            if icon_name.endswith(".png"):
+                icon_name = icon_name.replace('.png', '')
+
+            elif icon_name.endswith(".svg"):
+            	icon_name = icon_name.replace('.svg', '')
 
     # xpm not supported by webkit don't load.
     elif icon_name.endswith(".xpm"):
         icon_name = icon_not_found
+        print(icon_name + " xpm icons not supported")
+
+    check_icon = icon_theme.has_icon(icon_name)
+
+    if check_icon:
+        pass
 
     else:
-        check_icon = icon_theme.has_icon(icon_name)
+        # check if it has the icon in pixmaps directory and return it.
+        pixmaps = "/usr/share/pixmaps/" + icon_name
+        if os.path.isfile(pixmaps + ".png"):
+            return pixmaps + ".png"
 
-        if check_icon:
-            pass
+        elif os.path.isfile(pixmaps + ".svg"):
+            return pixmaps + ".svg"
 
         else:
             print("Icon Not found in this theme --> " + icon_name)
             icon_name = icon_not_found
 
-        icon_theme = icon_theme.lookup_icon(icon_name, 64, 0)
-        icon_name = icon_theme.get_filename()
+    icon_theme = icon_theme.lookup_icon(icon_name, 64, 0)
+    icon_path = icon_theme.get_filename()
 
-    return icon_name
-
+    return icon_path
 
 #  icon names
 
@@ -95,9 +107,9 @@ favorite_applications_icon = fetch_icon("emblem-favorite")
 recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
 file_manager_icon          = fetch_icon("file-manager")
-software_installer_icon    = fetch_icon("org.gnome.Software")
-settings_icon              = fetch_icon("system-settings")
-terminal_icon              = fetch_icon("deepin-terminal")  # TODO need a generic name
+software_installer_icon    = fetch_icon("system-software-install")
+settings_icon              = fetch_icon("preferences-desktop")
+terminal_icon              = fetch_icon("terminal")
 user_icon                  = fetch_icon("system-users")
 logout_icon                = fetch_icon("system-log-out")
 shutdown_icon              = fetch_icon("system-shutdown")
@@ -105,7 +117,7 @@ reboot_icon                = fetch_icon("system-reboot")
 hibernate_icon             = fetch_icon("system-hibernate")
 suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
-#distributor_logo_icon      = fetch_icon("distributor-logo-manjaro")  # TODO need a generic name
+#distributor_logo_icon      = fetch_icon("distributor-logo")
 search_icon                = fetch_icon("search")
 
 disk_usage = disk_usage()
