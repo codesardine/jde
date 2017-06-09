@@ -161,7 +161,7 @@ nav ul {
     position: fixed;
     top: 0px;
     z-index: -1;
-    padding-top: 66px;
+    padding-top: 86px;
     padding-bottom: 10px;
     width: 100%;
     background-color: transparent;
@@ -203,7 +203,7 @@ a:focus {
 #search-container {
     width: 200px;
     margin-left: 40px;
-    margin-top: -34px;
+    margin-top: -22px;
 }
 
 #search-container input[type=text] {
@@ -245,7 +245,7 @@ a:focus {
 
 .category-icon,
 #search-icon img {
-    margin-top: -9px;
+    margin-top: -2px;
     width: 52px;
 }
 
@@ -259,7 +259,7 @@ a:focus {
     margin-left: 10px;
     line-height: 22px;
     font-size: 16px;
-    margin-top: -5px;
+    margin-top: 4px;
     color: #f0f0f0;
 }
 
@@ -395,8 +395,12 @@ a:focus {
 }
 
 .dashboard-button {
-    height: 34px;
     margin-top: 12px;
+}
+
+.dashboard-button img {
+width: 68px;
+height: 68px;
 }
 
 .recent-files-msg a {
