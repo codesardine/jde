@@ -21,26 +21,6 @@ function showDashboard() {
 
 }
 
-// detect mouse or keyboard usage and set a dashboard timer
-function detectUsage() {
-
-    var dashboardTimeoutID;
-
-    // dashboard timer 1 min
-    function dashboardStartTimer() {
-        dashboardTimeoutID = window.setTimeout(showDashboard, 60000);
-    }
-
-    function dashboardClearTimer() {
-
-        window.clearTimeout(dashboardTimeoutID);
-    }
-    $(document).on("mousemove keydown", function() {
-
-        dashboardClearTimer();
-        dashboardStartTimer();
-    });
-}
 // send messages to the backend
 function notifySend(msg) {
     document.title = "notify:" + msg;
@@ -149,8 +129,6 @@ $(document).ready(function() {
     });
     // backgrounds
     $("li.application-category, .settings").click(function() {
-
-        detectUsage();
 
         if ($(this).hasClass("office")) {
             emptyClass("#background");
