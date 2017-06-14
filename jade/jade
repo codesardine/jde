@@ -21,7 +21,7 @@ import subprocess
 import xdg.DesktopEntry
 import xdg.Menu
 
-from gi.repository import Gtk, WebKit2, Gio
+from gi.repository import Gtk, WebKit2, Gio, GdkPixbuf
 from functools import lru_cache as cache
 
 jade_application = Gio.Application.new("com.jade.desktop", Gio.ApplicationFlags.FLAGS_NONE)
@@ -102,7 +102,7 @@ def fetch_icon(icon_name):
 
 #  icon names
 
-dashboard_icon             = fetch_icon("app-launcher")
+dashboard_icon             = "img/jade-logo.svg"
 favorite_applications_icon = fetch_icon("emblem-favorite")
 recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
@@ -183,20 +183,13 @@ def jade_build_menu(application_category, iteration=0):
 
                 application_generic_name = entry.DesktopEntry.getGenericName()
                 application_name = entry.DesktopEntry.getName().replace(")", "").replace("(", "").replace("/", " ")
-                # app_id = app_name
                 info_icon = fetch_icon("help-faq")
 
-                # app_id = app_id.lower().replace(" ", "-")
-
                 application_comment = entry.DesktopEntry.getComment()
-                # application_keywords = entry.DesktopEntry.getKeywords()
-                #  TODO   strange behavior on keywords when active, UTF-8 is not recognized
-                #  TODO   and i get chinese instead for all resources loaded in the head of the document
-                #  TODO   even stranger this only happends in one of my machines needs more testing.
-                # if keywords:
-                #    application_keywords = " ".join(keywords)
-                #    application_keywords = "<span>" + application_keywords + "</span>"
-                #    print(application_keywords)
+                application_keywords = entry.DesktopEntry.getKeywords()
+
+                application_keywords = " ".join(application_keywords)
+                application_keywords = "<span style='display:none;'>" + application_keywords + "</span>"
 
                 Api.html += '''<div class='application-wrapper col l4 xl3'>
                                   <a class='application-box card'  onclick='notifySend(\"Launching %(application_name)s\");' href = 'shell:%(application_executable)s'>
@@ -214,7 +207,7 @@ def jade_build_menu(application_category, iteration=0):
                 Api.html += '''<p class='application-comment'>Application description:<br>
                                     <br>%(application_generic_name)s<br>
                                     <br>%(application_comment)s
-                                    </p>
+                                    </p>%(application_keywords)s
                                     </a></div>''' % locals()
 
     Api.html += "</div>"
@@ -235,20 +228,28 @@ def recently_used():
     :return: html with all the recent used files
     """
     recent_manager = Gtk.RecentManager.get_default()
-
     recent_html = ""
-    file_icon = fetch_icon("emblem-documents")
-    for item in recent_manager.get_items():
-        item_name = item.get_uri().split("/")[-1].strip()
-        item_path = item.get_uri()
-        command = "xdg-open:" + item_path
-        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(file_icon)s'><div class='filename'>%(item_name)s</div></a></div>" % locals()
 
-        # TODO get icon for correct mimetype
-        # content_type = Gio.content_type_from_mime_type(mime)
-        # icon = Gio.content_type_get_icon(content_type)
-        # AK.Api.html += "<a href = ' " + uri + "'><img src='%s'><h6>"  % (fetch_icon("font")) + itemName +"<h6></a>"
-        # print(icon)
+    for item in recent_manager.get_items():
+
+        item_path = item.get_uri()
+        item_name = item_path.split("/")[-1].strip().replace("%20", " ")
+        mime = Gio.content_type_guess(item_path, data=None)
+        command = "xdg-open:" + item_path
+
+        if mime[0] in ("image/png", "image/svg+xml", "image/bmp", "image/jpeg", "image/gif"):
+            image = item_path
+
+        else:
+            icon_name = Gio.content_type_get_generic_icon_name(mime[0])
+            image = fetch_icon(icon_name)
+
+            if image.endswith("image-missing.png"):
+                image = fetch_icon("emblem-documents")
+
+
+        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(image)s'><div class='filename'>%(item_name)s</div></a></div>" % locals()
+
 
     return recent_html
 
