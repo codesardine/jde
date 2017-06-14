@@ -1,7 +1,7 @@
 // show hide applications
 function display(element) {
     $(".category-msg").addClass("animated slideInLeft");
-    $(".category-container, .search-results, .category-msg, #search-icon, #main-dashboard, #recently-used-files, .recent-files-msg").hide();
+    $(".category-container, .search-results, .category-msg, #search-icon, #main-dashboard, #recently-used-files").hide();
     $(element).show();
     $(".dashboard-button").show();
 }
@@ -14,8 +14,7 @@ function emptyClass(element) {
 
 //show hide dashboard
 function showDashboard() {
-    $(document).off("mousemove keydown");
-    $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .recent-files-msg, .dashboard-button").hide();
+    $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").hide();
     emptyClass("#background");
     $("#main-dashboard").show();
 
@@ -113,14 +112,9 @@ $(document).ready(function() {
     $(".recent-files-button").click(function() {
         document.title = "recent";
         $("#main-dashboard").hide();
-        $("#recently-used-files, .recent-files-msg").show();
+        $("#recently-used-files, .dashboard-button").show();
 
     });
-
-    $("#recent-files-button-close").click(function() {
-        showDashboard();
-    });
-
 
     $(".dashboard-button a").click(function() {
         emptyClass("#background");
