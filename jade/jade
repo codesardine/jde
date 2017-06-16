@@ -148,7 +148,7 @@ def jade_build_menu(application_category, iteration=0):
         category_icon = fetch_icon(category_icon_name)
 
         Api.html += '''<div id='%(category)s-msg' class='category-msg'>
-                          <h5>%(category)s<br>%(category_description)s</h5>
+                          <h5><span>%(category)s</span><span>%(category_description)s</span></h5>
                           <img class='category-icon %(category_name)s' src='%(category_icon)s'>
                           </div>
                           <div id='%(category)s' class='category-container row'>''' % locals()

@@ -3,7 +3,16 @@ body {
     height: 100%;
     margin: 0;
 }
-
+.corner-triangle {
+	border-width: 320px 1020px 0 0;
+   border-color: rgba(173, 22, 73, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
+   position: absolute;
+   top: 0;
+   z-index: -99999;
+   width: 0;
+   height: 0;
+   border-style: solid;
+}
 #overlay {
     width: 100%;
     height: 100%;
@@ -85,6 +94,7 @@ header {
     right: 0;
     overflow: auto;
     padding: 20px 4px 0px 4px;
+    z-index: 999;
 }
 
 .application-box {
@@ -262,10 +272,21 @@ a:focus {
     margin-left: 10px;
     line-height: 22px;
     font-size: 16px;
-    margin-top: 4px;
+    margin-top: -65px;
     color: #f0f0f0;
+    font-weight: bold;
 }
-
+.category-msg h5 span {
+    display: block;
+}
+.category-msg h5 span:first-of-type {
+   padding-bottom: 54px;
+   margin-left: -58px;
+   font-size: 28px;
+}
+.category-msg h5 span:last-of-type {
+   margin-left: 20px;
+}
 .category-msg h5:first-letter {
     text-transform: capitalize;
 }
@@ -328,7 +349,10 @@ a:focus {
     min-height: 44px;
     padding-left: 10px;
     padding-right: 10px;
-}
+    color: #d5d5d5;
+    font-size: 13px;
+    margin-top: 10px;
+  }
 
 .used-container-files {
     margin-bottom: 60px
@@ -410,16 +434,13 @@ filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
 #recently-used-files {
     position: fixed;
     display: none;
-    background-color: #232323;
-    top: 264px;
-    height: calc(100% - 264px);
+    background-color: rgba(23, 23, 24, 0.83);
+    top: 440px;
+    height: calc(100% - 440px);
     overflow: auto;
-    border-top: 2px dashed #ccc;
-    padding-top: 60px;
-}
-
-#recently-used-files .filename {
-    color: #ccc;
+    z-index: 999;
+    padding-top: 40px;
+    width: 100%;
 }
 
 .mini-dashboard-exit img,
