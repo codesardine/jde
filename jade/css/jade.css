@@ -258,7 +258,7 @@ a:focus {
 
 .category-icon,
 #search-icon img {
-    margin-top: -2px;
+    margin-top: -18px;
     width: 52px;
 }
 
@@ -272,20 +272,21 @@ a:focus {
     margin-left: 10px;
     line-height: 22px;
     font-size: 16px;
-    margin-top: -65px;
-    color: #f0f0f0;
+    margin-top: -70px;
     font-weight: bold;
 }
 .category-msg h5 span {
     display: block;
+    margin-left: -58px;
 }
 .category-msg h5 span:first-of-type {
-   padding-bottom: 54px;
-   margin-left: -58px;
+   padding-bottom: 8px;
    font-size: 28px;
+   color: #e7e7e7;
 }
 .category-msg h5 span:last-of-type {
-   margin-left: 20px;
+   font-size: 15px;
+   color: #232323;
 }
 .category-msg h5:first-letter {
     text-transform: capitalize;
@@ -294,9 +295,10 @@ a:focus {
 #search-msg {
     float: right;
     position: absolute;
-    margin-left: 220px;
-    margin-top: -26px;
+    margin-top: 6px;
     width: 300px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .category-container .application-comment {
