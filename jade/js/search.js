@@ -33,12 +33,17 @@
 
                      var elementsNumber = $(".search-results .application-wrapper").length;
                      if (elementsNumber === 1) {
+                     	 $("#search-msg").remove();
                          $("#search-container").append("<div id='search-msg'>Press ENTER key to launch this application!</div>");
                      } else if (elementsNumber > 1) {
                          $("#search-msg").remove();
                          $("#search-container").append("<div id='search-msg'>You have " + elementsNumber + " matches!</div>");
-                     }
-                 }
+                     } 
+                     
+                 }else if ( $('.search-results').children().length == 0 ) {
+                 	$("#search-msg").remove();
+                 	$("#search-container").append("<div id='search-msg'>No matches found!</div>");
+                 	}
              });
          }
      });
