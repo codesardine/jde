@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 .corner-triangle {
-	border-width: 320px 1020px 0 0;
+	 border-width: 184px 1500px 0 0;
    border-color: rgba(173, 22, 73, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
    position: absolute;
    top: 0;
@@ -258,29 +258,28 @@ a:focus {
 
 .category-icon,
 #search-icon img {
-    margin-top: -18px;
-    width: 52px;
+  width: 62px;
 }
 
 .msg {
     position: absolute;
     margin-left: 40px;
 }
-
+.category-msg, #search-icon {
+  margin-top: -36px;
+}
 .category-msg h5 {
     float: right;
-    margin-left: 10px;
+    margin-left: 72px;
     line-height: 22px;
-    font-size: 16px;
-    margin-top: -70px;
-    font-weight: bold;
+    margin-top: 10px;
 }
 .category-msg h5 span {
     display: block;
     margin-left: -58px;
 }
 .category-msg h5 span:first-of-type {
-   padding-bottom: 8px;
+   padding-bottom: 4px;
    font-size: 28px;
    color: #e7e7e7;
 }
@@ -295,7 +294,7 @@ a:focus {
 #search-msg {
     float: right;
     position: absolute;
-    margin-top: 6px;
+    margin-top: 10px;
     width: 300px;
     font-size: 12px;
     font-weight: bold;
@@ -424,7 +423,7 @@ a:focus {
 }
 
 .dashboard-button {
-    margin-top: 12px;
+    margin-top: 26px;
 }
 
 .dashboard-button img {
@@ -437,8 +436,8 @@ filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
     position: fixed;
     display: none;
     background-color: rgba(23, 23, 24, 0.83);
-    top: 440px;
-    height: calc(100% - 440px);
+    top: 244px;
+    height: calc(100% - 244px);
     overflow: auto;
     z-index: 999;
     padding-top: 40px;
