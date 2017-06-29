@@ -42,7 +42,7 @@
                      
                  }else if ( $('.search-results').children().length == 0 ) {
                  	$("#search-msg").remove();
-                 	$("#search-container").append("<div id='search-msg'>No matches found!</div>");
+                 	$("#search-container").append("<div id='search-msg'>Sorry no matches found!</div>");
                  	}
              });
          }
