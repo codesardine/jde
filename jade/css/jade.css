@@ -2,6 +2,7 @@ html,
 body {
     height: 100%;
     margin: 0;
+    -webkit-user-select: none;
 }
 .corner-triangle {
 	 border-width: 184px 1500px 0 0;
