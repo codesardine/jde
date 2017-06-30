@@ -61,3 +61,12 @@ done
         #break
     #fi
 #done
+
+# default disk usage
+
+for disk_usage in baobab; do
+    if which "$disk_usage" &>/dev/null; then
+        export JADE_DISK_USAGE=$disk_usage
+        break
+    fi
+done

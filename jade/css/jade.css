@@ -13,6 +13,7 @@ body {
    height: 0;
    border-style: solid;
 }
+
 #overlay {
     width: 100%;
     height: 100%;
@@ -197,6 +198,8 @@ nav ul {
     width: 92px;
     border-radius: 100%;
     border: 1px solid;
+    color: #ffff;
+    cursor: pointer !important;
 }
 
 .display a:focus {

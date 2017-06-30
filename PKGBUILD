@@ -3,13 +3,13 @@
 _pkgname=jadesktop
 pkgname="$_pkgname-git"
 pkgver=0.a20
-pkgrel=4
+pkgrel=5
 pkgdesc="JADE, a linux desktop built with HTML5, CSS, JavaScript and Python."
 arch=('any')
 url="https://github.com/codesardine/Jadesktop"
 license=('GPL')
 makedepends=('git')
-depends=('python-jade-application-kit' 'jade-menu-data' 'python-xdg')
+depends=('python-jade-application-kit' 'jade-menu-data' 'python-xdg' 'baobab')
 optdepends=('paper-icon-theme-git')
 provides=("jadesktop")
 replaces=('jadesktop')
