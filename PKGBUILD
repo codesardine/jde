@@ -1,9 +1,9 @@
 # Author: Vitor Lopes <vmnlop@gmail.com>
 
-_pkgname=jadesktop
+_pkgname=jade-dashboard
 pkgname="$_pkgname-git"
-pkgver=0.a21
-pkgrel=5
+pkgver=0.a22
+pkgrel=6
 pkgdesc="JADE, a linux desktop built with HTML5, CSS, JavaScript and Python."
 arch=('any')
 url="https://github.com/codesardine/Jadesktop"
@@ -11,8 +11,8 @@ license=('GPL')
 makedepends=('git')
 depends=('python-jade-application-kit' 'jade-menu-data' 'python-xdg' 'baobab')
 optdepends=('paper-icon-theme-git')
-provides=("jadesktop")
-replaces=('jadesktop')
+provides=("jade-dashboard")
+replaces=('jadesktop' 'jade-dashboard')
 source=("$_pkgname"::"git+$url.git")
 md5sums=('SKIP')
 
@@ -29,7 +29,7 @@ package() {
     cp -r $srcdir/$_pkgname/etc $pkgdir/
     mkdir -p "$pkgdir/opt/jade"
     cp -r $srcdir/$_pkgname/jade $pkgdir/opt
-    chmod 644 $pkgdir/etc/xdg/autostart/jade.desktop
-    chmod 644 $pkgdir/usr/share/applications/jade.desktop
+    chmod 644 $pkgdir/etc/xdg/autostart/jade-dashboard.desktop
+    chmod 644 $pkgdir/usr/share/applications/jade-dashboard.desktop
     chmod 755 $pkgdir/usr/bin/jade
 }

@@ -2,10 +2,12 @@
 Type=Application
 Version=1.0
 Encoding=UTF-8
-Name=Jade
+Name=Desktop
+GenericName=Jade Dashboard
 Comment=Jade is a Desktop Dashboard that provides minimal desktop environment functionality
 Path=/opt/jade
-Exec=/usr/bin/jade
+Exec=/usr/bin/jade-dashboard
 Icon=/opt/jade/img/jade-logo.svg
 Terminal=false
-Categories=Core;GTK;GNOME;
+Categories=Utility;Core;GTK;GNOME;JADE;
+Name[en_GB]=jade-dashboard
