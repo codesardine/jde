@@ -10,4 +10,4 @@ Exec=/usr/bin/jade
 Icon=/opt/jade/img/jade-logo.svg
 Terminal=false
 Categories=Utility;Core;GTK;GNOME;JADE;
-Name[en_GB]=jade-dashboard
+Name[en_GB]=Desktop
