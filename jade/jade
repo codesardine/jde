@@ -197,16 +197,21 @@ def jade_build_menu(application_category, iteration=0):
                                   <img class='info-icon' src='%(info_icon)s'>
                                   <h5 class='application-name card'>%(application_name)s</h5>
                                   ''' % locals()
-
-                if not application_comment:
+                
+                br = "<br><br>"
+                if not application_comment and not application_generic_name:
                     application_comment = "Description not available."
-
-                if not application_generic_name:
-                    application_generic_name = "Generic name not available."
-
-                Api.html += '''<p class='application-comment'>Application description:<br>
-                                    <br>%(application_generic_name)s<br>
-                                    <br>%(application_comment)s
+                    br = ""
+                
+                # fix duplicate descriptions
+                elif application_comment == application_generic_name: 
+                	  application_generic_name = ""
+                	  br = ""
+                	  
+                Api.html += '''<p class='application-comment'>
+                                    %(application_generic_name)s
+                                    <br><br>
+                                    %(application_comment)s
                                     </p>%(application_keywords)s
                                     </a></div>''' % locals()
 
