@@ -20,14 +20,27 @@ function showDashboard() {
 
 }
 
-// send messages to the backend
+// send messages to the back end
 function notifySend(msg) {
     document.title = "notify:" + msg;
 }
 
 // DOCUMENT READY
 $(document).ready(function() {
-
+    
+    // disk usage colours 
+    function diskPercentage() {
+    var diskPercentage = $(".disk-percentage").text();
+    if (diskPercentage >= "90%") {
+    	$(".disk-usage").css("border-color", "rgba(244, 67, 54, 0.4)"); // red
+    	}else if (diskPercentage >= "61%") {
+    	$(".disk-usage").css("border-color", "rgba(255, 152, 0, 0.4"); // orange
+    	}else {
+    	$(".disk-usage").css("border-color", "rgba(76, 175, 80, 0.4"); // green
+    	}
+    }
+    diskPercentage();
+    
     // double click for shutdown
     $(function($) {
         $(".mini-dashboard-exit a").click(function() {

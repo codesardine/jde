@@ -43,7 +43,7 @@ def disk_usage():
             contents.append(entry)
             percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
             disk_usage = '''<div style='font-size: 12px;'>Storage</div>
-                           <div style='font-size: 18px;padding: 1px;'>%s</div>
+                           <div class='disk-percentage' style='font-size: 18px;padding: 1px;'>%s</div>
                            <div style='font-size: 12px;'>Used</div>''' % percentage
 
             return disk_usage

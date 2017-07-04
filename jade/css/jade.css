@@ -209,10 +209,10 @@ nav ul {
     margin-right: 40px;
     margin-left: 38px;
     padding: 10px;
-    width: 92px;
+    width: 93px;
     border-radius: 100%;
-    border: 1px solid;
     color: #ffff;
+    border: 2px solid transparent;
     cursor: pointer !important;
 }
 
@@ -254,7 +254,7 @@ a:focus {
 }
 
 ::-webkit-scrollbar,
- ::-webkit-scrollbar-button,
+::-webkit-scrollbar-button,
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active,
@@ -270,7 +270,7 @@ a:focus {
 #search-icon,
 #recently-used-files,
 .hide {
-    display: none;
+  display: none;
 }
 
 .category-icon,
@@ -508,7 +508,6 @@ img.jade-logo {
 }
 
 .msg,
-.disk-usage,
 #time,
 #date,
 .username,
