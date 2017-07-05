@@ -5,6 +5,11 @@ body {
     -webkit-user-select: none;
 }
 
+.content-editable {
+   -webkit-user-select: text;
+   min-height: 162px;
+}
+
 .bottom-corner-triangle, .top-corner-triangle {
    position: absolute;
    width: 0;
@@ -327,7 +332,7 @@ a:focus {
 }
 
 .notes p:first-child {
-    background-color: #1b1b1b;
+    background-color: #323232;
     width: 120px;
     text-align: center;
     margin-left: -14px;
@@ -346,7 +351,7 @@ a:focus {
 }
 
 .notes p {
-    padding: 6px;
+    padding: 10px;
 }
 
 .users {
@@ -522,9 +527,8 @@ img.jade-logo {
 .backdrop {}
 
 .material-tooltip {
-    padding: 20px;
+    padding: 32px;
 }
-
 
 /* improve selection visibility */
 

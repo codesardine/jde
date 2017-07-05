@@ -65,10 +65,10 @@
                     <div class="col l1 mini-dashboard-shortcuts">
                         <div class="row">
                             <a onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
-                                <img src="%(browser_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="50" data-tooltip="Browse the internet.">
+                                <img src="%(browser_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="50" data-tooltip="Browse The Internet.">
                             </a>
                             <a onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
-                                <img src="%(file_manager_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse your files.">
+                                <img src="%(file_manager_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse Your Files.">
                             </a>
                             <a onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
                                 <img src="%(software_installer_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications">
@@ -77,15 +77,14 @@
                                 <img src="%(settings_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings.">
                             </a>
                             <a onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
-                                <img src="%(terminal_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use the command line.">
+                                <img src="%(terminal_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use The Command Line.">
                             </a>
                         </div>
                     </div>
                     <div class="col l4 xl5">
                         <div class="box notes">
-                            <p>Quick Notes</p>
-                            <p contenteditable="true">
-                                <quote>Welcome To JADE<br><br>I hope you enjoy using it, I welcome your feedback</quote>
+                            <p>NOTES</p>
+                            <p class='content-editable' contenteditable="true">                   
                             </p>
                         </div>
                     </div>
@@ -97,32 +96,32 @@
                                 </div>
                             </div>
                             <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log out the current user." id='login' href="shell:loginctl terminate-session $XDG_SESSION_ID">Log Out
+                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log Out Current User." id='login' href="shell:loginctl terminate-session $XDG_SESSION_ID">Log Out
                                     <img src="%(logout_icon)s" class="logout-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power off this computer." id='poweroff' href="shell:systemctl poweroff">Power Off
+                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Off This Computer." id='poweroff' href="shell:systemctl poweroff">Power Off
                                     <img src="%(shutdown_icon)s" class="poweroff-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart this computer." id='reboot' href="shell:systemctl reboot">Reboot
+                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart This Computer." id='reboot' href="shell:systemctl reboot">Reboot
                                     <img src="%(reboot_icon)s" class="reboot-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power down this computer while retaining its current state, for next time you power it on." id='hibernate' href="shell:systemctl hibernate">Hibernate
+                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Down This Computer While Retaining Its Current State." id='hibernate' href="shell:systemctl hibernate">Hibernate
                                     <img src="%(hibernate_icon)s" class="hibernate-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend this computer in low power mode." id='suspend' href="shell:systemctl suspend">Suspend
+                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend This Computer In Low Power Mode." id='suspend' href="shell:systemctl suspend">Suspend
                                     <img src="%(suspend_icon)s" class="suspend-img">
                                 </a>
                             </div>
                             <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby power mode." id='sleep' href="shell:systemctl hybrid-sleep">Sleep
+                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby Power Mode." id='sleep' href="shell:systemctl hybrid-sleep">Sleep
                                     <img src="%(sleep_icon)s" class="sleep-img">
                                 </a>
                             </div>
