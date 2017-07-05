@@ -218,7 +218,6 @@ nav ul {
     border-radius: 100%;
     color: #ffff;
     border: 2px solid transparent;
-    cursor: pointer !important;
 }
 
 .display a:focus {
@@ -488,7 +487,7 @@ input[type=number]:focus:not([readonly]),
 input[type=search]:focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 2px solid #e91e63;
-    box-shadow: 0 2px 0 0 #e91e63;
+    box-shadow: 0 2px 0 0 rgb(76, 175, 80);
 }
 
 div.marginleft:hover {
@@ -512,6 +511,7 @@ img.jade-logo {
     right: 20px;
 }
 
+.disk-usage,
 .msg,
 #time,
 #date,
