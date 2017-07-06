@@ -253,7 +253,7 @@ def recently_used():
                 image = fetch_icon("emblem-documents")
 
 
-        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(image)s'><div class='filename'>%(item_name)s</div></a></div>" % locals()
+        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(image)s'><br>%(item_name)s</a></div>" % locals()
 
 
     return recent_html

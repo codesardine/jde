@@ -366,18 +366,13 @@ a:focus {
     height: 80px;
 }
 
-#recently-used-files .filename {
-    word-wrap: break-word;
-    min-height: 44px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #d5d5d5;
-    font-size: 13px;
-    margin-top: 10px;
-  }
+#recently-used-files  a {
+  color: #d5d5d5;
+}
 
 .used-container-files {
-    margin-bottom: 60px
+    margin-bottom: 60px;
+    min-height: 130px !important;
 }
 
 .recent-files-button,
@@ -456,13 +451,31 @@ filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
 #recently-used-files {
     position: fixed;
     display: none;
-    background-color: rgba(23, 23, 24, 0.83);
-    top: 244px;
-    height: calc(100% - 244px);
-    overflow: auto;
+    top: 230px;
+    height: calc(100% - 230px);
     z-index: 999;
-    padding-top: 40px;
     width: 100%;
+}
+
+#recently-used-files::after {
+	content: "";
+   top: 0;
+   border-width: 100px 1000px 0px 0px;
+   border-color: rgba(0, 0, 0, 0) rgba(23, 23, 24, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
+   position: absolute;
+   right: 0;
+   width: 0;
+   height: 0;
+   border-style: solid;
+}
+
+#recently-used-files .row {
+   margin-top: 100px;
+   background-color: rgba(23, 23, 24, 0.83);
+   padding-top: 20px;
+   overflow: scroll;
+   height: calc(90%);
+   padding-bottom: 74px;
 }
 
 .mini-dashboard-exit img,
@@ -527,7 +540,7 @@ img.jade-logo {
 .backdrop {}
 
 .material-tooltip {
-    padding: 32px;
+    padding: 26px;
 }
 
 /* improve selection visibility */
