@@ -15,11 +15,6 @@
          $("#search-msg").remove();
          var searchValue = this.value;
 
-         //"use strict"; quick shell this is not done yet
-         //if (searchValue.startsWith("$", 0)) {
-         //    window.location.href = "quick:" + searchValue;
-         //} else if
-
          if (searchValue.length !== 0) {
              searchValue.toLocaleLowerCase();
 
@@ -34,15 +29,15 @@
                      var elementsNumber = $(".search-results .application-wrapper").length;
                      if (elementsNumber === 1) {
                      	 $("#search-msg").remove();
-                         $("#search-container").append("<div id='search-msg'>Press ENTER key to launch this application!</div>");
+                         $("#search-container").append("<div id='search-msg'>Press ENTER Key To Launch This Application!</div>");
                      } else if (elementsNumber > 1) {
                          $("#search-msg").remove();
-                         $("#search-container").append("<div id='search-msg'>You have " + elementsNumber + " matches!</div>");
+                         $("#search-container").append("<div id='search-msg'>You Have " + elementsNumber + " Matches!</div>");
                      } 
                      
                  }else if ( $('.search-results').children().length == 0 ) {
                  	$("#search-msg").remove();
-                 	$("#search-container").append("<div id='search-msg'>Sorry no matches found!</div>");
+                 	$("#search-container").append("<div id='search-msg'>Sorry No Matches Found!</div>");
                  	}
              });
          }
