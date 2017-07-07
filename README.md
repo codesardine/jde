@@ -23,7 +23,7 @@ This is a fully functional Desktop Environment Prototype, it's unfinished. JADE 
 you can reach me here:
 [Twitter Codesardine](https://twitter.com/codesardine)
 
-or here: https://forum.manjaro.org/t/new-desktop-jade-on-the-works-update-1/17228/40
+Video here: https://www.youtube.com/watch?v=ThGVHD_51x0&t=150s
 
 
 ![desktop](jade.jpg)
