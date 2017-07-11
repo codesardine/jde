@@ -4,7 +4,7 @@
 
 # default terminal
 
-for terminal in xfce-terminal terminix konsole xfce-term term deepin-terminal gnome-terminal; do
+for terminal in xfce-terminal terminix konsole xfce-term term deepin-terminal gnome-terminal terminator; do
     if which "$terminal" &>/dev/null; then
         #echo "Default JADE terminal = ${terminal}"
 	export JADE_TERMINAL=$terminal
@@ -14,7 +14,7 @@ done
 
 # default file manager
 
-for file_manager in nautilus dde-file-manager nemo thunar phanteon-files dolphin; do
+for file_manager in nautilus dde-file-manager nemo thunar phanteon-files dolphin caja pcmanfm; do
     if which "$terminal" &>/dev/null; then
         #echo "Default JADE File Manager ${file_manager}"
 	export JADE_FILE_MANAGER=$file_manager
@@ -44,7 +44,7 @@ done
 
 # default browser
 
-for browser in chromium firefox midori; do
+for browser in chrome opera chromium firefox midori konqueror epiphany; do
     if which "$browser" &>/dev/null; then
         #echo "Default JADE Browser ${browser}"
 	export JADE_BROWSER=$browser
@@ -52,21 +52,3 @@ for browser in chromium firefox midori; do
     fi
 done
 
-#default welcome screen
-
-#for welcome_screen in manjaro-hello; do
-    #if which "$welcome_screen" &>/dev/null; then
-        #echo "Default JADE Welcome Screen ${welcome_screen}"
-	#export JADE_DISTRIBUTOR_WELCOME_SCREEN=$welcome_screen
-        #break
-    #fi
-#done
-
-# default disk usage
-
-for disk_usage in baobab; do
-    if which "$disk_usage" &>/dev/null; then
-        export JADE_DISK_USAGE=$disk_usage
-        break
-    fi
-done
