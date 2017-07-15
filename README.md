@@ -30,7 +30,7 @@ Video here: https://www.youtube.com/watch?v=ThGVHD_51x0&t=150s
 
 ![desktop](jade.jpg)
 
-Installation and dependencies:
+#### Installation:
 
 Packages available for archlinux based distributions, if you use something else, you will have to install manually or make your own distribution package.
 
@@ -38,11 +38,16 @@ Now available from Manjaro Linux unstable branch, to install do
 
 sudo pacman-mirrors -b unstable && sudo pacman -Syy && sudo pacman -S jade-dashboard-git
 
+#### Dependencies:
+
 * [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit) - [pkgbuild available](https://github.com/codesardine/Jade-Application-Kit/blob/master/PKGBUILD)
 * paper-icon-theme-git ( available in the aur )
 * [jade-menu-data](https://github.com/codesardine/Jade-menu-data) - [pkgbuild available](https://github.com/codesardine/Jade-menu-data/blob/master/PKGBUILD)
 * python-xdg ( available in the repos )
 * python-gobject ( available in the repos )
+
+
+
 
 Jade can be run as a normal application window, or as a Desktop Environment by selecting the window type hint in the manifest file.
 [manifest file configuration.](https://github.com/codesardine/Jade-Application-Kit/wiki/Application-manifest-file)
