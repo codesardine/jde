@@ -15,7 +15,7 @@ done
 # default file manager
 
 for file_manager in nautilus dde-file-manager nemo thunar phanteon-files dolphin caja pcmanfm; do
-    if which "$terminal" &>/dev/null; then
+    if which "$file_manager" &>/dev/null; then
         #echo "Default JADE File Manager ${file_manager}"
 	export JADE_FILE_MANAGER=$file_manager
         break
