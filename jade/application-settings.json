@@ -3,7 +3,7 @@
 
         "name": "Jade",
         "description": "Desktop environment for linux with html front end",
-        "version": "0.3.26",
+        "version": "0.3.27",
         "author": "Vitor Lopes",
         "url": "https://github.com/codesardine/Jadesktop/",
         "license": "GPLv2"
@@ -17,11 +17,13 @@
         "fullscreen": "yes",
         "resizable": "",
         "decorated": "no",
-        "transparent": ""
+        "transparent": "",
+        "window_icon": "img/jade-logo.svg"
     },
 
     "webkit": {
 
-        "debug": "no"
+        "debug": "no",
+        "cache": ""
     }
 }
