@@ -135,16 +135,22 @@ nav {
     background-color: transparent;
     height: 56px;
     box-shadow: none;
+    line-height: 40px;
 }
 
 nav a {
-    margin-top: -5px;
+    margin-top: 4px;
     color: #f0f0f0;
+}
+
+nav ul li,  nav a:hover {
+    transition: none;
 }
 
 nav a:hover {
     color: #fff;
-    background-color: #009688 !important;
+    background-color: transparent !important;
+    border-bottom:  3px solid #009688;
 }
 
 nav ul {

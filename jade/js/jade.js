@@ -104,15 +104,6 @@ $(document).ready(function() {
         return colors[index % colors.length];
     });
 
-
-    $(".application-category a").hover(function() {
-
-        $(this).addClass("card").fadeIn("fast");
-    }, function() {
-        $(".application-category a").removeClass("card");
-        $(".application-category a").css("background-color", "transparent");
-    });
-
     // application icon transition to info icon
     $(".application-box").hover(function() {
         $(this).find(".application-icon").fadeOut("slow");
