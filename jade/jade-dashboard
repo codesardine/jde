@@ -20,12 +20,13 @@ import subprocess
 
 import xdg.DesktopEntry
 import xdg.Menu
+import gi
 
-from gi.repository import Gtk, WebKit2, Gio, GdkPixbuf
+gi.require_version('Notify', '0.7')
+from gi.repository import Gtk, WebKit2, Gio, Notify
 from functools import lru_cache as cache
 
-jade_application = Gio.Application.new("com.jade.desktop", Gio.ApplicationFlags.FLAGS_NONE)
-jade_application.register()
+Notify.init("Jade")
 
 user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
 path = os.path.dirname(os.path.realpath(__file__))
@@ -197,17 +198,17 @@ def jade_build_menu(application_category, iteration=0):
                                   <img class='info-icon' src='%(info_icon)s'>
                                   <h5 class='application-name card'>%(application_name)s</h5>
                                   ''' % locals()
-                
+
                 br = "<br><br>"
                 if not application_comment and not application_generic_name:
                     application_comment = "Description not available."
                     br = ""
-                
+
                 # fix duplicate descriptions
-                elif application_comment == application_generic_name: 
+                elif application_comment == application_generic_name:
                 	  application_generic_name = ""
                 	  br = ""
-                	  
+
                 Api.html += '''<p class='application-comment'>
                                     %(application_generic_name)s
                                     <br><br>
@@ -323,14 +324,11 @@ class JadeWindow(AppWindow):
 
             if title_name.startswith("notify:"):
                 message = title_name.replace('notify:', '')
-                notification = Gio.Notification.new("Desktop")
-                notification.set_title("JADE Says...")
-                notification.set_body(message)
-                icon = Gio.ThemedIcon.new("dialog-information")
-                notification.set_icon(icon)
-                notification.set_priority(1)
-                jade_application.send_notification(None, notification)
-
+                Notify.Notification.new(
+                    "JADE Says...",
+                    message,
+                    "dialog-information").show()
+                
             elif title_name.startswith("recent"):
                 recent_html = recently_used()
                 self.webview.run_javascript('$("#recently-used-files .row").html("' + recent_html + '");')
