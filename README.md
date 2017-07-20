@@ -34,9 +34,9 @@ Video here: https://www.youtube.com/watch?v=ThGVHD_51x0&t=150s
 
 Packages available for archlinux based distributions, if you use something else, you will have to install manually or make your own distribution package.
 
-Now available from Manjaro Linux unstable branch, to install do
+Now available from Manjaro Linux, to install do
 
-sudo pacman-mirrors -b unstable && sudo pacman -Syy && sudo pacman -S jade-dashboard-git
+sudo pacman -S jade-dashboard-git
 
 #### Dependencies:
 
