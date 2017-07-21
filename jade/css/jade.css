@@ -391,7 +391,8 @@ a:focus {
 #poweroff,
 #hibernate,
 .username,
-.settings a {
+.settings a,
+.system a {
     background-color: #fff;
     color: #525252;
 }
@@ -404,7 +405,8 @@ a:focus {
 #poweroff,
 #hibernate,
 .username,
-.settings a {
+.settings a,
+.system a {
     border-top: 1px solid #b1b1b1;
     position: relative;
 }

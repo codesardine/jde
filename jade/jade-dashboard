@@ -154,12 +154,13 @@ def jade_build_menu(application_category, iteration=0):
                           </div>
                           <div id='%(category)s' class='category-container row'>''' % locals()
 
-        tag = "li"
-        if category_name == "Settings":
-            tag = "div"
+        tag    = "li"
+        action = "onmouseover"
+        if category_name == "Settings" or category_name == "System":
+            tag    = "div"
+            action = "onclick"
 
-        Api.html += "<" + tag + ''' class='application-category %(category)s'>
-                        <a href='#' onclick=\"
+        Api.html += "<" + tag + " class='application-category " + category + "'><a href='#' " + action + '''=\"
                         display('#%(category)s, #%(category)s-msg');
                         grid('#%(category)s');
                         \">%(category_name)s

@@ -6,7 +6,7 @@ function display(element) {
     $(".dashboard-button").show();
 }
 
-function grid(element) { $(element).masonry('layout'); }
+function grid(element) { $(element).masonry("layout"); }
 
 function emptyClass(element) {
     $(element).attr("class", "");
@@ -32,11 +32,11 @@ $(document).ready(function() {
     function diskPercentage() {
     var diskPercentage = $(".disk-percentage").text();
     if (diskPercentage >= "90%") {
-    	$(".disk-usage").css("border-color", "rgba(244, 67, 54, 0.4)"); // red
+    	$(".disk-usage").css("border-color", "rgba(244, 67, 54, 0.5)"); // red
     	}else if (diskPercentage >= "61%") {
-    	$(".disk-usage").css("border-color", "rgba(255, 152, 0, 0.4"); // orange
+    	$(".disk-usage").css("border-color", "rgba(255, 152, 0, 0.5"); // orange
     	}else {
-    	$(".disk-usage").css("border-color", "rgba(76, 175, 80, 0.4"); // green
+    	$(".disk-usage").css("border-color", "rgba(76, 175, 80, 0.5"); // green
     	}
     }
     diskPercentage();
@@ -58,9 +58,9 @@ $(document).ready(function() {
         });
     });
 
-    $('.category-container').masonry({
-        itemSelector: '.col',
-        transitionDuration: '0.0s'
+    $(".category-container").masonry({
+        itemSelector: ".col",
+        transitionDuration: "0.0s"
     });
 
     // move to correct containers
@@ -72,11 +72,13 @@ $(document).ready(function() {
     $(".application-category.help").prependTo("#nav-mobile");
 
     // settings
-    $(".application-category.settings").addClass("col m12").appendTo(".mini-dashboard-left");
-    $(".application-category.settings a").addClass("box col m12");
-    $(".application-category.settings").removeClass("application-category");
+    $(".application-category.settings, .application-category.system").addClass("col m12").appendTo(".mini-dashboard-left");
+    $(".application-category.settings a, .application-category.system a").addClass("box col m12");
+    $(".application-category.settings, .application-category.system").removeClass("application-category");
     $(".category-icon.Settings").clone().appendTo(".settings a");
+    $(".category-icon.System").clone().appendTo(".system a");
     emptyClass(".settings a img");
+    emptyClass(".system a img");
 
     // application info slider
     $(".application-box").hover(function() {
@@ -126,7 +128,7 @@ $(document).ready(function() {
 
     });
     // backgrounds
-    $("li.application-category, .settings").click(function() {
+    $("li.application-category").mouseover(function() {
 
         if ($(this).hasClass("office")) {
             emptyClass("#background");
@@ -149,12 +151,17 @@ $(document).ready(function() {
         } else if ($(this).hasClass("go-online")) {
             emptyClass("#background");
             $("#background").addClass("internet-background");
-        } else if ($(this).hasClass("system")) {
-            emptyClass("#background");
-            $("#background").addClass("system-background");
-        } else if ($(this).hasClass("settings")) {
+        } else { emptyClass("#background"); }
+        
+    });
+        
+    $(".settings, .system").click(function() {
+
+        if ($(this).hasClass("settings")) {
             emptyClass("#background");
             $("#background").addClass("settings-background");
+        } else if ($(this).hasClass("system")) {
+            $("#background").addClass("system-background");    
         } else { emptyClass("#background"); }
 
     });
