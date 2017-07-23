@@ -104,7 +104,6 @@ def fetch_icon(icon_name):
 #  icon names
 
 dashboard_icon             = "img/jade-logo.svg"
-favorite_applications_icon = fetch_icon("emblem-favorite")
 recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
 file_manager_icon          = fetch_icon("file-manager")
@@ -118,7 +117,6 @@ reboot_icon                = fetch_icon("system-reboot")
 hibernate_icon             = fetch_icon("system-hibernate")
 suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
-#distributor_logo_icon      = fetch_icon("distributor-logo")
 search_icon                = fetch_icon("search")
 
 disk_usage = disk_usage()
@@ -297,10 +295,7 @@ class JadeWindow(AppWindow):
                     :param command: shell command to execute.
                     :return: we are not loading a url don't follow link or we get a blank page.
                     """
-                    # applicationName = webview.get_title()
-                    # applicationName = applicationName.replace('notify:Launching ', '')
                     process = subprocess.Popen(command, shell=True)
-                    # print(applicationName + " pid number " + str(process.pid))
                     decision.ignore()
                     return True
 
