@@ -571,7 +571,7 @@ img.jade-logo {
 
 #exit-menu {
    height: 258px;
-   width: 193px;
+   width: 100%;
    overflow: hidden;
    padding-top: 1px;
    margin-bottom: 1px;   
