@@ -280,7 +280,8 @@ a:focus {
 .category-msg,
 #search-icon,
 #recently-used-files,
-#exit-menu {
+#exit-menu, 
+#exit-menu div{
   display: none;
 }
 
@@ -557,10 +558,10 @@ img.jade-logo {
 
 .menu-bottom-decoration {
 	background-color: #ff9800;
-	height: 10px;
+	height: 10px !important;
    border-bottom-left-radius: 10px;
    border-bottom-right-radius: 10px;
-
+   display: block !important;
 }
 
 .menu-bottom-decoration  .dash-right-button {
@@ -576,6 +577,11 @@ img.jade-logo {
    padding-top: 1px;
    margin-bottom: 1px;   
 }
+
+#exit-menu div {
+   position: relative;
+}
+
 #clear-search {
    margin-left: 12px;
    position: relative;

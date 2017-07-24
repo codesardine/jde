@@ -94,7 +94,7 @@ $(document).ready(function() {
     });
     
     $("#exit-button").click(function(){
-        $("#exit-menu").slideToggle("slow");
+        $("#exit-menu").parent().find("div").slideToggle("slow");
     });
     
     var red = "#f44336";
