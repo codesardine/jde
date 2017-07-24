@@ -3,132 +3,144 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/materialize.min.css" charset="UTF-8">
-    <link rel="stylesheet" href="css/xl.css" charset="UTF-8">
-    <link rel="stylesheet" href="css/jade.css" charset="UTF-8">
-    <link rel="stylesheet" href="css/animate.css" charset="UTF-8">
-    
-    <script src="js/jquery-3.1.1.min.js" charset="UTF-8"></script>
-    <script src="js/materialize.min.js" charset="UTF-8"></script>
-    <script src="js/masonry.pkgd.min.js" charset="UTF-8"></script>
-    <script src="js/clock.js" charset="UTF-8"></script>
-    <script src="js/jade.js" charset="UTF-8"></script>
-    <script src="js/search.js" charset="UTF-8"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/materialize.min.css" charset="UTF-8">
+  <link rel="stylesheet" href="css/xl.css" charset="UTF-8">
+  <link rel="stylesheet" href="css/jade.css" charset="UTF-8">
+  <link rel="stylesheet" href="css/animate.css" charset="UTF-8">
+
+  <script src="js/jquery-3.1.1.min.js" charset="UTF-8"></script>
+  <script src="js/materialize.min.js" charset="UTF-8"></script>
+  <script src="js/masonry.pkgd.min.js" charset="UTF-8"></script>
+  <script src="js/clock.js" charset="UTF-8"></script>
+  <script src="js/jade.js" charset="UTF-8"></script>
+  <script src="js/search.js" charset="UTF-8"></script>
 
 
 </head>
 
 <body>
-    <div id='background'>
-        <div id='overlay'>
-            <header class='container-fluid'>
-                <nav>
-                    <div class="nav-wrapper">
-                        <ul id="nav-mobile" class="right menu">
-                        </ul>
+  <div id='background'>
+    <div id='overlay'>
+      <header class='container-fluid'>
+        <nav>
+          <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right menu">
+            </ul>
 
-                    </div>
-                </nav>
-                <div class="container-fluid display">
-                    <div class="display-msg">
-                        <div class='center dashboard-button'>
-                            <a href="#!"><img src="%(dashboard_icon)s" class="tooltipped" data-position="left" data-delay="0" data-tooltip="Dashboard"></a>
-                        </div>
-                    </div>
-                    <div class="msg"></div>
-                    <div class='disk-usage'>%(disk_usage)s</div>
-                    <div id="time">00:00</div>
-                    <div id="date"></div>
-                    <div id="search-container">
-                        <input type="text" id="search" placeholder="Search..."></div>
-                </div>
-                <div class="top-corner-triangle"></div>
-            </header>
-            <div class='dashboard container'>
-                <div class='search-results row'>
-                </div>
-                <div id="main-dashboard" class='row'>
-                    <div class="col l4 xl3">
-                        <div class="mini-dashboard-left row">
-                            <div class="col m12">
-                                <a href='#' class="box col m12 recent-files-button">Recently Used Files<img src="%(recent_used_files_icon)s" class="recent-img">
+          </div>
+        </nav>
+        <div class="container-fluid display">
+          <div class="display-msg">
+            <div class='center dashboard-button'>
+              <a href="#!"><img src="%(dashboard_icon)s" class="tooltipped" data-position="left" data-delay="0" data-tooltip="Dashboard"></a>
+            </div>
+          </div>
+          <div class="msg"></div>
+          <div class='disk-usage'>%(disk_usage)s</div>
+          <div id="time">00:00</div>
+          <div id="date"></div>
+          <div id="search-container">
+            <input type="text" id="search" placeholder="Search..."></div>
+        </div>
+        <div class="top-corner-triangle"></div>
+      </header>
+      <div class='dashboard container'>
+        <div class='search-results row'>
+        </div>
+        <div id="main-dashboard" class='row'>
+          <div class="col l4 xl3">
+            <div class="mini-dashboard-left row">
+              <div class="col m12">
+                <a href='#' class="box col m12 recent-files-button">Recently Used Files<img src="%(recent_used_files_icon)s" class="recent-img">
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l1 mini-dashboard-shortcuts">
-                        <div class="row">
-                            <a onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
+              </div>
+            </div>
+          </div>
+          <div class="col l1 mini-dashboard-shortcuts">
+            <div class="row">
+              <a onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
                                 <img src="%(browser_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="50" data-tooltip="Browse The Internet.">
                             </a>
-                            <a onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
+              <a onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
                                 <img src="%(file_manager_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Browse Your Files.">
                             </a>
-                            <a onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
+              <a onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
                                 <img src="%(software_installer_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Install, Remove Applications">
                             </a>
-                            <a onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
+              <a onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
                                 <img src="%(settings_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Manjaro Settings.">
                             </a>
-                            <a onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
+              <a onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
                                 <img src="%(terminal_icon)s" class="col l12 xl10 offset-xl1 tooltipped" data-position="left" data-delay="0" data-tooltip="Use The Command Line.">
                             </a>
-                        </div>
-                    </div>
-                    <div class="col l4 xl5">
-                        <div class="box notes">
-                            <p>NOTES</p>
-                            <p class='content-editable' contenteditable="true">                   
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col l3 xl2">
-                        <div class="mini-dashboard-exit row">
-                            <div class="col m12">
-                                <div class="col m12 username">%(user_name)s
-                                    <img src="%(user_icon)s" class="users-img">
-                                </div>
-                            </div>
-                            <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log Out Current User." id='login' href="shell:loginctl terminate-session $XDG_SESSION_ID">Log Out
-                                    <img src="%(logout_icon)s" class="logout-img">
-                                </a>
-                            </div>
-                            <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Off This Computer." id='poweroff' href="shell:systemctl poweroff">Power Off
-                                    <img src="%(shutdown_icon)s" class="poweroff-img">
-                                </a>
-                            </div>
-                            <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart This Computer." id='reboot' href="shell:systemctl reboot">Reboot
-                                    <img src="%(reboot_icon)s" class="reboot-img">
-                                </a>
-                            </div>
-                            <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Down This Computer While Retaining Its Current State." id='hibernate' href="shell:systemctl hibernate">Hibernate
-                                    <img src="%(hibernate_icon)s" class="hibernate-img">
-                                </a>
-                            </div>
-                            <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend This Computer In Low Power Mode." id='suspend' href="shell:systemctl suspend">Suspend
-                                    <img src="%(suspend_icon)s" class="suspend-img">
-                                </a>
-                            </div>
-                            <div class="marginleft col m12">
-                                <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby Power Mode." id='sleep' href="shell:systemctl hybrid-sleep">Sleep
-                                    <img src="%(sleep_icon)s" class="sleep-img">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+          </div>
+          <div class="col l4 xl5">
+            <div class="box notes">
+              <p>NOTES</p>
+              <p class='content-editable' contenteditable="true">
+              </p>
+            </div>
+          </div>
+          <div class="col l3 xl2">
+            <div class="mini-dashboard-exit row">
+              <div class="col m12">
+                <div class="col m12 dash-right-button username">%(user_name)s
+                  <img src="%(user_icon)s" class="users-img">
                 </div>
+              </div>
+              <div class="col m12">
+                <a href='#' id="exit-button" class="col m12 dash-right-button">Exit
+                    <img src="%(logout_icon)s" class="users-img">
+                  </a>
+                <div id="exit-menu">
+                  <div class="marginleft col m12">
+                    <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log Out Current User." id='login' href="shell:loginctl terminate-session $XDG_SESSION_ID">Log Out
+		                   <img src="%(logout_icon)s" class="logout-img">
+		                </a>
+                  </div>
+                  <div class="marginleft col m12">
+                    <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Off This Computer." id='poweroff' href="shell:systemctl poweroff">Power Off
+		                   <img src="%(shutdown_icon)s" class="poweroff-img">
+		                </a>
+                  </div>
+                  <div class="marginleft col m12">
+                    <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart This Computer." id='reboot' href="shell:systemctl reboot">Reboot
+		                  <img src="%(reboot_icon)s" class="reboot-img">
+		                </a>
+                  </div>
+                  <div class="marginleft col m12">
+                    <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Down This Computer While Retaining Its Current State." id='hibernate' href="shell:systemctl hibernate">Hibernate
+		                  <img src="%(hibernate_icon)s" class="hibernate-img">
+		                </a>
+                  </div>
+                  <div class="marginleft col m12">
+                    <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend This Computer In Low Power Mode." id='suspend' href="shell:systemctl suspend">Suspend
+		                  <img src="%(suspend_icon)s" class="suspend-img">
+		                </a>
+                  </div>
+                  <div class="marginleft col m12">
+                    <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby Power Mode." id='sleep' href="shell:systemctl hybrid-sleep">Sleep
+		                  <img src="%(sleep_icon)s" class="sleep-img">
+		                </a>
+                  </div>
+                </div>
+                <div class="col m12 menu-bottom-decoration">
+                  <div class="col m12 dash-right-button">
+
+                  </div>
+                </div>
+              </div>
             </div>
-            <div id='recently-used-files' class='col m12'>
-              <div class='row'>
-               </div>
-            </div>
-          <div class="bottom-corner-triangle"></div>
+          </div>
         </div>
+      </div>
+      <div id='recently-used-files' class='col m12'>
+        <div class='row'>
+        </div>
+      </div>
+      <div class="bottom-corner-triangle"></div>
     </div>
+  </div>

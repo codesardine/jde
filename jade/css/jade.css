@@ -280,7 +280,7 @@ a:focus {
 .category-msg,
 #search-icon,
 #recently-used-files,
-.hide {
+#exit-menu {
   display: none;
 }
 
@@ -392,7 +392,8 @@ a:focus {
 #hibernate,
 .username,
 .settings a,
-.system a {
+.system a, 
+.dash-right-button {
     background-color: #fff;
     color: #525252;
 }
@@ -406,7 +407,8 @@ a:focus {
 #hibernate,
 .username,
 .settings a,
-.system a {
+.system a, 
+.dash-right-button {
     border-top: 1px solid #b1b1b1;
     position: relative;
 }
@@ -435,7 +437,8 @@ a:focus {
 
 .mini-dashboard-left a,
 .mini-dashboard-exit a,
-.mini-dashboard-exit .username {
+.mini-dashboard-exit .username,
+.dash-right-button {
     padding: 10px !important;
 }
 
@@ -513,7 +516,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 div.marginleft:hover {
-    margin-left: 10px !important;
+	 transition: margin-left 0.3s ease;
+    margin-left: 11px !important;
 }
 
 img.jade-logo {
@@ -533,9 +537,7 @@ img.jade-logo {
     cursor: default;
 }
 
-
 /* tooltips */
-
 .backdrop {}
 
 .material-tooltip {
@@ -543,7 +545,6 @@ img.jade-logo {
 }
 
 /* improve selection visibility */
-
 #main-dashboard a,
 .notes {
     filter: grayscale(24%) opacity(96%) brightness(94%);
@@ -552,4 +553,26 @@ img.jade-logo {
 #main-dashboard a:hover,
 .notes:hover {
     filter: grayscale(0%) opacity(100%) brightness(100%);
+}
+
+.menu-bottom-decoration {
+	background-color: #ff9800;
+	height: 10px;
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+
+}
+
+.menu-bottom-decoration  .dash-right-button {
+	padding: 0px;
+	background: transparent;
+	border-top: 0px;
+}
+
+#exit-menu {
+   height: 258px;
+   width: 193px;
+   overflow: hidden;
+   padding-top: 1px;
+   margin-bottom: 1px;   
 }

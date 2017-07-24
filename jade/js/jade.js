@@ -17,7 +17,6 @@ function showDashboard() {
     $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").hide();
     emptyClass("#background");
     $("#main-dashboard").show();
-
 }
 
 // send messages to the back end
@@ -43,7 +42,7 @@ $(document).ready(function() {
     
     // double click for shutdown
     $(function($) {
-        $(".mini-dashboard-exit a").click(function() {
+        $("#exit-menu a").click(function() {
             notifySend("Double click to use!");
             return false;
         }).dblclick(function() {
@@ -80,16 +79,24 @@ $(document).ready(function() {
     emptyClass(".settings a img");
     emptyClass(".system a img");
 
-    // application info slider
+    // application info slider and icon transition
     $(".application-box").hover(function() {
+    	  $(this).find(".application-icon").fadeOut("slow");
+        $(this).find(".info-icon").fadeIn("slow");
         $(".application-box").css("z-index", "1");
         $(this).css("z-index", "2");
         $(this).find("p").slideDown("fast");
 
     }, function() {
+    	  $(this).find(".info-icon").fadeOut("slow");
+        $(this).find(".application-icon").fadeIn("slow");
         $(this).find("p").slideUp("fast");
     });
-
+    
+    $("#exit-button").click(function(){
+        $("#exit-menu").slideToggle("slow");
+    });
+    
     var red = "#f44336";
     var pink = "#e91e63";
     var blue = "#2196f3";
@@ -104,15 +111,6 @@ $(document).ready(function() {
     // apply colors to application container background
     $('.application-box').css('background-color', function(index) {
         return colors[index % colors.length];
-    });
-
-    // application icon transition to info icon
-    $(".application-box").hover(function() {
-        $(this).find(".application-icon").fadeOut("slow");
-        $(this).find(".info-icon").fadeIn("slow");
-    }, function() {
-        $(this).find(".info-icon").fadeOut("slow");
-        $(this).find(".application-icon").fadeIn("slow");
     });
 
     $(".recent-files-button").click(function() {
