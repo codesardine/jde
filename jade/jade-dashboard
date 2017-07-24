@@ -125,7 +125,7 @@ html = Api.openFile(html_file)
 ui_html_contents = '''%s''' % (html % locals())
 
 Api.html = ui_html_contents
-Api.html += "<div id='search-icon'><img src='%(search_icon)s'></div>" % locals()
+Api.html += "<div id='search-icon'><img src='%(search_icon)s'><a href='#' id='clear-search'>Clear Search</a></div>" % locals()
 
 
 def jade_build_menu(application_category, iteration=0):

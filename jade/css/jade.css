@@ -576,3 +576,19 @@ img.jade-logo {
    padding-top: 1px;
    margin-bottom: 1px;   
 }
+#clear-search {
+   margin-left: 12px;
+   position: relative;
+   width: 100px;
+   margin-top: 18px;
+   float: right;
+   color: #fff;
+   font-weight: bold;
+   padding-bottom: 4px;
+   text-align: center;
+}
+
+#clear-search:hover {
+	border-bottom: 3px solid #009688;
+}
+
