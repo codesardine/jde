@@ -15,8 +15,8 @@ function emptyClass(element) {
 //show hide dashboard
 function showDashboard() {
     $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").hide();
+    $("#main-dashboard").show().css('display', 'block'); // fix, reset display state at the end of animation
     emptyClass("#background");
-    $("#main-dashboard").show();
 }
 
 // send messages to the back end
@@ -27,33 +27,37 @@ function notifySend(msg) {
 // DOCUMENT READY
 $(document).ready(function() {
 	
+  
+  
 	// Init a timeout variable to be used below
   var dashTimeout = null;
 
   // Listen for events
   $(document).on("keypress mousewheel mousemove mousedown", function() {
   	 
-  	 if($('#main-dashboard').css('display') == 'none') {   // don't repeat animation 
-      
       // Clear the timeout if it has already been set.
       // This will prevent the previous task from executing
       // if it has been less than <MILLISECONDS>
       clearTimeout(dashTimeout);
-
+    
       // Make a new timeout set to go off in 30sec this could be a really neat feature or the most annoying one
       // This depends how fast people read, it might need adjustment
       dashTimeout = setTimeout(function() {
-        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").fadeOut("slow", function() {
-        $("#main-dashboard").fadeOut("slow");
-        });
-        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").promise().done(function() {
-        $("#main-dashboard").fadeIn("slow");
+        if($('#main-dashboard').css('display') == 'none') {   // don't repeat animation 
+          $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").fadeOut("slow", function() {
+            $("#main-dashboard").fadeOut("slow");
+          });
+          $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").promise().done(function() {
+            $("#main-dashboard").fadeIn("slow");
             setTimeout(function(){
               emptyClass("#background");
+              $('#main-dashboard').css('display', 'block'); // fix, reset display state at the end of animation 
             }, 1800); // delayed background reset       
-        });
-      }, 30000);
-    }  
+          });
+        } else {
+        	   clearTimeout(dashTimeout);
+        	 }
+      }, 30000); 
   });
   
     // disk usage colours 
