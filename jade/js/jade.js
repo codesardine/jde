@@ -123,7 +123,7 @@ $(document).ready(function() {
     });
     
     // exit menu animation
-    $("#exit-button").click(function(){
+    $("#exit-button").hover(function(){
         $("#exit-menu").parent().find("div").slideToggle("slow");
     });
     
