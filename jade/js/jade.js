@@ -26,7 +26,36 @@ function notifySend(msg) {
 
 // DOCUMENT READY
 $(document).ready(function() {
-    
+	
+	// Init a timeout variable to be used below
+  var dashTimeout = null;
+
+  // Listen for events
+  $(document).on("keypress mousewheel mousemove mousedown", function() {
+  	 
+  	 if($('#main-dashboard').css('display') == 'none') {   // don't repeat animation 
+      
+      // Clear the timeout if it has already been set.
+      // This will prevent the previous task from executing
+      // if it has been less than <MILLISECONDS>
+      clearTimeout(dashTimeout);
+
+      // Make a new timeout set to go off in 30sec this could be a really neat feature or the most annoying one
+      // This depends how fast people read, it might need adjustment
+      dashTimeout = setTimeout(function() {
+        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").fadeOut("slow", function() {
+        $("#main-dashboard").fadeOut("slow");
+        });
+        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").promise().done(function() {
+        $("#main-dashboard").fadeIn("slow");
+            setTimeout(function(){
+              emptyClass("#background");
+            }, 1800); // delayed background reset       
+        });
+      }, 30000);
+    }  
+  });
+  
     // disk usage colours 
     function diskPercentage() {
     var diskPercentage = $(".disk-percentage").text();
@@ -70,7 +99,7 @@ $(document).ready(function() {
     // help category comes first!
     $(".application-category.help").prependTo("#nav-mobile");
 
-    // settings
+    // settings & system
     $(".application-category.settings, .application-category.system").addClass("col m12").appendTo(".mini-dashboard-left");
     $(".application-category.settings a, .application-category.system a").addClass("box col m12");
     $(".application-category.settings, .application-category.system").removeClass("application-category");
@@ -93,6 +122,7 @@ $(document).ready(function() {
         $(this).find("p").slideUp("fast");
     });
     
+    // exit menu animation
     $("#exit-button").click(function(){
         $("#exit-menu").parent().find("div").slideToggle("slow");
     });
