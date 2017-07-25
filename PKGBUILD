@@ -2,7 +2,7 @@
 
 _pkgname=jade-dashboard
 pkgname="$_pkgname-git"
-pkgver=0.3.25.r144.c77c872
+pkgver=0.3.33.r173.a3ef56d
 pkgrel=1
 pkgdesc="JADE, a linux desktop built with HTML5, CSS, JavaScript and Python."
 arch=('any')
@@ -17,12 +17,9 @@ source=("$_pkgname"::"git+$url.git")
 md5sums=('SKIP')
 
 pkgver() {
-
 	cd "$_pkgname/jade/"
 	local v_ver=$(awk '/"version"/ {print $2}' application-settings.json | cut -d '"' -f2 )
-
 	printf "$v_ver.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
-
 }
 
 package() {
@@ -33,5 +30,4 @@ package() {
     cp -r $srcdir/$_pkgname/jade $pkgdir/opt
     chmod 644 $pkgdir/etc/xdg/autostart/jade-dashboard.desktop
     chmod 644 $pkgdir/usr/share/applications/jade-dashboard.desktop
-    chmod 755 $pkgdir/usr/bin/jade-dashboard
 }
