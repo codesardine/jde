@@ -281,12 +281,14 @@ a:focus {
 #search-icon,
 #recently-used-files,
 #exit-menu, 
-#exit-menu div{
+#exit-menu div,
+#recent-used-files-msg {
   display: none;
 }
 
 .category-icon,
-#search-icon img {
+#search-icon img,
+#recent-used-files-msg img {
   width: 62px;
 }
 
@@ -294,7 +296,9 @@ a:focus {
     position: absolute;
     margin-left: 40px;
 }
-.category-msg, #search-icon {
+.category-msg,
+#search-icon, 
+#recent-used-files-msg {
   margin-top: -36px;
 }
 .category-msg h5 {
@@ -602,3 +606,10 @@ img.jade-logo {
 	border-bottom: 3px solid #009688;
 }
 
+#recent-used-files-text {
+   margin-left: 8px;
+   margin-top: 20px;
+   position: relative;
+   width: 140px;
+   float: right;
+}

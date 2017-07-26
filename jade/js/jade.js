@@ -1,7 +1,7 @@
 // show hide applications
 function display(element) {
   $(".category-msg").addClass("animated slideInLeft");
-  $(".category-container, .search-results, .category-msg, #search-icon, #main-dashboard, #recently-used-files").hide();
+  $(".category-container, .search-results, .category-msg, #search-icon, #main-dashboard, #recently-used-files, #recent-used-files-msg").hide();
   $(element).show();
   $(".dashboard-button").show();
 }
@@ -16,7 +16,7 @@ function emptyClass(element) {
 
 //show hide dashboard
 function showDashboard() {
-  $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").hide();
+  $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg, .dashboard-button").hide();
   $("#main-dashboard").show().css("display', 'block"); // fix, reset display state at the end of animation
   emptyClass("#background");
 }
@@ -44,10 +44,10 @@ $(document).ready(function() {
     // This depends how fast people read, it might need adjustment
     dashTimeout = setTimeout(function() {
       if ($("#main-dashboard").css("display") == 'none') { // don't repeat animation
-        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").fadeOut("slow", function() {
+        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg, .dashboard-button").fadeOut("slow", function() {
           $("#main-dashboard").fadeOut("slow");
         });
-        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, .dashboard-button").promise().done(function() {
+        $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg, .dashboard-button").promise().done(function() {
           $("#main-dashboard").fadeIn("slow");
           setTimeout(function() {
             emptyClass("#background");
@@ -104,6 +104,7 @@ $(document).ready(function() {
   $(".application-category").appendTo(".menu");
   $(".category-container").appendTo(".dashboard");
   $(".category-msg, #search-icon").appendTo(".msg");
+  $("#recent-used-files-msg").appendTo(".msg");
 
   // help category comes first!
   $(".application-category.help").prependTo("#nav-mobile");
@@ -155,7 +156,8 @@ $(document).ready(function() {
   $(".recent-files-button").click(function() {
     document.title = "recent";
     $("#main-dashboard").hide();
-    $("#recently-used-files, .dashboard-button").show();
+    $("#recent-used-files-msg").addClass("animated slideInLeft");
+    $("#recently-used-files, #recent-used-files-msg, .dashboard-button").show();
 
   });
 

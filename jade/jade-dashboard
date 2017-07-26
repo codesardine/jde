@@ -126,6 +126,7 @@ ui_html_contents = '''%s''' % (html % locals())
 
 Api.html = ui_html_contents
 Api.html += "<div id='search-icon'><img src='%(search_icon)s'><a href='#' id='clear-search'>Clear Search</a></div>" % locals()
+Api.html += "<div id='recent-used-files-msg'><img src='%(recent_used_files_icon)s'><span id='recent-used-files-text'>Recently Used Files</span></div>" % locals()
 
 
 def jade_build_menu(application_category, iteration=0):
