@@ -98,6 +98,22 @@ body {
     background-image: url(../img/settings.jpg);
 }
 
+#background.help-background:before {
+    background-image: url(../img/help.jpg);
+}
+
+#background.accessories-background:before {
+    background-image: url(../img/accessories.jpg);
+}
+
+#background.recent-files-background:before {
+    background-image: url(../img/recent-files.jpg);
+}
+
+#background.search-background:before {
+    background-image: url(../img/search.jpg);
+}
+
 header {
     position: fixed;
     top: 0px;

@@ -167,7 +167,7 @@ $(document).ready(function() {
 
   });
   // backgrounds
-  $("li.application-category").mouseover(function() {
+  $("li.application-category, #search").mouseover(function() {
 
     if ($(this).hasClass("office")) {
       emptyClass("#background");
@@ -190,19 +190,31 @@ $(document).ready(function() {
     } else if ($(this).hasClass("go-online")) {
       emptyClass("#background");
       $("#background").addClass("internet-background");
+    } else if ($(this).hasClass("help")) {
+      emptyClass("#background");
+      $("#background").addClass("help-background");
+    } else if ($(this).hasClass("accessories")) {
+      emptyClass("#background");
+      $("#background").addClass("accessories-background");
+    } else if ($(this).is("#search")) {
+      emptyClass("#background");
+      $("#background").addClass("search-background");
     } else {
       emptyClass("#background");
     }
 
   });
 
-  $(".settings, .system").click(function() {
+  $(".settings, .system, .recent-files-button").click(function() {
 
     if ($(this).hasClass("settings")) {
       emptyClass("#background");
       $("#background").addClass("settings-background");
     } else if ($(this).hasClass("system")) {
       $("#background").addClass("system-background");
+    } else if ($(this).hasClass("recent-files-button")) {
+      emptyClass("#background");
+      $("#background").addClass("recent-files-background");
     } else {
       emptyClass("#background");
     }
