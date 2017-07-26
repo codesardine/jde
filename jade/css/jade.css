@@ -578,6 +578,10 @@ img.jade-logo {
    margin-bottom: 1px;   
 }
 
+#exit-button {
+   overflow: hidden;
+}
+
 #exit-menu div {
    position: relative;
 }
