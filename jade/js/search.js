@@ -3,14 +3,14 @@ $(document).ready(function() {
   $("#clear-search").click(function() {
     $("input#search[type=text], textarea").val("");
     $("#search-msg").remove();
-    $('.search-results').children().remove();
+    $(".search-results").children().remove();
     $("input#search").focus();
   });
 
   $("input#search").on("click mouseover", function() {
     $("input#search").focus();
     $("#search-icon").addClass("animated slideInLeft");
-    $(".category-container, .category-msg, #main-dashboard, #recently-used-files, .recent-files-msg").hide();
+    $(".category-container, .category-msg, #main-dashboard, #recently-used-files, .recent-files-msg, #recent-used-files-msg").hide();
     $(".search-results, #search-icon, .dashboard-button").show();
 
     $(".search-results").masonry({
