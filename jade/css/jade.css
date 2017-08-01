@@ -145,7 +145,7 @@ header {
     margin-bottom: 20px;
     padding-left: 1.75rem !important;
     padding-right: 1.75rem !important;
-    padding-top: 8px !important; /* fix cut off images */
+    padding-top: 20px !important; /* fix cut off images */
 }
 
 nav {
@@ -186,8 +186,8 @@ nav ul {
     width: 50px;
     position: absolute;
     z-index: 999;
-    margin-top: -20px;
-    margin-right: -20px;
+    margin-top: -32px;
+    margin-right: -25px;
 }
 
 .application-icon {
@@ -197,7 +197,6 @@ nav ul {
 
 .info-icon {
     margin-top: -26px !important;
-    margin-right: -26px !important;
     right: 4px;
     padding-left: 4px;
 }
@@ -296,7 +295,7 @@ a:focus {
 .category-msg,
 #search-icon,
 #recently-used-files,
-#exit-menu, 
+#exit-menu,
 #exit-menu div,
 #recent-used-files-msg {
   display: none;
@@ -313,7 +312,7 @@ a:focus {
     margin-left: 40px;
 }
 .category-msg,
-#search-icon, 
+#search-icon,
 #recent-used-files-msg {
   margin-top: -36px;
 }
@@ -413,7 +412,7 @@ a:focus {
 #hibernate,
 .username,
 .settings a,
-.system a, 
+.system a,
 .dash-right-button {
     background-color: #fff;
     color: #525252;
@@ -428,7 +427,7 @@ a:focus {
 #hibernate,
 .username,
 .settings a,
-.system a, 
+.system a,
 .dash-right-button {
     border-top: 1px solid #b1b1b1;
     position: relative;
@@ -595,7 +594,7 @@ img.jade-logo {
    width: 100%;
    overflow: hidden;
    padding-top: 1px;
-   margin-bottom: 1px;   
+   margin-bottom: 1px;
 }
 
 #exit-button {
@@ -629,3 +628,4 @@ img.jade-logo {
    width: 140px;
    float: right;
 }
+
