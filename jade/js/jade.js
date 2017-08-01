@@ -1,13 +1,23 @@
-// show hide applications
-function display(element) {
-  $(".category-msg").addClass("animated slideInLeft");
-  $(".category-container, .search-results, .category-msg, #search-icon, #main-dashboard, #recently-used-files, #recent-used-files-msg").hide();
-  $(element).show();
-  $(".dashboard-button").show();
+function showDashButton() {
+	$(".dashboard-button").fadeIn("slow");
 }
 
+// show hide applications
+function display(element) {
+  
+  $.when($(".category-msg, #search-icon, #recent-used-files-msg").fadeOut()).done(function() {
+  $(".category-container, .search-results, #main-dashboard, #recently-used-files, .category-msg, #search-icon, #recent-used-files-msg").hide();
+  $(".category-msg").addClass("animated slideInLeft");
+  $(element).show();
+  grid(element);
+  });
+  showDashButton();
+};
+
 function grid(element) {
-  $(element).masonry("layout");
+	$(element).masonry({
+    itemSelector: ".col"
+  });
 }
 
 function emptyClass(element) {
@@ -28,7 +38,7 @@ function notifySend(msg) {
 
 // DOCUMENT READY
 $(document).ready(function() {
-
+	
   // Init a timeout variable to be used below
   var dashTimeout = null;
 
@@ -95,10 +105,7 @@ $(document).ready(function() {
     });
   });
 
-  $(".category-container").masonry({
-    itemSelector: ".col",
-    transitionDuration: "0.0s"
-  });
+  
 
   // move to correct containers
   $(".application-category").appendTo(".menu");
@@ -154,11 +161,11 @@ $(document).ready(function() {
   });
 
   $(".recent-files-button").click(function() {
-    document.title = "recent";
-    $("#main-dashboard").hide();
-    $("#recent-used-files-msg").addClass("animated slideInLeft");
-    $("#recently-used-files, #recent-used-files-msg, .dashboard-button").show();
-
+  	   showDashButton();
+      $("#main-dashboard").hide();
+      $("#recent-used-files-msg").addClass("animated slideInLeft");
+      $("#recently-used-files, #recent-used-files-msg").show();
+      document.title = "recent";
   });
 
   $(".dashboard-button a").click(function() {

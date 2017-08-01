@@ -161,7 +161,6 @@ def jade_build_menu(application_category, iteration=0):
 
         Api.html += "<" + tag + " class='application-category " + category + "'><a href='#' " + action + '''=\"
                         display('#%(category)s, #%(category)s-msg');
-                        grid('#%(category)s');
                         \">%(category_name)s
                         </a></''' % locals() + tag + ">"
 
@@ -328,7 +327,7 @@ class JadeWindow(AppWindow):
                 
             elif title_name.startswith("recent"):
                 recent_html = recently_used()
-                self.webview.run_javascript('$("#recently-used-files .row").html("' + recent_html + '");')
+                self.webview.run_javascript('$("#recently-used-files .row").html("' + recent_html + '");$("#recent-used-files-msg").addClass("animated slideInLeft");$("#recently-used-files, #recent-used-files-msg").show();')
 
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)

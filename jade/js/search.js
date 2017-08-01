@@ -9,14 +9,13 @@ $(document).ready(function() {
 
   $("input#search").on("click mouseover", function() {
     $("input#search").focus();
-    $("#search-icon").addClass("animated slideInLeft");
-    $(".category-container, .category-msg, #main-dashboard, #recently-used-files, .recent-files-msg, #recent-used-files-msg").hide();
-    $(".search-results, #search-icon, .dashboard-button").show();
-
-    $(".search-results").masonry({
-      itemSelector: ".col",
-      transitionDuration: "0.0s"
-    });
+    $.when($(".category-msg, .recent-files-msg, #recent-used-files-msg").fadeOut()).done(function() {
+      $(".category-container, #main-dashboard, #recently-used-files").hide();
+      $("#search-icon").addClass("animated slideInLeft");
+      $(".search-results, #search-icon").show();
+      $(".dashboard-button").fadeIn();
+      grid(".search-results");
+   });
   });
 
   // Init a timeout variable to be used below
@@ -49,13 +48,11 @@ $(document).ready(function() {
         // if we have only 2 letters search tittle only
         if (searchValue.length <= 2) {
           searchLocation = ".application-wrapper h5"
-          console.log(searchLocation.startsWith(searchValue));
         };
 
         $(searchLocation).each(function() {
 
           if ($(this).html().toLocaleLowerCase().indexOf(searchValue) > -1) {
-
 
             if (searchValue.length <= 2) {
               $(this).parent().parent().clone().prependTo(".search-results");
@@ -63,8 +60,7 @@ $(document).ready(function() {
               $(this).clone().prependTo(".search-results");
             }
 
-            $(".search-results").masonry("reloadItems");
-            $(".search-results").masonry("layout");
+            $(".search-results").masonry("reloadItems").masonry("layout");
 
             var elementsNumber = $(".search-results " + searchLocation).length;
 
