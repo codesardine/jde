@@ -17,9 +17,26 @@ body {
    border-style: solid;
 }
 
-.top-corner-triangle {
+@media (min-width: 1825px) {
+	.top-corner-triangle {
 	border-width: 184px 1500px 0 0;
-   border-color: rgba(173, 22, 73, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
+   }
+}
+
+@media (max-width: 1824px) {
+	.top-corner-triangle {
+	border-width: 198px 1250px 0 0;
+   }
+}
+
+@media (max-width: 1224px) {
+	.top-corner-triangle {
+	border-width: 252px 1000px 0 0;
+   }
+}
+
+.top-corner-triangle {
+	border-color: rgba(173, 22, 73, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
    top: 0;
    z-index: -99999;
 }
@@ -62,55 +79,55 @@ body {
     z-index: -2;
 }
 
-#background.office-background:before {
+#background.office-background:before, .office-background {
     background-image: url(../img/office.jpg);
 }
 
-#background.development-background:before {
+#background.development-background:before, .development-background {
     background-image: url(../img/development.jpg);
 }
 
-#background.education-background:before {
+#background.education-background:before, .education-background {
     background-image: url(../img/education.jpg);
 }
 
-#background.multimedia-background:before {
+#background.multimedia-background:before, .multimedia-background {
     background-image: url(../img/multimedia.jpg);
 }
 
-#background.games-background:before {
+#background.games-background:before, .games-background {
     background-image: url(../img/games.jpg);
 }
 
-#background.graphics-background:before {
+#background.graphics-background:before, .graphics-background {
     background-image: url(../img/graphics.jpg);
 }
 
-#background.internet-background:before {
+#background.internet-background:before, .internet-background{
     background-image: url(../img/internet.jpg);
 }
 
-#background.system-background:before {
+#background.system-background:before, .system-background {
     background-image: url(../img/system.jpg);
 }
 
-#background.settings-background:before {
+#background.settings-background:before, .settings-background {
     background-image: url(../img/settings.jpg);
 }
 
-#background.help-background:before {
+#background.help-background:before, .help-background {
     background-image: url(../img/help.jpg);
 }
 
-#background.accessories-background:before {
+#background.accessories-background:before, .accessories-background {
     background-image: url(../img/accessories.jpg);
 }
 
-#background.recent-files-background:before {
+#background.recent-files-background:before, .recent-files-background {
     background-image: url(../img/recent-files.jpg);
 }
 
-#background.search-background:before {
+#background.search-background:before, .search-background {
     background-image: url(../img/search.jpg);
 }
 
