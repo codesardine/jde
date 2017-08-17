@@ -2,7 +2,7 @@
 # coding: utf-8
 """
 
-          Jade
+ Jade   - Just Another Desktop Environment 
  Author - Copyright (c) 2017 Vitor Lopes
  url    - https://github.com/codesardine/Jadesktop
 
@@ -17,7 +17,6 @@ except Exception as err:
 import os
 import pwd
 import subprocess
-
 import xdg.DesktopEntry
 import xdg.Menu
 import gi
@@ -30,6 +29,8 @@ Notify.init("Jade")
 
 user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
 path = os.path.dirname(os.path.realpath(__file__))
+userFolder = os.path.expanduser("~")
+cssOverridePath = userFolder + "/.config/jade/theme/override.css"
 
 
 def disk_usage():
@@ -259,9 +260,6 @@ def recently_used():
     return recent_html
 
 
-Api.html += "</body></html>"
-
-
 class JadeWindow(AppWindow):
     """
     extends AK.AppWindow functionality
@@ -331,8 +329,14 @@ class JadeWindow(AppWindow):
 
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
-
-
+        
+if os.path.exists(cssOverridePath):
+   Api.html += "<script>themeOverride('%s');</script><body></html>" % cssOverridePath
+   print('override.css found');
+   
+else:
+	Api.html += "<body></html>"
+	
 jade_menu()
 JadeWindow()
 Gtk.main()

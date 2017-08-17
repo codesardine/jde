@@ -2,6 +2,16 @@ function showDashButton() {
 	$(".dashboard-button").fadeIn("slow");
 }
 
+// search for /home/user/.config/jade/theme/override.css
+function themeOverride(fileName) {
+   var link  = document.createElement('link');
+   link.rel  = 'stylesheet';
+   link.type = 'text/css';
+   link.charset = 'UTF-8';
+   link.href = fileName;
+   document.getElementsByTagName('head')[0].appendChild(link);
+}
+          
 // show hide applications
 function display(element) {
   
