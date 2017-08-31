@@ -38,27 +38,37 @@ $(document).ready(function() {
 
       $(".search-results").empty();
       $("#search-msg").remove();
-
+      
       if (searchValue.length !== 0) {
         searchValue = searchValue.toLocaleLowerCase();
 
         // search title description and keywords
         var searchLocation = ".application-wrapper"
 
-        // if we have only 2 letters search tittle only
-        if (searchValue.length <= 2) {
+        // if we have only 1 letter search tittle only
+        if (searchValue.length == 1) {
           searchLocation = ".application-wrapper h5"
         };
 
         $(searchLocation).each(function() {
 
-          if ($(this).html().toLocaleLowerCase().indexOf(searchValue) > -1) {
+          if ($(this).text().toLocaleLowerCase().indexOf(searchValue) > -1) {
 
-            if (searchValue.length <= 2) {
-              $(this).parent().parent().clone().prependTo(".search-results");
+            if (searchValue.length == 1) {
+
+              if ($(this).text().toLocaleLowerCase().charAt(0) == searchValue) {
+                $(this).parent().parent().clone().prependTo(".search-results");
+              };
             } else {
-              $(this).clone().prependTo(".search-results");
+
+              if ($(this).text().toLocaleLowerCase().trim().startsWith(searchValue)) {
+                // More relevant results first
+                $(this).clone().prependTo(".search-results");
+              } else {
+              // Less relevant results last
+              $(this).clone().appendTo(".search-results");
             }
+          }
 
             $(".search-results").masonry("reloadItems").masonry("layout");
 
