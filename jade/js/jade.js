@@ -156,6 +156,12 @@ function showDashboard() {
     // help category comes first!
     $(".application-category.help").prependTo("#nav-mobile");
 
+    function fixDuckIframe() {
+      // fix iframe slideToggle
+      var iframeHeight = window.innerHeight - 261
+      $("#duckduckgo").css("height", iframeHeight);
+    }
+    fixDuckIframe();
     // settings & system
     $(".application-category.settings, .application-category.system").appendTo(".mini-dashboard-left");
     $(".application-category.settings a, .application-category.system a").addClass("box col m12");

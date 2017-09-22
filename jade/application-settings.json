@@ -3,7 +3,7 @@
 
         "name": "JADE",
         "description": "Linux Desktop Environment, built with Web Technologies",
-        "version": "0.4.44",
+        "version": "0.4.45",
         "author": "Vitor Lopes",
         "url": "https://github.com/codesardine/Jadesktop/",
         "license": "GPLv2"
