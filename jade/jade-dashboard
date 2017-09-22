@@ -2,7 +2,7 @@
 # coding: utf-8
 """
 
- Jade   - Just Another Desktop Environment 
+ Jade   - Just Another Desktop Environment
  Author - Copyright (c) 2017 Vitor Lopes
  url    - https://github.com/codesardine/Jadesktop
 
@@ -20,6 +20,7 @@ import subprocess
 import xdg.DesktopEntry
 import xdg.Menu
 import gi
+import webbrowser
 
 gi.require_version('Notify', '0.7')
 from gi.repository import Gtk, WebKit2, Gio, Notify
@@ -33,7 +34,7 @@ userFolder = os.path.expanduser("~")
 cssOverridePath = userFolder + "/.config/jade/theme/override.css"
 
 
-def disk_usage():
+def get_disk_usage():
     """
 
     :return: total disk usage in percentage
@@ -44,12 +45,7 @@ def disk_usage():
         if entry.startswith("total"):
             contents.append(entry)
             percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
-            disk_usage = '''<div style='font-size: 12px;'>Storage</div>
-                           <div class='disk-percentage' style='font-size: 18px;padding: 1px;'>%s</div>
-                           <div style='font-size: 12px;'>Used</div>''' % percentage
-
-            return disk_usage
-
+            return percentage
 
 def fetch_icon(icon_name):
     """
@@ -107,7 +103,7 @@ def fetch_icon(icon_name):
 dashboard_icon             = "img/jade-logo.svg"
 recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
-file_manager_icon          = fetch_icon("file-manager")
+file_manager_icon          = fetch_icon("folder_color_pink")
 software_installer_icon    = fetch_icon("system-software-install")
 settings_icon              = fetch_icon("preferences-desktop")
 terminal_icon              = fetch_icon("terminal")
@@ -119,9 +115,9 @@ hibernate_icon             = fetch_icon("system-hibernate")
 suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
 search_icon                = fetch_icon("search")
+internet_icon              = fetch_icon("applications-internet")
 
-disk_usage = disk_usage()
-html_file = path + '/ui.html'
+html_file = path + '/theme/jade.html'
 html = Api.openFile(html_file)
 ui_html_contents = '''%s''' % (html % locals())
 
@@ -152,7 +148,7 @@ def jade_build_menu(application_category, iteration=0):
                           <h5><span>%(category)s</span><span>%(category_description)s</span></h5>
                           <img class='category-icon %(category_name)s' src='%(category_icon)s'>
                           </div>
-                          <div id='%(category)s' class='category-container row'>''' % locals()
+                          <div id='%(category)s' class='category-container row'><div id='%(category)s-favorites' class='row favorites'></div><div class="grid row">''' % locals()
 
         tag    = "li"
         action = "onmouseover"
@@ -192,8 +188,8 @@ def jade_build_menu(application_category, iteration=0):
                 application_keywords = " ".join(application_keywords)
                 application_keywords = "<span style='display:none;'>" + application_keywords + "</span>"
 
-                Api.html += '''<div class='application-wrapper col l4 xl3'>
-                                  <a class='application-box card'  onclick='notifySend(\"Launching %(application_name)s\");' href = 'shell:%(application_executable)s'>
+                Api.html += '''<div class='application-wrapper'>
+                                  <a class='application-box'  onclick='notifySend(\"Launching %(application_name)s\");' href = 'shell:%(application_executable)s'>
                                   <img class='application-icon' src='%(application_icon)s'>
                                   <img class='info-icon' src='%(info_icon)s'>
                                   <h5 class='application-name card'>%(application_name)s</h5>
@@ -216,7 +212,7 @@ def jade_build_menu(application_category, iteration=0):
                                     </p>%(application_keywords)s
                                     </a></div>''' % locals()
 
-    Api.html += "</div>"
+    Api.html += "</div></div>"
 
 
 def jade_menu():  # /etc/xdg/menus
@@ -254,7 +250,7 @@ def recently_used():
                 image = fetch_icon("emblem-documents")
 
 
-        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(image)s'><br>%(item_name)s</a></div>" % locals()
+        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(image)s'><br><span id='recent-filename'>%(item_name)s</span></a></div>" % locals()
 
 
     return recent_html
@@ -279,31 +275,74 @@ class JadeWindow(AppWindow):
             :param decision_type:
             :return: if is not a predicted action do nothing.
             """
+
+            def execute(command):
+
+                """
+
+                :param command: shell command to execute.
+                :return: we are not loading a url don't follow link or we get a blank page.
+                """
+                process = subprocess.Popen(command, shell=True)
+                decision.ignore()
+                return True
+
+            def checkLink(url):
+                print("checking URL")
+
+                # allow embed youtube videos to play
+                if url.startswith("https://www.youtube-nocookie.com/embed/"):
+                    decision.use()
+                    return True
+
+                else:
+                    msg = "Opening link in external browser - "
+                    print(msg)
+                    self.webview.run_javascript('notifySend(%(msg)s);'  % locals())
+                    webbrowser.open_new_tab(url)
+                    self.webview.run_javascript('document.getElementById("duckduckgo").contentWindow.history.back();console.log("Going back");')
+                    decision.ignore()
+                    return True
+
+
+            if decision_type == WebKit2.PolicyDecisionType.NEW_WINDOW_ACTION:
+                print("New Browser Tab Request")
+                url = decision.get_navigation_action().get_request().get_uri()
+                checkLink(url)
+
             if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
 
                 navigation_action = decision.get_navigation_action()
                 navigation_request = navigation_action.get_request()
-                # navigation_type = navigation_action.get_navigation_type()
-                uri = navigation_request.get_uri()
+                navigation_type = navigation_action.get_navigation_type()
+                url = navigation_request.get_uri()
 
-                def execute(command):
+                if url.startswith("file://") and url.endswith("/jade/") or url.startswith("https://duckduckgo.com/") or url.startswith("https://manjaro.org")  or url.startswith("https://wiki.manjaro.org/"):
+                    pass
 
-                    """
+                elif url.startswith("shell:"):
+                    command = url.replace('shell:', '')
+                    execute(command)
 
-                    :param command: shell command to execute.
-                    :return: we are not loading a url don't follow link or we get a blank page.
-                    """
-                    process = subprocess.Popen(command, shell=True)
+                elif url.startswith("xdg-open:"):
+                    command = url.replace('xdg-open:', 'xdg-open ')
+                    execute(command)
+
+                elif navigation_type == WebKit2.NavigationType.LINK_CLICKED:
+                    print("Link Clicked")
+                    print(url + " <- Action Denied Repeated URL")
                     decision.ignore()
                     return True
 
-                if uri.startswith("shell:"):
-                    command = uri.replace('shell:', '')
-                    execute(command)
+                elif navigation_type == WebKit2.NavigationType.OTHER:
+                    print("Unknown Navigation Request " + url)
+                    if url.startswith("http"):
+                       checkLink(url)
 
-                elif uri.startswith("xdg-open:"):
-                    command = uri.replace('xdg-open:', 'xdg-open ')
-                    execute(command)
+                else:
+                    print(url + " <- Action Denied")
+                    decision.ignore()
+                    return True
 
             return False
 
@@ -322,21 +361,30 @@ class JadeWindow(AppWindow):
                     "JADE Says...",
                     message,
                     "dialog-information").show()
-                
-            elif title_name.startswith("recent"):
+
+            elif title_name.startswith("recent-files"):
                 recent_html = recently_used()
-                self.webview.run_javascript('$("#recently-used-files .row").html("' + recent_html + '");$("#recent-used-files-msg").addClass("animated slideInLeft");$("#recently-used-files, #recent-used-files-msg").show();')
+                self.webview.run_javascript('$("#recently-used-files div").html("' + recent_html + '");$("#recently-used-files, #recent-used-files-msg").show();')
+
+            elif title_name.startswith("disk-usage"):
+                percentage = get_disk_usage()
+                self.webview.run_javascript('$(".disk-percentage").text("' + percentage + '");getDiskColors();')
+
+        def on_load_changed(webview, event):
+            if event == WebKit2.LoadEvent.STARTED:
+                print("redirect")
 
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
-        
+        self.webview.connect("load-changed", on_load_changed)
+
 if os.path.exists(cssOverridePath):
-   Api.html += "<script>themeOverride('%s');</script><body></html>" % cssOverridePath
+   Api.html += "<script>themeOverride('%s');</script></body></html>" % cssOverridePath
    print('override.css found');
-   
+
 else:
-	Api.html += "<body></html>"
-	
+	Api.html += "</body></html>"
+
 jade_menu()
 JadeWindow()
 Gtk.main()
