@@ -1,9 +1,9 @@
 {
     "application": {
 
-        "name": "Jade",
-        "description": "Desktop environment for linux with html front end",
-        "version": "0.3.42",
+        "name": "JADE",
+        "description": "Linux Desktop Environment, built with Web Technologies",
+        "version": "0.4.44",
         "author": "Vitor Lopes",
         "url": "https://github.com/codesardine/Jadesktop/",
         "license": "GPLv2"
