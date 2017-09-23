@@ -175,8 +175,8 @@ function showDashboard() {
     $(".application-box").hover(function() {
       $(this).find(".application-icon").fadeOut("slow");
       $(this).find(".info-icon").fadeIn("slow");
-      $(".application-box").css("z-index", "1");
-      $(this).css("z-index", "9");
+      $(".application-wrapper").css("z-index", "1");
+      $(this).parent().css("z-index", "2");
       $(this).find("p").slideDown("fast");
 
     }, function() {
