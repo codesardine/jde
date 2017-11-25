@@ -2,7 +2,7 @@
 
 _pkgname=jade-dashboard
 pkgname="$_pkgname-git"
-pkgver=0.3.33.r173.a3ef56d
+pkgver=0.4.50.r211.8e235d1
 pkgrel=1
 pkgdesc="JADE, a linux desktop built with HTML5, CSS, JavaScript and Python."
 arch=('any')
@@ -30,4 +30,5 @@ package() {
     cp -r $srcdir/$_pkgname/jade $pkgdir/opt
     chmod 644 $pkgdir/etc/xdg/autostart/jade-dashboard.desktop
     chmod 644 $pkgdir/usr/share/applications/jade-dashboard.desktop
+    chmod 744 $pkgdir/usr/bin/jade-desktop
 }
