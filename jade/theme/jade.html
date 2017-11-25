@@ -5,6 +5,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" frame-ancestors '*';>
+
 
   <link rel="stylesheet" href="theme/css/jade.css" charset="UTF-8">
   <link rel="stylesheet" href="theme/css/animate.css" charset="UTF-8">
@@ -23,18 +25,20 @@
     <div id='overlay'>
       <header class='container-fluid'>
         <nav>
-          <div class="nav-wrapper">
-            <ul id="nav-mobile" class="right menu">
+          <div class="center dropdown">
+            <ul class="menu dropdown-menu">
             </ul>
           </div>
         </nav>
         <div class="container-fluid display">
           <div class="display-msg">
-            <div class='center dashboard-button'>
-              <a href="#!"><img src="%(dashboard_icon)s" class="tooltipped" data-position="left" data-delay="0" data-tooltip="Dashboard"></a>
             </div>
+          <div id="TOP-LEFT-DESCRIPTION">
+          <div id="logo">
+            <img src="img/jade-logo.svg">
+            <span>Desktop</span>
           </div>
-          <div id="TOP-LEFT-DESCRIPTION"></div>
+        </div>
           <div class='disk-usage'>
             <div>Storage</div>
             <div class='disk-percentage'>0
@@ -45,7 +49,11 @@
           <div id="time">00:00</div>
           <div id="date"></div>
           <div id="search-container">
-            <input type="text" id="search" placeholder="Search Applications..."></div>
+            <input type="text" id="search" placeholder="Search Applications...">
+            <a class="dash-btn" href="#">
+                            <img src="img/back.svg" class="col l12 xl10">
+                          </a>
+          </div>
         </div>
         <!--display-->
         <div class="top-corner-triangle"></div>
@@ -59,23 +67,23 @@
               <div id="dashboard-favorites" class="row favorites">
 
 
-                <a class="col l1" onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
+                <a class="col" onclick="notifySend('Launching Browser');" href='shell:$JADE_BROWSER'>
                                   <img src="%(browser_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Open Default Browser">
                               </a>
-                <a class="col l1" onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
+                <a class="col" onclick="notifySend('Launching File Manager');" href='shell:$JADE_FILE_MANAGER'>
                                   <img src="%(file_manager_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Browse Your Files">
                               </a>
-                <a class="col l1" onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
+                <a class="col" onclick="notifySend('Launching Software Installer');" href='shell:$JADE_SOFTWARE_INSTALLER'>
                                   <img src="%(software_installer_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Install, Remove Applications - Software Center">
                               </a>
-                <a class="col l1" onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
+                <a class="col" onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
                                   <img src="%(settings_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Manjaro Settings">
                               </a>
-                <a class="col l1" onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
+                <a class="col" onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
                                   <img src="%(terminal_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Use The Command Line">
                               </a>
-                <a id="about-jade-btn" class="col l1 modal-trigger" href='#about-jade'>
-                                  <img src="img/jade-logo.svg" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="About Jade">
+                <a id="about-jade-btn" class="col modal-trigger" href='#about-jade'>
+                                  <img src="%(about_jade_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="About Jade">
                               </a>
 
               </div>
@@ -166,8 +174,7 @@
       <div id="app-logo"></div>
     </div>
     <div class="modal-content">
-      <h4 id="app-name"></h4>
-      <p id="name-definition">Just Another Desktop Environment</p>
+      <p id="app-name"></p>
       <p id="app-description"></p>
       <p id="app-version"></p>
       <div id="author-pic">
@@ -176,7 +183,7 @@
       </div>
       <p id="app-url"></p>
       <p id="app-license"></p>
-      <p id="luv">Made With  <span>&#10084;</span> For Your<span> Manjaro</span> Box</p>
+      <p id="luv">Made With  <span>&#10084;</span> For Your<span> Manjaro</span> Box<br><br>Try Manjaro WebDad Editon</p>
     </div>
     <!-- modal-content -->
     <a href="#!" class="modal-action modal-close">X</a>
@@ -202,8 +209,11 @@
     <div class="accessories-background"></div>
     <div class="recent-files-background"></div>
     <div class="search-background"></div>
-    <a id="mini-browser-btn" class="col l1" href="#">
+    <a id="mini-browser-btn" class="col" href="#">
                      <img src="%(internet_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Toggle Mini Browser">
+                  </a>
+    <a class="dashboard-btn col" href="#">
+                    <img src="img/back.svg" class="col l12 xl10">
                   </a>
 
   </div>

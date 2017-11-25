@@ -100,10 +100,10 @@ def fetch_icon(icon_name):
 
 #  icon names
 
-dashboard_icon             = "img/jade-logo.svg"
+#dashboard_icon             = fetch_icon("back")
 recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
-file_manager_icon          = fetch_icon("folder_color_pink")
+file_manager_icon          = fetch_icon("folder")
 software_installer_icon    = fetch_icon("system-software-install")
 settings_icon              = fetch_icon("preferences-desktop")
 terminal_icon              = fetch_icon("terminal")
@@ -115,7 +115,8 @@ hibernate_icon             = fetch_icon("system-hibernate")
 suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
 search_icon                = fetch_icon("search")
-internet_icon              = fetch_icon("applications-internet")
+internet_icon              = browser_icon
+about_jade_icon            = fetch_icon("info")
 
 html_file = path + '/theme/jade.html'
 html = Api.openFile(html_file)
@@ -138,7 +139,7 @@ def jade_build_menu(application_category, iteration=0):
     category_description = application_category.getComment()
 
     if iteration == 0:
-        pass
+        Api.html+= '''<span id='%(category_name)s'><a>%(category_name)s</a><img src="img/back.svg" class="highlight"></span>''' % locals()
 
     else:
 

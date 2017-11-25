@@ -14,7 +14,7 @@ $(document).ready(function() {
       $("#search").attr("placeholder", "Search The Internet...");
       $("#mini-browser").slideDown("slow");
     } else {
-      $.when($(".category-msg, .recent-files-msg, #recent-used-files-msg").fadeOut()).done(function() {
+      $.when($(".category-msg, .recent-files-msg, #recent-used-files-msg, #logo").fadeOut()).done(function() {
         $("#search").attr("placeholder", "Search Applications...");
         $("#search").animate({
           width: "50%"
@@ -22,7 +22,7 @@ $(document).ready(function() {
         $(".category-container, #main-dashboard, #recently-used-files").hide();
         $("#search-icon").addClass("animated slideInLeft");
         $(".search-results, #search-icon").show();
-        $(".dashboard-button").fadeIn();
+        $(".dash-btn").fadeIn();
         grid(".search-results");
       });
     };

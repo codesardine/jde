@@ -1,7 +1,3 @@
-function showDashButton() {
-  $(".dashboard-button").fadeIn("slow");
-}
-
 function isElementVisible(element) {
   if ($(element).css('display') == 'none') {
     return false
@@ -28,13 +24,12 @@ function backEndGet(python_function) {
 // show hide applications
 function display(element) {
 
-  $.when($(".category-msg, #search-icon, #recent-used-files-msg").fadeOut()).done(function() {
-    $(".category-container, .search-results, #main-dashboard, #recently-used-files, .category-msg, #search-icon, #recent-used-files-msg").hide();
+  $.when($(".category-msg, #search-icon, #recent-used-files-msg, #logo").fadeOut()).done(function() {
+    $(".category-container, .search-results, #main-dashboard, #recently-used-files, .category-msg, #search-icon, #recent-used-files-msg, #logo").hide();
     $(".category-msg").addClass("animated slideInLeft");
     $(element).show();
     grid(".grid");
   });
-  showDashButton();
 };
 
 function grid(element) {
@@ -54,8 +49,9 @@ function showDashboard() {
         width: "50%"
       });
       $("#search").attr("placeholder", "Search Applications...");
-      $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg, .dashboard-button").hide();
+      $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").hide();
       $("#main-dashboard").show().css("display', 'block"); // fix, reset display state at the end of animation
+      $("#logo").show()
       emptyClass("#background");
     });
 };
@@ -79,8 +75,8 @@ function showDashboard() {
 
   // DOCUMENT READY
   $(document).ready(function() {
-
-    backEndGet("disk-usage");
+  	
+  	 backEndGet("disk-usage");
     $('.modal').modal();
     $("#app-name").text(jadeApplication.name);
     $("#app-author").text("Author - " + jadeApplication.author);
@@ -107,11 +103,11 @@ function showDashboard() {
       } else {
         dashTimeout = setTimeout(function() {
           if ($("#main-dashboard").css("display") == 'none') { // don't repeat animation
-            $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg, .dashboard-button").fadeOut("slow", function() {
+            $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").fadeOut("slow", function() {
               $("#main-dashboard").fadeOut("slow");
             });
-            $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg, .dashboard-button").promise().done(function() {
-              $("#main-dashboard").fadeIn("slow");
+            $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").promise().done(function() {
+              $("#main-dashboard , #logo").fadeIn("slow");
               setTimeout(function() {
                 emptyClass("#background");
                 $("#main-dashboard").css("display', 'block"); // fix, reset display state at the end of animation
@@ -145,16 +141,19 @@ function showDashboard() {
     });
 
     // move to correct containers, and add classes
-    $(".application-category").appendTo(".menu");
+    $("#Applications").prependTo("nav .dropdown");
+    $(".application-category").appendTo(".dropdown-menu");
     $(".category-container").appendTo(".dashboard");
     $(".category-msg, #search-icon").appendTo("#TOP-LEFT-DESCRIPTION");
     $("#recent-used-files-msg").appendTo("#TOP-LEFT-DESCRIPTION").addClass("animated slideInLeft");
     $(".application-wrapper").addClass("col l4 xl3");
     $(".application-box").addClass("card");
     $("#mini-browser-btn, #news").appendTo("#go-online-favorites");
+    $(".dashboard-btn").prependTo(".favorites");
+    $("#dashboard-favorites .dashboard-btn").remove();
     $("#manjaro, #wiki, #forum").appendTo("#help-favorites");
     // help category comes first!
-    $(".application-category.help").prependTo("#nav-mobile");
+    $(".application-category.help").prependTo(".dropdown-menu");
 
     function fixDuckIframe() {
       // fix iframe slideToggle
@@ -213,22 +212,33 @@ function showDashboard() {
     });
 
     $(".recent-files-button").click(function() {
-      showDashButton();
-      $("#main-dashboard").hide();
+      $("#main-dashboard, #logo").hide();
       $("#search").animate({
         width: "50%"
       });
       $("#recent-used-files-msg").addClass("animated slideInLeft");
-      $("#recently-used-files, #recent-used-files-msg").show();
+      $("#recently-used-files, #recent-used-files-msg, .dash-btn").show();
       backEndGet("recent-files");
     });
 
-    $(".dashboard-button a").click(function() {
+    $(".dashboard-btn, .dash-btn").click(function() {
+    	if ($(this).hasClass("dash-btn")) {
+    	  $(this).fadeOut();
+    	}
       emptyClass("#background");
       showDashboard();
     });
+    
+    $("nav").hover(function() {
+    	$(".highlight").fadeOut();
+    }, function () {
+    	$(".highlight").fadeIn();
+    	});
+    	
     // backgrounds
     $("li.application-category").mouseover(function() {
+    	
+    	$(".dash-btn").fadeOut();
 
       if ($(this).hasClass("office")) {
         emptyClass("#background");

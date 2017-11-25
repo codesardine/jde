@@ -17,6 +17,29 @@ html {
   overflow: hidden;
 }
 
+#logo {
+  margin-top: -3px;
+
+  img {
+    height: 50px;
+  }
+  span {
+    margin-left: 8px;
+    margin-top: -18px;
+    position: relative;
+    float: right;
+  }
+}
+
+// icons size
+.application-box img, .favorites img {
+  width: 40px !important;
+}
+
+.mini-dashboard-shortcuts .row .col, .favorites .col {
+  padding: 0;
+}
+
 .content-editable {
   -webkit-user-select: text;
 
@@ -45,22 +68,22 @@ html {
 }
 @media (min-width: 1825px) {
   .top-corner-triangle {
-    border-width: 184px 1500px 0 0;
+    border-width: 90px 1500px 0 0;
   }
 }
 @media (max-width: 1824px) {
   .top-corner-triangle {
-    border-width: 198px 1250px 0 0;
+    border-width: 90px 1250px 0 0;
   }
 }
 @media (max-width: 1224px) {
   .top-corner-triangle {
-    border-width: 252px 1000px 0 0;
+    border-width: 90px 1000px 0 0;
   }
 }
 
 .bottom-corner-triangle {
-  border-width: 100px 400px 0 0;
+  border-width: 60px 400px 0 0;
   border-color: rgba(0, 0, 0, 0) $green rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
   position: absolute;
   bottom: 0;
@@ -186,7 +209,7 @@ header {
   padding-top: 20px !important;
 }
 
-.underline {
+.underline:not(nav span a) {
   border-bottom: 2px solid $green;
 }
 
@@ -196,7 +219,7 @@ header {
 
 nav {
   background-color: transparent;
-  height: 56px;
+  height: 0px;
   box-shadow: none;
   line-height: 40px;
 
@@ -208,15 +231,66 @@ nav {
     &:focus,
     &:hover {
       color: #fff;
-      background-color: transparent !important;
+      //background-color: transparent !important;
+    }
+  }
+
+  span {
+    display: block;
+    font-size: 17px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    height: 50px;
+
+    &:hover + ul {
+      display: inline-block !important;
+    }
+
+    a{
+      padding: 4px;
     }
   }
 
   ul {
     padding-right: 10px;
+    margin-top: 50px;
+    height: 70px;
+    padding: 10px !important;
+    background-color: #222D32;
+    display: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      display: inline-block !important;
+    }
+
+    &:after {
+      position: absolute;
+      left: 50%;
+      top: -8px;
+      width: 0;
+      height: 0;
+      content: '';
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 20px solid #222D32;
+      margin-left: -20px;
+      margin-top: 48px;
+    }
 
     &li {
       transition: none;
+    }
+
+    li {
+      display: inline;
+      float: none;
+    }
+
+    li a {
+      display: inline-block;
+      color: #e4e4e4 !important;
     }
   }
 }
@@ -230,11 +304,10 @@ nav {
 }
 
 .application-box img {
-  width: 50px;
   position: absolute;
   z-index: 999;
-  margin-top: -32px;
-  margin-right: -25px;
+  margin-top: -20px;
+  margin-right: -20px;
 }
 
 .application-icon {
@@ -243,7 +316,6 @@ nav {
 }
 
 .application-wrapper .info-icon {
-  margin-top: -26px !important;
   right: 4px;
   padding-left: 4px;
 }
@@ -259,7 +331,7 @@ nav {
   position: fixed;
   top: 0;
   z-index: -1;
-  padding-top: 86px;
+  padding-top: 20px;
   width: 100%;
   color: #fff;
 }
@@ -305,10 +377,20 @@ nav {
 #search-container {
   width: 25%;
   margin-left: 40px;
-  margin-top: -22px;
+  margin-top: -40px;
   position: relative;
   z-index: 1;
   overflow: hidden;
+
+  a {
+    display: none;
+
+    img {
+    width: 30px;
+    position: absolute;
+    margin-left: 10px;
+    }
+  }
 
   input[type=text] {
     border: 0;
@@ -377,17 +459,20 @@ nav {
 
 #recent-used-files-msg img,
 #search-icon img,
+#logo img,
 .category-icon {
-  width: 62px;
+  width: 50px;
 }
 
 #TOP-LEFT-DESCRIPTION {
   position: absolute;
   margin-left: 40px;
+  margin-top: 20px;
 }
 
 #recent-used-files-msg,
 #search-icon,
+#logo img,
 .category-msg {
   margin-top: -36px;
 }
@@ -396,20 +481,19 @@ nav {
   float: right;
   margin-left: 72px;
   line-height: 22px;
-  margin-top: 10px;
+  margin-top: 4px;
 
   span {
     display: block;
     margin-left: -58px;
 
     &:first-of-type {
-      padding-bottom: 4px;
-      font-size: 28px;
+      font-size: 18px;
       color: #e7e7e7;
     }
 
     &:last-of-type {
-      font-size: 15px;
+      font-size: 12px;
       color: #232323;
     }
   }
@@ -545,11 +629,11 @@ nav {
   }
 
   .row {
-    margin-top: 4px;
+    margin-top: 11px;
   }
 
   a:first-child {
-    margin-left: -0.75rem !important;
+    margin-left: 11px !important;
   }
 }
 
@@ -583,20 +667,6 @@ nav {
 
 .dash-right-button {
   padding: 10px !important;
-}
-
-.dashboard-button {
-  position: absolute;
-  right: 0;
-  left: 0;
-  margin-top: 28px;
-  display: none;
-
-  img {
-    width: 62px;
-    height: 62px;
-    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
-  }
 }
 
 #recently-used-files {
@@ -681,21 +751,17 @@ img.jade-logo {
 }
 /* tooltips */
 .backdrop {
-  background-color: #455a64;
+  background-color: #222D32;
 }
 
 .material-tooltip {
-  color: #dfdfdf;
+  color: #e4e4e4;
   font-size: 14px;
 }
 /* improve selection visibility */
 .favorites a,
 .notes {
   filter: grayscale(24%) opacity(96%) brightness(94%);
-}
-
-#main-dashboard a {
-  margin-right: 23px;
 }
 
 .notes {
@@ -745,7 +811,7 @@ img.jade-logo {
   margin-left: 12px;
   position: relative;
   width: 100px;
-  margin-top: 18px;
+  margin-top: 14px;
   float: right;
   color: #fff;
   font-weight: bold;
@@ -755,27 +821,23 @@ img.jade-logo {
 
 #recent-used-files-text {
   margin-left: 8px;
-  margin-top: 20px;
+  margin-top: 14px;
   position: relative;
   width: 140px;
   float: right;
 }
 
 #about-jade {
-  top: 200px !important;
   text-align: center;
   padding: 40px;
   overflow: visible;
+  font-size: 12px;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  max-width: 800px;
 
   div:first-child {
     margin-top: -116px;
-  }
-
-  #name-definition {
-    margin-top: 40px;
-    font-size: 20px;
-    color: #009688;
-    font-weight: bold;
   }
 
   #author-pic {
@@ -792,6 +854,7 @@ img.jade-logo {
 
   #app-author {
     margin-bottom: 10px;
+    font-size: 10px;
   }
 
   #app-logo {
@@ -808,6 +871,8 @@ img.jade-logo {
 
   #app-name {
     font-weight: bold;
+    color: rgb(233, 30, 99);
+    font-size: 15px;
   }
 
   .modal-close {
@@ -820,6 +885,7 @@ img.jade-logo {
 
   .modal-content {
     color: #525252;
+    padding: 30px;
   }
 
   #luv {
@@ -851,6 +917,11 @@ img.jade-logo {
 }
 
 .favorites {
+
+  a {
+    margin-right: 25px;
+  }
+
   &:not(#dashboard-favorites) {
     border-bottom: 1px solid #fff;
     margin-left: 16px;
@@ -858,9 +929,8 @@ img.jade-logo {
   }
 
   img {
-    margin-bottom: 20%;
+    margin-bottom: 20px;
     filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-    width: 72px !important;
   }
 
   button {
@@ -872,4 +942,12 @@ img.jade-logo {
 
 #preload {
   visibility: hidden;
+}
+
+.highlight {
+  width: 18px;
+  margin-top: 12px;
+  position: absolute;
+  margin-left: 12px;
+  animation: shake 4s infinite;
 }
