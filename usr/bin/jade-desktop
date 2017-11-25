@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if pgrep -x "jade-dashboard" > /dev/null; 
+then     echo "Running"; 
+else     /opt/jade/jade-dashboard;
+fi 
+exit 0
