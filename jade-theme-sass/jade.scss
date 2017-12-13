@@ -676,6 +676,7 @@ nav {
   height: calc(100% - 230px);
   z-index: 999;
   margin-bottom: -5px;
+  width: 100% !important;
 
   &::after {
     content: "";

@@ -4029,7 +4029,8 @@ nav {
   top: 230px;
   height: calc(100% - 230px);
   z-index: 999;
-  margin-bottom: -5px; }
+  margin-bottom: -5px;
+  width: 100% !important; }
   #recently-used-files::after {
     content: "";
     top: 0;
