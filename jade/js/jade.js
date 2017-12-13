@@ -75,7 +75,7 @@ function showDashboard() {
 
   // DOCUMENT READY
   $(document).ready(function() {
-  	
+
   	 backEndGet("disk-usage");
     $('.modal').modal();
     $("#app-name").text(jadeApplication.name);
@@ -228,16 +228,15 @@ function showDashboard() {
       emptyClass("#background");
       showDashboard();
     });
-    
-    $("nav").hover(function() {
-    	$(".highlight").fadeOut();
-    }, function () {
-    	$(".highlight").fadeIn();
-    	});
-    	
-    // backgrounds
+
+    // detect when arrow animation ends
+    $(".applications-arrow-highlight").on( 'webkitAnimationEnd', function() {
+    $(this).fadeOut();
+    });
+
+      // backgrounds
     $("li.application-category").mouseover(function() {
-    	
+
     	$(".dash-btn").fadeOut();
 
       if ($(this).hasClass("office")) {

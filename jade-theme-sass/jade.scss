@@ -944,10 +944,11 @@ img.jade-logo {
   visibility: hidden;
 }
 
-.highlight {
+.applications-arrow-highlight {
   width: 18px;
   margin-top: 12px;
   position: absolute;
   margin-left: 12px;
-  animation: shake 4s infinite;
+  animation: shake 4s;
+  animation-iteration-count: 1;
 }
