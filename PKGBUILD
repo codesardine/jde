@@ -30,5 +30,5 @@ package() {
     cp -r $srcdir/$_pkgname/jade $pkgdir/opt
     chmod 644 $pkgdir/etc/xdg/autostart/jade-dashboard.desktop
     chmod 644 $pkgdir/usr/share/applications/jade-dashboard.desktop
-    chmod 744 $pkgdir/usr/bin/jade-desktop
+    chmod a+x $pkgdir/usr/bin/jade-desktop
 }
