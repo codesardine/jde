@@ -3,7 +3,7 @@
 
         "name": "Just Another Desktop Environment",
         "description": "Linux Desktop Environment, built with Web Technologies",
-        "version": "0.4.50",
+        "version": "0.4.56",
         "author": "Vitor Lopes",
         "url": "https://github.com/codesardine/Jadesktop/",
         "license": "GPLv2"
