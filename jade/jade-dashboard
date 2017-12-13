@@ -32,6 +32,9 @@ user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
 if user_name is None and os.path.exists("/usr/bin/calamares"):
     user_name = "Live Demo"
 
+if os.path.exists("/etc/webdad/release"):
+    webdad = True
+    
 path = os.path.dirname(os.path.realpath(__file__))
 userFolder = os.path.expanduser("~")
 cssOverridePath = userFolder + "/.config/jade/theme/override.css"
