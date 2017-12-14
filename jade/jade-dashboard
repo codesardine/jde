@@ -372,8 +372,8 @@ class JadeWindow(AppWindow):
             if title_name.startswith("notify:"):
                 message = title_name.replace('notify:', '')
                 Notify.Notification.new(
-                    "JADE Says...",
                     message,
+                    "",
                     "dialog-information").show()
 
             elif title_name.startswith("recent-files"):
