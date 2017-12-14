@@ -29,7 +29,7 @@ from functools import lru_cache as cache
 Notify.init("Jade")
 
 user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
-if user_name is None and os.path.exists("/usr/bin/calamares"):
+if user_name == "" and os.path.exists("/usr/bin/calamares"):
     user_name = "Live Demo"
 
 if os.path.exists("/etc/webdad/release"):
