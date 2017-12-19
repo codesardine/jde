@@ -335,7 +335,8 @@ class JadeWindow(AppWindow):
                     pass
 
                 elif url.startswith("shell:"):
-                    command = url.replace('shell:', '')
+                    command = url.replace('shell:', '').replace("%20", " ")
+                    print("exec: " + command)
                     execute(command)
 
                 elif url.startswith("xdg-open:"):
