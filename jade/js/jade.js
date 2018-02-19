@@ -1,11 +1,6 @@
 function isElementVisible(element) {
-  if ($(element).css('display') == 'none') {
-    return false
-  } else {
-    return true
-  }
-
-};
+  return $(element).css('display') != 'none';
+}
 
 // search for /home/user/.config/jade/theme/override.css
 function themeOverride(fileName) {
