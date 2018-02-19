@@ -32,12 +32,6 @@ user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
 if user_name == "" and os.path.exists("/usr/bin/calamares"):
     user_name = "Live Demo"
 
-if os.path.exists("/etc/webdad/release"):
-    webdad = True
-
-else:
-    webdad = False
-
 path = os.path.dirname(os.path.realpath(__file__))
 userFolder = os.path.expanduser("~")
 cssOverridePath = userFolder + "/.config/jade/theme/override.css"
@@ -108,7 +102,7 @@ def fetch_icon(icon_name):
     return icon_path
 
 #  icon names
-if webdad:
+if os.path.exists("/etc/webdad/release"):
     file_manager_icon          = fetch_icon("folder-green")
     terminal_icon              = fetch_icon("hyper")
 else:
