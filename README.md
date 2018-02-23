@@ -21,7 +21,7 @@ Most ( Non-Technical ) people don't know how to use a computer properly, most do
 
 I built JADE out of my desire to learn Python. I was also in need of an interface for my home entertainment PC, that was easy to use and to hack into. Later on I decided to adapt Jade for desktop use and I decided to release Jade to the masses, maybe someone else will like using it too.
 
-This is a fully functional Desktop Environment Prototype, it's unfinished. JADE is subject to changes at any time.
+This is a fully functional Desktop Environment Prototype, and it is unfinished. JADE is subject to changes at any time.
 
 you can reach me here:
 [Twitter Codesardine](https://twitter.com/codesardine)
@@ -35,20 +35,22 @@ Video here: https://www.youtube.com/watch?v=ThGVHD_51x0&t=150s
 
 Packages available for archlinux based distributions, if you use something else, you will have to install manually or make your own distribution package.
 
-Now available from Manjaro Linux, to install do
+Available from Manjaro Linux repositorys stand alone, or you can download Manjaro WebDad edition [ISO image](https://sourceforge.net/projects/manjaro-webdad/) from sourceforge.
 
-sudo pacman -S jade-dashboard-git
+To install as application do (sudo pacman -S jade-dashboard-git), if you want to run it as a Desktop environment you also need to install (jade-desktop-mode).
+
+* [Jade](https://github.com/codesardine/Jade-Application-Kit) - [PKGBUILD](https://github.com/codesardine/manjaro-webdad-PKGBUILDS/blob/master/jade-dashboard-git/PKGBUILD)
 
 #### Dependencies:
 
-* [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit) - [pkgbuild available](https://github.com/codesardine/Jade-Application-Kit/blob/master/PKGBUILD)
+* [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit) - [PKGBUILD](https://github.com/codesardine/manjaro-webdad-PKGBUILDS/blob/master/jade-application-kit-git/PKGBUILD)
 * paper-icon-theme-git ( available in the aur )
-* [jade-menu-data](https://github.com/codesardine/Jade-menu-data) - [pkgbuild available](https://github.com/codesardine/Jade-menu-data/blob/master/PKGBUILD)
-* python-xdg ( available in the repos )
-* python-gobject ( available in the repos )
+* [jade-menu-data](https://github.com/codesardine/Jade-menu-data) - [PKGBUILD](https://github.com/codesardine/manjaro-webdad-PKGBUILDS/blob/master/jade-menu-data-git/PKGBUILD)
 
-
-
+#### Other dependencies, available from your Linux distribution repositorys:
+* python-xdg 
+* python-gobject (pygi)
+* webkit2gtk
 
 Jade can be run as a normal application window, or as a Desktop Environment by selecting the window type hint in the manifest file.
 [manifest file configuration.](https://github.com/codesardine/Jade-Application-Kit/wiki/Application-manifest-file)
