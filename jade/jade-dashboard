@@ -60,7 +60,7 @@ def fetch_icon(icon_name):
     icon_theme = Gtk.IconTheme.get_default()
 
 
-    if icon_name.endswith(".png" or ".svg"):
+    if icon_name.endswith((".png", ".svg")):
 
         if  icon_name.startswith("/"):
             return icon_name  # if image has full icon path we just return them.
