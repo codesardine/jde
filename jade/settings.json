@@ -1,0 +1,33 @@
+{
+    "app": {
+
+        "name": "Just Another Desktop Environment",
+        "description": "Linux Desktop Environment, built with Web Technologies",
+        "version": "0.5.58",
+        "author": "Vitor Lopes",
+        "url": "https://github.com/codesardine/Jadesktop/",
+        "license": "GPL"
+    },
+
+    "window": {
+
+   "hint_type" : "",
+        "width": 100,
+        "height": 100,
+        "full_screen": true,
+        "resizable": true,
+        "decorated": false,
+        "transparent": false,
+        "icon": "/opt/jade/img/jade-logo.svg"
+    },
+
+    "webkit": {
+
+        "debug": false,
+        "cache": "none",
+        "context_menu": false,
+        "user_agent": "",
+        "same_frame": ""
+
+    }
+}

@@ -1,6 +1,11 @@
 function isElementVisible(element) {
-  return $(element).css('display') != 'none';
-}
+  if ($(element).css('display') == 'none') {
+    return false
+  } else {
+    return true
+  }
+
+};
 
 // search for /home/user/.config/jade/theme/override.css
 function themeOverride(fileName) {
@@ -73,12 +78,12 @@ function showDashboard() {
 
   	 backEndGet("disk-usage");
     $('.modal').modal();
-    $("#app-name").text(jadeApplication.name);
-    $("#app-author").text("Author - " + jadeApplication.author);
-    $("#app-description").text(jadeApplication.description);
-    $("#app-url").append("<span>Website - <a href='xdg-open:" + jadeApplication.url + "'>" + jadeApplication.url + "</a></span>");
-    $("#app-version").text("Version - " + jadeApplication.version);
-    $("#app-license").text("License - " + jadeApplication.license);
+    $("#app-name").text(JAK.app.getName);
+    $("#app-author").text("Author - " + JAK.app.getAuthor);
+    $("#app-description").text(JAK.app.getDescription);
+    $("#app-url").append("<a href='xdg-open:" + JAK.app.getUrl + "'>" + JAK.app.getUrl + "</a></span>");
+    $("#app-version").text("Version - " + "v" + JAK.app.getVersion);
+    $("#app-license").text("License - " + JAK.app.getLicense);
 
     // Init a timeout variable to be used below
     var dashTimeout = null;
