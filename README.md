@@ -32,6 +32,7 @@ Video here: https://www.youtube.com/watch?v=ThGVHD_51x0&t=150s
 
 
 ![desktop](jade.jpg)
+![desktop](jade2.jpg)
 
 #### Installation:
 
