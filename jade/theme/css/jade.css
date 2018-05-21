@@ -3560,7 +3560,7 @@ html {
   width: 0;
   height: 0;
   border-style: solid;
-  border-color: rgba(173, 22, 73, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
+  border-color: #ad1649 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
   top: 0;
   z-index: -99999; }
 
@@ -3643,10 +3643,6 @@ a {
 #background.accessories-background:before,
 .accessories-background {
   background-image: url("../backgrounds/accessories.jpg"); }
-
-#background.recent-files-background:before,
-.recent-files-background {
-  background-image: url("../backgrounds/recent-files.jpg"); }
 
 header {
   position: fixed;
@@ -3760,12 +3756,6 @@ nav {
   right: 0;
   filter: drop-shadow(-1px 1px 1px rgba(36, 36, 36, 0.5)); }
 
-.info-icon {
-  width: 32px;
-  right: 8px;
-  top: 20px;
-  position: absolute; }
-
 .application-wrapper {
   right: 4px;
   padding-left: 4px; }
@@ -3828,7 +3818,8 @@ nav {
     #search-container a img {
       width: 30px;
       position: absolute;
-      margin-left: 10px; }
+      margin-left: 10px;
+      margin-top: 6px; }
   #search-container input[type=text] {
     width: 50%;
     height: 40px !important;
@@ -3859,7 +3850,6 @@ nav {
   ::-webkit-scrollbar-track:active, ::-webkit-scrollbar-track:focus, ::-webkit-scrollbar-track:hover {
     display: none; }
 
-#recently-used-files,
 #search-icon,
 .application-comment,
 .category-container,
@@ -3873,12 +3863,7 @@ nav {
   #exit-menu div {
     display: none; }
 
-#recent-used-files-msg {
-  display: none; }
-
-#recent-used-files-msg img,
 #search-icon img,
-#logo img,
 .category-icon {
   width: 50px;
   margin-top: 12px; }
@@ -3888,9 +3873,7 @@ nav {
   margin-left: 40px;
   margin-top: 20px; }
 
-#recent-used-files-msg,
 #search-icon,
-#logo img,
 .category-msg {
   margin-top: -36px; }
 
@@ -3951,28 +3934,6 @@ nav {
   margin-left: 3%;
   padding-left: 4px; }
 
-#recently-used-files img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: -5px; }
-  #recently-used-files img:active ~ #recent-filename, #recently-used-files img:focus ~ #recent-filename, #recently-used-files img:hover ~ #recent-filename {
-    border-bottom: 2px solid #009688;
-    -webkit-transition-delay: 0s; }
-#recently-used-files a {
-  color: #d5d5d5; }
-#recently-used-files #recent-filename {
-  padding-bottom: 6px;
-  white-space: nowrap; }
-  #recently-used-files #recent-filename:active, #recently-used-files #recent-filename:focus, #recently-used-files #recent-filename:hover {
-    border-bottom: 2px solid #009688;
-    -webkit-transition-delay: 0s; }
-
-.used-container-files {
-  margin-bottom: 60px;
-  min-height: 130px !important;
-  text-overflow: ellipsis;
-  overflow: hidden; }
-
 #hibernate,
 #login,
 #poweroff,
@@ -3981,9 +3942,9 @@ nav {
 #suspend,
 .dash-right-button,
 .favorit-applications-button,
-.recent-files-button,
 .settings a,
 .system a,
+.help a,
 .username {
   background-color: #fff;
   color: #525252; }
@@ -3995,7 +3956,6 @@ nav {
 #sleep,
 #suspend,
 .dash-right-button,
-.recent-files-button,
 .settings a,
 .system a,
 .username {
@@ -4029,32 +3989,6 @@ nav {
 .dash-right-button {
   padding: 10px !important; }
 
-#recently-used-files {
-  position: fixed;
-  display: none;
-  top: 230px;
-  height: calc(100% - 230px);
-  z-index: 999;
-  margin-bottom: -5px;
-  width: 100% !important; }
-  #recently-used-files::after {
-    content: "";
-    top: 0;
-    border-width: 100px 1000px 0 0;
-    border-color: rgba(0, 0, 0, 0) rgba(23, 23, 24, 0.83) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
-    position: absolute;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-style: solid; }
-  #recently-used-files .row {
-    margin-top: 100px;
-    background-color: rgba(23, 23, 24, 0.83);
-    padding-top: 20px;
-    overflow: scroll;
-    height: calc(90%);
-    padding-bottom: 74px; }
-
 .mini-dashboard-exit img,
 .mini-dashboard-left img {
   width: 30px;
@@ -4065,12 +3999,6 @@ nav {
 div.marginleft:hover {
   transition: margin-left 0.3s ease;
   margin-left: 11px !important; }
-
-img.jade-logo {
-  position: absolute;
-  width: 5%;
-  bottom: 20px;
-  right: 20px; }
 
 #TOP-LEFT-DESCRIPTION,
 #date,
@@ -4139,13 +4067,6 @@ img.jade-logo {
   padding-bottom: 4px;
   text-align: center; }
 
-#recent-used-files-text {
-  margin-left: 8px;
-  margin-top: 14px;
-  position: relative;
-  width: 140px;
-  float: right; }
-
 #about-jade {
   text-align: center;
   padding: 40px;
@@ -4191,20 +4112,6 @@ img.jade-logo {
     color: #009688; }
   #about-jade #luv span:first-child {
     color: red; }
-
-#mini-browser {
-  position: absolute;
-  bottom: 0;
-  z-index: 99;
-  height: calc(100% - 261px);
-  width: 100%;
-  display: none;
-  background-color: #fff; }
-  #mini-browser iframe {
-    border: none;
-    width: 100%;
-    height: 100%;
-    position: absolute; }
 
 .favorites a {
   margin-right: 25px; }

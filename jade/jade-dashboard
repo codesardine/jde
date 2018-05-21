@@ -109,7 +109,6 @@ else:
 
 #dashboard_icon             = fetch_icon("back")
 file_manager_icon          = fetch_icon("folder")
-recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
 software_installer_icon    = fetch_icon("system-software-install")
 settings_icon              = fetch_icon("preferences-desktop")
@@ -130,7 +129,6 @@ ui_html_contents = '''%s''' % (html % locals())
 
 Api.html = ui_html_contents
 Api.html += "<div id='search-icon'><img src='%(search_icon)s'><a href='#' id='clear-search'>Clear Search</a></div>" % locals()
-Api.html += "<div id='recent-used-files-msg'><img src='%(recent_used_files_icon)s'><span id='recent-used-files-text'>Recently Used Files</span></div>" % locals()
 
 
 def jade_build_menu(application_category, iteration=0):
@@ -159,7 +157,7 @@ def jade_build_menu(application_category, iteration=0):
 
         tag    = "li"
         action = "onmouseover"
-        if category_name == "Settings" or category_name == "System":
+        if category_name == "Settings" or category_name == "System" or category_name == "Help":
             tag    = "div"
             action = "onclick"
 
@@ -228,39 +226,6 @@ def jade_menu():  # /etc/xdg/menus
     jade_build_menu(applications_menu)
 
 
-@cache(maxsize=None)
-def recently_used():
-    """
-
-    :return: html with all the recent used files
-    """
-    recent_manager = Gtk.RecentManager.get_default()
-    recent_html = ""
-
-    for item in recent_manager.get_items():
-
-        item_path = item.get_uri()
-        item_name = item_path.split("/")[-1].strip().replace("%20", " ")
-        mime = Gio.content_type_guess(item_path, data=None)
-        command = "xdg-open:" + item_path
-
-        if mime[0] in ("image/png", "image/svg+xml", "image/bmp", "image/jpeg", "image/gif"):
-            image = item_path
-
-        else:
-            icon_name = Gio.content_type_get_generic_icon_name(mime[0])
-            image = fetch_icon(icon_name)
-
-            if image.endswith("image-missing.png"):
-                image = fetch_icon("emblem-documents")
-
-
-        recent_html += "<div class='used-container-files col l4 xl3 center'><a href = '%(command)s'><img src='%(image)s'><br><span id='recent-filename'>%(item_name)s</span></a></div>" % locals()
-
-
-    return recent_html
-
-
 class JadeWindow(AppWindow):
     """
     extends AK.AppWindow functionality
@@ -292,29 +257,6 @@ class JadeWindow(AppWindow):
                 decision.ignore()
                 return True
 
-            def checkLink(url):
-                print("checking URL")
-
-                # allow embed youtube videos to play
-                if url.startswith("https://www.youtube-nocookie.com/embed/"):
-                    decision.use()
-                    return True
-
-                else:
-                    msg = "Opening link in external browser - "
-                    print(msg)
-                    self.webview.run_javascript('notifySend(%(msg)s);'  % locals())
-                    webbrowser.open_new_tab(url)
-                    self.webview.run_javascript('document.getElementById("duckduckgo").contentWindow.history.back();console.log("Going back");')
-                    decision.ignore()
-                    return True
-
-
-            if decision_type == WebKit2.PolicyDecisionType.NEW_WINDOW_ACTION:
-                print("New Browser Tab Request")
-                url = decision.get_navigation_action().get_request().get_uri()
-                checkLink(url)
-
             if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
 
                 navigation_action = decision.get_navigation_action()
@@ -322,7 +264,7 @@ class JadeWindow(AppWindow):
                 navigation_type = navigation_action.get_navigation_type()
                 url = navigation_request.get_uri()
 
-                if url.startswith("file://") and url.endswith("/jade/") or url.startswith("https://duckduckgo.com/") or url.startswith("https://manjaro.org")  or url.startswith("https://wiki.manjaro.org/"):
+                if url.startswith("file://") and url.endswith("/jade/"):
                     pass
 
                 elif url.startswith("shell:"):
@@ -342,9 +284,7 @@ class JadeWindow(AppWindow):
 
                 elif navigation_type == WebKit2.NavigationType.OTHER:
                     print("Unknown Navigation Request " + url)
-                    if url.startswith("http"):
-                       checkLink(url)
-
+                    
                 else:
                     print(url + " <- Action Denied")
                     decision.ignore()
@@ -368,10 +308,6 @@ class JadeWindow(AppWindow):
                     "",
                     "dialog-information").show()
 
-            elif title_name.startswith("recent-files"):
-                recent_html = recently_used()
-                self.webview.run_javascript('$("#recently-used-files div").html("' + recent_html + '");$("#recently-used-files, #recent-used-files-msg").show();')
-
             elif title_name.startswith("disk-usage"):
                 percentage = get_disk_usage()
                 self.webview.run_javascript('$(".disk-percentage").text("' + percentage + '");getDiskColors();')
@@ -386,7 +322,7 @@ class JadeWindow(AppWindow):
 
 if os.path.exists(cssOverridePath):
    Api.html += "<script>themeOverride('%s');</script></body></html>" % cssOverridePath
-   print('override.css found');
+   print('override.css found')
 
 else:
 	Api.html += "</body></html>"

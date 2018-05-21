@@ -19,8 +19,8 @@ function backEndGet(python_function) {
 // show hide applications
 function display(element) {
 
-  $.when($(".category-msg, #search-icon, #recent-used-files-msg").fadeOut()).done(function() {
-    $(".category-container, .search-results, #main-dashboard, #recently-used-files, .category-msg, #search-icon, #recent-used-files-msg").hide();
+  $.when($(".category-msg, #search-icon").fadeOut()).done(function() {
+    $(".category-container, .search-results, #main-dashboard, .category-msg, #search-icon").hide();
     $(".category-msg").addClass("animated slideInLeft");
     $(element).show();
     grid(".grid");
@@ -39,16 +39,9 @@ function emptyClass(element) {
 
 //show hide dashboard
 function showDashboard() {
-  $.when($("#mini-browser").slideUp("slow")).done(function() {
-      $("#search").animate({
-        width: "50%"
-      });
-      $("#search").attr("placeholder", "Search Applications...");
-      $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").hide();
-      $("#main-dashboard").show().css("display', 'block"); // fix, reset display state at the end of animation
-      $("#logo").show()
-      emptyClass("#background");
-    });
+  $(".category-container, .search-results, .category-msg, #search-icon").hide();
+  $("#main-dashboard").show().css("display', 'block"); // fix, reset display state at the end of animation
+  emptyClass("#background");
 };
 
   // send messages to the back end
@@ -67,7 +60,7 @@ function showDashboard() {
       $(".disk-usage").css("background-color", "#2e7d32"); // green
     }
   }
-
+  searchMatchesFound = 0
   function savedSearches() {
     if (searchMatchesFound > 0) {
       $("input#search").blur();
@@ -78,7 +71,7 @@ function showDashboard() {
       $("input#search").blur();
       $("#search-msg").remove();
     }
-  }
+}
 
   // DOCUMENT READY
   $(document).ready(function() {
@@ -105,23 +98,17 @@ function showDashboard() {
 
       // Make a new timeout set to go off in 30sec this could be a really neat feature or the most annoying one
       // This depends how fast people read, it might need adjustment
-      if (isElementVisible("#go-online")) {
-         console.log("Mini browser open cant go back to main screen");
-      } else {
-        dashTimeout = setTimeout(function() {
+      dashTimeout = setTimeout(function() {
           
           if ($("#main-dashboard").css("display") == 'none') { // don't repeat animation
-            $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").fadeOut("slow", function() {
+            $(".category-container, .search-results, .category-msg, #search-icon").fadeOut("slow", function() {
               $("#main-dashboard").fadeOut("slow");
             });
-            $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").promise().done(function() {
+            $(".category-container, .search-results, .category-msg, #search-icon").promise().done(function() {
               $("#main-dashboard").fadeIn("slow");
               setTimeout(function() {
                 emptyClass("#background");
                 $("#main-dashboard").css("display', 'block"); // fix, reset display state at the end of animation
-                $("#search").animate({
-                  width: "50%"
-                });
                 $(".dash-btn").fadeOut("slow");
               }, 1800); // delayed background reset
             });
@@ -130,7 +117,6 @@ function showDashboard() {
           }
           savedSearches();          
         }, 25000);
-      }
     });
 
     // double click for shutdown
@@ -155,15 +141,9 @@ function showDashboard() {
     $(".application-category").appendTo(".dropdown-menu");
     $(".category-container").appendTo(".dashboard");
     $(".category-msg, #search-icon").appendTo("#TOP-LEFT-DESCRIPTION");
-    $("#recent-used-files-msg").appendTo("#TOP-LEFT-DESCRIPTION").addClass("animated slideInLeft");
     $(".application-wrapper").addClass("col l4 xl3");
     $(".application-box").addClass("card");
-    $("#mini-browser-btn, #news").appendTo("#go-online-favorites");
-    $(".dashboard-btn").prependTo(".favorites");
-    $("#dashboard-favorites .dashboard-btn").remove();
-    // help category comes first!
-    $(".application-category.help").prependTo(".dropdown-menu");
-
+        
     function fixDuckIframe() {
       // fix iframe slideToggle
       var iframeHeight = window.innerHeight - 261
@@ -171,13 +151,15 @@ function showDashboard() {
     }
     fixDuckIframe();
     // settings & system
-    $(".application-category.settings, .application-category.system").appendTo(".mini-dashboard-left");
-    $(".application-category.settings a, .application-category.system a").addClass("box col m12");
-    $(".application-category.settings, .application-category.system").removeClass("application-category");
+    $(".application-category.settings, .application-category.system, .application-category.help").appendTo(".mini-dashboard-left");
+    $(".application-category.settings a, .application-category.system a, .application-category.help a").addClass("box col m12");
+    $(".application-category.settings, .application-category.system, .application-category.help").removeClass("application-category");
     $(".category-icon.Settings").clone().appendTo(".settings a");
     $(".category-icon.System").clone().appendTo(".system a");
+    $(".category-icon.Help").clone().appendTo(".help a");
     emptyClass(".settings a img");
     emptyClass(".system a img");
+    emptyClass(".help a img");
 
     // application info slider 
     $(".application-box").hover(function() {
@@ -213,17 +195,7 @@ function showDashboard() {
       return colors[index % colors.length];
     });
 
-    $(".recent-files-button").click(function() {
-      $("#main-dashboard").hide();
-      $("#search").animate({
-        width: "50%"
-      });
-      $("#recent-used-files-msg").addClass("animated slideInLeft");
-      $("#recently-used-files, #recent-used-files-msg, .dash-btn").show();
-      backEndGet("recent-files");
-    });
-
-    $(".dashboard-btn, .dash-btn").click(function() {
+    $(".dash-btn").click(function() {
       if ($(this).hasClass("dash-btn")) {
     	  $(this).fadeOut();
     	}
@@ -239,124 +211,47 @@ function showDashboard() {
 
       // backgrounds
     $("li.application-category").mouseover(function() {
-
-      savedSearches();
-
-    	$(".dash-btn").fadeOut();
+      emptyClass("#background");
+    	$(".dash-btn").fadeIn();
 
       if ($(this).hasClass("office")) {
-        emptyClass("#background");
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
         $("#background").addClass("office-background");
 
       } else if ($(this).hasClass("development")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
         $("#background").addClass("development-background");
 
       } else if ($(this).hasClass("education")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
         $("#background").addClass("education-background");
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-
+        
       } else if ($(this).hasClass("multimedia")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
         $("#background").addClass("multimedia-background");
 
       } else if ($(this).hasClass("gaming")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
         $("#background").addClass("games-background");
 
       } else if ($(this).hasClass("graphics")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
         $("#background").addClass("graphics-background");
 
       } else if ($(this).hasClass("go-online")) {
-
-        emptyClass("#background");
         $("#background").addClass("internet-background");
-        $("#search").animate({
-          width: "100%"
-        });
-        $("#search").attr("placeholder", "Search The Internet...");
-
-      } else if ($(this).hasClass("help")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
-        $("#background").addClass("help-background");
-
+        
       } else if ($(this).hasClass("accessories")) {
-        $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
-        $("#mini-browser").slideUp("slow");
-        emptyClass("#background");
         $("#background").addClass("accessories-background");
-
-      } else {
-        emptyClass("#background");
-      }
-
+      } 
+      savedSearches();
     });
 
-    $(".settings, .system, .recent-files-button").click(function() {
-      $("#search").attr("placeholder", "Search Applications...");
-      $("#search").animate({
-        width: "50%"
-      });
-      $("#mini-browser").slideUp("slow");
+    $(".settings, .system, .help").click(function() {
+      $(".dash-btn").fadeIn();
+      emptyClass("#background");
       if ($(this).hasClass("settings")) {
-        emptyClass("#background");
         $("#background").addClass("settings-background");
 
       } else if ($(this).hasClass("system")) {
         $("#background").addClass("system-background");
 
-      } else if ($(this).hasClass("recent-files-button")) {
-        emptyClass("#background");
-        $("#background").addClass("recent-files-background");
-
-      } else {
-        emptyClass("#background");
-      }
-    });
-    $("#mini-browser-btn").click(function() {
-      $("#mini-browser").slideToggle("slow");
+      } else if ($(this).hasClass("help")) {
+        $("#background").addClass("help-background");
+      } 
     });
   });

@@ -11,19 +11,14 @@ $(document).ready(function() {
   $("input#search").on("click", function() {
     $("input#search").focus();
 
-    if (isElementVisible("#go-online")) {
-      $("#search").attr("placeholder", "Search The Internet...");
-      $("#mini-browser").slideDown("slow");
-    } else {
-      $.when($(".category-msg, .recent-files-msg, #recent-used-files-msg").fadeOut()).done(function() {
+    $.when($(".category-msg").fadeOut()).done(function() {
         $("#search").attr("placeholder", "Search Applications...");
-        $(".category-container, #main-dashboard, #recently-used-files").hide();
+        $(".category-container, #main-dashboard").hide();
         $("#search-icon").addClass("animated slideInLeft");
         $(".search-results, #search-icon").show();
         $(".dash-btn").fadeIn();
         grid(".search-results");
       });
-    };
   });
 
   // Init a timeout variable to be used below
@@ -55,18 +50,7 @@ $(document).ready(function() {
 
         $(".search-results").empty();
         $("#search-msg").remove();
-
-        if (isElementVisible("#go-online")) {
-          // internet search
-          var url = 'https://duckduckgo.com/?q='
-          var query = url + searchValue
-          document.getElementById("duckduckgo").contentWindow.location.href = query;
-          notifySend("Searching Term -> " + searchValue);
-          $("#mini-browser").slideDown("slow");
-
-        } else {
-          app_search(searchValue);
-        };
+        app_search(searchValue);
 
         function app_search(searchValue) {
 
