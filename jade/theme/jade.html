@@ -34,25 +34,21 @@
           <div class="display-msg">
             </div>
           <div id="TOP-LEFT-DESCRIPTION">
-          <div id="logo">
-            <img src="img/jade-logo.svg">
-            <span>Desktop</span>
-          </div>
         </div>
           <div class='disk-usage'>
-            <div>Storage</div>
-            <div class='disk-percentage'>0
-            </div>
-<div>Used</div>
+            <div>
+              <div style="margin-right:10px;">HDD</div>
+              <div class='disk-percentage'>0</div>
+           </div>
           </div>
           <div id="time">00:00</div>
           <div id="date"></div>
-          <div id="search-container">
+          <div class="center-search"><div id="search-container">
             <input type="text" id="search" placeholder="Search Applications...">
             <a class="dash-btn" href="#">
                             <img src="img/back.svg" class="col l12 xl10">
                           </a>
-          </div>
+          </div></div>
         </div>
         <!--display-->
         <div class="top-corner-triangle"></div>
@@ -76,7 +72,7 @@
                                   <img src="%(software_installer_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Install, Remove Applications - Software Center">
                               </a>
                 <a class="col" onclick="notifySend('Launching Settings');" href='shell:$JADE_SETTINGS'>
-                                  <img src="%(settings_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Manjaro Settings">
+                                  <img src="%(settings_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Settings">
                               </a>
                 <a class="col" onclick="notifySend('Launching Terminal');" href='shell:$JADE_TERMINAL'>
                                   <img src="%(terminal_icon)s" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Use The Command Line">

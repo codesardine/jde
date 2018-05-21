@@ -3538,18 +3538,8 @@ html {
   font-family: system;
   overflow: hidden; }
 
-#logo {
-  margin-top: -3px; }
-  #logo img {
-    height: 50px; }
-  #logo span {
-    margin-left: 8px;
-    margin-top: -18px;
-    position: relative;
-    float: right; }
-
-.application-box img, .favorites img {
-  width: 40px !important; }
+.application-icon, .favorites img {
+  width: 32px !important; }
 
 .mini-dashboard-shortcuts .row .col, .favorites .col {
   padding: 0; }
@@ -3674,14 +3664,16 @@ header {
 
 .dashboard.container > #main-dashboard {
   max-width: 960px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  font-size: 14px; }
 
 .application-box {
   display: block;
   padding-top: 2px;
   color: #fff;
   position: relative;
-  z-index: 99; }
+  z-index: 99;
+  border-radius: 0px; }
 
 .application-wrapper {
   margin-bottom: 20px;
@@ -3700,6 +3692,8 @@ nav {
   height: 0px;
   box-shadow: none;
   line-height: 40px; }
+  nav .dropdown {
+    height: 0px; }
   nav a {
     margin-top: 4px;
     color: #f0f0f0; }
@@ -3707,18 +3701,17 @@ nav {
       color: #fff; }
   nav span {
     display: block;
-    font-size: 17px;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    height: 50px; }
+    font-size: 16px;
+    height: 50px;
+    width: 100px;
+    margin: auto;
+    margin-top: -4px; }
     nav span:hover + ul {
       display: inline-block !important; }
     nav span a {
       padding: 4px; }
   nav ul {
     padding-right: 10px;
-    margin-top: 50px;
     height: 70px;
     padding: 10px !important;
     background-color: #222D32;
@@ -3729,7 +3722,7 @@ nav {
     nav ul:after {
       position: absolute;
       left: 50%;
-      top: -8px;
+      top: -12px;
       width: 0;
       height: 0;
       content: '';
@@ -3748,28 +3741,38 @@ nav {
       color: #e4e4e4 !important; }
 
 .application-name {
-  font-size: 13px;
   background: #fff;
   padding: 12px;
-  color: #525252;
-  border-radius: 0; }
+  white-space: nowrap;
+  color: rgba(51, 51, 51, 0.87);
+  border-radius: 0;
+  display: inline;
+  text-overflow: ellipsis;
+  font-size: 13px; }
 
-.application-box img {
+.application-icon {
   position: absolute;
   z-index: 999;
   margin-top: -20px;
-  margin-right: -20px; }
+  margin-right: -15px; }
 
 .application-icon {
   right: 0;
   filter: drop-shadow(-1px 1px 1px rgba(36, 36, 36, 0.5)); }
 
-.application-wrapper .info-icon {
+.info-icon {
+  width: 32px;
+  right: 8px;
+  top: 20px;
+  position: absolute; }
+
+.application-wrapper {
   right: 4px;
   padding-left: 4px; }
 
 .application-comment {
   padding: 15px;
+  padding-top: 32px;
   font-size: 0.9rem !important;
   background-color: rgba(0, 0, 0, 0.52);
   margin-top: -10px; }
@@ -3795,15 +3798,13 @@ nav {
   margin-right: 40px;
   margin-left: 38px;
   padding: 10px;
-  width: 93px;
+  width: 90px;
+  height: 88px;
   border-radius: 100%;
   color: #ffff;
-  border: 2px solid transparent; }
+  padding-top: 33px; }
   .disk-usage div {
-    font-size: 12px; }
-  .disk-usage .disk-percentage {
-    font-size: 18px;
-    padding: 1px; }
+    display: flex; }
 
 .display a:focus {
   color: #fff; }
@@ -3812,13 +3813,16 @@ nav {
 * {
   outline: none; }
 
+.center-search {
+  margin-top: 20px;
+  text-align: center !important;
+  width: 100%; }
+
 #search-container {
-  width: 25%;
-  margin-left: 40px;
-  margin-top: -40px;
-  position: relative;
+  width: 500px;
   z-index: 1;
-  overflow: hidden; }
+  margin: 0 auto;
+  height: 58px; }
   #search-container a {
     display: none; }
     #search-container a img {
@@ -3826,13 +3830,16 @@ nav {
       position: absolute;
       margin-left: 10px; }
   #search-container input[type=text] {
+    width: 50%;
+    height: 40px !important;
     border: 0;
     margin: 0;
-    height: 2rem !important;
-    padding-left: 5px;
-    background: #fff;
-    color: #525252;
-    width: 50%; }
+    background: transparent;
+    text-align: center;
+    border-bottom: 1px solid #ffffff; }
+
+#search::placeholder {
+  color: #fff; }
 
 .search-results {
   z-index: 1; }
@@ -3855,7 +3862,6 @@ nav {
 #recently-used-files,
 #search-icon,
 .application-comment,
-.application-wrapper .info-icon,
 .category-container,
 .category-msg,
 .search-results,
@@ -3874,7 +3880,8 @@ nav {
 #search-icon img,
 #logo img,
 .category-icon {
-  width: 50px; }
+  width: 50px;
+  margin-top: 12px; }
 
 #TOP-LEFT-DESCRIPTION {
   position: absolute;
@@ -3905,12 +3912,11 @@ nav {
     text-transform: capitalize; }
 
 #search-msg {
-  float: right;
-  position: absolute;
+  position: relative;
   margin-top: 10px;
-  width: 300px;
   font-size: 12px;
-  font-weight: bold; }
+  font-weight: bold;
+  cursor: default; }
 
 .category-container .application-comment {
   padding-top: 42px; }
@@ -4056,12 +4062,6 @@ nav {
   right: 5px;
   top: 6px; }
 
-input:not([type]):focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=search]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=url]:focus:not([readonly]) {
-  box-shadow: 0 2px 0 0 #009688; }
-
-textarea.materialize-textarea:focus:not([readonly]) {
-  box-shadow: 0 2px 0 0 #009688; }
-
 div.marginleft:hover {
   transition: margin-left 0.3s ease;
   margin-left: 11px !important; }
@@ -4116,7 +4116,7 @@ img.jade-logo {
     border-top: 0; }
 
 #exit-menu {
-  height: 258px;
+  height: 252px;
   width: 100%;
   overflow: hidden;
   padding-top: 1px;
@@ -4132,7 +4132,7 @@ img.jade-logo {
   margin-left: 12px;
   position: relative;
   width: 100px;
-  margin-top: 14px;
+  margin-top: 22px;
   float: right;
   color: #fff;
   font-weight: bold;
@@ -4155,7 +4155,7 @@ img.jade-logo {
   transform: translateY(-50%) !important;
   max-width: 800px; }
   #about-jade div:first-child {
-    margin-top: -116px; }
+    margin-top: -124px; }
   #about-jade #author-pic {
     position: absolute;
     bottom: -44px;
@@ -4168,15 +4168,12 @@ img.jade-logo {
     margin-bottom: 10px;
     font-size: 10px; }
   #about-jade #app-logo {
-    position: relative;
     background-image: url("../../img/jade-logo.svg");
-    width: 180px;
-    height: 180px;
-    background-size: 180px 180px;
+    height: 160px;
+    background-size: 120px 120px;
     background-position: center;
-    background-color: #fafafa;
-    border-radius: 100px;
-    margin: 0 auto; }
+    background-color: transparent;
+    background-repeat: no-repeat; }
   #about-jade #app-name {
     font-weight: bold;
     color: #e91e63;
@@ -4214,7 +4211,7 @@ img.jade-logo {
 .favorites:not(#dashboard-favorites) {
   border-bottom: 1px solid #fff;
   margin-left: 16px;
-  height: 66px !important; }
+  height: 50px !important; }
 .favorites img {
   margin-bottom: 20px;
   filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5)); }

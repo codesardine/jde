@@ -1,24 +1,22 @@
 $(document).ready(function() {
 
   $("#clear-search").click(function() {
+    searchMatchesFound = 0
     $("input#search[type=text], textarea").val("");
     $("#search-msg").remove();
     $(".search-results").children().remove();
     $("input#search").focus();
   });
 
-  $("input#search").on("mouseover", function() {
+  $("input#search").on("click", function() {
     $("input#search").focus();
 
     if (isElementVisible("#go-online")) {
       $("#search").attr("placeholder", "Search The Internet...");
       $("#mini-browser").slideDown("slow");
     } else {
-      $.when($(".category-msg, .recent-files-msg, #recent-used-files-msg, #logo").fadeOut()).done(function() {
+      $.when($(".category-msg, .recent-files-msg, #recent-used-files-msg").fadeOut()).done(function() {
         $("#search").attr("placeholder", "Search Applications...");
-        $("#search").animate({
-          width: "50%"
-        });
         $(".category-container, #main-dashboard, #recently-used-files").hide();
         $("#search-icon").addClass("animated slideInLeft");
         $(".search-results, #search-icon").show();
@@ -34,8 +32,15 @@ $(document).ready(function() {
   // Listen for key up events
   $("#search").on("keyup", function() {
 
+    // fix return to search
+    if ($("#main-dashboard").css("display") == 'block') { // don't repeat animation
+            $("#main-dashboard").fadeOut("slow", function() {
+              $(".search-results, #search-icon, dash-btn").fadeIn("slow");
+            });
+                };
+
     // Assign search value to input
-    var searchValue = this.value;
+    searchValue = this.value;
 
     // Clear the timeout if it has already been set.
     // This will prevent the previous task from executing
@@ -65,7 +70,7 @@ $(document).ready(function() {
 
         function app_search(searchValue) {
 
-          searchValue = searchValue.toLocaleLowerCase();
+          var searchValue = searchValue.toLocaleLowerCase();
 
           // search title description and keywords
           var searchLocation = ".application-wrapper"
@@ -95,34 +100,37 @@ $(document).ready(function() {
                 }
               }
 
-              $(".search-results").masonry("reloadItems").masonry("layout");
+              searchMatchesFound = $(".search-results " + searchLocation).length;
 
-              var elementsNumber = $(".search-results " + searchLocation).length;
-
-              if (elementsNumber === 1) {
+              if (searchMatchesFound === 1) {
                 $("#search-msg").remove();
                 $("#search-container").append("<div id='search-msg'>Press ENTER Key To Launch This Application!</div>");
 
-              } else if (elementsNumber > 1) {
+              } else if (searchMatchesFound > 1) {
                 $("#search-msg").remove();
-                $("#search-container").append("<div id='search-msg'>You Have " + elementsNumber + " Matches!</div>");
+                $("#search-container").append("<div id='search-msg'>" + searchMatchesFound + " Search Matches Found</div>");
               }
 
             } else if ($('.search-results').children().length === 0) {
               $("#search-msg").remove();
-              $("#search-container").append("<div id='search-msg'>Sorry No Matches Found!</div>");
+              $("#search-container").append("<div id='search-msg'>Sorry No Matches Found</div>");
             }
           });
         }
+      } else if (searchValue.length === 0) {
+
+        $("#search-msg").remove();
+        $("#search-container").append("<div id='search-msg'>Type Something To Search For</div>");
       }
+      $(".search-results").masonry("reloadItems").masonry("layout");
     }, 1000);
   });
 
   $("#search").keypress(function(event) {
-    var elementsNumber = $(".search-results .application-wrapper").length;
+    var searchMatchesFound = $(".search-results .application-wrapper").length;
     var key = event.which;
 
-    if (key === 13 && elementsNumber === 1) {
+    if (key === 13 && searchMatchesFound === 1) {
 
       var text = "Launching " + $(".search-results h5.application-name").text();
       notifySend(text);

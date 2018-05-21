@@ -30,13 +30,7 @@ Notify.init("Jade")
 
 user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
 if user_name == "" and os.path.exists("/usr/bin/calamares"):
-    user_name = "Live Demo"
-
-if os.path.exists("/etc/webdad/release"):
-    webdad = True
-
-else:
-    webdad = False
+    user_name = "Manjaro WebDad"
 
 path = os.path.dirname(os.path.realpath(__file__))
 userFolder = os.path.expanduser("~")
@@ -108,14 +102,13 @@ def fetch_icon(icon_name):
     return icon_path
 
 #  icon names
-if webdad:
-    file_manager_icon          = fetch_icon("folder-green")
+if os.path.exists("/etc/webdad/webdad-release"):
     terminal_icon              = fetch_icon("hyper")
 else:
-    file_manager_icon          = fetch_icon("folder")
     terminal_icon              = fetch_icon("terminal")
 
 #dashboard_icon             = fetch_icon("back")
+file_manager_icon          = fetch_icon("folder")
 recent_used_files_icon     = fetch_icon("document-open-recent")
 browser_icon               = fetch_icon("browser")
 software_installer_icon    = fetch_icon("system-software-install")
@@ -129,7 +122,7 @@ suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
 search_icon                = fetch_icon("search")
 internet_icon              = browser_icon
-about_jade_icon            = fetch_icon("info")
+about_jade_icon            = fetch_icon("dialog-information")
 
 html_file = path + '/theme/jade.html'
 html = Api.Fs.open_file(html_file)
@@ -194,8 +187,7 @@ def jade_build_menu(application_category, iteration=0):
 
                 application_generic_name = entry.DesktopEntry.getGenericName()
                 application_name = entry.DesktopEntry.getName().replace(")", "").replace("(", "").replace("/", " ")
-                info_icon = fetch_icon("help-faq")
-
+                
                 application_comment = entry.DesktopEntry.getComment()
                 application_keywords = entry.DesktopEntry.getKeywords()
 
@@ -205,7 +197,6 @@ def jade_build_menu(application_category, iteration=0):
                 Api.html += '''<div class='application-wrapper'>
                                   <a class='application-box'  onclick='notifySend(\"Launching %(application_name)s\");' href = 'shell:%(application_executable)s'>
                                   <img class='application-icon' src='%(application_icon)s'>
-                                  <img class='info-icon' src='%(info_icon)s'>
                                   <h5 class='application-name card'>%(application_name)s</h5>
                                   ''' % locals()
 

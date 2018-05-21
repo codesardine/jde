@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # set default application shortcuts for the dashboard
 
@@ -34,7 +34,7 @@ done
 
 # default settings application
 
-for settings in gnome-settings manjaro-settings-manager; do
+for settings in systemsettings5 gnome-settings manjaro-settings-manager; do
     if which "$settings" &>/dev/null; then
         #echo "Default JADE Settings ${settings}"
 	export JADE_SETTINGS=$settings

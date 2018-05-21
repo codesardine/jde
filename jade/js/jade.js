@@ -1,10 +1,5 @@
 function isElementVisible(element) {
-  if ($(element).css('display') == 'none') {
-    return false
-  } else {
-    return true
-  }
-
+  return $(element).css('display') != 'none';
 };
 
 // search for /home/user/.config/jade/theme/override.css
@@ -24,8 +19,8 @@ function backEndGet(python_function) {
 // show hide applications
 function display(element) {
 
-  $.when($(".category-msg, #search-icon, #recent-used-files-msg, #logo").fadeOut()).done(function() {
-    $(".category-container, .search-results, #main-dashboard, #recently-used-files, .category-msg, #search-icon, #recent-used-files-msg, #logo").hide();
+  $.when($(".category-msg, #search-icon, #recent-used-files-msg").fadeOut()).done(function() {
+    $(".category-container, .search-results, #main-dashboard, #recently-used-files, .category-msg, #search-icon, #recent-used-files-msg").hide();
     $(".category-msg").addClass("animated slideInLeft");
     $(element).show();
     grid(".grid");
@@ -65,11 +60,23 @@ function showDashboard() {
   function getDiskColors() {
     var diskPercentage = $(".disk-percentage").text();
     if (diskPercentage >= "90%") {
-      $(".disk-usage").css("border-color", "rgba(244, 67, 54, 0.5)"); // red
-    } else if (diskPercentage >= "61%") {
-      $(".disk-usage").css("border-color", "rgba(255, 152, 0, 0.5"); // orange
+      $(".disk-usage").css("background-color", "#b71c1c"); // red
+    } else if (diskPercentage >= "71%") {
+      $(".disk-usage").css("background-color", "#e65100"); // orange
     } else {
-      $(".disk-usage").css("border-color", "rgba(76, 175, 80, 0.5"); // green
+      $(".disk-usage").css("background-color", "#2e7d32"); // green
+    }
+  }
+
+  function savedSearches() {
+    if (searchMatchesFound > 0) {
+      $("input#search").blur();
+      $("#search-msg").remove();
+      $("#search-container").append("<div id='search-msg'>Your Search Query Is Saved</div>");
+  }
+    else {
+      $("input#search").blur();
+      $("#search-msg").remove();
     }
   }
 
@@ -102,24 +109,27 @@ function showDashboard() {
          console.log("Mini browser open cant go back to main screen");
       } else {
         dashTimeout = setTimeout(function() {
+          
           if ($("#main-dashboard").css("display") == 'none') { // don't repeat animation
             $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").fadeOut("slow", function() {
               $("#main-dashboard").fadeOut("slow");
             });
             $(".category-container, .search-results, .category-msg, #search-icon, #recently-used-files, #recent-used-files-msg").promise().done(function() {
-              $("#main-dashboard , #logo").fadeIn("slow");
+              $("#main-dashboard").fadeIn("slow");
               setTimeout(function() {
                 emptyClass("#background");
                 $("#main-dashboard").css("display', 'block"); // fix, reset display state at the end of animation
                 $("#search").animate({
                   width: "50%"
                 });
+                $(".dash-btn").fadeOut("slow");
               }, 1800); // delayed background reset
             });
           } else {
             clearTimeout(dashTimeout);
           }
-        }, 30000);
+          savedSearches();          
+        }, 25000);
       }
     });
 
@@ -151,7 +161,6 @@ function showDashboard() {
     $("#mini-browser-btn, #news").appendTo("#go-online-favorites");
     $(".dashboard-btn").prependTo(".favorites");
     $("#dashboard-favorites .dashboard-btn").remove();
-    $("#manjaro, #wiki, #forum").appendTo("#help-favorites");
     // help category comes first!
     $(".application-category.help").prependTo(".dropdown-menu");
 
@@ -170,18 +179,14 @@ function showDashboard() {
     emptyClass(".settings a img");
     emptyClass(".system a img");
 
-    // application info slider and icon transition
+    // application info slider 
     $(".application-box").hover(function() {
-      $(this).find(".application-icon").fadeOut("slow");
-      $(this).find(".info-icon").fadeIn("slow");
       $(".application-wrapper").css("z-index", "1");
       $(this).parent().css("z-index", "2");
-      $(this).find("p").slideDown("fast");
+      $(this).find("p").slideDown(300);
 
     }, function() {
-      $(this).find(".info-icon").fadeOut("slow");
-      $(this).find(".application-icon").fadeIn("slow");
-      $(this).find("p").slideUp("fast");
+      $(this).find("p").slideUp(300);
     });
 
     // exit menu animation
@@ -198,12 +203,9 @@ function showDashboard() {
     var red = "#f44336";
     var pink = "#e91e63";
     var blue = "#2196f3";
-    var teal = "#009688";
     var green = "#4caf50";
-    var yellow = "#ffeb3b";
     var orange = "#ff9800";
-    var brown = "#795548";
-    var grey = "#9e9e9e";
+    
     var colors = [red, blue, pink, green, orange];
 
     // apply colors to application container background
@@ -212,7 +214,7 @@ function showDashboard() {
     });
 
     $(".recent-files-button").click(function() {
-      $("#main-dashboard, #logo").hide();
+      $("#main-dashboard").hide();
       $("#search").animate({
         width: "50%"
       });
@@ -222,11 +224,12 @@ function showDashboard() {
     });
 
     $(".dashboard-btn, .dash-btn").click(function() {
-    	if ($(this).hasClass("dash-btn")) {
+      if ($(this).hasClass("dash-btn")) {
     	  $(this).fadeOut();
     	}
       emptyClass("#background");
       showDashboard();
+      savedSearches();
     });
 
     // detect when arrow animation ends
@@ -236,6 +239,8 @@ function showDashboard() {
 
       // backgrounds
     $("li.application-category").mouseover(function() {
+
+      savedSearches();
 
     	$(".dash-btn").fadeOut();
 
