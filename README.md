@@ -30,8 +30,6 @@ you can reach me here:
 
 Video - https://www.youtube.com/watch?v=YeNLBA4Cq8w
 
-Manjaro WebDad - https://sourceforge.net/projects/manjaro-webdad/
-
 
 ![desktop](jade.jpg)
 ![desktop](jade1.jpg)
