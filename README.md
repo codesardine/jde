@@ -28,7 +28,9 @@ This is a fully functional Desktop Environment Prototype, and it is unfinished. 
 you can reach me here:
 [Twitter Codesardine](https://twitter.com/codesardine)
 
-Video here: https://www.youtube.com/watch?v=ThGVHD_51x0&t=150s
+Video - https://www.youtube.com/watch?v=YeNLBA4Cq8w
+
+Manjaro WebDad - https://sourceforge.net/projects/manjaro-webdad/
 
 
 ![desktop](jade.jpg)
