@@ -13,7 +13,7 @@ html {
   height: 100%;
   margin: 0;
   -webkit-user-select: none;
-  font-family: system;
+  font-family: system, serif;
   overflow: hidden;
 }
 
@@ -52,16 +52,19 @@ html {
   top: 0;
   z-index: -99999;
 }
+
 @media (min-width: 1825px) {
   .top-corner-triangle {
     border-width: 90px 1500px 0 0;
   }
 }
+
 @media (max-width: 1824px) {
   .top-corner-triangle {
     border-width: 90px 1250px 0 0;
   }
 }
+
 @media (max-width: 1224px) {
   .top-corner-triangle {
     border-width: 90px 1000px 0 0;
@@ -201,7 +204,6 @@ header {
 }
 
 nav {
-
   .dropdown {
     height: 0px;
   }
@@ -235,13 +237,12 @@ nav {
       display: inline-block !important;
     }
 
-    a{
+    a {
       padding: 4px;
     }
   }
 
   ul {
-    padding-right: 10px;
     height: 70px;
     padding: 10px !important;
     background-color: #222D32;
@@ -356,6 +357,7 @@ nav {
 .display a:focus {
   color: #fff;
 }
+
 /* Ouline style when using keyboard */
 * {
   outline: none;
@@ -377,10 +379,10 @@ nav {
     display: none;
 
     img {
-    width: 30px;
-    position: absolute;
-    margin-left: 10px;
-    margin-top: 6px;
+      width: 30px;
+      position: absolute;
+      margin-left: 10px;
+      margin-top: 6px;
     }
   }
 
@@ -397,6 +399,11 @@ nav {
 
 #search::placeholder {
   color: #fff;
+
+}
+
+#search:focus::placeholder {
+  opacity: 0;
 }
 
 .search-results {
@@ -638,6 +645,7 @@ div.marginleft:hover {
 .username {
   cursor: default;
 }
+
 /* tooltips */
 .backdrop {
   background-color: #222D32;
@@ -647,6 +655,7 @@ div.marginleft:hover {
   color: #e4e4e4;
   font-size: 14px;
 }
+
 /* improve selection visibility */
 .favorites a,
 .notes {

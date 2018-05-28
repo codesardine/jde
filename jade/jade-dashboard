@@ -17,10 +17,11 @@ except Exception as err:
 import os
 import pwd
 import subprocess
+import webbrowser
+
+import gi
 import xdg.DesktopEntry
 import xdg.Menu
-import gi
-import webbrowser
 
 gi.require_version('Notify', '0.7')
 from gi.repository import Gtk, WebKit2, Gio, Notify
@@ -50,6 +51,7 @@ def get_disk_usage():
             percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
             return percentage
 
+
 def fetch_icon(icon_name):
     """
 
@@ -59,10 +61,9 @@ def fetch_icon(icon_name):
     icon_not_found = "image-missing"
     icon_theme = Gtk.IconTheme.get_default()
 
-
     if icon_name.endswith((".png", ".svg")):
 
-        if  icon_name.startswith("/"):
+        if icon_name.startswith("/"):
             return icon_name  # if image has full icon path we just return them.
 
         # if image has icon name and extension, but no path, lets fix that.
@@ -71,7 +72,7 @@ def fetch_icon(icon_name):
                 icon_name = icon_name.replace('.png', '')
 
             elif icon_name.endswith(".svg"):
-            	icon_name = icon_name.replace('.svg', '')
+                icon_name = icon_name.replace('.svg', '')
 
     # xpm not supported by webkit don't load.
     elif icon_name.endswith(".xpm"):
@@ -101,31 +102,31 @@ def fetch_icon(icon_name):
 
     return icon_path
 
+
 #  icon names
 if os.path.exists("/etc/webdad/webdad-release"):
-    terminal_icon              = fetch_icon("hyper")
+    terminal_icon = fetch_icon("hyper")
 else:
-    terminal_icon              = fetch_icon("terminal")
+    terminal_icon = fetch_icon("terminal")
 
-#dashboard_icon             = fetch_icon("back")
-file_manager_icon          = fetch_icon("folder")
-browser_icon               = fetch_icon("browser")
-software_installer_icon    = fetch_icon("system-software-install")
-settings_icon              = fetch_icon("preferences-desktop")
-user_icon                  = fetch_icon("system-users")
-logout_icon                = fetch_icon("system-log-out")
-shutdown_icon              = fetch_icon("system-shutdown")
-reboot_icon                = fetch_icon("system-reboot")
-hibernate_icon             = fetch_icon("system-hibernate")
-suspend_icon               = fetch_icon("system-suspend")
-sleep_icon                 = fetch_icon("system-hibernate")
-search_icon                = fetch_icon("search")
-internet_icon              = browser_icon
-about_jade_icon            = fetch_icon("dialog-information")
+# dashboard_icon             = fetch_icon("back")
+file_manager_icon = fetch_icon("folder")
+browser_icon = fetch_icon("browser")
+software_installer_icon = fetch_icon("system-software-install")
+settings_icon = fetch_icon("preferences-desktop")
+user_icon = fetch_icon("system-users")
+logout_icon = fetch_icon("system-log-out")
+shutdown_icon = fetch_icon("system-shutdown")
+reboot_icon = fetch_icon("system-reboot")
+hibernate_icon = fetch_icon("system-hibernate")
+suspend_icon = fetch_icon("system-suspend")
+sleep_icon = fetch_icon("system-hibernate")
+search_icon = fetch_icon("search")
+internet_icon = browser_icon
+about_jade_icon = fetch_icon("dialog-information")
 
 html_file = path + '/theme/jade.html'
-html = Api.Fs.open_file(html_file)
-ui_html_contents = '''%s''' % (html % locals())
+ui_html_contents = str(Api.Fs.open_file(html_file) % locals())
 
 Api.html = ui_html_contents
 Api.html += "<div id='search-icon'><img src='%(search_icon)s'><a href='#' id='clear-search'>Clear Search</a></div>" % locals()
@@ -143,7 +144,7 @@ def jade_build_menu(application_category, iteration=0):
     category_description = application_category.getComment()
 
     if iteration == 0:
-        Api.html+= '''<span id='%(category_name)s'><a>%(category_name)s</a><img src="img/back.svg" class="applications-arrow-highlight"></span>''' % locals()
+        Api.html += '''<span id='%(category_name)s'><a>%(category_name)s</a><img src="img/back.svg" class="applications-arrow-highlight"></span>''' % locals()
 
     else:
 
@@ -155,10 +156,10 @@ def jade_build_menu(application_category, iteration=0):
                           </div>
                           <div id='%(category)s' class='category-container row'><div id='%(category)s-favorites' class='row favorites'></div><div class="grid row">''' % locals()
 
-        tag    = "li"
+        tag = "li"
         action = "onmouseover"
         if category_name == "Settings" or category_name == "System" or category_name == "Help":
-            tag    = "div"
+            tag = "div"
             action = "onclick"
 
         Api.html += "<" + tag + " class='application-category " + category + "'><a href='#' " + action + '''=\"
@@ -185,7 +186,7 @@ def jade_build_menu(application_category, iteration=0):
 
                 application_generic_name = entry.DesktopEntry.getGenericName()
                 application_name = entry.DesktopEntry.getName().replace(")", "").replace("(", "").replace("/", " ")
-                
+
                 application_comment = entry.DesktopEntry.getComment()
                 application_keywords = entry.DesktopEntry.getKeywords()
 
@@ -205,8 +206,8 @@ def jade_build_menu(application_category, iteration=0):
 
                 # fix duplicate descriptions
                 elif application_comment == application_generic_name:
-                	  application_generic_name = ""
-                	  br = ""
+                    application_generic_name = ""
+                    br = ""
 
                 Api.html += '''<p class='application-comment'>
                                     %(application_generic_name)s
@@ -284,7 +285,7 @@ class JadeWindow(AppWindow):
 
                 elif navigation_type == WebKit2.NavigationType.OTHER:
                     print("Unknown Navigation Request " + url)
-                    
+
                 else:
                     print(url + " <- Action Denied")
                     decision.ignore()
@@ -320,12 +321,13 @@ class JadeWindow(AppWindow):
         self.webview.connect("decide-policy", on_decide_policy)
         self.webview.connect("load-changed", on_load_changed)
 
+
 if os.path.exists(cssOverridePath):
-   Api.html += "<script>themeOverride('%s');</script></body></html>" % cssOverridePath
-   print('override.css found')
+    Api.html += "<script>themeOverride('%s');</script></body></html>" % cssOverridePath
+    print('override.css found')
 
 else:
-	Api.html += "</body></html>"
+    Api.html += "</body></html>"
 
 jade_menu()
 JadeWindow()
