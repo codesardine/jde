@@ -1,10 +1,13 @@
-## JADE
+## Just Another Jesktop Environment
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codesardine/Jadesktop&amp;utm_campaign=Badge_Grade)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/JustAnotherDesktopEnviroment/Lobby)
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/jade-dashboard-git.svg)](https://repology.org/metapackage/jade-dashboard-git)
 
-Jade, Is named after my wife, that means Just Another Desktop Environment. 
+Jade is part of Manjaro WebDad Community Edition
+[ISO image](https://sourceforge.net/projects/manjaro-webdad/)  can be downloaded from sourceforge.
+
+Jade, is named after my wife, but in this case also stands for 'Just Another Desktop Environment'.
 
 Is a serveless Linux Desktop Environment, built with Python and web technologies on top of Webkit2 using the Gtk toolkit, the front end is built using HTML5, JavaScript, and CSS.
 JADE is under the GPLv2 license, background images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
@@ -38,8 +41,6 @@ Video - https://www.youtube.com/watch?v=YeNLBA4Cq8w
 #### Installation:
 
 Packages available for archlinux based distributions, if you use something else, you will have to install manually or make your own distribution package.
-
-Available from Manjaro Linux repositorys stand alone, or you can download Manjaro WebDad edition [ISO image](https://sourceforge.net/projects/manjaro-webdad/) from sourceforge.
 
 To install as application do (sudo pacman -S jade-dashboard-git), if you want to run it as a Desktop environment you also need to install (jade-desktop-mode).
 
