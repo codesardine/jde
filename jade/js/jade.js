@@ -101,7 +101,7 @@ $(document).ready(function () {
         dashTimeout = setTimeout(function () {
 
             if ($("#main-dashboard").css("display") === 'none') { // don't repeat animation
-                var elems = $(".category-container, .search-results, .category-msg, #search-icon")
+                var elems = $(".category-container, .search-results, .category-msg, #search-icon");
                 elems.fadeOut("slow", function () {
                     $("#main-dashboard").fadeOut("slow");
                 });
@@ -137,7 +137,7 @@ $(document).ready(function () {
         });
     });
 
-    var application_box = $(".application-box")
+    var application_box = $(".application-box");
 
     // move to correct containers, and add classes
     $("#Applications").prependTo("nav .dropdown");
@@ -149,13 +149,13 @@ $(document).ready(function () {
 
     function fixDuckIframe() {
         // fix iframe slideToggle
-        var iframeHeight = window.innerHeight - 261
+        var iframeHeight = window.innerHeight - 261;
         $("#duckduckgo").css("height", iframeHeight);
     }
 
     fixDuckIframe();
     // settings & system
-    var app_cat = $(".application-category.settings, .application-category.system, .application-category.help")
+    var app_cat = $(".application-category.settings, .application-category.system, .application-category.help");
     app_cat.appendTo(".mini-dashboard-left");
     $(".application-category.settings a, .application-category.system a, .application-category.help a").addClass("box col m12");
     app_cat.removeClass("application-category");
@@ -198,7 +198,7 @@ $(document).ready(function () {
     var colors = [red, blue, pink, green, orange];
 
     // apply colors to application container background
-    application_box.css('background-color', function (index) {
+    application_box.css("background-color", function (index) {
         return colors[index % colors.length];
     });
 

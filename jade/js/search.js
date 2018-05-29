@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     $("#clear-search").click(function () {
         searchMatchesFound = 0;
-        $("input#search[type=text], textarea").val('');
+        $("input#search[type=text], textarea").val("");
         $("#search-msg").remove();
         search_results.children().remove();
         search.focus();
@@ -31,7 +31,7 @@ $(document).ready(function () {
     // Listen for key up events
     search.on("keyup", function () {
         // fix return to search
-        if ($("#main-dashboard").css("display") === 'block') { // don't repeat animation
+        if ($("#main-dashboard").css("display") === "block") { // don't repeat animation
             $("#main-dashboard").fadeOut("slow", function () {
                 $(".search-results, #search-icon, dash-btn").fadeIn("slow");
             });
