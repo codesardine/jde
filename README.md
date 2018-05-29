@@ -4,8 +4,8 @@
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/jade-dashboard-git.svg)](https://repology.org/metapackage/jade-dashboard-git)
 
-Jade is part of Manjaro WebDad Community Edition
-[ISO image](https://sourceforge.net/projects/manjaro-webdad/)  can be downloaded from sourceforge.
+Jade is part of [Manjaro WebDad Community Edition](https://forum.manjaro.org/t/manjaro-webdad-community-edition/34571/139)
+the [ISO image](https://sourceforge.net/projects/manjaro-webdad/)  can be downloaded from sourceforge.
 
 Jade, is named after my wife, but in this case also stands for 'Just Another Desktop Environment'.
 
