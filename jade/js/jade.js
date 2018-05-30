@@ -12,8 +12,8 @@ function themeOverride(fileName) {
     document.getElementsByTagName('head')[0].appendChild(link);
 }
 
-function backEndGet(python_function) {
-    document.title = python_function
+function backEndGet(pythonFunction) {
+    document.title = pythonFunction
 }
 
 // show hide applications
@@ -137,7 +137,7 @@ $(document).ready(function () {
         });
     });
 
-    var application_box = $(".application-box");
+    var applicationBox = $(".application-box");
 
     // move to correct containers, and add classes
     $("#Applications").prependTo("nav .dropdown");
@@ -145,7 +145,7 @@ $(document).ready(function () {
     $(".category-container").appendTo(".dashboard");
     $(".category-msg, #search-icon").appendTo("#TOP-LEFT-DESCRIPTION");
     $(".application-wrapper").addClass("col l4 xl3");
-    application_box.addClass("card");
+    applicationBox.addClass("card");
 
     function fixDuckIframe() {
         // fix iframe slideToggle
@@ -155,10 +155,10 @@ $(document).ready(function () {
 
     fixDuckIframe();
     // settings & system
-    var app_cat = $(".application-category.settings, .application-category.system, .application-category.help");
-    app_cat.appendTo(".mini-dashboard-left");
+    var appCat = $(".application-category.settings, .application-category.system, .application-category.help");
+    appCat.appendTo(".mini-dashboard-left");
     $(".application-category.settings a, .application-category.system a, .application-category.help a").addClass("box col m12");
-    app_cat.removeClass("application-category");
+    appCat.removeClass("application-category");
     $(".category-icon.Settings").clone().appendTo(".settings a");
     $(".category-icon.System").clone().appendTo(".system a");
     $(".category-icon.Help").clone().appendTo(".help a");
@@ -167,7 +167,7 @@ $(document).ready(function () {
     emptyClass(".help a img");
 
     // application info slider 
-    application_box.hover(function () {
+    applicationBox.hover(function () {
         $(".application-wrapper").css("z-index", "1");
         $(this).parent().css("z-index", "2");
         $(this).find("p").slideDown(300);
@@ -198,7 +198,7 @@ $(document).ready(function () {
     var colors = [red, blue, pink, green, orange];
 
     // apply colors to application container background
-    application_box.css("background-color", function (index) {
+    applicationBox.css("background-color", function (index) {
         return colors[index % colors.length];
     });
 
