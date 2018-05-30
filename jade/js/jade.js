@@ -220,23 +220,22 @@ $(document).ready(function () {
     $("li.application-category").mouseover(function () {
         emptyClass("#background");
         $(".dash-btn").fadeIn();
-        var hasClass = $(this).hasClass;
 
-        if (hasClass("office")) {
+        if ($(this).hasClass("office")) {
             background.addClass("office-background");
-        } else if (hasClass("development")) {
+        } else if ($(this).hasClass("development")) {
             background.addClass("development-background");
-        } else if (hasClass("education")) {
+        } else if ($(this).hasClass("education")) {
             background.addClass("education-background");
-        } else if (hasClass("multimedia")) {
+        } else if ($(this).hasClass("multimedia")) {
             background.addClass("multimedia-background");
-        } else if (hasClass("gaming")) {
+        } else if ($(this).hasClass("gaming")) {
             background.addClass("games-background");
-        } else if (hasClass("graphics")) {
+        } else if ($(this).hasClass("graphics")) {
             background.addClass("graphics-background");
-        } else if (hasClass("go-online")) {
+        } else if ($(this).hasClass("go-online")) {
             background.addClass("internet-background");
-        } else if (hasClass("accessories")) {
+        } else if ($(this).hasClass("accessories")) {
             background.addClass("accessories-background");
         }
         savedSearches();
