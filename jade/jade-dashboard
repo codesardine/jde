@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # coding: utf-8
 """
 
@@ -107,7 +107,6 @@ if os.path.exists("/etc/webdad/webdad-release"):
 else:
     terminal_icon              = fetch_icon("terminal")
 
-#dashboard_icon             = fetch_icon("back")
 file_manager_icon          = fetch_icon("folder")
 browser_icon               = fetch_icon("browser")
 software_installer_icon    = fetch_icon("system-software-install")
@@ -120,7 +119,6 @@ hibernate_icon             = fetch_icon("system-hibernate")
 suspend_icon               = fetch_icon("system-suspend")
 sleep_icon                 = fetch_icon("system-hibernate")
 search_icon                = fetch_icon("search")
-internet_icon              = browser_icon
 about_jade_icon            = fetch_icon("dialog-information")
 
 html_file = path + '/theme/jade.html'

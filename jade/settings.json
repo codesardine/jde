@@ -6,7 +6,7 @@
         "version": "0.6.0",
         "author": "Vitor Lopes",
         "url": "https://github.com/codesardine/Jadesktop/",
-        "license": "GPL"
+        "license": "GPL3"
     },
 
     "window": {
@@ -24,10 +24,8 @@
     "webkit": {
 
         "debug": false,
-        "cache": "none",
+        "cache": "local",
         "context_menu": false,
-        "user_agent": "",
-        "same_frame": ""
-
+        "user_agent": ""
     }
 }

@@ -144,12 +144,6 @@ function showDashboard() {
     $(".application-wrapper").addClass("col l4 xl3");
     $(".application-box").addClass("card");
         
-    function fixDuckIframe() {
-      // fix iframe slideToggle
-      var iframeHeight = window.innerHeight - 261
-      $("#duckduckgo").css("height", iframeHeight);
-    }
-    fixDuckIframe();
     // settings & system
     $(".application-category.settings, .application-category.system, .application-category.help").appendTo(".mini-dashboard-left");
     $(".application-category.settings a, .application-category.system a, .application-category.help a").addClass("box col m12");
