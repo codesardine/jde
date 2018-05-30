@@ -3541,6 +3541,12 @@ html {
 .application-icon, .favorites img {
   width: 32px !important; }
 
+#video-background {
+  display: inline-block;
+  position: absolute;
+  z-index: 0;
+  width: 100% !important; }
+
 .mini-dashboard-shortcuts .row .col, .favorites .col {
   padding: 0; }
 
