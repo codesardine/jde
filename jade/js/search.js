@@ -1,14 +1,14 @@
 $(document).ready(function () {
     var search = $("#search");
     var searchMatchesFound = 0;
-    var search_results = $(".search-results");
-    var search_container = $("#search-container");
+    var searchResults = $(".search-results");
+    var searchContainer = $("#search-container");
 
     $("#clear-search").click(function () {
         searchMatchesFound = 0;
         $("input#search[type=text], textarea").val("");
         $("#search-msg").remove();
-        search_results.children().remove();
+        searchResults.children().remove();
         search.focus();
     });
 
@@ -49,11 +49,11 @@ $(document).ready(function () {
         // This depends how fast people type, it should be ok even for slow typers
         timeout = setTimeout(function () {
             if (searchValue.length !== 0) {
-                search_results.empty();
+                searchResults.empty();
                 $("#search-msg").remove();
-                app_search(searchValue);
+                appSearch(searchValue);
 
-                function app_search(searchValue) {
+                function appSearch(searchValue) {
                     searchValue = searchValue.toLocaleLowerCase();
 
                     // search title description and keywords
@@ -84,22 +84,22 @@ $(document).ready(function () {
 
                             if (searchMatchesFound === 1) {
                                 $("#search-msg").remove();
-                                search_container.append("<div id='search-msg'>Press ENTER Key To Launch This Application!</div>");
+                                searchContainer.append("<div id='search-msg'>Press ENTER Key To Launch This Application!</div>");
                             } else if (searchMatchesFound > 1) {
                                 $("#search-msg").remove();
-                                search_container.append("<div id='search-msg'>" + searchMatchesFound + "Search Matches Found</div>");
+                                searchContainer.append("<div id='search-msg'>" + searchMatchesFound + "Search Matches Found</div>");
                             }
-                        } else if (search_results.children().length === 0) {
+                        } else if (searchResults.children().length === 0) {
                             $("#search-msg").remove();
-                            search_container.append("<div id='search-msg'>Sorry No Matches Found</div>");
+                            searchContainer.append("<div id='search-msg'>Sorry No Matches Found</div>");
                         }
                     });
                 }
             } else if (searchValue.length === 0) {
                 $("#search-msg").remove();
-                search_container.append("<div id='search-msg'>Type Something To Search For</div>");
+                searchContainer.append("<div id='search-msg'>Type Something To Search For</div>");
             }
-            search_results.masonry("reloadItems").masonry("layout");
+            searchResults.masonry("reloadItems").masonry("layout");
         }, 1000);
     });
 
