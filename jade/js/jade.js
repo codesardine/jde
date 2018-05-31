@@ -44,9 +44,13 @@ function showDashboard() {
   emptyClass("#background");
 };
 
-  // send messages to the back end
+  // Native Notifications
   function notifySend(msg) {
-    backEndGet("notify:" + msg);
+    Notification.requestPermission(function (permission) {
+        if (permission === "granted") {
+          var notification = new Notification(msg);
+        }
+      });
   }
 
   // disk usage colours

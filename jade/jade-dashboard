@@ -22,11 +22,9 @@ import xdg.Menu
 import gi
 import webbrowser
 
-gi.require_version('Notify', '0.7')
-from gi.repository import Gtk, WebKit2, Gio, Notify
+from gi.repository import Gtk, WebKit2, Gio
 from functools import lru_cache as cache
 
-Notify.init("Jade")
 
 user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
 if user_name == "" and os.path.exists("/usr/bin/calamares"):
@@ -191,7 +189,7 @@ def jade_build_menu(application_category, iteration=0):
                 application_keywords = "<span style='display:none;'>" + application_keywords + "</span>"
 
                 Api.html += '''<div class='application-wrapper'>
-                                  <a class='application-box'  onclick='notifySend(\"Launching %(application_name)s\");' href = 'shell:%(application_executable)s'>
+                                  <a class='application-box' href = 'shell:%(application_executable)s'>
                                   <img class='application-icon' src='%(application_icon)s'>
                                   <h5 class='application-name card'>%(application_name)s</h5>
                                   ''' % locals()
@@ -270,10 +268,6 @@ class JadeWindow(AppWindow):
                     print("exec: " + command)
                     execute(command)
 
-                elif url.startswith("xdg-open:"):
-                    command = url.replace('xdg-open:', 'xdg-open ')
-                    execute(command)
-
                 elif navigation_type == WebKit2.NavigationType.LINK_CLICKED:
                     print("Link Clicked")
                     print(url + " <- Action Denied Repeated URL")
@@ -299,14 +293,7 @@ class JadeWindow(AppWindow):
             """
             title_name = webview.get_title()
 
-            if title_name.startswith("notify:"):
-                message = title_name.replace('notify:', '')
-                Notify.Notification.new(
-                    message,
-                    "",
-                    "dialog-information").show()
-
-            elif title_name.startswith("disk-usage"):
+            if title_name.startswith("disk-usage"):
                 percentage = get_disk_usage()
                 self.webview.run_javascript('$(".disk-percentage").text("' + percentage + '");getDiskColors();')
 
