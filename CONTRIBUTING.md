@@ -6,7 +6,7 @@ Try and follow pep8 when you can.
 
 ## Pull Request Process
 
-1. Ensure you create separate pull requests for each issue that will make it easier to merge back without interfering with other issues, once i have reviewed the code i will merge.
+1. Ensure you create separate pull requests on another branch for each issue that will make it easier to merge back without interfering with other issues, once i have reviewed the code i will merge.
 
 
 
