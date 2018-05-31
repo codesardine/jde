@@ -10,7 +10,7 @@ the [ISO image](https://sourceforge.net/projects/manjaro-webdad/)  can be downlo
 Jade, is named after my wife, but in this case also stands for 'Just Another Desktop Environment'.
 
 Is a serveless Linux Desktop Environment, built with Python and web technologies on top of Webkit2 using the Gtk toolkit, the front end is built using HTML5, JavaScript, and CSS.
-JADE is under the GPLv2 license, background images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
+JADE is under the GPLv3 license, background images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
 
 Every developer has a vision of what a DE should be, this is mine Enjoy.
 
