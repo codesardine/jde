@@ -12,7 +12,6 @@ $(document).ready(function() {
     $("input#search").focus();
 
     $.when($(".category-msg").fadeOut()).done(function() {
-        $("#search").attr("placeholder", "Search Applications...");
         $(".category-container, #main-dashboard").hide();
         $("#search-icon").addClass("animated slideInLeft");
         $(".search-results, #search-icon").show();
