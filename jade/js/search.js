@@ -87,7 +87,7 @@ $(document).ready(function () {
                                 searchContainer.append("<div id='search-msg'>Press ENTER Key To Launch This Application!</div>");
                             } else if (searchMatchesFound > 1) {
                                 $("#search-msg").remove();
-                                searchContainer.append("<div id='search-msg'>" + searchMatchesFound + "Search Matches Found</div>");
+                                searchContainer.append("<div id='search-msg'>" + searchMatchesFound + " Search Matches Found</div>");
                             }
                         } else if (searchResults.children().length === 0) {
                             $("#search-msg").remove();
