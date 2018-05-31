@@ -3535,7 +3535,7 @@ html {
   height: 100%;
   margin: 0;
   -webkit-user-select: none;
-  font-family: system;
+  font-family: system, serif;
   overflow: hidden; }
 
 .application-icon, .favorites img {
@@ -3707,7 +3707,6 @@ nav {
     nav span a {
       padding: 4px; }
   nav ul {
-    padding-right: 10px;
     height: 70px;
     padding: 10px !important;
     background-color: #222D32;
@@ -3831,6 +3830,9 @@ nav {
 
 #search::placeholder {
   color: #fff; }
+
+#search:focus::placeholder {
+  opacity: 0; }
 
 .search-results {
   z-index: 1; }

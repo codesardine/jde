@@ -8,6 +8,7 @@ __pycache__/
 *.so
 *.css
 *.map
+\.sass-cache
 # Distribution / packaging
 .Python
 env/
@@ -62,6 +63,9 @@ instance/
 
 # Scrapy stuff:
 .scrapy
+
+# PyCharm
+\.idea/
 
 # Sphinx documentation
 docs/_build/
