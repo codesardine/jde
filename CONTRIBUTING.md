@@ -3,6 +3,8 @@ I would love for you to contribute to Jade and help making it better! Here are s
 ### Debuging front end
 * In settings.json turn debug, context_menu and window decorations to true.
 
+### Developing 
+
 * When contributing to this repository, please first discuss the change you wish to make via issue. 
 
 * Try and follow pep8 when you can.
