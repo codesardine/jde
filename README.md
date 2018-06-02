@@ -12,7 +12,7 @@ Desktop Environment built with Web Technologies for [Manjaro Linux](https://manj
 ![desktop](jade2.jpg)
 
 ### Getting Started
-* Easy way to try it download [Manjaro WebDad Community Edition](https://sourceforge.net/projects/manjaro-webdad/), run it in a VM or boot it in your pc, the later will give you a better experience, since you have hardware acceleration.
+* Easy way to try it download [Manjaro WebDad Community Edition](https://sourceforge.net/projects/manjaro-webdad/), run it in a VM or boot it in your pc, the later will give you a better experience, since it uses native hardware acceleration.
 
 * Alternatively Install jade-dashboard from Manjaro repositorys.
 
@@ -53,7 +53,10 @@ This project is licensed under the GPL3 License - see the [LICENSE.md](LICENSE.m
 
 ## Acknowledgments
 
-* A Big thanks to the Manjaro team and Muser for designing the WebDad Logo, contributors and people that use Jade you are all awesome.<br/>
+* A Big thanks to the Manjaro team.<br/>
+ Muser for designing the WebDad Logo.<br/>
+ Contributors.<br/>
+ And everyone that uses Jade you are all awesome.<br/>
 
 * Every developer has a vision of what a DE should be, this is mine.
 JADE as modern DE does not try to hide things away from the user, and reduces nested clicking for a modern workflow, is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.<br/>
