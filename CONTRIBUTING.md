@@ -1,17 +1,19 @@
-I would love for you to contribute to Jade and help making it better! Here are some guidelines i would like you to follow:
+I would love for you to contribute to Jade and help making it better! Here are some guidelines I would like you to follow:
 
 ### Debuging front end
-* In settings.json turn debug and context_menu to true.
+* In settings.json turn debug, context_menu and window decorations to true.
 
-When contributing to this repository, please first discuss the change you wish to make via issue. 
+* When contributing to this repository, please first discuss the change you wish to make via issue. 
 
-Try and follow pep8 when you can.
+* Try and follow pep8 when you can.
+
+* Make sure you test your changes.
+
+* Don't break existing functionality or the interface as I try to maintain Master Branch always in a working order. 
 
 ## Pull Request Process
 
-1. Ensure you create separate pull requests on another branch for each issue that will make it easier to merge back without interfering with other issues, once i have reviewed the code i will merge.
-
-
+* Ensure you create separate pull requests on another branch for each issue or feature, that will accelerate the merging process without interfering with other issues, once I have tested the code I will merge back.<br/><br/>
 
 ### Our Pledge
 
