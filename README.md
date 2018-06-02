@@ -2,6 +2,9 @@
 
 Desktop Environment built with Web Technologies for [Manjaro Linux](https://manjaro.org/), watch the video [here](https://www.youtube.com/watch?v=YeNLBA4Cq8w).
 
+Technologies used - Webkit2 engine, Gtk toolkit, HTML, CSS, Javascript, Python.
+
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codesardine/Jadesktop&amp;utm_campaign=Badge_Grade)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/JustAnotherDesktopEnviroment/Lobby)
 
