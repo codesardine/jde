@@ -5,6 +5,8 @@ I would love for you to contribute to Jade and help making it better! Here are s
 
 ### Developing 
 
+* Join [Gitter chat](https://gitter.im/JustAnotherDesktopEnviroment/Lobby), it will make communication easier.
+
 * When contributing to this repository, please first discuss the change you wish to make via issue. 
 
 * Try and follow pep8 when you can.
