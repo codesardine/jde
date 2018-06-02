@@ -1,68 +1,66 @@
-## Just Another Desktop Environment
+## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,webkit,css,manjaro,jadesktop)
+
+Desktop Environment built with Web Technologies for [Manjaro Linux](https://manjaro.org/), watch the video [here](https://www.youtube.com/watch?v=YeNLBA4Cq8w).
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codesardine/Jadesktop&amp;utm_campaign=Badge_Grade)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/JustAnotherDesktopEnviroment/Lobby)
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/jade-dashboard-git.svg)](https://repology.org/metapackage/jade-dashboard-git)
 
-Jade is part of [Manjaro WebDad Community Edition](https://forum.manjaro.org/t/manjaro-webdad-community-edition/34571/139)
-the [ISO image](https://sourceforge.net/projects/manjaro-webdad/)  can be downloaded from sourceforge.
-
-Jade, is named after my wife, but in this case also stands for 'Just Another Desktop Environment'.
-
-Is a serveless Linux Desktop Environment, built with Python and web technologies on top of Webkit2 using the Gtk toolkit, the front end is built using HTML5, JavaScript, and CSS.
-JADE is under the GPLv3 license, background images are under [Creative Commons Zero license](http://creativecommons.org/publicdomain/zero/1.0/).
-
-Every developer has a vision of what a DE should be, this is mine Enjoy.
-
-JADE is a modern DE. Jade does not try to hide things away from the user, and reduces nested clicking for a modern workflow. Jade is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.
-
-### Why web technologies?
-
-Most ( Non-Technical ) people don't know how to use a computer properly, most don't know what Linux is or that they carry it in their pockets on a daily basis. But they all have one thing in common, they all use the browser to buy, go to social networks or check their email. JADE uses familiar interfaces and technologies, which makes it easy to use no matter the skill level.
-
-### Why did i build this?
-
-I built JADE out of my desire to learn Python. I was also in need of an interface for my home entertainment PC, that was easy to use and to hack into. Later on I decided to adapt Jade for desktop use and I decided to release Jade to the masses, maybe someone else will like using it too.
-
-This is a fully functional Desktop Environment Prototype, and it is unfinished. JADE is subject to changes at any time.
-
-Reach me on [Twitter Codesardine](https://twitter.com/codesardine)
-
-Video - https://www.youtube.com/watch?v=YeNLBA4Cq8w
-
-
 ![desktop](jade.jpg)
 ![desktop](jade1.jpg)
 ![desktop](jade2.jpg)
 
-#### Installation:
+### Getting Started
+* Easy way to try it download [Manjaro WebDad Community Edition](https://sourceforge.net/projects/manjaro-webdad/), run it in a VM or boot it in your pc, the later will give you a better experience, since you have hardware acceleration.
 
-Packages available for Manjaro Linux or Arch Linux Based Linux Distributions.
+* Install jade-dashboard from Manjaro repositorys.
 
-To install as application do (sudo pacman -S jade-dashboard-git), if you want to run it as a Desktop environment you also need to install (jade-desktop-mode).
+* Alternatively clone the repository and run jade-dashboard on your local machine.
 
-* [Jade](https://github.com/codesardine/Jade-Application-Kit) - [PKGBUILD](https://github.com/manjaro/packages-community/blob/master/jade-dashboard-git/PKGBUILD)
-
-#### Dependencies:
-
-* [jade-application-kit](https://github.com/codesardine/Jade-Application-Kit) - [PKGBUILD](https://github.com/manjaro/packages-community/blob/master/python-jade-application-kit/PKGBUILD)
-* paper-icon-theme-git ( available in the aur )
-* [jade-menu-data](https://github.com/codesardine/Jade-menu-data) - [PKGBUILD](https://github.com/manjaro/packages-community/blob/master/jade-menu-data-git/PKGBUILD)
-
-#### Other dependencies, available from your Linux distribution repositorys:
-Python3
-
-* python-xdg 
+#### Prerequisites
+* Python 3
+* [Jade Application Kit](https://github.com/codesardine/Jade-Application-Kit) - Installing (python3 setup.py install)
+* python-xdg
 * python-gobject (pygi)
 * webkit2gtk
 
-Jade can be run as a normal application window, or as a Desktop Environment by selecting the window type hint in the manifest file.
-[manifest file configuration.](https://github.com/codesardine/Jade-Application-Kit/wiki/Application-manifest-file)
+## Contributing
 
-Development:
+Please read [CONTRIBUTING.md](https://github.com/codesardine/Jadesktop/blob/master/CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
 
-I will be adding more functionality as needed. If you have an idea that you think would work well with JADE, please feel free to open an issue.
+## Development
 
-If there is something you can't find or do inside the interface, open an issue, as I consider UX issues a bug.
+* I will be adding more functionality as needed. If you have an idea that you think would work well with JADE, please feel free to open an issue.
+* If there is something you can't find or do inside the interface, open an issue, as I consider UX issues a bug.
+* I work on this on my free time, issues may take me a while to resolve.
 
-Issues may take me a while to resolve.
+* Also visit te [Wiki](https://github.com/codesardine/Jadesktop/wiki) for more detailed information. 
+
+## Versioning
+
+[SemVer](http://semver.org/) is used for versioning. For the versions available, see the [tags on this repository](https://github.com/codesardine/Jadesktop/tags). 
+
+## Authors
+
+* **Vitor Lopes** - [Twitter Codesardine](https://twitter.com/codesardine) 
+
+See also the list of [contributors](https://github.com/codesardine/Jadesktop/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the GPL3 License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* A Big thanks to the Manjaro team and Muser for designing the WebDad Logo, contributors and people that use Jade you are all awesome.<br/>
+
+* Every developer has a vision of what a DE should be, this is mine.
+JADE as modern DE does not try to hide things away from the user, and reduces nested clicking for a modern workflow, is not meant to be a full blown DE, and is meant to be complemented by 3rd party applications.<br/>
+
+* Web Technologies - Most ( Non-Technical ) people don't know how to use a computer properly, most don't know what Linux is or that they carry it in their pockets on a daily basis. But they all have one thing in common, they all use the browser to buy, go to social networks or check their email. JADE uses familiar interfaces and technologies, which makes it easy to use no matter the skill level.<br/>
+
+* Inspiration -
+built JADE out of my desire to learn Python, and keep my coding skills sharp. I was also in need of an interface for my home entertainment PC, that was easy to use and to hack into. Later on I decided to adapt Jade for desktop use and I decided to release Jade to the masses, maybe someone else will like using it. 
+Jade, is named after my wife, but in this case also stands for 'Just Another Desktop Environment'.
+<br/>
