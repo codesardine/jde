@@ -32,6 +32,7 @@ Please read [CONTRIBUTING.md](https://github.com/codesardine/Jadesktop/blob/mast
 ## Development
 
 * I will be adding more functionality as needed. If you have an idea that you think would work well with JADE, please feel free to open an issue.
+* Jade is a fully functional prototype and is subject to changes anytime.
 * If there is something you can't find or do inside the interface, open an issue, as I consider UX issues a bug.
 * I work on this on my free time, issues may take me a while to resolve.
 
