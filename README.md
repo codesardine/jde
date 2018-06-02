@@ -14,9 +14,9 @@ Desktop Environment built with Web Technologies for [Manjaro Linux](https://manj
 ### Getting Started
 * Easy way to try it download [Manjaro WebDad Community Edition](https://sourceforge.net/projects/manjaro-webdad/), run it in a VM or boot it in your pc, the later will give you a better experience, since you have hardware acceleration.
 
-* Install jade-dashboard from Manjaro repositorys.
+* Alternatively Install jade-dashboard from Manjaro repositorys.
 
-* Alternatively clone the repository and run jade-dashboard on your local machine.
+* Or clone the repository and run jade-dashboard on your local machine.
 
 #### Prerequisites
 * Python 3
