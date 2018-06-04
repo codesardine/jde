@@ -2,7 +2,7 @@ function isElementVisible(element) {
   return $(element).css('display') != 'none';
 };
 
-// search for /home/user/.config/jade/theme/override.css
+// search for /home/user/.config/jade/theme/style.css
 function themeOverride(fileName) {
 
   var link = document.createElement('link');

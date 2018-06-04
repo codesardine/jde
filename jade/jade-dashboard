@@ -26,7 +26,7 @@ if user_name == "" and os.path.exists("/usr/bin/calamares"):
 
 path = os.path.dirname(os.path.realpath(__file__))
 userFolder = os.path.expanduser("~")
-cssOverridePath = userFolder + "/.config/jade/theme/override.css"
+cssOverridePath = userFolder + "/.config/jade/theme/style.css"
 
 
 def get_disk_usage():
@@ -115,12 +115,10 @@ about_jade_icon         = fetch_icon("dialog-information")
 distro_logo             = fetch_icon(settings("app", "distribution_logo"))
 
 
-html_file = path + '/theme/jade.html'
-html = Api.Fs.open_file(html_file)
+html = Api.Fs.open_file(path + '/theme/jade.html')
 ui_html_contents = '''%s''' % (html % locals())
 
 Api.html = ui_html_contents
-Api.html += "<div id='search-icon'><img src='%(search_icon)s'><h5 class='search-title'>Search</h5></div>" % locals()
 
 
 def jade_build_menu(application_category, iteration=0):
@@ -307,7 +305,7 @@ class JadeWindow(AppWindow):
 
 if os.path.exists(cssOverridePath):
    Api.html += "<script>themeOverride('%s');</script></body></html>" % cssOverridePath
-   print('override.css found')
+   print('style.css found')
 
 else:
 	Api.html += "</body></html>"
