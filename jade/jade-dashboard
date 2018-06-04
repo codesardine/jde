@@ -263,6 +263,10 @@ class JadeWindow(AppWindow):
                 if url.startswith("file://") and url.endswith("/jade/"):
                     pass
 
+                elif url.startswith("xdg-open:"):
+                    command = url.replace('xdg-open:', 'xdg-open ')
+                    execute(command)
+                
                 elif url.startswith("shell:"):
                     command = url.replace('shell:', '').replace("%20", " ")
                     print("exec: " + command)
