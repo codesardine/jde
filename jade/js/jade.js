@@ -20,7 +20,7 @@ function backEndGet(python_function) {
 function display(element) {
 
   $.when($(".category-msg, #search-icon").fadeOut()).done(function() {
-    $(".category-container, .search-results, #main-dashboard, .category-msg, #search-icon").hide();
+    $(".category-container, .search-results, #main-dashboard, .category-msg, #search-icon, #clear-search").hide();
     $(".category-msg").addClass("animated slideInLeft");
     $(element).show();
     grid(".grid");
@@ -39,7 +39,7 @@ function emptyClass(element) {
 
 //show hide dashboard
 function showDashboard() {
-  $(".category-container, .search-results, .category-msg, #search-icon").hide();
+  $(".category-container, .search-results, .category-msg, #search-icon, #clear-search").hide();
   $("#main-dashboard").show().css("display', 'block"); // fix, reset display state at the end of animation
   emptyClass("#background");
 };
@@ -105,10 +105,10 @@ function showDashboard() {
       dashTimeout = setTimeout(function() {
           
           if ($("#main-dashboard").css("display") == 'none') { // don't repeat animation
-            $(".category-container, .search-results, .category-msg, #search-icon").fadeOut("slow", function() {
+            $(".category-container, .search-results, .category-msg, #search-icon, #clear-search").fadeOut("slow", function() {
               $("#main-dashboard").fadeOut("slow");
             });
-            $(".category-container, .search-results, .category-msg, #search-icon").promise().done(function() {
+            $(".category-container, .search-results, .category-msg, #search-icon, #clear-search").promise().done(function() {
               $("#main-dashboard").fadeIn("slow");
               setTimeout(function() {
                 emptyClass("#background");

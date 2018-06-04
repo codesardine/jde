@@ -3843,6 +3843,9 @@ nav {
 #search::placeholder {
   color: #fff; }
 
+#search:focus::placeholder {
+  opacity: 0; }
+
 .search-results {
   z-index: 1; }
   .search-results .application-comment {
@@ -3904,6 +3907,12 @@ nav {
       color: #232323; }
   .category-msg h5:first-letter {
     text-transform: capitalize; }
+
+.search-title {
+  font-size: 18px;
+  float: right;
+  line-height: 22px;
+  margin-top: 24px; }
 
 #search-msg {
   position: relative;
@@ -4068,15 +4077,12 @@ div.marginleft:hover {
   position: relative; }
 
 #clear-search {
-  margin-left: 12px;
-  position: relative;
-  width: 100px;
-  margin-top: 22px;
-  float: right;
-  color: #fff;
+  margin-left: 72px;
+  position: absolute;
+  margin-top: 9px;
+  color: #fff !important;
   font-weight: bold;
-  padding-bottom: 4px;
-  text-align: center; }
+  display: inline; }
 
 #about-jade {
   text-align: center;

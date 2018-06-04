@@ -14,7 +14,7 @@ $(document).ready(function() {
     $.when($(".category-msg").fadeOut()).done(function() {
         $(".category-container, #main-dashboard").hide();
         $("#search-icon").addClass("animated slideInLeft");
-        $(".search-results, #search-icon").show();
+        $(".search-results, #search-icon, #clear-search").show();
         $(".dash-btn").fadeIn();
         grid(".search-results");
       });
@@ -29,7 +29,7 @@ $(document).ready(function() {
     // fix return to search
     if ($("#main-dashboard").css("display") == 'block') { // don't repeat animation
             $("#main-dashboard").fadeOut("slow", function() {
-              $(".search-results, #search-icon, dash-btn").fadeIn("slow");
+              $(".search-results, #search-icon, dash-btn, #clear-search").fadeIn("slow");
             });
                 };
 

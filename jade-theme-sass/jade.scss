@@ -412,6 +412,10 @@ nav {
   color: #fff;
 }
 
+#search:focus::placeholder {
+  opacity: 0;
+}
+
 .search-results {
   .application-comment {
     display: block !important;
@@ -501,6 +505,13 @@ nav {
   &:first-letter {
     text-transform: capitalize;
   }
+}
+
+.search-title {
+    font-size: 18px;
+    float: right;
+    line-height: 22px;
+    margin-top: 24px;
 }
 
 #search-msg {
@@ -710,15 +721,12 @@ div.marginleft:hover {
 }
 
 #clear-search {
-  margin-left: 12px;
-  position: relative;
-  width: 100px;
-  margin-top: 22px;
-  float: right;
-  color: #fff;
+  margin-left: 72px;
+  position: absolute;
+  margin-top: 9px;
+  color: #fff !important;
   font-weight: bold;
-  padding-bottom: 4px;
-  text-align: center;
+  display: inline;
 }
 
 #about-jade {
