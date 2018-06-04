@@ -7,13 +7,6 @@
  url    - https://github.com/codesardine/Jadesktop
 
 """
-
-try:
-    from j.AK import Api, AppWindow
-
-except Exception as err:
-    print("Ops something went wrong: " + str(err))
-
 import os
 import pwd
 import subprocess
@@ -21,6 +14,7 @@ import xdg.DesktopEntry
 import xdg.Menu
 import gi
 import webbrowser
+from j.AK import Api, AppWindow, settings
 
 from gi.repository import Gtk, WebKit2, Gio
 from functools import lru_cache as cache
@@ -99,25 +93,27 @@ def fetch_icon(icon_name):
 
     return icon_path
 
-#  icon names
+#  icon names - ignore pep8 readability comes first
 if os.path.exists("/etc/webdad/webdad-release"):
-    terminal_icon              = fetch_icon("hyper")
+    terminal_icon       = fetch_icon("hyper")
 else:
-    terminal_icon              = fetch_icon("terminal")
+    terminal_icon       = fetch_icon("terminal")
 
-file_manager_icon          = fetch_icon("folder")
-browser_icon               = fetch_icon("browser")
-software_installer_icon    = fetch_icon("system-software-install")
-settings_icon              = fetch_icon("preferences-desktop")
-user_icon                  = fetch_icon("system-users")
-logout_icon                = fetch_icon("system-log-out")
-shutdown_icon              = fetch_icon("system-shutdown")
-reboot_icon                = fetch_icon("system-reboot")
-hibernate_icon             = fetch_icon("system-hibernate")
-suspend_icon               = fetch_icon("system-suspend")
-sleep_icon                 = fetch_icon("system-hibernate")
-search_icon                = fetch_icon("search")
-about_jade_icon            = fetch_icon("dialog-information")
+file_manager_icon       = fetch_icon("folder")
+browser_icon            = fetch_icon("browser")
+software_installer_icon = fetch_icon("system-software-install")
+settings_icon           = fetch_icon("preferences-desktop")
+user_icon               = fetch_icon("system-users")
+logout_icon             = fetch_icon("system-log-out")
+shutdown_icon           = fetch_icon("system-shutdown")
+reboot_icon             = fetch_icon("system-reboot")
+hibernate_icon          = fetch_icon("system-hibernate")
+suspend_icon            = fetch_icon("system-suspend")
+sleep_icon              = fetch_icon("system-hibernate")
+search_icon             = fetch_icon("search")
+about_jade_icon         = fetch_icon("dialog-information")
+distro_logo             = fetch_icon(settings("app", "distribution_logo"))
+
 
 html_file = path + '/theme/jade.html'
 html = Api.Fs.open_file(html_file)
