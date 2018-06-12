@@ -149,15 +149,15 @@ function showDashboard() {
     $(".application-box").addClass("card");
         
     // settings & system
-    $(".application-category.settings, .application-category.system, .application-category.help").appendTo(".mini-dashboard-left");
-    $(".application-category.settings a, .application-category.system a, .application-category.help a").addClass("box col m12");
-    $(".application-category.settings, .application-category.system, .application-category.help").removeClass("application-category");
-    $(".category-icon.Settings").clone().appendTo(".settings a");
-    $(".category-icon.System").clone().appendTo(".system a");
-    $(".category-icon.Help").clone().appendTo(".help a");
-    emptyClass(".settings a img");
-    emptyClass(".system a img");
-    emptyClass(".help a img");
+    $(".application-category.Settings, .application-category.System, .application-category.Help").appendTo(".mini-dashboard-left");
+    $(".application-category.Settings a, .application-category.System a, .application-category.Help a").addClass("box col m12");
+    $(".application-category.Settings, .application-category.System, .application-category.Help").removeClass("application-category");
+    $(".category-icon.Settings").clone().appendTo(".Settings a");
+    $(".category-icon.System").clone().appendTo(".System a");
+    $(".category-icon.Help").clone().appendTo(".Help a");
+    emptyClass(".Settings a img");
+    emptyClass(".System a img");
+    emptyClass(".Help a img");
 
     // application info slider 
     $(".application-box").hover(function() {
@@ -212,43 +212,43 @@ function showDashboard() {
       emptyClass("#background");
     	$(".dash-btn").fadeIn();
 
-      if ($(this).hasClass("office")) {
+      if ($(this).hasClass("Office")) {
         $("#background").addClass("office-background");
 
-      } else if ($(this).hasClass("development")) {
+      } else if ($(this).hasClass("Development")) {
         $("#background").addClass("development-background");
 
-      } else if ($(this).hasClass("education")) {
+      } else if ($(this).hasClass("Education")) {
         $("#background").addClass("education-background");
         
-      } else if ($(this).hasClass("multimedia")) {
+      } else if ($(this).hasClass("Multimedia")) {
         $("#background").addClass("multimedia-background");
 
-      } else if ($(this).hasClass("gaming")) {
+      } else if ($(this).hasClass("Gaming")) {
         $("#background").addClass("games-background");
 
-      } else if ($(this).hasClass("graphics")) {
+      } else if ($(this).hasClass("Graphics")) {
         $("#background").addClass("graphics-background");
 
-      } else if ($(this).hasClass("go-online")) {
+      } else if ($(this).hasClass("Go-online")) {
         $("#background").addClass("internet-background");
         
-      } else if ($(this).hasClass("accessories")) {
+      } else if ($(this).hasClass("Accessories")) {
         $("#background").addClass("accessories-background");
       } 
       savedSearches();
     });
 
-    $(".settings, .system, .help").click(function() {
+    $(".Settings, .System, .Help").click(function() {
       $(".dash-btn").fadeIn();
       emptyClass("#background");
-      if ($(this).hasClass("settings")) {
+      if ($(this).hasClass("Settings")) {
         $("#background").addClass("settings-background");
 
-      } else if ($(this).hasClass("system")) {
+      } else if ($(this).hasClass("System")) {
         $("#background").addClass("system-background");
 
-      } else if ($(this).hasClass("help")) {
+      } else if ($(this).hasClass("Help")) {
         $("#background").addClass("help-background");
       } 
     });

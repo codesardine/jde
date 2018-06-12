@@ -10,13 +10,12 @@
 import os
 import pwd
 import subprocess
-import xdg.DesktopEntry
-import xdg.Menu
 import gi
 import webbrowser
+import menu
+import icons
 from j.AK import Api, AppWindow, settings
-
-from gi.repository import Gtk, WebKit2, Gio
+from gi.repository import Gtk, WebKit2
 from functools import lru_cache as cache
 
 
@@ -28,7 +27,7 @@ path = os.path.dirname(os.path.realpath(__file__))
 userFolder = os.path.expanduser("~")
 cssOverridePath = userFolder + "/.config/jade/theme/style.css"
 
-
+@cache(maxsize=None)
 def get_disk_usage():
     """
 
@@ -42,178 +41,24 @@ def get_disk_usage():
             percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
             return percentage
 
-def fetch_icon(icon_name):
-    """
 
-    :param icon_name:
-    :return: icon name and path
-    """
-    icon_not_found = "image-missing"
-    icon_theme = Gtk.IconTheme.get_default()
+terminal_icon           = icons.get("terminal")
+file_manager_icon       = icons.get("folder")
+browser_icon            = icons.get("browser")
+software_installer_icon = icons.get("system-software-install")
+settings_icon           = icons.get("preferences-desktop")
+user_icon               = icons.get("system-users")
+logout_icon             = icons.get("system-log-out")
+shutdown_icon           = icons.get("system-shutdown")
+reboot_icon             = icons.get("system-reboot")
+hibernate_icon          = icons.get("system-hibernate")
+suspend_icon            = icons.get("system-suspend")
+sleep_icon              = icons.get("system-hibernate")
+search_icon             = icons.get("search")
+about_jade_icon         = icons.get("dialog-information")
+distro_logo             = icons.get(settings("app", "distribution_logo"))
 
-
-    if icon_name.endswith((".png", ".svg")):
-
-        if  icon_name.startswith("/"):
-            return icon_name  # if image has full icon path we just return them.
-
-        # if image has icon name and extension, but no path, lets fix that.
-        else:
-            if icon_name.endswith(".png"):
-                icon_name = icon_name.replace('.png', '')
-
-            elif icon_name.endswith(".svg"):
-            	icon_name = icon_name.replace('.svg', '')
-
-    # xpm not supported by webkit don't load.
-    elif icon_name.endswith(".xpm"):
-        icon_name = icon_not_found
-        print(icon_name + " xpm icons not supported")
-
-    check_icon = icon_theme.has_icon(icon_name)
-
-    if check_icon:
-        pass
-
-    else:
-        # check if it has the icon in pixmaps directory and return it.
-        pixmaps = "/usr/share/pixmaps/" + icon_name
-        if os.path.isfile(pixmaps + ".png"):
-            return pixmaps + ".png"
-
-        elif os.path.isfile(pixmaps + ".svg"):
-            return pixmaps + ".svg"
-
-        else:
-            print("Icon Not found in this theme --> " + icon_name)
-            icon_name = icon_not_found
-
-    icon_theme = icon_theme.lookup_icon(icon_name, 64, 0)
-    icon_path = icon_theme.get_filename()
-
-    return icon_path
-
-#  icon names - ignore pep8 readability comes first
-if os.path.exists("/etc/webdad/webdad-release"):
-    terminal_icon       = fetch_icon("hyper")
-else:
-    terminal_icon       = fetch_icon("terminal")
-
-file_manager_icon       = fetch_icon("folder")
-browser_icon            = fetch_icon("browser")
-software_installer_icon = fetch_icon("system-software-install")
-settings_icon           = fetch_icon("preferences-desktop")
-user_icon               = fetch_icon("system-users")
-logout_icon             = fetch_icon("system-log-out")
-shutdown_icon           = fetch_icon("system-shutdown")
-reboot_icon             = fetch_icon("system-reboot")
-hibernate_icon          = fetch_icon("system-hibernate")
-suspend_icon            = fetch_icon("system-suspend")
-sleep_icon              = fetch_icon("system-hibernate")
-search_icon             = fetch_icon("search")
-about_jade_icon         = fetch_icon("dialog-information")
-distro_logo             = fetch_icon(settings("app", "distribution_logo"))
-
-
-html = Api.Fs.open_file(path + '/theme/jade.html')
-ui_html_contents = '''%s''' % (html % locals())
-
-Api.html = ui_html_contents
-
-
-def jade_build_menu(application_category, iteration=0):
-    """
-
-    :param application_category:
-    :param iteration:
-    """
-    category_name = application_category.getName()
-    category = category_name.lower().replace(" ", "-")
-    category_icon_name = application_category.getIcon()
-    category_description = application_category.getComment()
-
-    if iteration == 0:
-        Api.html+= '''<span id='%(category_name)s'><a>%(category_name)s</a><img src="img/back.svg" class="applications-arrow-highlight"></span>''' % locals()
-
-    else:
-
-        category_icon = fetch_icon(category_icon_name)
-
-        Api.html += '''<div id='%(category)s-msg' class='category-msg'>
-                          <h5><span>%(category)s</span><span>%(category_description)s</span></h5>
-                          <img class='category-icon %(category_name)s' src='%(category_icon)s'>
-                          </div>
-                          <div id='%(category)s' class='category-container row'><div id='%(category)s-favorites' class='row favorites'></div><div class="grid row">''' % locals()
-
-        tag    = "li"
-        action = "onmouseover"
-        if category_name == "Settings" or category_name == "System" or category_name == "Help":
-            tag    = "div"
-            action = "onclick"
-
-        Api.html += "<" + tag + " class='application-category " + category + "'><a href='#' " + action + '''=\"
-                        display('#%(category)s, #%(category)s-msg');
-                        \">%(category_name)s
-                        </a></''' % locals() + tag + ">"
-
-    iteration += 1
-    for entry in application_category.getEntries():
-        if isinstance(entry, xdg.Menu.Menu):
-            jade_build_menu(entry, iteration)
-
-        elif isinstance(entry, xdg.Menu.MenuEntry):
-            terminal = entry.DesktopEntry.getTerminal()
-
-            if terminal == "true":
-                pass
-
-            else:
-                application_executable = entry.DesktopEntry.getExec()
-                application_icon = entry.DesktopEntry.getIcon()
-                application_icon = fetch_icon(application_icon)
-                application_executable = application_executable.split('%')[0].strip()
-
-                application_generic_name = entry.DesktopEntry.getGenericName()
-                application_name = entry.DesktopEntry.getName().replace(")", "").replace("(", "").replace("/", " ")
-                
-                application_comment = entry.DesktopEntry.getComment()
-                application_keywords = entry.DesktopEntry.getKeywords()
-
-                application_keywords = " ".join(application_keywords)
-                application_keywords = "<span style='display:none;'>" + application_keywords + "</span>"
-
-                Api.html += '''<div class='application-wrapper'>
-                                  <a class='application-box' href = 'shell:%(application_executable)s'>
-                                  <img class='application-icon' src='%(application_icon)s'>
-                                  <h5 class='application-name card'>%(application_name)s</h5>
-                                  ''' % locals()
-
-                br = "<br><br>"
-                if not application_comment and not application_generic_name:
-                    application_comment = "Description not available."
-                    br = ""
-
-                # fix duplicate descriptions
-                elif application_comment == application_generic_name:
-                	  application_generic_name = ""
-                	  br = ""
-
-                Api.html += '''<p class='application-comment'>
-                                    %(application_generic_name)s
-                                    <br><br>
-                                    %(application_comment)s
-                                    </p>%(application_keywords)s
-                                    </a></div>''' % locals()
-
-    Api.html += "</div></div>"
-
-
-def jade_menu():  # /etc/xdg/menus
-    """
-    parses the menu file
-    """
-    applications_menu = xdg.Menu.parse('/etc/xdg/menus/jade-applications.menu')
-    jade_build_menu(applications_menu)
+Api.html = '''%s''' % (Api.Fs.open_file(path + '/theme/jade.html') % locals())
 
 
 class JadeWindow(AppWindow):
@@ -310,6 +155,6 @@ if os.path.exists(cssOverridePath):
 else:
 	Api.html += "</body></html>"
 
-jade_menu()
+menu.get()
 JadeWindow()
 Gtk.main()
