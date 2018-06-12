@@ -18,14 +18,13 @@ from j.AK import Api, AppWindow, settings
 from gi.repository import Gtk, WebKit2
 from functools import lru_cache as cache
 
+def get_user_name():
+    user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
+    if user_name == "" and os.path.exists("/usr/bin/calamares"):
+        user_name = "Manjaro WebDad"
 
-user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
-if user_name == "" and os.path.exists("/usr/bin/calamares"):
-    user_name = "Manjaro WebDad"
+    return user_name
 
-path = os.path.dirname(os.path.realpath(__file__))
-userFolder = os.path.expanduser("~")
-cssOverridePath = userFolder + "/.config/jade/theme/style.css"
 
 @cache(maxsize=None)
 def get_disk_usage():
@@ -34,31 +33,43 @@ def get_disk_usage():
     :return: total disk usage in percentage
     """
     contents = []
-    get_disk_usage = os.popen('df --total')  # TODO this works but needs a fix i don't like having to use a list.
-    for entry in get_disk_usage:
+    disk_usage = os.popen('df --total')  # TODO this works but needs a fix i don't like having to use a list.
+    for entry in disk_usage:
         if entry.startswith("total"):
             contents.append(entry)
             percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
             return percentage
 
 
-terminal_icon           = icons.get("terminal")
-file_manager_icon       = icons.get("folder")
-browser_icon            = icons.get("browser")
-software_installer_icon = icons.get("system-software-install")
-settings_icon           = icons.get("preferences-desktop")
-user_icon               = icons.get("system-users")
-logout_icon             = icons.get("system-log-out")
-shutdown_icon           = icons.get("system-shutdown")
-reboot_icon             = icons.get("system-reboot")
-hibernate_icon          = icons.get("system-hibernate")
-suspend_icon            = icons.get("system-suspend")
-sleep_icon              = icons.get("system-hibernate")
-search_icon             = icons.get("search")
-about_jade_icon         = icons.get("dialog-information")
-distro_logo             = icons.get(settings("app", "distribution_logo"))
+Api.html = Api.Fs.open_file(os.path.dirname(os.path.realpath(__file__)) + '/theme/jade.html').format(
+terminal_icon           = icons.get("terminal"),
+file_manager_icon       = icons.get("folder"),
+browser_icon            = icons.get("browser"),
+software_installer_icon = icons.get("system-software-install"),
+settings_icon           = icons.get("preferences-desktop"),
+user_icon               = icons.get("system-users"),
+logout_icon             = icons.get("system-log-out"),
+shutdown_icon           = icons.get("system-shutdown"),
+reboot_icon             = icons.get("system-reboot"),
+hibernate_icon          = icons.get("system-hibernate"),
+suspend_icon            = icons.get("system-suspend"),
+sleep_icon              = icons.get("system-hibernate"),
+search_icon             = icons.get("search"),
+about_jade_icon         = icons.get("dialog-information"),
+distro_logo             = icons.get(settings("app", "distribution_logo")),
+user_name               = get_user_name()
+)
 
-Api.html = '''%s''' % (Api.Fs.open_file(path + '/theme/jade.html') % locals())
+
+def get_user_style():
+    user_folder = os.path.expanduser("~")
+    path = user_folder + "/.config/jade/theme/style.css"
+    if os.path.exists(path):
+        Api.html += "<script>themeOverride('%s');</script></body></html>" % path
+        print('User style.css found')
+
+    else:
+	    Api.html += "</body></html>"
 
 
 class JadeWindow(AppWindow):
@@ -148,13 +159,8 @@ class JadeWindow(AppWindow):
         self.webview.connect("decide-policy", on_decide_policy)
         self.webview.connect("load-changed", on_load_changed)
 
-if os.path.exists(cssOverridePath):
-   Api.html += "<script>themeOverride('%s');</script></body></html>" % cssOverridePath
-   print('style.css found')
 
-else:
-	Api.html += "</body></html>"
-
+get_user_style()
 menu.get()
 JadeWindow()
 Gtk.main()
