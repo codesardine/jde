@@ -2,7 +2,6 @@ import os
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from j.AK import settings
 from functools import lru_cache as cache
 
 @cache(maxsize=None)
@@ -54,3 +53,4 @@ def get(icon_name):
     icon_path = icon_theme.get_filename()
 
     return icon_path
+

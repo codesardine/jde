@@ -12,8 +12,8 @@ import pwd
 import subprocess
 import gi
 import webbrowser
-import menu
-import icons
+from lib import menu
+from lib import icons
 from j.AK import Api, AppWindow, settings
 from gi.repository import Gtk, WebKit2
 from functools import lru_cache as cache

@@ -1,6 +1,6 @@
 import xdg.DesktopEntry
 import xdg.Menu
-import icons
+from lib import icons
 from j.AK import Api
 from functools import lru_cache as cache
 
@@ -96,4 +96,5 @@ def get():  # /etc/xdg/menus
     """
     menu = xdg.Menu.parse('/etc/xdg/menus/jade-applications.menu')
     build(menu)
+
 
