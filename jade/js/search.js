@@ -14,8 +14,8 @@ $(document).ready(function() {
     $.when($(".category-msg").fadeOut()).done(function() {
         $(".category-container, #main-dashboard").hide();
         $("#search-icon").addClass("animated slideInLeft");
-        $(".search-results, #search-icon, #clear-search").show();
-        $(".dash-btn").fadeIn();
+        $(".search-results, #search-icon").show();
+        $("#clear-search, .dash-btn").fadeIn();
         grid(".search-results");
       });
   });

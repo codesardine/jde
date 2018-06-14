@@ -3806,6 +3806,10 @@ nav {
   padding-top: 33px; }
   .disk-usage div {
     display: flex; }
+  .disk-usage .hdd {
+    margin-right: 10px; }
+  .disk-usage .inner {
+    justify-content: center; }
 
 .display a:focus {
   color: #fff; }
@@ -3828,9 +3832,9 @@ nav {
     display: none; }
     #search-container a img {
       width: 30px;
-      position: absolute;
-      margin-left: 10px;
-      margin-top: 6px; }
+      margin-top: 6px;
+      margin-left: -46px;
+      position: absolute; }
   #search-container input[type=text] {
     width: 50%;
     height: 40px !important;
@@ -4077,7 +4081,7 @@ div.marginleft:hover {
   position: relative; }
 
 #clear-search {
-  margin-left: 72px;
+  margin-left: 22px;
   position: absolute;
   margin-top: 9px;
   color: #fff !important;

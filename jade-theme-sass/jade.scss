@@ -364,6 +364,14 @@ nav {
   div {
     display: flex;
   }
+
+  .hdd {
+    margin-right: 10px;
+  }
+
+  .inner {
+    justify-content: center;
+  }
 }
 
 .display a:focus {
@@ -391,9 +399,9 @@ nav {
 
     img {
     width: 30px;
-    position: absolute;
-    margin-left: 10px;
     margin-top: 6px;
+    margin-left: -46px;
+    position: absolute;
     }
   }
 
@@ -721,7 +729,7 @@ div.marginleft:hover {
 }
 
 #clear-search {
-  margin-left: 72px;
+  margin-left: 22px;
   position: absolute;
   margin-top: 9px;
   color: #fff !important;
