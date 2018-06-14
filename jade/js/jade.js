@@ -80,7 +80,13 @@ function showDashboard() {
   // DOCUMENT READY
   $(document).ready(function() {
 
-  	 backEndGet("disk-usage");
+     backEndGet("disk-usage");
+
+     setInterval(function() {
+      backEndGet("disk-usage");
+      console.log("Hdd space updated");
+     }, 30000); // update every half a min
+
     $('.modal').modal();
     $("#app-name").text(JAK.app.getName);
     $("#app-author").text("Author - " + JAK.app.getAuthor);
