@@ -32,16 +32,6 @@ for software_installer in gnome-software pamac-manager; do
     fi
 done
 
-# default settings application
-
-for settings in systemsettings5 gnome-settings manjaro-settings-manager; do
-    if which "$settings" &>/dev/null; then
-        #echo "Default JADE Settings ${settings}"
-	export JADE_SETTINGS=$settings
-        break
-    fi
-done
-
 # default browser
 
 for browser in chrome opera chromium firefox midori konqueror epiphany; do
