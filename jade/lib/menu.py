@@ -1,100 +1,99 @@
-import xdg.DesktopEntry
-import xdg.Menu
-from lib import icons
+import gi
+gi.require_version('GMenu', '3.0')
+from gi.repository import GMenu, Gio
+from lib import icons, views
 from j.AK import Api
 from functools import lru_cache as cache
 
-# TODO port to gi, and separate html
-def build(application_category, iteration=0):
-    """
+def dump(name, iteration):
+	print('%s%s' % ('- ' * iteration, name))
 
-    :param application_category:
-    :param iteration:
-    """
-    category_name = application_category.getName()
-    category = category_name.replace(" ", "-")
-    category_icon_name = application_category.getIcon()
-    category_description = application_category.getComment()
+class Menu():
 
-    if iteration == 0:
-        Api.html += '''<span id='%(category_name)s'><a>%(category_name)s</a><img src="img/back.svg" class="applications-arrow-highlight"></span>''' % locals()
+		def __init__(self):
 
-    else:
+				self.menu_path = "/etc/xdg/menus/jade-applications.menu"
+				self.tree = GMenu.Tree.new_for_path(self.menu_path, 0)
+				self.tree.connect('changed', self.menuChanged)
+				self.load()
+				self.menu = self.tree.get_root_directory()
+				self.build(self.menu)
 
-        category_icon = icons.get(category_icon_name)
+		@cache(maxsize=None)
+		def build(self, menu, iteration=0):
+			
+				it = menu.iter()
+				it_type = it
+				while it_type != GMenu.TreeItemType.INVALID:
 
-        Api.html += '''<div id='%(category)s-msg' class='category-msg'>
-                          <h5><span>%(category)s</span><span>%(category_description)s</span></h5>
-                          <img class='category-icon %(category_name)s' src='%(category_icon)s'>
-                          </div>
-                          <div id='%(category)s' class='category-container row'><div id='%(category)s-favorites' class='row favorites'></div><div class="grid row">''' % locals()
+					if it_type == GMenu.TreeItemType.DIRECTORY:
+						item = it.get_directory()
+						
 
-        # TODO this block needs a clean up including Api.html
-        tag = "li"
-        action = "onmouseover"
-        if category_name == "Settings" or category_name == "System" or category_name == "Help":
-            tag = "div"
-            action = "onclick"
+                        # don't pep8 this block
+						icon_name      = item.get_icon().get_names()[0]
+						icon           = icons.get(icon_name)
+						comment        = item.get_comment()
+						name           = item.get_name()
+						element_name   = name.replace(" ", "-")
 
-        Api.html += "<" + tag + " class='application-category " + category + "'><a href='#' " + action + '''=\"
-                        display('#%(category)s, #%(category)s-msg');
-                        \">%(category_name)s
-                        </a></''' % locals() + tag + ">"
+						#dump(name, iteration)
+						html = views.Html.get_categorie(comment, name, icon, element_name)
+						Api.html += html
 
-    iteration += 1
-    for entry in application_category.getEntries():
-        if isinstance(entry, xdg.Menu.Menu):
-            build(entry, iteration)
+						# TODO this block needs a clean up.
+						tag = "li"
+						action = "onmouseover"
+						if name == "Settings" or name == "System" or name == "Help":
+							tag = "div"
+							action = "onclick"
 
-        elif isinstance(entry, xdg.Menu.MenuEntry):
-            terminal = entry.DesktopEntry.getTerminal()
+						Api.html += "<" + tag + " class='application-category " + element_name + "'><a href='#' " + action + '''=\"
+							display('#%(element_name)s, #%(element_name)s-msg');
+							\">%(name)s
+							</a></''' % locals() + tag + ">"
 
-            if terminal != "true":
-                application_executable = entry.DesktopEntry.getExec()
-                application_icon = entry.DesktopEntry.getIcon()
-                application_icon = icons.get(application_icon)
-                application_executable = application_executable.split('%')[0].strip()
+						self.build(item, iteration+1)
 
-                application_generic_name = entry.DesktopEntry.getGenericName()
-                application_name = entry.DesktopEntry.getName().replace(")", "").replace("(", "").replace("/", " ")
+					elif it_type == GMenu.TreeItemType.ENTRY:
+						item = it.get_entry()
+						app = item.get_app_info()
 
-                application_comment = entry.DesktopEntry.getComment()
-                application_keywords = entry.DesktopEntry.getKeywords()
+                        # don't pep8 this block
+						name         = app.get_display_name()
+						generic_name = app.get_generic_name()
+						description  = app.get_description()
+						icon         = app.get_icon()
+						keywords     = app.get_keywords()
+						keywords     = " ".join(keywords)
+						desktop      = item.get_desktop_file_path()
 
-                application_keywords = " ".join(application_keywords)
-                application_keywords = "<span style='display:none;'>" + application_keywords + "</span>"
+						if isinstance(icon, Gio.ThemedIcon):
+							icon = icon.get_names()[0]
+						elif isinstance(icon, Gio.FileIcon):
+							icon = icon.get_file().get_path()
 
-                Api.html += '''<div class='application-wrapper'>
-                                  <a class='application-box' href = 'shell:%(application_executable)s'>
-                                  <img class='application-icon' src='%(application_icon)s'>
-                                  <h5 class='application-name card'>%(application_name)s</h5>
-                                  ''' % locals()
+						icon = icons.get(icon)
+						#dump(application_name, iteration+1)
+						
+						if not generic_name:
+							generic_name = "Generic name not available"
 
-                br = "<br><br>"
-                if not application_comment and not application_generic_name:
-                    application_comment = "Description not available."
-                    br = ""
+						if not description:
+							description = "Description not available"
 
-                # fix duplicate descriptions
-                elif application_comment == application_generic_name:
-                    application_generic_name = ""
-                    br = ""
+						html = views.Html.get_app(name, generic_name, description, desktop, icon, keywords)
+						Api.html += html
 
-                Api.html += '''<p class='application-comment'>
-                                    %(application_generic_name)s
-                                    <br><br>
-                                    %(application_comment)s
-                                    </p>%(application_keywords)s
-                                    </a></div>''' % locals()
+					it_type = it.next()
 
-    Api.html += "</div></div>"
+				Api.html += "</div></div>"
 
-@cache(maxsize=None)
-def get():  # /etc/xdg/menus
-    """
-    parses the menu file
-    """
-    menu = xdg.Menu.parse('/etc/xdg/menus/jade-applications.menu')
-    build(menu)
-
-
+		@cache(maxsize=None)
+		def load(self):
+				self.tree.load_sync()
+        
+		def menuChanged(self, *a):
+			self.load()
+			#self.build(self.menu)
+				

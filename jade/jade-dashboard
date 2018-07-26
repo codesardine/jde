@@ -15,8 +15,11 @@ import webbrowser
 from lib import menu
 from lib import icons
 from j.AK import Api, AppWindow, settings
-from gi.repository import Gtk, WebKit2
+from gi.repository import Gtk, WebKit2, Gio
 from functools import lru_cache as cache
+
+def get_desktop_env():
+    return os.environ.get('DESKTOP_SESSION')
 
 def get_user_name():
     user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
@@ -29,7 +32,6 @@ def get_user_name():
 @cache(maxsize=None)
 def get_disk_usage():
     """
-
     :return: total disk usage in percentage
     """
     contents = []
@@ -41,7 +43,9 @@ def get_disk_usage():
             return percentage
 
 
-Api.html = Api.Fs.open_file(os.path.dirname(os.path.realpath(__file__)) + '/theme/jade.html').format(
+Api.html = Api.Fs.open_file(
+    os.path.dirname(os.path.realpath(__file__)) + '/theme/jade.html'
+).format(
 terminal_icon           = icons.get("terminal"),
 file_manager_icon       = icons.get("folder"),
 browser_icon            = icons.get("browser"),
@@ -69,7 +73,7 @@ def get_user_style():
         print('User style.css found')
 
     else:
-	    Api.html += "</body></html>"
+        Api.html += "</body></html>"
 
 
 class JadeWindow(AppWindow):
@@ -90,8 +94,7 @@ class JadeWindow(AppWindow):
             :param decision:
             :param decision_type:
             :return: if is not a predicted action do nothing.
-            """
-
+            """            
             def execute(command):
 
                 """
@@ -99,7 +102,7 @@ class JadeWindow(AppWindow):
                 :param command: shell command to execute.
                 :return: we are not loading a url don't follow link or we get a blank page.
                 """
-                process = subprocess.Popen(command, shell=True)
+                subprocess.Popen(command, shell=True)
                 decision.ignore()
                 return True
 
@@ -118,8 +121,16 @@ class JadeWindow(AppWindow):
                     execute(command)
                 
                 elif url.startswith("shell:"):
-                    command = url.replace('shell:', '').replace("%20", " ")
-                    print("exec: " + command)
+                    command = url.replace('shell:', '')
+                    execute(command)
+
+                elif url.startswith("desktop:"):
+                    url = url.replace('desktop:', '')
+                    get_desktop_file = Gio.DesktopAppInfo.new_from_filename(url)
+                    command          = get_desktop_file.get_executable()
+                    name             = get_desktop_file.get_display_name()
+                    print("Launching - " + name)
+                    print(" Command - " + command)
                     execute(command)
 
                 elif navigation_type == WebKit2.NavigationType.LINK_CLICKED:
@@ -155,12 +166,13 @@ class JadeWindow(AppWindow):
             if event == WebKit2.LoadEvent.STARTED:
                 print("redirect")
 
+        
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
         self.webview.connect("load-changed", on_load_changed)
 
 
 get_user_style()
-menu.get()
+menu.Menu()
 JadeWindow()
 Gtk.main()
