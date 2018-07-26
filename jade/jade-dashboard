@@ -12,11 +12,13 @@ import pwd
 import subprocess
 import gi
 import webbrowser
-from lib import menu
-from lib import icons
+from lib import menu, icons
 from j.AK import Api, AppWindow, settings
 from gi.repository import Gtk, WebKit2, Gio
 from functools import lru_cache as cache
+
+def run(command):
+    subprocess.Popen(command, shell=True)
 
 def get_desktop_env():
     return os.environ.get('DESKTOP_SESSION')
@@ -102,7 +104,7 @@ class JadeWindow(AppWindow):
                 :param command: shell command to execute.
                 :return: we are not loading a url don't follow link or we get a blank page.
                 """
-                subprocess.Popen(command, shell=True)
+                run(command)
                 decision.ignore()
                 return True
 
@@ -175,4 +177,8 @@ class JadeWindow(AppWindow):
 get_user_style()
 menu.Menu()
 JadeWindow()
+if get_desktop_env() == "jade":
+    # autostart .desktop files if environment variable is jade 
+    command = "sleep 5 && dex -ae JADE"
+    run(command)
 Gtk.main()
