@@ -24,7 +24,7 @@ Technologies used - Webkit2 engine, Gtk toolkit, HTML, CSS, Javascript, Python.
 #### Prerequisites
 * Python 3
 * [Jade Application Kit](https://github.com/codesardine/Jade-Application-Kit) - Installing (python3 setup.py install)
-* python-xdg
+* gnome-menus - Gmenu-module
 * python-gobject (pygi)
 * webkit2gtk
 
