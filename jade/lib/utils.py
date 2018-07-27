@@ -36,7 +36,7 @@ def get_disk_usage():
 
             
 def autostart():
-    if get_desktop_env() == "gnome":
+    if get_desktop_env() == "jade":
         # autostart .desktop files if environment variable is jade 
         command = "sleep 5 && dex -ae JADE"
         run(command)
