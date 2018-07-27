@@ -1,4 +1,4 @@
-class Html():
+class Html:
 
         def get_categorie(comment, name, icon, element_name):
             html = '''<div id='%(element_name)s-msg' class='category-msg'>
@@ -16,7 +16,7 @@ class Html():
                       <img class='application-icon' src='%(icon)s'>
                       <h5 class='application-name card'>%(name)s</h5>
                       <p class='application-comment'>%(generic_name)s
-					  <br><br>%(description)s</p>
-					  <span id='keywords' style='display:none;'>%(keywords)s</span>
+                      <br><br>%(description)s</p>
+                      <span id='keywords' style='display:none;'>%(keywords)s</span>
                       </a></div>''' % locals()
             return html

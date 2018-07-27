@@ -5,16 +5,18 @@ from lib import icons, views
 from j.AK import Api
 from functools import lru_cache as cache
 
+
 def dump(name, iteration):
 	print('%s%s' % ('- ' * iteration, name))
 
-class Menu():
+
+class Get:
 
 		def __init__(self):
 
 				self.menu_path = "/etc/xdg/menus/jade-applications.menu"
 				self.tree = GMenu.Tree.new_for_path(self.menu_path, 0)
-				self.tree.connect('changed', self.menuChanged)
+				self.tree.connect('changed', self.menu_changed)
 				self.load()
 				self.menu = self.tree.get_root_directory()
 				self.build(self.menu)
@@ -28,16 +30,15 @@ class Menu():
 
 					if it_type == GMenu.TreeItemType.DIRECTORY:
 						item = it.get_directory()
-						
 
-                        # don't pep8 this block
+						# don't pep8 this block
 						icon_name      = item.get_icon().get_names()[0]
 						icon           = icons.get(icon_name)
 						comment        = item.get_comment()
 						name           = item.get_name()
 						element_name   = name.replace(" ", "-")
 
-						#dump(name, iteration)
+						# dump(name, iteration)
 						html = views.Html.get_categorie(comment, name, icon, element_name)
 						Api.html += html
 
@@ -59,7 +60,7 @@ class Menu():
 						item = it.get_entry()
 						app = item.get_app_info()
 
-                        # don't pep8 this block
+						# don't pep8 this block
 						name         = app.get_display_name()
 						generic_name = app.get_generic_name()
 						description  = app.get_description()
@@ -74,7 +75,7 @@ class Menu():
 							icon = icon.get_file().get_path()
 
 						icon = icons.get(icon)
-						#dump(application_name, iteration+1)
+						# dump(application_name, iteration+1)
 						
 						if not generic_name:
 							generic_name = "Generic name not available"
@@ -91,9 +92,9 @@ class Menu():
 
 		@cache(maxsize=None)
 		def load(self):
-				self.tree.load_sync()
-        
-		def menuChanged(self, *a):
+			self.tree.load_sync()
+
+		def menu_changed(self, *a):
 			self.load()
-			#self.build(self.menu)
-				
+			# self.build(self.menu)
+
