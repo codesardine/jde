@@ -1,8 +1,6 @@
 from functools import lru_cache as cache
 from j.AK import Api
-import subprocess
-import pwd
-import os
+import subprocess, pwd, os
 
 
 def run(command):
@@ -16,7 +14,7 @@ def get_desktop_env():
 def get_user_name():
     user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
     if user_name == "" and os.path.exists("/usr/bin/calamares"):
-        user_name = "Manjaro WebDad"
+        user_name = "Manjaro WebDad"    
 
     return user_name
 
@@ -36,7 +34,7 @@ def get_disk_usage():
 
             
 def autostart():
-    if get_desktop_env() == "gnome":
+    if get_desktop_env() == "jade":
         # autostart .desktop files if environment variable is jade 
         command = "sleep 5 && dex -ae JADE"
         run(command)
@@ -44,9 +42,9 @@ def autostart():
 
 def get_user_style():
     user_folder = os.path.expanduser("~")
-    path = user_folder + "/.config/jade/theme/style.css"
+    path = f"{user_folder}/.config/jade/theme/style.css"
     if os.path.exists(path):
-        Api.html += "<script>themeOverride('%s');</script></body></html>" % path
+        Api.html += f"<script>themeOverride('{path}');</script></body></html>"
         print('User style.css found')
 
     else:

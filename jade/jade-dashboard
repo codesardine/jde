@@ -89,13 +89,13 @@ class JadeWindow(AppWindow):
                     get_desktop_file = Gio.DesktopAppInfo.new_from_filename(url)
                     command          = get_desktop_file.get_executable()
                     name             = get_desktop_file.get_display_name()
-                    print("Launching - " + name)
-                    print(" Command - " + command)
+                    print(f"Launching - {name}")
+                    print(f" Command - {command}")
                     execute(command)
 
                 elif navigation_type == WebKit2.NavigationType.LINK_CLICKED:
                     print("Link Clicked")
-                    print(url + " <- Action Denied Repeated URL")
+                    print(f"{url} <- Action Denied Repeated URL")
                     decision.ignore()
                     return True
 
@@ -103,7 +103,7 @@ class JadeWindow(AppWindow):
                     print("Unknown Navigation Request " + url)
                     
                 else:
-                    print(url + " <- Action Denied")
+                    print(f"{url} <- Action Denied")
                     decision.ignore()
                     return True
 
@@ -120,7 +120,7 @@ class JadeWindow(AppWindow):
 
             if title_name.startswith("disk-usage"):
                 percentage = utils.get_disk_usage()
-                self.webview.run_javascript('$(".disk-percentage").text("' + percentage + '");getDiskColors();')
+                self.webview.run_javascript(f'$(".disk-percentage").text("{percentage}");getDiskColors();')
 
         def on_load_changed(webview, event):
             if event == WebKit2.LoadEvent.STARTED:
