@@ -3560,38 +3560,6 @@ html {
   .content-editable:active, .content-editable:focus, .content-editable:hover {
     box-shadow: 0 2px 0 0 #525252; }
 
-.bottom-corner-triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid; }
-
-.top-corner-triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: #ad1649 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
-  top: 0;
-  z-index: -99999; }
-
-@media (min-width: 1825px) {
-  .top-corner-triangle {
-    border-width: 90px 1500px 0 0; } }
-@media (max-width: 1824px) {
-  .top-corner-triangle {
-    border-width: 90px 1250px 0 0; } }
-@media (max-width: 1224px) {
-  .top-corner-triangle {
-    border-width: 90px 1000px 0 0; } }
-.bottom-corner-triangle {
-  border-width: 60px 400px 0 0;
-  border-color: rgba(0, 0, 0, 0) #009688 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.04);
-  position: absolute;
-  bottom: 0;
-  z-index: 999;
-  right: 0; }
-
 a {
   transition: none; }
 
@@ -3899,7 +3867,7 @@ nav {
   float: right;
   margin-left: 72px;
   line-height: 22px;
-  margin-top: 4px; }
+  margin-top: 15px; }
   .category-msg h5 span {
     display: block;
     margin-left: -58px; }
@@ -3907,8 +3875,7 @@ nav {
       font-size: 18px;
       color: #e7e7e7; }
     .category-msg h5 span:last-of-type {
-      font-size: 12px;
-      color: #232323; }
+      font-size: 13px; }
   .category-msg h5:first-letter {
     text-transform: capitalize; }
 
