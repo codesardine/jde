@@ -12,10 +12,9 @@ def get(icon):
     :return: icon name and path
     """
     icon_not_found = settings("window", "icon")
-    if not icon:
-        icon = icon_not_found
-
     icon_theme = Gtk.IconTheme.get_default()
+    if icon is None:
+      return icon_not_found
 
     if icon.endswith((".png", ".svg")):
 
@@ -46,10 +45,12 @@ def get(icon):
         else:
             print(f"{icon} Not found in this theme")
             icon = icon_not_found
-
+            
     # TODO add support for icon size detection
-    icon_theme = icon_theme.lookup_icon(icon, 64, 0)
-    icon_path = icon_theme.get_filename()
+    icon_theme = icon_theme.lookup_icon(icon, 68, 0)
+    if icon_theme is None:
+      return icon_not_found
 
-    return icon_path
+    return  icon_theme.get_filename()
+
 
