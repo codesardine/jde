@@ -498,8 +498,12 @@ nav {
   margin-right: 5.75rem;
 }
 
-.category-container.row {
+.category-container {
+  padding-bottom: 110px;
+
+  .row {
   margin-left: 0;
+  }
 }
 
 .shutdown a,
@@ -580,19 +584,19 @@ nav {
   }
 
   div:first-of-type a {
-    border-top: 8px solid $green;
+    border-top: 4px solid $green;
     position: relative;
   }
 
   div:last-child a {
-    border-bottom: 10px solid $green;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom: 6px solid $green;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
 }
 
 .mini-dashboard-exit .username {
-  border-top: 8px solid $green;
+  border-top: 4px solid $green;
 }
 
 .mini-dashboard-exit {
@@ -608,10 +612,10 @@ nav {
 
 .mini-dashboard-exit img,
 .mini-dashboard-left img {
-  width: 30px;
+  width: 24px;
   position: absolute;
   right: 5px;
-  top: 6px;
+  top: 8px;
 }
 
 div.marginleft:hover {
@@ -658,7 +662,7 @@ div.marginleft:hover {
 
 .menu-bottom-decoration {
   background-color: $green;
-  height: 10px !important;
+  height: 6px !important;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   display: block !important;
@@ -798,5 +802,6 @@ div.marginleft:hover {
   position: absolute;
   margin-left: 12px;
   animation: shake 4s;
+  animation-delay: 2s;
   animation-iteration-count: 1;
 }
