@@ -7,16 +7,7 @@ function askConfirmation(msg, cmd) {
     window.location.href = cmd;
   }
 }
-function doSomething() {
-  console.info("DOM loaded");
-}
 
-// `DOMContentLoaded` may fire before your script has a chance to run, so check before adding a listener
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", doSomething);
-} else {  // `DOMContentLoaded` already fired
-  doSomething();
-}
 var Jade = {
   openBrowser() {
     window.location.href = "open-browser:";
