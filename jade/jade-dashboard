@@ -55,7 +55,11 @@ class JadeWindow(AppWindow):
             :param decision:
             :param decision_type:
             :return: if is not a predicted action do nothing.
-            """            
+            """
+            def deny():
+                decision.ignore()
+                return True
+
             def execute(command):
 
                 """
@@ -64,8 +68,7 @@ class JadeWindow(AppWindow):
                 :return: we are not loading a url don't follow link or we get a blank page.
                 """
                 utils.run(command)
-                decision.ignore()
-                return True
+                deny()
 
             if decision_type == WebKit2.PolicyDecisionType.NAVIGATION_ACTION:
 
@@ -77,12 +80,8 @@ class JadeWindow(AppWindow):
                 if url.startswith("file://") and url.endswith("/jade/"):
                     pass
 
-                elif url.startswith("xdg-open:"):
-                    command = url.replace('xdg-open:', 'xdg-open ')
-                    execute(command)
-                
-                elif url.startswith("shell:"):
-                    command = url.replace('shell:', '')
+                elif url.startswith("open:"):
+                    command = url.replace('open:', 'xdg-open ')
                     execute(command)
 
                 elif url.startswith("desktop:"):
@@ -97,16 +96,54 @@ class JadeWindow(AppWindow):
                 elif navigation_type == WebKit2.NavigationType.LINK_CLICKED:
                     print("Link Clicked")
                     print(f"{url} <- Action Denied Repeated URL")
-                    decision.ignore()
-                    return True
+                    deny()
 
                 elif navigation_type == WebKit2.NavigationType.OTHER:
-                    print("Unknown Navigation Request " + url)
-                    
+                    print("Other Request " + url)
+                    if url == "open-browser:":
+                        command = 'xdg-open http:'
+                        execute(command)
+
+                    elif url == "open-file-manager:":
+                        command = 'xdg-open $HOME'
+                        execute(command)
+
+                    elif url == "open-software-installer:":
+                        command = '$JADE_SOFTWARE_INSTALLER'
+                        execute(command)
+
+                    elif url == "open-terminal:":
+                        command = '$JADE_TERMINAL'
+                        execute(command)
+
+                    elif url == "log-out:":
+                        command = 'loginctl terminate-session $XDG_SESSION_ID'
+                        execute(command)
+
+                    elif url == "power-off:":
+                        command = 'systemctl poweroff'
+                        execute(command)
+
+                    elif url == "reboot:":
+                        command = 'systemctl reboot'
+                        execute(command)
+
+                    elif url == "hibernate:":
+                        command = 'systemctl hibernate'
+                        execute(command)
+
+                    elif url == "suspend:":
+                        command = 'systemctl suspend'
+                        execute(command)
+
+                    elif url == "sleep:":
+                        command = 'systemctl hybrid-sleep'
+                        execute(command)
+
+                    else:
+                        deny()
                 else:
-                    print(f"{url} <- Action Denied")
-                    decision.ignore()
-                    return True
+                    deny()
 
             return False
 
@@ -123,13 +160,8 @@ class JadeWindow(AppWindow):
                 percentage = utils.get_disk_usage()
                 self.webview.run_javascript(f'$(".disk-percentage").text("{percentage}");getDiskColors();')
 
-        def on_load_changed(webview, event):
-            if event == WebKit2.LoadEvent.STARTED:
-                print("redirect")
-
         self.webview.connect("notify::title", on_title_changed)
         self.webview.connect("decide-policy", on_decide_policy)
-        self.webview.connect("load-changed", on_load_changed)
 
 
 utils.get_user_style()

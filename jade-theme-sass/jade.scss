@@ -642,7 +642,7 @@ div.marginleft:hover {
   font-size: 14px;
 }
 /* improve selection visibility */
-.favorites a,
+.favorites button,
 .notes {
   filter: grayscale(24%) opacity(96%) brightness(94%);
 }
@@ -651,13 +651,13 @@ div.marginleft:hover {
   filter: opacity(80%);
 }
 
-.favorites a:hover,
+.favorites button:hover,
 .notes:hover {
   filter: grayscale(0%) opacity(100%) brightness(100%);
 }
 
 #main-dashboard .row:first-child {
-  margin-bottom: -6px;
+  margin-bottom: 4px;
 }
 
 .menu-bottom-decoration {
@@ -770,8 +770,15 @@ div.marginleft:hover {
 
 .favorites {
 
-  a {
+  button {
     margin-right: 25px;
+    height: 38px;
+    background-color: transparent;
+    border: none;
+  }
+  
+  button:first-of-type {
+    margin-left: 10px;
   }
 
   &:not(#dashboard-favorites) {
@@ -783,12 +790,6 @@ div.marginleft:hover {
   img {
     margin-bottom: 20px;
     filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-  }
-
-  button {
-    margin-top: 2px;
-    color: #525252;
-    height: 38px;
   }
 }
 

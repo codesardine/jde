@@ -1,3 +1,67 @@
+function ipcSend(msg) {
+  document.title = msg
+}
+
+function askConfirmation(msg, cmd) {
+  if (window.confirm(msg)) { 
+    window.location.href = cmd;
+  }
+}
+function doSomething() {
+  console.info("DOM loaded");
+}
+
+// `DOMContentLoaded` may fire before your script has a chance to run, so check before adding a listener
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", doSomething);
+} else {  // `DOMContentLoaded` already fired
+  doSomething();
+}
+var Jade = {
+  openBrowser() {
+    window.location.href = "open-browser:";
+  },
+  openFileManager() {
+    window.location.href = "open-file-manager:";
+  },
+  openSoftwareInstaller() {
+    window.location.href = "open-software-installer:";
+  },
+  openTerminal() {
+    window.location.href = "open-terminal:";
+  },
+  logOut() {
+    cmd = "log-out:";
+    msg = "Login Out - Are you Sure?";
+    askConfirmation(msg, cmd);
+  },
+  powerOff() {
+    cmd = "power-off:";
+    msg = "Shutting Down - Are you Sure?";
+    askConfirmation(msg, cmd);
+  },
+  reboot() {
+    cmd = "reboot:";
+    msg = "Rebooting - Are you Sure?";
+    askConfirmation(msg, cmd);
+  },
+  hibernate() {
+    cmd = "hibernate:";
+    msg = "Hibernating - Are you Sure?";
+    askConfirmation(msg, cmd);
+  },
+  suspend() {
+    cmd = "suspend:";
+    msg = "Suspending - Are you Sure?";
+    askConfirmation(msg, cmd);
+  },
+  sleep() {
+    cmd = "sleep:";
+    msg = "Sleeping - Are you Sure?";
+    askConfirmation(msg, cmd);
+  }
+};
+
 function isElementVisible(element) {
   return $(element).css('display') != 'none';
 };
@@ -13,9 +77,6 @@ function themeOverride(fileName) {
   document.getElementsByTagName('head')[0].appendChild(link);
 }
 
-function backEndGet(python_function) {
-  document.title = python_function
-}
 // show hide applications
 function display(element) {
 
@@ -80,10 +141,10 @@ function showDashboard() {
   // DOCUMENT READY
   $(document).ready(function() {
 
-     backEndGet("disk-usage");
+     ipcSend("disk-usage");
 
      setInterval(function() {
-      backEndGet("disk-usage");
+      ipcSend("disk-usage");
       console.log("Hdd space updated");
      }, 30000); // update every half a min
 
@@ -127,23 +188,6 @@ function showDashboard() {
           }
           savedSearches();          
         }, 25000);
-    });
-
-    // double click for shutdown
-    $(function($) {
-      $("#exit-menu a").click(function() {
-        notifySend("Double click to use!");
-        return false;
-      }).dblclick(function() {
-        window.location = this.href;
-        return false;
-      }).keydown(function(event) {
-        switch (event.which) {
-          case 13: // Enter
-            window.location = this.href;
-            return false;
-        }
-      });
     });
 
     // move to correct containers, and add classes

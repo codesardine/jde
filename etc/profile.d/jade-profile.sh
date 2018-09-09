@@ -12,16 +12,6 @@ for terminal in xfce-terminal terminix konsole xfce-term term deepin-terminal gn
     fi
 done
 
-# default file manager
-
-for file_manager in nautilus dde-file-manager nemo thunar phanteon-files dolphin caja pcmanfm; do
-    if which "$file_manager" &>/dev/null; then
-        #echo "Default JADE File Manager ${file_manager}"
-	export JADE_FILE_MANAGER=$file_manager
-        break
-    fi
-done
-
 # default software installer
 
 for software_installer in gnome-software pamac-manager; do
@@ -31,14 +21,3 @@ for software_installer in gnome-software pamac-manager; do
         break
     fi
 done
-
-# default browser
-
-for browser in chrome opera chromium firefox midori konqueror epiphany; do
-    if which "$browser" &>/dev/null; then
-        #echo "Default JADE Browser ${browser}"
-	export JADE_BROWSER=$browser
-        break
-    fi
-done
-

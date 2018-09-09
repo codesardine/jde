@@ -70,21 +70,21 @@
               <div id="dashboard-favorites" class="row favorites">
 
 
-                <a class="col" href='shell:$JADE_BROWSER'>
+                <button class="col" onclick="Jade.openBrowser();">
                                   <img src="{browser_icon}" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Open Default Browser">
-                              </a>
-                <a class="col" href='shell:$JADE_FILE_MANAGER'>
+                              </button>
+                <button class="col" onclick='Jade.openFileManager();'>
                                   <img src="{file_manager_icon}" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Browse Your Files">
-                              </a>
-                <a class="col" href='shell:$JADE_SOFTWARE_INSTALLER'>
+                              </button>
+                <button class="col" onclick="Jade.openSoftwareInstaller();">
                                   <img src="{software_installer_icon}" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Install, Remove Applications - Software Center">
-                              </a>
-                <a class="col" href='shell:$JADE_TERMINAL'>
+                              </button>
+                <button class="col" onclick="Jade.openTerminal();">
                                   <img src="{terminal_icon}" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="Use The Command Line">
-                              </a>
-                <a id="about-jade-btn" class="col modal-trigger" href='#about-jade'>
+                              </button>
+                <button id="about-jade-btn" class="col modal-trigger" href='#about-jade'>
                                   <img src="{about_jade_icon}" class="col l12 xl10 tooltipped" data-position="top" data-delay="50" data-tooltip="About Jade">
-                              </a>
+                              </button>
               </div>
             </div>
           </div>
@@ -114,32 +114,32 @@
                   </a>
                     <div id="exit-menu">
                       <div class="marginleft col m12">
-                        <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log Out Current User" id='login' href="shell:loginctl terminate-session $XDG_SESSION_ID">Log Out
+                        <a onclick="Jade.logOut();" class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Log Out Current User" id='login' href="#">Log Out
 		                   <img src="{logout_icon}" class="logout-img">
 		                </a>
                       </div>
                       <div class="marginleft col m12">
-                        <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Off This Computer" id='poweroff' href="shell:systemctl poweroff">Power Off
+                        <a onclick="Jade.powerOff();" class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Off This Computer" id='poweroff' href="#">Power Off
 		                   <img src="{shutdown_icon}" class="poweroff-img">
 		                </a>
                       </div>
                       <div class="marginleft col m12">
-                        <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart This Computer" id='reboot' href="shell:systemctl reboot">Reboot
+                        <a onclick="Jade.reboot();" class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Restart This Computer" id='reboot' href="#">Reboot
 		                  <img src="{reboot_icon}" class="reboot-img">
 		                </a>
                       </div>
                       <div class="marginleft col m12">
-                        <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Down This Computer While Retaining Its Current State" id='hibernate' href="shell:systemctl hibernate">Hibernate
+                        <a onclick="Jade.hibernate();" class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Power Down This Computer While Retaining Its Current State" id='hibernate' href="#">Hibernate
 		                  <img src="{hibernate_icon}" class="hibernate-img">
 		                </a>
                       </div>
                       <div class="marginleft col m12">
-                        <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend This Computer In Low Power Mode" id='suspend' href="shell:systemctl suspend">Suspend
+                        <a onclick="Jade.suspend();" class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Suspend This Computer In Low Power Mode" id='suspend' href="#">Suspend
 		                  <img src="{suspend_icon}" class="suspend-img">
 		                </a>
                       </div>
                       <div class="marginleft col m12">
-                        <a class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby Power Mode" id='sleep' href="shell:systemctl hybrid-sleep">Sleep
+                        <a onclick="Jade.sleep();" class="col m12 tooltipped" data-position="left" data-delay="0" data-tooltip="Standby Power Mode" id='sleep' href="#">Sleep
 		                  <img src="{sleep_icon}" class="sleep-img">
 		                </a>
                       </div>
