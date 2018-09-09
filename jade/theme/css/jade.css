@@ -3859,10 +3859,6 @@ nav {
   margin-left: 40px;
   margin-top: 20px; }
 
-#search-icon,
-.category-msg {
-  margin-top: -36px; }
-
 .category-msg h5 {
   float: right;
   margin-left: 72px;
@@ -4109,7 +4105,7 @@ div.marginleft:hover {
   background-color: transparent;
   border: none; }
 .favorites button:first-of-type {
-  margin-left: 20px; }
+  margin-left: 10px; }
 .favorites:not(#dashboard-favorites) {
   border-bottom: 1px solid #fff;
   margin-left: 16px;
