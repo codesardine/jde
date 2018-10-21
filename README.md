@@ -22,7 +22,7 @@ Technologies used - Webkit2 engine, Gtk toolkit, HTML, CSS, Javascript, Python.
 * Or clone the repository and run jade-dashboard on your local machine.
 
 #### Prerequisites
-* Python 3
+* Python 3.6 and above.
 * [Jade Application Kit](https://github.com/codesardine/Jade-Application-Kit) - Installing (python3 setup.py install)
 * gnome-menus - Gmenu-module
 * python-gobject (pygi)
