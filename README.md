@@ -17,6 +17,8 @@ Technologies used - Webkit2 engine, Gtk toolkit, HTML, CSS, Javascript, Python.
 ### Getting Started
 * Easy way to try it download [Manjaro WebDad Community Edition](https://sourceforge.net/projects/manjaro-webdad/), run it in a VM or boot it in your pc, the later will give you a better experience, since it uses native hardware acceleration.
 
+* All the related packages can be found here - https://gitlab.manjaro.org/packages/community/webdad.
+
 * Alternatively Install jade-dashboard from Manjaro repositorys.
 
 * Or clone the repository and run jade-dashboard on your local machine.
