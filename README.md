@@ -41,7 +41,7 @@ Please read [CONTRIBUTING.md](https://github.com/codesardine/Jadesktop/blob/mast
 * If there is something you can't find or do inside the interface, open an issue, as I consider UX issues a bug.
 * I work on this on my free time, issues may take me a while to resolve.
 
-* Also visit te [Wiki](https://github.com/codesardine/Jadesktop/wiki) for more detailed information. 
+* Also visit the [Wiki](https://github.com/codesardine/Jadesktop/wiki) for more detailed information. 
 
 ## Versioning
 
