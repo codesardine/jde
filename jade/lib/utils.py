@@ -1,6 +1,9 @@
+import os
+import pwd
+import subprocess
 from functools import lru_cache as cache
+
 from j.AK import Api
-import subprocess, pwd, os
 
 
 def run(command):
@@ -14,7 +17,7 @@ def get_desktop_env():
 def get_user_name():
     user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
     if user_name == "" and os.path.exists("/usr/bin/calamares"):
-        user_name = "Manjaro WebDad"    
+        user_name = "Manjaro WebDad"
 
     return user_name
 
@@ -25,14 +28,13 @@ def get_disk_usage():
     :return: total disk usage in percentage
     """
     contents = []
-    disk_usage = os.popen('df --total')  # TODO this works but needs a fix i don't like having to use a list.
-    for entry in disk_usage:
-        if entry.startswith("total"):
-            contents.append(entry)
-            percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
-            return percentage
+    entry = os.popen("df --total | grep -E '^total' ").read().strip()
+    if entry:
+        contents.append(entry)
+        percentage = contents[0].split("%")[0].strip().split(" ")[-1].strip() + "%"
+        return percentage
 
-            
+
 def autostart():
     if get_desktop_env() == "jade":
         # autostart .desktop files if environment variable is jade 
@@ -49,5 +51,3 @@ def get_user_style():
 
     else:
         Api.html += "</body></html>"
-
-
