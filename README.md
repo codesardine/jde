@@ -1,3 +1,5 @@
+### This webkit based version is depreciated, there is a new webengine version in the works, will update the readme when uploaded, there is no realease date.
+
 ## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,webkit,css,manjaro,jadesktop)
 
 Desktop Environment built with Web Technologies for [Manjaro Linux](https://manjaro.org/), watch the video [here](https://www.youtube.com/watch?v=YeNLBA4Cq8w).
