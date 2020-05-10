@@ -26,6 +26,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Visual application search
 * Settings panel integrates with individual applications settings
 * Dbus integration
+* UI inspector
 
 ### Manjaro Integration
 * Restore factory profile settings
