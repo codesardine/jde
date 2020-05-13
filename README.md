@@ -42,6 +42,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * [JAK](https://github.com/codesardine/Jade-Application-Kit) 
 * Python GObject Introspection 
 * Python-Dbus
+* Gnome Menu GObject Introspection
 * WMctrl
 * A compositing window manager
 * Xorg
