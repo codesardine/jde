@@ -1,0 +1,165 @@
+#!/usr/bin/python3
+# coding: utf-8
+"""
+ Just Another Desktop Environment
+ Copyright (c) 2020 Vitor Lopes
+ https://github.com/codesardine/Jadesktop
+
+"""
+import Dbus
+import gi
+import json
+from dbus.mainloop.glib import DBusGMainLoop
+from gi.repository import GLib
+from gi.repository import Gio
+import Icons as icons
+from Utils import Session, Desktop
+from JAK import Application
+from JAK import IPC
+from JAK.Utils import bindings
+from JAK.Utils import Instance
+if bindings() == "PyQt5":
+    from PyQt5.QtCore import Qt
+    from PyQt5.QtCore import pyqtSlot as Slot, QObject, pyqtProperty as Prop
+
+
+class Bind:
+    
+    @staticmethod
+    def get_desktop_app(file):
+        desktop_file = Gio.DesktopAppInfo.new_from_filename(file)
+        Gio.DesktopAppInfo.launch(desktop_file)
+        
+
+    @staticmethod
+    def listen(data):
+        if data.endswith(".desktop"):
+            Bind.get_desktop_app(data)
+    
+
+class SharedObj(QObject):
+    def __init__(self):
+        super().__init__()
+
+    @Slot()
+    def showInspector(self):
+        window = Instance.retrieve("win")
+        window.showInspector()
+
+    @Slot()
+    def setBackgroundImage(self):
+        Desktop.setBackground()
+
+    @Slot()
+    def hideInspector(self):
+        window = Instance.retrieve("win")
+        window.hideInspector()   
+
+    @Slot()
+    def showDesktop(self):
+        Desktop.showScreen()
+
+    @Slot(str)
+    def setBranch(self, branch):
+        Desktop.setBranch(branch)
+
+    @Slot()
+    def restoreDefaults(self):
+        Desktop.restoreDefaultsDialog()
+
+    @Prop(str)
+    def about(self):
+        return Desktop.about()
+
+    @Slot(str, bool)
+    def saveSettings(self, key, value):
+        Desktop.saveSettings(key, value)
+
+    """ Icons """
+
+    @Prop(str)
+    def backgroundIcon(self):
+        return icons.get("desktop")
+
+    @Prop(str)
+    def infoIcon(self):
+        return icons.get("dialog-information")
+
+    @Prop(str)
+    def restoreIcon(self):
+        return icons.get("backup")
+
+    @Prop(str)
+    def searchIcon(self):
+        return icons.get("search-icon")
+        
+    @Prop(str)
+    def getBranch(self):
+        return Desktop.getBranch()
+
+    
+
+class Exit():
+
+    @staticmethod
+    def logOut(self):
+        Session.logOut()
+
+    @staticmethod
+    def powerOff(self):
+        Session.powerOff()
+
+    @staticmethod
+    def reboot(self):
+        Session.reboot()
+
+    @staticmethod
+    def hibernate(self):
+        Session.hibernate()
+
+    @staticmethod
+    def suspend(self):
+        Session.suspend()
+
+    @staticmethod
+    def sleep(self):
+        Session.sleep()
+   
+
+def main(): 
+       
+    app = Application.JWebApp(
+        window = {
+            "title": "JADE",
+            "setFlags": (Qt.NoDropShadowWindowHint | Qt.WindowStaysOnBottomHint | Qt.FramelessWindowHint),
+            "fullScreen": True,
+            "setAttribute": (Qt.WA_X11NetWmWindowTypeDesktop, Qt.WA_X11NetWmWindowTypeDesktop),
+            "transparent": True,
+            "backgroundImage": Desktop.getBackground(),
+            "icon": f"{Desktop.getPath()}/images/logo.svg",
+            "SystemTrayIcon": [ {"trayIcon": icons.get("exit")},
+                {"title": "Log Out", "action": Exit.logOut, "icon": icons.get("system-log-out")},
+                {"title": "Power Off", "action": Exit.powerOff, "icon": icons.get("system-shutdown")},
+                {"title": "Reboot", "action": Exit.reboot, "icon": icons.get("system-reboot")},
+                {"title": "Hibernate", "action": Exit.hibernate, "icon": icons.get("system-hibernate-symbolic")},
+                {"title": "Suspend", "action": Exit.suspend, "icon": icons.get("system-suspend")},
+                {"title": "Sleep", "action": Exit.sleep, "icon": icons.get("system-hibernate")}
+                ]
+        },
+
+        webview = {
+            "webContents": f"{Desktop.getPath()}/themes/default/main.html",
+            "webChannel": { "active": True, "sharedOBJ": SharedObj() },
+            "injectJavaScript": {"JavaScript": Desktop.getJS(), "name": "JADE"},
+            "addCSS": f"{Session.userCSS()}"
+        })
+    app.run()      
+
+
+if __name__ == "__main__":
+    DBusGMainLoop(set_as_default=True)
+    loop = GLib.MainLoop()
+    Dbus.Service()
+    IPC.Bind = Bind
+    main()
+    loop.start()

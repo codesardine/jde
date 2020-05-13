@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Icon=app-launcher
+Terminal=false
+Exec=dbus-send --session --dest=org.jade.Desktop --type=method_call /org/jade/Desktop org.jade.Desktop.toggleLauncher
+X-AppStream-Ignore=true
+StartupNotify=false
+Name=Applications

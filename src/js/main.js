@@ -1,0 +1,412 @@
+Jade.Desktop = class API {
+
+  constructor() {}
+
+  setBranch(branch) {
+    JAK.Bridge.setBranch(branch)
+  }
+
+  elem(element) {
+    return document.querySelector(element)
+  }
+
+  elems(elements) {
+    return document.querySelectorAll(elements)
+  }
+
+  toggleSettings() {
+    let settingsSidenav = this.settingsSidenav()
+    if (settingsSidenav.isOpen == true) {
+      this.closeSettings()
+    } else {
+      let appView = this.appView()
+      let classes = appView.classList
+      if (classes.contains("show")) {
+        this.closeApplications()
+      }
+      this.showDesktop()
+      this.openSettings()
+    }
+  }
+
+  toggleSearch() {
+    if (this.searchBar().classList.contains("show")) {
+      this.closeSearch()
+    } else {
+      if (this.settingsSidenav().isOpen == true) {
+        this.closeSettings()
+      }
+      let appView = this.appView()
+      if (appView.classList.contains("show")) {
+        this.closeApplications()
+      }
+      this.openSearch()
+      this.showDesktop()
+      this.searchBar().querySelector("input").focus()
+    }
+  }
+
+  closeSearch() {
+    this.searchBar().classList.remove("show")
+  }
+
+  openSearch() {
+    this.searchBar().classList.add("show")
+  }
+
+  toggleLauncher() {
+    let appView = this.appView()
+    let classes = appView.classList
+    if (classes.contains("show")) {
+      this.closeApplications()
+    } else {
+      this.openApplications()
+    }
+  }
+
+  buildApplications(category) {
+    if (category == "Settings") {
+      let settingsView = desktop.elem("#Settings")
+      var destination = settingsView
+    } else {
+      var destination = this.appView()
+    }
+
+    function build(category) {
+      let menu = Jade.menu[category]
+      let apps = menu['apps'];
+      for (let app in apps) {
+        let name = apps[app].name;
+        let icon = apps[app].icon;
+        let description = apps[app].description;
+        let category = apps[app].category;
+        let file = apps[app].path;
+        let keywords = apps[app].keywords;
+        desktop.buildHTML(destination, name, icon, description, keywords, file)
+      }
+    }
+
+    if (category == "Settings") {
+      build(category)
+    } else {
+      let categoryBtn = desktop.elem("#" + category.replace(" ", "") + "-btn")
+      if (category != "Settings" && categoryBtn.checked) {
+        build(category)
+      }
+    }
+  }
+
+  buildHTML(el, name, icon, description, keywords, file) {
+    el.insertAdjacentHTML('beforeend', appTemplate(name, icon, description, keywords, file))
+  }
+
+  showDesktop() {
+    JAK.Bridge.showDesktop()
+  }
+
+  hideInspector() {
+    JAK.Bridge.hideInspector();
+  }
+
+  settingsSidenav() {
+    return M.Sidenav.getInstance(this.elem('.sidenav'))
+  }
+
+  about() {
+    return M.Modal.getInstance(this.elem('#about'))
+  }
+
+  searchBar() {
+    return this.elem('.search')
+  }
+
+  appView() {
+    return this.elem('#Applications')
+  }
+
+  closeSettings() {
+    this.settingsSidenav().close();
+    let el = this.elem('#Settings')
+    this.empty(el)
+  }
+
+  openSettings() {
+    this.closeSearch()
+    this.buildApplications('Settings');
+    this.settingsSidenav().open();
+  }
+
+  closeApplications() {
+    this.appView().classList.remove("show")
+    this.empty(this.appView())
+  }
+
+  openApplications() {
+    for (let category in Jade.menu) {
+      if (category != "Settings") {
+        desktop.buildApplications(category);
+      }
+    }
+    let appView = this.appView()
+    if (appView.innerHTML != "") {
+      this.closeSearch()
+      desktop.closeSettings()
+      desktop.showDesktop()
+      setTimeout(function () {
+        appView.classList.add("show");
+      }, 100);
+    }
+  }
+
+  empty(el) {
+    setTimeout(function () {
+      el.innerHTML = ""
+    }, 400);
+  }
+
+  matchQuery(item, searchQuery) {
+    if (searchQuery.length > 2) {
+      return item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.keywords.toLowerCase().includes(searchQuery.toLowerCase())
+    }
+  }
+}
+
+function appTemplate(name, icon, description, keywords, file) {
+  let template = `
+  <div class="grid-item">
+    <div class="app">
+      <div class="icons-container">
+      <a class="ipc" onclick="JAK.IPC('${file}');return false;"><img class="app-icon" src="${icon}">
+      <div class="app-title">
+        ${name}
+      </div></a>
+      </div>
+      
+      <div class="description">${description.toLowerCase()}</div>
+      <span style="display:none;">${keywords}</span>
+    </div>
+  `
+  return template
+}
+
+function init() {
+  desktop = new Jade.Desktop();
+  let about = JSON.parse(JAK.Bridge.about)
+
+  new Vue({
+    el: '#app',
+    data: {
+      title: "Settings",
+      backgroundBtnIcon: JAK.Bridge.backgroundIcon,
+      backgroundBtnText: "Change Wallpaper",
+      moodBackGroundText: "Mood Background",
+      restoreText: "Restore Defaults",
+      restoreBtnIcon: JAK.Bridge.restoreIcon,
+      aboutText: "About",
+      devToolsText: "DevTools",
+      inspectorText: "Inspector",
+      branchTitle: "Software Branch",
+      stable: "Stable",
+      testing: "Testing",
+      unstable: "Unstable",
+      experimentalFeaturesText: "Experimental features",
+      searchBtnIcon: JAK.Bridge.searchIcon,
+      aboutTitle: about["title"],
+      aboutDescription: about["description"],
+      urlText: "Project URL and reporting bugs.",
+      url: about["url"],
+      aboutLicense: "License: " + about["license"],
+      aboutAuthor: "Copyright © 2020 " + about["author"],
+      ok: "OK",
+      aboutBtnIcon: JAK.Bridge.infoIcon,
+      warranty: "This program comes with absolutely no warranty.",
+      categories: Jade.menu,
+      categoriesTittle: "Visible Categories",
+      searchQuery: '',
+      Accessories: Jade.menu.Accessories.apps,
+      Development: Jade.menu.Development.apps,
+      Education: Jade.menu.Education.apps,
+      Gaming: Jade.menu.Gaming.apps,
+      GoOnline: Jade.menu["Go Online"].apps,
+      Graphics: Jade.menu.Graphics.apps,
+      Help: Jade.menu.Help.apps,
+      Multimedia: Jade.menu.Multimedia.apps,
+      Office: Jade.menu.Office.apps,
+      System: Jade.menu.System.apps,
+      Settings: Jade.menu.Settings.apps,
+      activeAppText: "Press enter to run ",
+    },
+
+    computed: {
+      filterAccessories() {
+        return this.Accessories.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterDevelopment() {
+        return this.Development.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterEducation() {
+        return this.Education.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterGaming() {
+        return this.Gaming.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterGoOnline() {
+        return this.GoOnline.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterGraphics() {
+        return this.Graphics.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterHelp() {
+        return this.Help.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterMultimedia() {
+        return this.Multimedia.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterOffice() {
+        return this.Office.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterSystem() {
+        return this.System.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      },
+      filterSettings() {
+        return this.Settings.filter(item => {
+          return desktop.matchQuery(item, this.searchQuery)
+        })
+      }
+    }
+  })
+
+  for (let [key, value] of Object.entries(Jade.settings)) {
+    let button = desktop.elem(`#${key}-btn`)
+    if (button != null) {
+      button.checked = value
+      button.addEventListener('click', function () {
+        JAK.Bridge.saveSettings(key, button.checked)
+      })
+    }
+  }
+
+  M.Modal.init(desktop.elem('.modal'))
+  desktop.elem(`#${JAK.Bridge.getBranch}-btn`).checked = true
+
+  M.Sidenav.init(desktop.elems('.sidenav'), {
+    menuWidth: 300,
+    edge: 'left',
+    draggable: true
+  })
+
+  desktop.elem(".drag-target").onmouseenter = function () {
+    desktop.toggleSettings()
+  }
+
+  desktop.elem(".app-view-drag-target").onmouseenter = function () {
+    desktop.toggleLauncher()
+  }
+
+  desktop.elem('#background-btn').addEventListener('click', function () {
+    JAK.Bridge.setBackgroundImage()
+  })
+
+  let inspectorBtn = desktop.elem('#inspector-btn')
+  inspectorBtn.addEventListener('click', function () {
+    if (inspectorBtn.checked) {
+      JAK.Bridge.showInspector()
+    } else {
+      JAK.Bridge.hideInspector()
+    }
+  })
+
+  desktop.elem('#defaults-btn').addEventListener('click', function () {
+    JAK.Bridge.restoreDefaults()
+  })
+
+  desktop.elem('#stable-btn').addEventListener('click', function () {
+    desktop.setBranch("stable")
+  })
+
+  desktop.elem('#testing-btn').addEventListener('click', function () {
+    desktop.setBranch("testing")
+  })
+
+  desktop.elem('#unstable-btn').addEventListener('click', function () {
+    desktop.setBranch("unstable")
+  })
+
+  let devTools = desktop.elem('#devtools')
+  let devToolsBtn = desktop.elem('#devtools-btn')
+  devToolsBtn.addEventListener('click', function () {
+    screen = desktop.elem('#screen-overlay')
+    let classes = devTools.classList
+    if (devToolsBtn.checked) {
+      classes.add("show")
+      screen.classList.add("devtools-on")
+    } else {
+      classes.remove("show")
+      screen.classList.remove("devtools-on")
+    }
+  })
+
+  function toggleVideo(videoBackgroundBtn) {
+    let video = desktop.elem('#video-background')
+    if (videoBackgroundBtn.checked) {
+      video.src = "../../mood-backgrounds/background.mp4"
+    } else {
+      video.src = ""
+    }
+  }
+
+  let videoBackgroundBtn = desktop.elem('#video-background-btn')
+  videoBackgroundBtn.checked = Jade.settings.moodBackground
+  toggleVideo(videoBackgroundBtn)
+  videoBackgroundBtn.addEventListener('click', function () {
+    toggleVideo(videoBackgroundBtn)
+    JAK.Bridge.saveSettings("moodBackground", videoBackgroundBtn.checked)
+  })
+
+  let categoriesBtn = desktop.elem('#categories-btn')
+  categoriesBtn.addEventListener('click', function () {
+    let categoriesMenu = desktop.elem("#categories-submenu")
+    let classes = categoriesMenu.classList
+    if (categoriesBtn.checked) {
+      classes.add("show")
+    } else {
+      classes.remove("show")
+    }
+  })
+
+  let appView = desktop.elem("#Applications")
+  appView.onmouseleave = function () {
+    desktop.closeApplications()
+  }
+
+  let dashboardSettings = desktop.elem("#settingsSidePanel")
+  dashboardSettings.onmouseleave = function () {
+    desktop.closeSettings()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  init()
+})
