@@ -6,7 +6,7 @@
 }
 
 body * {
-  font-family: "system" !important;
+  font-family: Roboto !important;
 }
 
 .app .description {
@@ -157,7 +157,7 @@ body * {
 }
 
 #settingsSidePanel * {
-  font-size: 14px !important;
+  font-size: 12px !important;
   font-weight: 500 !important;
 }
 
