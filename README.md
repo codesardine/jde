@@ -1,3 +1,5 @@
+<img src="./src/images/logo.svg" alt="drawing" width="80"/>  
+
 ## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,webkit,css,manjaro,jadesktop)
 
 Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, backend is QT and GTK.
@@ -40,6 +42,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * [JAK](https://github.com/codesardine/Jade-Application-Kit) 
 * Python GObject Introspection 
 * Python-Dbus
+* Gnome Menu GObject Introspection
 * WMctrl
 * A compositing window manager
 * Xorg
