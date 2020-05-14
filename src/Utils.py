@@ -167,8 +167,8 @@ class Desktop:
         run(f"cp -r /etc/skel {home}")
         from JAK.Widgets import InfoDialog
         window = Instance.retrieve("win")
-        msg = f"You are now set on {Desktop.getBranch().capitalize()}, Please sync your new mirrors."
-        InfoDialog(window, "Software Branch", msg)
+        msg = "Profile defaults have been set on your home directory."
+        InfoDialog(window, "Set Defaults", msg)
 
     @staticmethod
     def saveSettings(key, value):
