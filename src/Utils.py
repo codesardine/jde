@@ -120,11 +120,7 @@ class Desktop:
             background = Desktop.loadSettings()["background"]
         except Exception:
             background = f"{Desktop.getPath()}/themes/default/backgrounds/background.jpg"
-
-        if os.path.exists(background):
-            return background
-        else:
-            return ""
+        return background
 
 
     @staticmethod

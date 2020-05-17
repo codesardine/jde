@@ -36,4 +36,4 @@ class Options():
                     defaults[key] = self.config.getboolean('DEFAULT', key)
                 else:
                     defaults[key] = value
-            return defaults
+        return defaults
