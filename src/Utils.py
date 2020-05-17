@@ -118,9 +118,14 @@ class Desktop:
     def getBackground():
         try:
             background = Desktop.loadSettings()["background"]
-        except KeyError:
+        except Exception:
             background = f"{Desktop.getPath()}/themes/default/backgrounds/background.jpg"
-        return background
+
+        if os.path.exists(background):
+            return background
+        else:
+            return ""
+
 
     @staticmethod
     def getJS():
