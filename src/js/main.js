@@ -191,6 +191,15 @@ function appTemplate(name, icon, description, keywords, file) {
   return template
 }
 
+function checkCategoryIsAvailable(value) {
+  
+  if (Jade.menu[`${value}`]) {
+    return Jade.menu[`${value}`].apps
+  } else {
+    return null
+  }
+}
+
 function init() {
   desktop = new Jade.Desktop();
   let about = JSON.parse(JAK.Bridge.about)
@@ -225,75 +234,86 @@ function init() {
       categories: Jade.menu,
       categoriesTittle: "Visible Categories",
       searchQuery: '',
-      Accessories: Jade.menu.Accessories.apps,
-      Development: Jade.menu.Development.apps,
-      Education: Jade.menu.Education.apps,
-      Gaming: Jade.menu.Gaming.apps,
-      GoOnline: Jade.menu["Go Online"].apps,
-      Graphics: Jade.menu.Graphics.apps,
-      Help: Jade.menu.Help.apps,
-      Multimedia: Jade.menu.Multimedia.apps,
-      Office: Jade.menu.Office.apps,
-      System: Jade.menu.System.apps,
-      Settings: Jade.menu.Settings.apps,
+      Accessories: checkCategoryIsAvailable("Accessories"),
+      Development: checkCategoryIsAvailable("Development"),
+      Education: checkCategoryIsAvailable("Education"),
+      Gaming: checkCategoryIsAvailable("Gaming"),
+      GoOnline: checkCategoryIsAvailable("Go Online"),
+      Graphics: checkCategoryIsAvailable("Graphics"),
+      Help: checkCategoryIsAvailable("Help"),
+      Multimedia: checkCategoryIsAvailable("Multimedia"),
+      Office: checkCategoryIsAvailable("Office"),
+      System: checkCategoryIsAvailable("System"),
+      Settings: checkCategoryIsAvailable("Settings"),
       activeAppText: "Press enter to run ",
     },
 
     computed: {
       filterAccessories() {
+        if (checkCategoryIsAvailable('Accessories')) {
         return this.Accessories.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterDevelopment() {
+        if (checkCategoryIsAvailable('Development')) {
         return this.Development.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterEducation() {
+        if (checkCategoryIsAvailable('Education')) {
         return this.Education.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterGaming() {
+        if (checkCategoryIsAvailable('Gaming')) {
         return this.Gaming.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterGoOnline() {
+        if (checkCategoryIsAvailable('Go Online')) {
         return this.GoOnline.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterGraphics() {
+        if (checkCategoryIsAvailable('Graphics')) {
         return this.Graphics.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterHelp() {
+        if (checkCategoryIsAvailable('Help')) {
         return this.Help.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterMultimedia() {
+        if (checkCategoryIsAvailable('Multimedia')) {
         return this.Multimedia.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterOffice() {
+        if (checkCategoryIsAvailable('Office')) {
         return this.Office.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterSystem() {
+        if (checkCategoryIsAvailable('System')) {
         return this.System.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       },
       filterSettings() {
+        if (checkCategoryIsAvailable('Settings')) {
         return this.Settings.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })
+        })}
       }
     }
   })
