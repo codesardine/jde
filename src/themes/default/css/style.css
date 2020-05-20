@@ -413,13 +413,14 @@ input[type="file"] {
 
 .search {
   position: fixed;
-  top: 50%;
+  top: calc(50% - 56px);
   left: 50%;
   z-index: 9992;
   padding: 4px 10px;
   background-color: transparent;
   transform: translate(-50%);
   z-index: -2;
+  padding-top: 0;
 }
 
 .search input[type="text"] {
