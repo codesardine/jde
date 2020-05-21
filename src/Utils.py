@@ -44,17 +44,6 @@ class Session():
     def get_desktop_session(self):
         return self.desktop_session
 
-    def get_user_name(self):
-        user_name = pwd.getpwuid(os.getuid())[4].replace(",", " ")
-        if not user_name and os.path.exists("/usr/bin/calamares"):
-            user_name = "Manjaro WebDad"
-        return user_name
-
-    def autostart(self):
-        if self.desktop_session == "jade":
-            command = "dex -ae JADE"
-            run(command)
-
     @staticmethod
     def userCSS():
         user_folder = Desktop.getHome()
