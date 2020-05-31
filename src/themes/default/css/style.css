@@ -458,7 +458,8 @@ input[type="file"] {
 
 .search ul .current-app {
   position: fixed;
-  top: -109px;
+  top: -114px;
+  height: 114px;
   display: none;
   text-align: center;
   left: 10px;
