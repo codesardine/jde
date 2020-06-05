@@ -140,19 +140,22 @@ body * {
 }
 
 #settingsSidePanel ul,
-#categories-submenu {
+#categories-submenu,
+#backgrounds-submenu {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 #settingsSidePanel ul li label,
-#categories-submenu li label {
+#categories-submenu li label,
+#backgrounds-submenu li label {
   color: inherit;
   cursor: pointer;
 }
 
 #settingsSidePanel ul li p,
-#categories-submenu li p {
+#categories-submenu li p,
+#backgrounds-submenu li p {
   margin-bottom: 0;
 }
 
@@ -214,7 +217,8 @@ body * {
 
 #settingsSidePanel ul,
 #settingsSidePanel #Settings,
-#categories-submenu {
+#categories-submenu,
+#backgrounds-submenu {
   overflow: scroll;
 }
 
@@ -239,12 +243,14 @@ input[type="file"] {
 }
 
 #settingsSidePanel form p,
-#categories-submenu p {
+#categories-submenu p,
+#backgrounds-submenu p {
   margin-top: 0;
   line-height: 48px;
 }
 
-#branches p {
+#branches p,
+#backgrounds-submenu p {
   line-height: 34px !important;
 }
 
@@ -390,7 +396,8 @@ input[type="file"] {
   margin-left: -20px;
 }
 
-#categories-submenu {
+#categories-submenu,
+#backgrounds-submenu {
   position: absolute;
   background: #eeeeee;
   margin-top: 100px;
@@ -402,11 +409,17 @@ input[type="file"] {
   padding: 0;
 }
 
-#categories-submenu.show {
+#backgrounds-submenu {
+  z-index: 998;
+}
+
+#categories-submenu.show,
+#backgrounds-submenu.show {
   transform: translateX(0);
 }
 
-.categories-container [type="checkbox"]:checked+span:after {
+.categories-container [type="checkbox"]:checked+span:after,
+.backgrounds-container [type="checkbox"]:checked+span:after  {
   border: 2px solid #2196f3 !important;
   background-color: #2196f3 !important;
 }

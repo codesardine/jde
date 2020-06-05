@@ -71,7 +71,7 @@ class SharedObj(QObject):
     def about(self):
         return Desktop.about()
 
-    @Slot(str, bool)
+    @Slot(str, str)
     def saveSettings(self, key, value):
         Desktop.saveSettings(key, value)
 
@@ -151,7 +151,7 @@ def main():
             "webContents": f"{Desktop.getPath()}/themes/default/main.html",
             "webChannel": { "active": True, "sharedOBJ": SharedObj() },
             "injectJavaScript": {"JavaScript": Desktop.getJS(), "name": "JADE"},
-            "addCSS": f"{Session.userCSS()}"
+            "addCSS": Session.userCSS()
         })
     app.run()      
 

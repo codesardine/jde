@@ -204,6 +204,20 @@ function init() {
   desktop = new Jade.Desktop();
   let about = JSON.parse(JAK.Bridge.about)
 
+  Jade.videos = [
+    "Beach",
+    "Blue Sky",
+    "Burning Fire",
+    "Foggy Mountain",
+    "Lightning",
+    "Lake",
+    "Yellow Flower",
+    "Shark Tank",
+    "Aurora Borealis",
+    "Ink Splash",
+    "Ink Mix"
+  ]
+
   new Vue({
     el: '#app',
     data: {
@@ -246,6 +260,8 @@ function init() {
       System: checkCategoryIsAvailable("System"),
       Settings: checkCategoryIsAvailable("Settings"),
       activeAppText: "Press enter to run ",
+      videos: Jade.videos,
+      "disabledText": "Disabled",
     },
 
     computed: {
@@ -323,7 +339,7 @@ function init() {
     if (button != null) {
       button.checked = value
       button.addEventListener('click', function () {
-        JAK.Bridge.saveSettings(key, button.checked)
+      JAK.Bridge.saveSettings(key, button.checked)
       })
     }
   }
@@ -355,8 +371,7 @@ function init() {
       JAK.Bridge.showInspector()
     } else {
       JAK.Bridge.hideInspector()
-    }
-  })
+    }})
 
   desktop.elem('#defaults-btn').addEventListener('click', function () {
     JAK.Bridge.restoreDefaults()
@@ -388,23 +403,48 @@ function init() {
     }
   })
 
-  function toggleVideo(videoBackgroundBtn) {
+  function toggleVideo(btn, name) {
     let video = desktop.elem('#video-background')
-    if (videoBackgroundBtn.checked) {
-      video.src = "../../mood-backgrounds/background.mp4"
+    if (btn.checked && name != false) {
+      video.src = `../../mood-backgrounds/${name.replace(" ", "-").toLowerCase()}.mp4`
     } else {
       video.src = ""
     }
   }
 
-  let videoBackgroundBtn = desktop.elem('#video-background-btn')
-  videoBackgroundBtn.checked = Jade.settings.moodBackground
-  toggleVideo(videoBackgroundBtn)
-  videoBackgroundBtn.addEventListener('click', function () {
-    toggleVideo(videoBackgroundBtn)
-    JAK.Bridge.saveSettings("moodBackground", videoBackgroundBtn.checked)
+  if (Jade.settings.moodBackground) {
+    let video = Jade.settings.moodBackground
+    let btn = desktop.elem(`#${video.replace(" ", "-")}-btn`)
+    btn.checked = true
+    toggleVideo(btn, video)
+}
+
+let disabledBtn = desktop.elem("#disabled-btn")
+disabledBtn.addEventListener('click', function () {
+  toggleVideo(disabledBtn, false)
+  JAK.Bridge.saveSettings("moodBackground", "disabled")
+})
+
+  Jade.videos.forEach((video ) => {
+    let btn = desktop.elem(`#${video.replace(" ", "-")}-btn`)
+    btn.addEventListener('click', function () {
+      toggleVideo(btn, video)
+      JAK.Bridge.saveSettings("moodBackground", video.replace(" ", "-"))
+})
+   
   })
 
+  let backgroundsBtn = desktop.elem('#video-background-btn')
+  backgroundsBtn.addEventListener('click', function () {
+    let backgroundsMenu = desktop.elem("#backgrounds-submenu")
+    let classes = backgroundsMenu.classList
+    if (backgroundsBtn.checked) {
+      classes.add("show")
+    } else {
+      classes.remove("show")
+    }
+  })
+  
   let categoriesBtn = desktop.elem('#categories-btn')
   categoriesBtn.addEventListener('click', function () {
     let categoriesMenu = desktop.elem("#categories-submenu")

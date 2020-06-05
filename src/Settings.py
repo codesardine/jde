@@ -7,7 +7,7 @@ class Options():
     def __init__(self):
         self.config = configparser.ConfigParser()
         self.config.optionxform = str
-        self.settings = f"{str(pathlib.Path.home())}/.config/jade.conf"
+        self.settings = f"{str(pathlib.Path.home())}/.config/jade/desktop.conf"
         self.config.read(self.settings)
 
     def save(self, key, value):
@@ -18,7 +18,7 @@ class Options():
     def load(self):
         defaults = {
             "debug": False,
-            "moodBackground": False,
+            "moodBackground": "disabled",
             "Accessories": True,
             "Development": False,
             "Education": True,
@@ -32,7 +32,7 @@ class Options():
         }
         if os.path.exists(self.settings):
             for key, value in self.config.items('DEFAULT'):
-                if value == "True" or value == "False":
+                if value == "true" or value == "false":
                     defaults[key] = self.config.getboolean('DEFAULT', key)
                 else:
                     defaults[key] = value

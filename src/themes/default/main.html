@@ -50,14 +50,33 @@
             </a>
           </li>
           <li class="focus-on-hover">
-            <div class="switch">
-              <label>
-                <input id="video-background-btn" type="checkbox">
-                <span class="lever"></span>
-                {{ moodBackGroundText }}
-              </label>
-            </div>
-          </li>
+              <form action="#" class="backgrounds-container">
+                <p>
+                  <label>
+                    <input id="video-background-btn" type="checkbox" class="filled-in" />
+                    <span>{{ moodBackGroundText }}</span>
+                  </label>
+                </p>
+              </form>
+              <ul id="backgrounds-submenu" class="focus-on-hover">
+                  <li>
+                    <form id="activeBackground" action="#">
+                        <p>
+                            <label>
+                              <input id="disabled-btn" type="radio"  name="activeBackground" class="filled-in" />
+                              <span>{{ disabledText }}</span>
+                            </label>
+                          </p>
+                      <p v-for="video in videos">
+                        <label>
+                          <input v-bind:id="video.replace(' ', '-') + '-btn'" type="radio"  name="activeBackground" class="filled-in" />
+                          <span>{{ video }}</span>
+                        </label>
+                      </p>
+                    </form>
+                  </li>
+                </ul>
+                <li>
           <li>
             <a class="focus-on-hover" id="defaults-btn" href="#!">
               <img id="restore-icon-btn" v-bind:src="restoreBtnIcon">
