@@ -1,6 +1,8 @@
 Jade.Desktop = class API {
 
-  constructor() {}
+  constructor() {
+    this.visible = true
+  }
 
   setBranch(branch) {
     JAK.Bridge.setBranch(branch)
@@ -24,9 +26,10 @@ Jade.Desktop = class API {
       if (classes.contains("show")) {
         this.closeApplications()
       }
-      this.showDesktop()
       this.openSettings()
+      JAK.Bridge.setPanelVisible(true)
     }
+    this.toggleDesktop()
   }
 
   toggleSearch() {
@@ -41,17 +44,10 @@ Jade.Desktop = class API {
         this.closeApplications()
       }
       this.openSearch()
-      this.showDesktop()
       this.searchBar().querySelector("input").focus()
+      JAK.Bridge.setPanelVisible(true)
     }
-  }
-
-  closeSearch() {
-    this.searchBar().classList.remove("show")
-  }
-
-  openSearch() {
-    this.searchBar().classList.add("show")
+    this.toggleDesktop()
   }
 
   toggleLauncher() {
@@ -61,7 +57,9 @@ Jade.Desktop = class API {
       this.closeApplications()
     } else {
       this.openApplications()
+      JAK.Bridge.setPanelVisible(true)
     }
+    this.toggleDesktop()
   }
 
   buildApplications(category) {
@@ -100,8 +98,17 @@ Jade.Desktop = class API {
     el.insertAdjacentHTML('beforeend', appTemplate(name, icon, description, keywords, file))
   }
 
-  showDesktop() {
-    JAK.Bridge.showDesktop()
+  closeSearch() {
+    this.searchBar().classList.remove("show")
+    JAK.Bridge.setPanelVisible(false)
+  }
+
+  openSearch() {
+    this.searchBar().classList.add("show")
+  }
+
+  toggleDesktop() {
+    JAK.Bridge.toggleDesktop()
   }
 
   hideInspector() {
@@ -128,6 +135,7 @@ Jade.Desktop = class API {
     this.settingsSidenav().close();
     let el = this.elem('#Settings')
     this.empty(el)
+    JAK.Bridge.setPanelVisible(false)
   }
 
   openSettings() {
@@ -139,6 +147,7 @@ Jade.Desktop = class API {
   closeApplications() {
     this.appView().classList.remove("show")
     this.empty(this.appView())
+    JAK.Bridge.setPanelVisible(false)
   }
 
   openApplications() {
@@ -151,7 +160,6 @@ Jade.Desktop = class API {
     if (appView.innerHTML != "") {
       this.closeSearch()
       desktop.closeSettings()
-      desktop.showDesktop()
       setTimeout(function () {
         appView.classList.add("show");
       }, 100);

@@ -22,6 +22,8 @@ if bindings() == "PyQt5":
     from PyQt5.QtCore import Qt
     from PyQt5.QtCore import pyqtSlot as Slot, QObject, pyqtProperty as Prop
 
+Instance.auto("desktop", Desktop())
+
 
 class Bind:
     
@@ -56,12 +58,18 @@ class SharedObj(QObject):
         window.hideInspector()   
 
     @Slot()
-    def showDesktop(self):
-        Desktop.showScreen()
+    def toggleDesktop(self):
+        desktop = Instance.retrieve("desktop")
+        desktop.toggle()
 
     @Slot(str)
     def setBranch(self, branch):
         Desktop.setBranch(branch)
+
+    @Slot(bool)
+    def setPanelVisible(self, value):
+        desktop = Instance.retrieve("desktop")
+        desktop.setPanelVisible(value)
 
     @Slot()
     def restoreDefaults(self):

@@ -4,8 +4,15 @@ import pwd
 import os
 import json
 import Menu
+import time
+import gi
+gi.require_version('Wnck', '3.0')
+from gi.repository import Wnck
+from gi.repository import GObject
 from Settings import Options
 from JAK.Utils import JavaScript, Instance
+from JAK.Utils import getScreenGeometry
+
 
 
 def run(command):
@@ -56,8 +63,54 @@ class Session():
                 print(err)
 
 
-class Desktop:
+class Desktop():
+    def __init__(self):
+        self.minimized_windows = []
+        self.screen = Wnck.Screen.get_default()
+        self.panel_open = False
+        self.screen.connect("window-opened", self.window_open_cb)
+        
+    def toggle(self):
+        # wnck only works on xorg
+        monitor = getScreenGeometry()        
+        self.screen.force_update()
+        windows = self.screen.get_windows()
+        workspace = self.screen.get_active_workspace()
+                
+        if not self.minimized_windows:
+            win = Instance.retrieve("win")
+            win.activateWindow()
+            for window in windows:
+                window_position = window.get_geometry()
+                if window.is_in_viewport(workspace) and not window.is_minimized():
+                    _type = window.get_window_type()
+                    # remove dock windows and select only windows on primary screen
+                    if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
+                        self.minimized_windows.append(window)
+                        window.minimize()                
+            
+        elif self.minimized_windows and not self.panel_open:
+            for window in self.minimized_windows:
+                if window.is_minimized():
+                    window.unminimize(int(time.time()))
+            self.clearWindows()
+                  
 
+    def setPanelVisible(self, value):
+        self.panel_open = value
+
+    def window_open_cb(self, screen, window):
+        if window.get_window_type() == Wnck.WindowType.DESKTOP:
+            pass
+            
+    def clearWindows(self): 
+        #FIXME for some reason we have to clear window list twice
+        for window in self.minimized_windows:
+            self.minimized_windows.remove(window)
+
+        for window in self.minimized_windows:
+            self.minimized_windows.remove(window)
+                  
     @staticmethod
     def getPath():
         return str(pathlib.Path(__file__).parent.absolute())
@@ -67,15 +120,9 @@ class Desktop:
         return str(pathlib.Path.home())
 
     @staticmethod
-    def showScreen():
-        win = Instance.retrieve("win")
-        win.activateWindow()
-        run('wmctrl -k on')
-
-    @staticmethod
     def toggleSearch():
         JavaScript.send("desktop.toggleSearch();")
-
+        
     @staticmethod
     def about():
         items = json.dumps({
@@ -88,10 +135,11 @@ class Desktop:
         return items
 
     @staticmethod
-    def show():
-        JavaScript.send("desktop.closeSettings();desktop.closeApplications();")
-        Desktop.showScreen()
-
+    def screenToggle():
+        desktop = Instance.retrieve("desktop")
+        desktop.setPanelVisible(False)
+        desktop.toggle()
+        
     @staticmethod
     def setBackground():
         from JAK.Widgets import FileChooserDialog
@@ -121,11 +169,11 @@ class Desktop:
     @staticmethod
     def toggleSettings():
         JavaScript.send("desktop.toggleSettings();")
-
+        
     @staticmethod
     def toggleLauncher():
         JavaScript.send("desktop.toggleLauncher();")
-
+        
     @staticmethod
     def setBranch(branch):
         p = run(f'pkexec pacman-mirrors --api --set-branch {branch}')
@@ -168,4 +216,4 @@ class Desktop:
     @staticmethod
     def loadSettings():
         options = Options()
-        return options.load()
+        return options.load()              
