@@ -6,4 +6,4 @@ Terminal=false
 Exec=dbus-send --session --dest=org.jade.Desktop --type=method_call /org/jade/Desktop org.jade.Desktop.screenToggle
 X-AppStream-Ignore=true
 StartupNotify=false
-Name=Desktop
+Name=Show/Hide Desktop
