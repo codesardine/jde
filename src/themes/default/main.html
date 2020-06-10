@@ -10,7 +10,21 @@
   <script src="js/vue.min.js"></script>
   <script src="../../js/main.js"></script>
 </head>
+<style>
+.search {
+  opacity:0;
+  z-index: -2;
+}
 
+#screen-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 106%);
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  bottom: 0;
+  z-index: -1;
+}
+</style>
 <body>
   <main id="app">
     <div id="settingsSidePanel" class="sidenav">
@@ -144,7 +158,7 @@
       <section id="Settings" class="grid"></section>
     </div>
     <section id="Applications" class="grid"></section>
-    <div class="search" style="opacity:0;">
+    <div class="search">
       <img v-bind:src="searchBtnIcon" id="search-icon">
       <input type="text" v-model="searchQuery">
       <ul class="collection" v-if="searchQuery">
