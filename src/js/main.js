@@ -131,6 +131,11 @@ Jade.Desktop = class API {
     return this.elem('#Applications')
   }
 
+  playVideo(src) {
+    let video = desktop.elem('#video-background')
+    video.src = src
+  }
+
   closeSettings() {
     this.settingsSidenav().close();
     let el = this.elem('#Settings')
@@ -186,12 +191,12 @@ function appTemplate(name, icon, description, keywords, file) {
   <div class="grid-item">
     <div class="app">
       <div class="icons-container">
-      <a class="ipc" onclick="JAK.IPC('${file}');return false;"><img class="app-icon" src="${icon}">
-      <div class="app-title">
-        ${name}
-      </div></a>
-      </div>
-      
+          <a class="ipc" onclick="JAK.IPC('${file}');return false;"><img class="app-icon" src="${icon}">
+              <div class="app-title">
+                ${name}
+              </div>
+          </a>
+      </div>      
       <div class="description">${description.toLowerCase()}</div>
       <span style="display:none;">${keywords}</span>
     </div>
@@ -412,11 +417,10 @@ function init() {
   })
 
   function toggleVideo(btn, name) {
-    let video = desktop.elem('#video-background')
     if (btn.checked && name != false) {
-      video.src = `../../mood-backgrounds/${name.replace(" ", "-").toLowerCase()}.mp4`
+      desktop.playVideo(`../../mood-backgrounds/${name.replace(" ", "-").toLowerCase()}.mp4`)
     } else {
-      video.src = ""
+      desktop.playVideo("")
     }
   }
 

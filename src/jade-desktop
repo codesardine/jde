@@ -15,7 +15,8 @@ from gi.repository import Gio
 import Icons as icons
 from Utils import Session, Desktop
 from JAK import Application
-from JAK import IPC
+from JAK import IPC, WebEngine
+from DropEvent import event
 from JAK.Utils import bindings
 from JAK.Utils import Instance
 if bindings() == "PyQt5":
@@ -23,6 +24,7 @@ if bindings() == "PyQt5":
     from PyQt5.QtCore import pyqtSlot as Slot, QObject, pyqtProperty as Prop
 
 Instance.auto("desktop", Desktop())
+WebEngine.JWebView.dropEvent = event
 
 
 class Bind:
