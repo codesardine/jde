@@ -21,6 +21,10 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Small codebase anyone with HTML/CSS skills can change the desktop to look and behave differently.
 * Built for my own personal use.
 
+### Packaging and Downloads
+* Any related packages can be found on [gitlab](https://gitlab.manjaro.org/packages/community/jade).
+* ISO images can be found on [ODSN](https://osdn.net/projects/manjaro-community/storage/webdad/).
+
 ## Features
 * Clean and minimalistic interface
 * Hot corners
@@ -44,7 +48,6 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Python GObject Introspection 
 * Python-Dbus
 * Gnome Menu GObject Introspection
-* WMctrl
 * A compositing window manager
 * Xorg
 * Wayland (work in progress)
