@@ -44,6 +44,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * TODO
 
 ### Prerequisites
+* [Menu Data](https://github.com/codesardine/jade-menu-data)
 * [JAK](https://github.com/codesardine/Jade-Application-Kit) 
 * Python GObject Introspection 
 * Python-Dbus
