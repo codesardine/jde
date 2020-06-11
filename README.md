@@ -35,6 +35,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Settings panel integrates with individual applications settings
 * Dbus integration
 * UI inspector
+* Animated Backgrounds
 
 ### Manjaro Integration
 * Restore factory profile settings
