@@ -29,6 +29,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Clean and minimalistic interface
 * Hot corners
 * Settings panel
+* Show/Hide application type
 * Keyboard application search
 * Visual application search
 * Settings panel integrates with individual applications settings
