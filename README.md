@@ -21,19 +21,20 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Small codebase anyone with HTML/CSS skills can change the desktop to look and behave differently.
 * Built for my own personal use.
 
-### Packaging and Downloads
+### Packaging
 * Any related packages can be found on [gitlab](https://gitlab.manjaro.org/packages/community/jade).
-* ISO images can be found on [ODSN](https://osdn.net/projects/manjaro-community/storage/webdad/).
 
 ## Features
 * Clean and minimalistic interface
 * Hot corners
 * Settings panel
+* Show/Hide application type
 * Keyboard application search
 * Visual application search
 * Settings panel integrates with individual applications settings
 * Dbus integration
 * UI inspector
+* Animated Backgrounds
 
 ### Manjaro Integration
 * Restore factory profile settings
@@ -41,9 +42,10 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Settings panel [MSM](https://wiki.manjaro.org/index.php?title=Manjaro_Settings_Manager) integration
 
 ### Getting Started
-* TODO
+* ISO images can be found on [ODSN](https://osdn.net/projects/manjaro-community/storage/webdad/).
 
 ### Prerequisites
+* [Menu Data](https://github.com/codesardine/jade-menu-data)
 * [JAK](https://github.com/codesardine/Jade-Application-Kit) 
 * Python GObject Introspection 
 * Python-Dbus
