@@ -100,16 +100,20 @@ class Desktop():
         self.panel_open = value
 
     def window_open_cb(self, screen, window):
-        if window.get_window_type() == Wnck.WindowType.DESKTOP:
+        _type = window.get_window_type()
+        if _type == Wnck.WindowType.DESKTOP:
             pass
+        elif _type == Wnck.WindowType.NORMAL:
+            self.clearWindows()
             
     def clearWindows(self): 
         #FIXME for some reason we have to clear window list twice
         for window in self.minimized_windows:
             self.minimized_windows.remove(window)
 
-        for window in self.minimized_windows:
-            self.minimized_windows.remove(window)
+        if self.minimized_windows:
+            for window in self.minimized_windows:
+                self.minimized_windows.remove(window)
                   
     @staticmethod
     def getPath():
