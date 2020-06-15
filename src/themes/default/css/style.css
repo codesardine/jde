@@ -93,8 +93,8 @@ body * {
   outline: none;
 }
 
-#settingsSidePanel {
-  width: 80%;
+#settingsPanel {
+  width: 100%;
   transition: transform 0.3s linear;
   overflow: hidden;
   background-color: transparent;
@@ -104,7 +104,7 @@ body * {
   display: flex;
 }
 
-#settingsSidePanel h2 {
+#settingsPanel h2 {
   text-align: center;
   margin-bottom: 0;
   font-size: 1rem;
@@ -114,16 +114,16 @@ body * {
   border-bottom: 2px solid #26a69a;
 }
 
-#settingsSidePanel h2 {
+#settingsPanel h2 {
   text-transform: uppercase;
   background-color: rgba(0, 0, 0, 0.87);
 }
 
-#settingsSidePanel h4 {
+#settingsPanel h4 {
   margin-bottom: 24px;
 }
 
-#settingsSidePanel h4 {
+#settingsPanel h4 {
   padding: 0 32px;
   margin-bottom: 5px;
   margin-bottom: 0;
@@ -131,7 +131,7 @@ body * {
   margin-top: 0;
 }
 
-#settingsSidePanel ul img {
+#settingsPanel ul img {
   width: 26px;
   vertical-align: middle;
   margin-right: 22px;
@@ -139,33 +139,33 @@ body * {
   margin-left: -3px;
 }
 
-#settingsSidePanel ul,
+#settingsPanel ul,
 #categories-submenu,
 #backgrounds-submenu {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-#settingsSidePanel ul li label,
+#settingsPanel ul li label,
 #categories-submenu li label,
 #backgrounds-submenu li label {
   color: inherit;
   cursor: pointer;
 }
 
-#settingsSidePanel ul li p,
+#settingsPanel ul li p,
 #categories-submenu li p,
 #backgrounds-submenu li p {
   margin-bottom: 0;
 }
 
-#settingsSidePanel * {
+#settingsPanel * {
   font-size: 12px !important;
   font-weight: 500 !important;
 }
 
 #Settings {
-  width: calc(100% - 260px);
+  width: calc(100% - 240px);
   padding-top: 40px;
   background: rgba(0, 0, 0, 0.70);
   height: 100%;
@@ -209,21 +209,21 @@ body * {
   background-color: #f44336;
 }
 
-#settingsSidePanel [type="checkbox"].filled-in+span:not(.lever) {
+#settingsPanel [type="checkbox"].filled-in+span:not(.lever) {
   height: 20px;
   line-height: 20px;
   padding-left: 46px;
 }
 
-#settingsSidePanel ul,
-#settingsSidePanel #Settings,
+#settingsPanel ul,
+#settingsPanel #Settings,
 #categories-submenu,
 #backgrounds-submenu {
   overflow: scroll;
 }
 
 #options {
-  width: 260px;
+  width: 240px;
   height: 100%;
   overflow-y: scroll;
   background: #eeeeee;
@@ -233,16 +233,16 @@ input[type="file"] {
   display: none;
 }
 
-#settingsSidePanel form,
-#settingsSidePanel .switch {
+#settingsPanel form,
+#settingsPanel .switch {
   padding: 0 32px;
 }
 
-#settingsSidePanel .switch .lever {
+#settingsPanel .switch .lever {
   margin-left: -8px;
 }
 
-#settingsSidePanel form p,
+#settingsPanel form p,
 #categories-submenu p,
 #backgrounds-submenu p {
   margin-top: 0;
@@ -521,13 +521,13 @@ input[type="file"] {
 }
 
 @media only screen and (min-width: 1400px) {
-  #settingsSidePanel {
-    width: 60%;
+  #settingsPanel {
+    width: 80%;
   }
 }
 
 @media only screen and (min-width: 1800px) {
-  #settingsSidePanel {
+  #settingsPanel {
     width: 50%;
   }
 }

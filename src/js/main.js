@@ -473,7 +473,7 @@ disabledBtn.addEventListener('click', function () {
     desktop.closeApplications()
   }
 
-  let dashboardSettings = desktop.elem("#settingsSidePanel")
+  let dashboardSettings = desktop.elem("#settingsPanel")
   dashboardSettings.onmouseleave = function () {
     desktop.closeSettings()
   }
