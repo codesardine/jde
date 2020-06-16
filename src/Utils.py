@@ -67,27 +67,18 @@ class Desktop():
     def __init__(self):
         self.minimized_windows = []
         self.screen = Wnck.Screen.get_default()
+        self.window_pos = "left"
         self.panel_open = False
         self.screen.connect("window-opened", self.window_open_cb)
         
     def toggle(self):
         # wnck only works on xorg
-        monitor = getScreenGeometry()        
         self.screen.force_update()
-        windows = self.screen.get_windows()
-        workspace = self.screen.get_active_workspace()
-                
+                        
         if not self.minimized_windows:
+            self.minimize_windows()
             win = Instance.retrieve("win")
-            win.activateWindow()
-            for window in windows:
-                window_position = window.get_geometry()
-                if window.is_in_viewport(workspace) and not window.is_minimized():
-                    _type = window.get_window_type()
-                    # remove dock windows and select only windows on primary screen
-                    if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
-                        self.minimized_windows.append(window)
-                        window.minimize()                
+            win.activateWindow()              
             
         elif self.minimized_windows and not self.panel_open:
             for window in self.minimized_windows:
@@ -96,6 +87,45 @@ class Desktop():
             self.clearWindows()
                   
 
+    def minimize_windows(self):
+        monitor = getScreenGeometry()        
+        windows = self.screen.get_windows()
+        workspace = self.screen.get_active_workspace()
+        for window in windows:
+            if window.has_name() and window.get_name() != "Guake!":
+                window_position = window.get_geometry()
+                if window.is_in_viewport(workspace) and not window.is_minimized():
+                    _type = window.get_window_type()
+                    # remove dock windows and select only windows on primary screen
+                    if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
+                        self.minimized_windows.append(window)
+                        window.minimize()
+
+    def autoTile(self):
+        settings = Desktop.loadSettings()
+        if settings["autoTile"]:
+            monitor = getScreenGeometry()        
+            windows = self.screen.get_windows()
+            for window in windows:
+                if not window.is_maximized():
+                    _type = window.get_window_type()
+                    if _type == Wnck.WindowType.NORMAL:
+                        half_screen = monitor.width() / 2
+                        dock_size = 50
+                        if self.window_pos == "left":
+                            gravity = Wnck.WindowGravity.NORTHWEST
+                            self.window_pos = "right"
+                            x = 0
+
+                        elif self.window_pos == "right":
+                            gravity = Wnck.WindowGravity.NORTHEAST
+                            self.window_pos = "left"
+                            x = half_screen
+
+                        geometry_mask =Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
+                        window.set_geometry(gravity, geometry_mask, x, 0, half_screen, monitor.height() - dock_size)
+
+    
     def setPanelVisible(self, value):
         self.panel_open = value
 
@@ -104,12 +134,15 @@ class Desktop():
         if _type == Wnck.WindowType.DESKTOP:
             pass
         elif _type == Wnck.WindowType.NORMAL:
+            monitor = getScreenGeometry()        
             self.clearWindows()
+            self.autoTile()
             
     def clearWindows(self): 
         #FIXME for some reason we have to clear window list twice
-        for window in self.minimized_windows:
-            self.minimized_windows.remove(window)
+        if self.minimized_windows:
+            for window in self.minimized_windows:
+                self.minimized_windows.remove(window)
 
         if self.minimized_windows:
             for window in self.minimized_windows:

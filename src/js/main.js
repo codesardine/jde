@@ -275,6 +275,7 @@ function init() {
       activeAppText: "Press enter to run ",
       videos: Jade.videos,
       "disabledText": "Disabled",
+      "tileText": "Auto Tiling",
     },
 
     computed: {
@@ -356,6 +357,12 @@ function init() {
       })
     }
   }
+
+  let autoTileBtn = desktop.elem("#auto-tile-btn")
+  autoTileBtn.checked = Jade.settings.autoTile
+  autoTileBtn.addEventListener('click', function () {
+    JAK.Bridge.saveSettings("autoTile", autoTileBtn.checked)
+    })    
 
   M.Modal.init(desktop.elem('.modal'))
   desktop.elem(`#${JAK.Bridge.getBranch}-btn`).checked = true

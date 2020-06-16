@@ -18,6 +18,7 @@ class Options():
     def load(self):
         defaults = {
             "debug": False,
+            "autoTile": True,
             "moodBackground": "disabled",
             "Accessories": True,
             "Development": False,
