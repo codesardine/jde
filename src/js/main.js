@@ -259,7 +259,7 @@ function init() {
       aboutBtnIcon: JAK.Bridge.infoIcon,
       warranty: "This program comes with absolutely no warranty.",
       categories: Jade.menu,
-      categoriesTittle: "Visible Categories",
+      categoriesTittle: "Visible Applications",
       searchQuery: '',
       Accessories: checkCategoryIsAvailable("Accessories"),
       Development: checkCategoryIsAvailable("Development"),
