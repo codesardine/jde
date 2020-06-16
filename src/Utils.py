@@ -137,12 +137,7 @@ class Desktop():
             self.autoTile()
             
     def clearWindows(self): 
-        #FIXME for some reason we have to clear window list twice
-        if self.minimized_windows:
-            for window in self.minimized_windows:
-                self.minimized_windows.remove(window)
-
-        if self.minimized_windows:
+        while self.minimized_windows:
             for window in self.minimized_windows:
                 self.minimized_windows.remove(window)
                   
