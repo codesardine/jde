@@ -67,7 +67,7 @@ class Desktop():
     def __init__(self):
         self.minimized_windows = []
         self.screen = Wnck.Screen.get_default()
-        self.window_pos = "left"
+        self.next_window_pos = "left"
         self.panel_open = False
         self.screen.connect("window-opened", self.window_open_cb)
         
@@ -107,24 +107,22 @@ class Desktop():
             monitor = getScreenGeometry()        
             windows = self.screen.get_windows()
             for window in windows:
-                if not window.is_maximized():
+                if not window.is_maximized() and not window.is_minimized():
                     _type = window.get_window_type()
                     if _type == Wnck.WindowType.NORMAL:
+                        gravity = Wnck.WindowGravity.STATIC
                         half_screen = monitor.width() / 2
                         dock_size = 50
-                        if self.window_pos == "left":
-                            gravity = Wnck.WindowGravity.NORTHWEST
-                            self.window_pos = "right"
+                        if self.next_window_pos == "left":
+                            self.next_window_pos = "right"
                             x = 0
 
-                        elif self.window_pos == "right":
-                            gravity = Wnck.WindowGravity.NORTHEAST
-                            self.window_pos = "left"
+                        elif self.next_window_pos == "right":
+                            self.next_window_pos = "left"
                             x = half_screen
 
-                        geometry_mask =Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
+                        geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
                         window.set_geometry(gravity, geometry_mask, x, 0, half_screen, monitor.height() - dock_size)
-
     
     def setPanelVisible(self, value):
         self.panel_open = value
