@@ -71,6 +71,7 @@ Jade.Desktop = class API {
     }
 
     function build(category) {
+      JAK.Bridge.updateMenu()
       let menu = Jade.menu[category]
       let apps = menu['apps'];
       for (let app in apps) {

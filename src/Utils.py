@@ -192,9 +192,14 @@ class Desktop():
 
     @staticmethod
     def getJS():
-        menu = Menu.Get().init()
+        menu = Menu.Get().items()
         settings = Desktop.loadSettings()
         return f"const Jade = {{}};Jade.menu = { json.dumps( menu ) };Jade.settings = { json.dumps( settings ) }"
+
+    @staticmethod
+    def updateMenu():
+        menu = Menu.Get().items()
+        JavaScript.send(f"Jade.menu = { json.dumps( menu ) }")
 
     @staticmethod
     def toggleSettings():

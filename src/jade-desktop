@@ -77,6 +77,10 @@ class SharedObj(QObject):
     def restoreDefaults(self):
         Desktop.restoreDefaultsDialog()
 
+    @Slot()
+    def updateMenu(self):
+        Desktop.updateMenu()
+
     @Prop(str)
     def about(self):
         return Desktop.about()

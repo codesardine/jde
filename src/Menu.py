@@ -3,17 +3,14 @@ import json
 gi.require_version('GMenu', '3.0')
 from gi.repository import GMenu, Gio
 import Icons as icons
-from functools import lru_cache as cache
-
+from JAK.Utils import bindings
+if bindings() == "PyQt5":
+    from PyQt5.QtCore import pyqtSlot as Slot
 
 class Get:  
     def __init__(self):
-
         self.menu_path = "/etc/xdg/menus/jade-applications.menu"
-        self.applications_path = Gio.file_new_for_path("/usr/share/applications/")
-        self.monitor = self.applications_path.monitor_directory(Gio.FileMonitorFlags.NONE, None)
-        self.monitor.connect("changed", self._file_changed_cb)
-        
+                
     def build(self, menu=None, iteration=0, category=None, output={}):
         it = menu.iter()
         it_type = it
@@ -70,28 +67,11 @@ class Get:
         
         return output
 
-    @cache(None)
-    def menu(self):
+    @Slot()
+    def items(self):
         tree = GMenu.Tree.new_for_path(self.menu_path, 0)
         tree.load_sync()
-        tree.connect('changed', self.menu_changed)
         directory = tree.get_root_directory()
         menu = self.build(directory)
-        return menu       
-        
-
-    def menu_changed(self, *args):        
-        self.update()
-
-    def _file_changed_cb(self, monitor, file, other_file, event_type):
-        if event_type == Gio.FileMonitorEvent.CREATED or event_type == Gio.FileMonitorEvent.DELETED:
-            self.update()
-
-
-    def update(self, *args):
-        from JAK.Utils import JavaScript   
-        JavaScript.send(f"Jade.menu = { json.dumps( self.menu() ) }")
-
-    def init(self):
-        return self.menu()
+        return menu
         
