@@ -105,23 +105,25 @@ class Desktop():
             monitor = getScreenGeometry()        
             windows = self.get_screen().get_windows()
             for window in windows:
-                if not window.is_maximized() and not window.is_minimized():
-                    _type = window.get_window_type()
-                    if _type == Wnck.WindowType.NORMAL:
-                        gravity = Wnck.WindowGravity.STATIC
-                        half_screen = monitor.width() / 2
-                        dock_size = 50
-                        if self.next_window_pos == "left":
-                            self.next_window_pos = "right"
-                            x = 0
+                half_screen = monitor.width() / 2
+                window_x = window.get_geometry()[0]
+                if window_x != half_screen or window_x != 0:
+                    if not window.is_maximized() and not window.is_minimized():
+                        _type = window.get_window_type()
+                        if _type == Wnck.WindowType.NORMAL:
+                            gravity = Wnck.WindowGravity.STATIC
+                            dock_size = 50
+                            if self.next_window_pos == "left":
+                                self.next_window_pos = "right"
+                                x = 0
 
-                        elif self.next_window_pos == "right":
-                            self.next_window_pos = "left"
-                            x = half_screen
+                            elif self.next_window_pos == "right":
+                                self.next_window_pos = "left"
+                                x = half_screen
 
-                        geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
-                        window.set_geometry(gravity, geometry_mask, x, 0, half_screen, monitor.height() - dock_size)
-    
+                            geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
+                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen, monitor.height() - dock_size)
+        
     def setPanelVisible(self, value):
         self.panel_open = value
 
