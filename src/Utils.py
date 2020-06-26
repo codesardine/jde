@@ -14,7 +14,6 @@ from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
 
 
-
 def run(command):
     proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     return proc
@@ -66,15 +65,12 @@ class Session():
 class Desktop():
     def __init__(self):
         self.minimized_windows = []
-        self.screen = Wnck.Screen.get_default()
         self.next_window_pos = "left"
         self.panel_open = False
-        self.screen.connect("window-opened", self.window_open_cb)
+        self.get_screen().connect("window-opened", self.window_open_cb)
         
     def toggle(self):
-        # wnck only works on xorg
-        self.screen.force_update()
-                        
+        # wnck only works on xorg                       
         if not self.minimized_windows:
             self.minimize_windows()
             win = Instance.retrieve("win")
@@ -82,15 +78,17 @@ class Desktop():
             
         elif self.minimized_windows and not self.panel_open:
             for window in self.minimized_windows:
-                if window.is_minimized():
+                if window and window.is_minimized():
                     window.unminimize(int(time.time()))
-            self.clearWindows()
-                  
+            self.clearWindows()                  
+
+    def get_screen(self):
+        return Wnck.Screen.get_default()
 
     def minimize_windows(self):
         monitor = getScreenGeometry()        
-        windows = self.screen.get_windows()
-        workspace = self.screen.get_active_workspace()
+        windows = self.get_screen().get_windows()
+        workspace = self.get_screen().get_active_workspace()
         for window in windows:
             if window.has_name() and window.get_name() != "Guake!":
                 window_position = window.get_geometry()
@@ -105,7 +103,7 @@ class Desktop():
         settings = Desktop.loadSettings()
         if settings["autoTile"]:
             monitor = getScreenGeometry()        
-            windows = self.screen.get_windows()
+            windows = self.get_screen().get_windows()
             for window in windows:
                 if not window.is_maximized() and not window.is_minimized():
                     _type = window.get_window_type()
@@ -137,10 +135,8 @@ class Desktop():
             self.autoTile()
             
     def clearWindows(self): 
-        while self.minimized_windows:
-            for window in self.minimized_windows:
-                self.minimized_windows.remove(window)
-                  
+        self.minimized_windows.clear()
+                              
     @staticmethod
     def getPath():
         return str(pathlib.Path(__file__).parent.absolute())
