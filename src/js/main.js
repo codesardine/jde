@@ -200,11 +200,9 @@ Jade.Desktop = class API {
   }
 
   matchQuery(item, searchQuery) {
-    if (searchQuery.length > 2) {
-      return item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    return item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.keywords.toLowerCase().includes(searchQuery.toLowerCase())
-    }
   }
 }
 
