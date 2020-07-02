@@ -88,7 +88,7 @@ Jade.Desktop = class API {
     if (category == "Settings") {
       build(category)
     } else {
-      let categoryBtn = desktop.elem("#" + category.replace(" ", "") + "-btn")
+      let categoryBtn = desktop.elem("#" + category.replace(/\s/g, "") + "-btn")
       if (category != "Settings" && categoryBtn.checked) {
         build(category)
       }
@@ -156,6 +156,27 @@ Jade.Desktop = class API {
     JAK.Bridge.setPanelVisible(false)
   }
 
+  get_categories() {
+    let items = []
+    for (let category in Jade.menu) {
+      items.push(category)
+    }
+    return items
+  }
+
+  get_search_items() {
+    JAK.Bridge.updateMenu()
+    let items = []
+    let categories = this.get_categories()
+    for (let category of categories) {
+      let apps = Jade.menu[`${category}`].apps
+      for (let app of apps) {
+        items.push(app)
+      }
+    }
+    return items
+  }
+
   openApplications() {
     for (let category in Jade.menu) {
       if (category != "Settings") {
@@ -205,15 +226,6 @@ function appTemplate(name, icon, description, keywords, file) {
   return template
 }
 
-function checkCategoryIsAvailable(value) {
-  
-  if (Jade.menu[`${value}`]) {
-    return Jade.menu[`${value}`].apps
-  } else {
-    return null
-  }
-}
-
 function init() {
   desktop = new Jade.Desktop();
   let about = JSON.parse(JAK.Bridge.about)
@@ -259,20 +271,9 @@ function init() {
       ok: "OK",
       aboutBtnIcon: JAK.Bridge.infoIcon,
       warranty: "This program comes with absolutely no warranty.",
-      categories: Jade.menu,
       categoriesTittle: "Visible Applications",
       searchQuery: '',
-      Accessories: checkCategoryIsAvailable("Accessories"),
-      Development: checkCategoryIsAvailable("Development"),
-      Education: checkCategoryIsAvailable("Education"),
-      Gaming: checkCategoryIsAvailable("Gaming"),
-      GoOnline: checkCategoryIsAvailable("Go Online"),
-      Graphics: checkCategoryIsAvailable("Graphics"),
-      Help: checkCategoryIsAvailable("Help"),
-      Multimedia: checkCategoryIsAvailable("Multimedia"),
-      Office: checkCategoryIsAvailable("Office"),
-      System: checkCategoryIsAvailable("System"),
-      Settings: checkCategoryIsAvailable("Settings"),
+      categories: Jade.menu,
       activeAppText: "Press enter to run ",
       videos: Jade.videos,
       "disabledText": "Disabled",
@@ -280,71 +281,11 @@ function init() {
     },
 
     computed: {
-      filterAccessories() {
-        if (checkCategoryIsAvailable('Accessories')) {
-        return this.Accessories.filter(item => {
+      filter() {
+        let applications = desktop.get_search_items()
+        return applications.filter(item => {
           return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterDevelopment() {
-        if (checkCategoryIsAvailable('Development')) {
-        return this.Development.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterEducation() {
-        if (checkCategoryIsAvailable('Education')) {
-        return this.Education.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterGaming() {
-        if (checkCategoryIsAvailable('Gaming')) {
-        return this.Gaming.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterGoOnline() {
-        if (checkCategoryIsAvailable('Go Online')) {
-        return this.GoOnline.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterGraphics() {
-        if (checkCategoryIsAvailable('Graphics')) {
-        return this.Graphics.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterHelp() {
-        if (checkCategoryIsAvailable('Help')) {
-        return this.Help.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterMultimedia() {
-        if (checkCategoryIsAvailable('Multimedia')) {
-        return this.Multimedia.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterOffice() {
-        if (checkCategoryIsAvailable('Office')) {
-        return this.Office.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterSystem() {
-        if (checkCategoryIsAvailable('System')) {
-        return this.System.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
-      },
-      filterSettings() {
-        if (checkCategoryIsAvailable('Settings')) {
-        return this.Settings.filter(item => {
-          return desktop.matchQuery(item, this.searchQuery)
-        })}
+        })
       }
     }
   })
@@ -354,7 +295,7 @@ function init() {
     if (button != null) {
       button.checked = value
       button.addEventListener('click', function () {
-      JAK.Bridge.saveSettings(key, button.checked)
+        JAK.Bridge.saveSettings(key, button.checked)
       })
     }
   }
@@ -363,7 +304,7 @@ function init() {
   autoTileBtn.checked = Jade.settings.autoTile
   autoTileBtn.addEventListener('click', function () {
     JAK.Bridge.saveSettings("autoTile", autoTileBtn.checked)
-    })    
+  })
 
   M.Modal.init(desktop.elem('.modal'))
   desktop.elem(`#${JAK.Bridge.getBranch}-btn`).checked = true
@@ -392,7 +333,8 @@ function init() {
       JAK.Bridge.showInspector()
     } else {
       JAK.Bridge.hideInspector()
-    }})
+    }
+  })
 
   desktop.elem('#defaults-btn').addEventListener('click', function () {
     JAK.Bridge.restoreDefaults()
@@ -437,21 +379,21 @@ function init() {
     let btn = desktop.elem(`#${video.replace(" ", "-")}-btn`)
     btn.checked = true
     toggleVideo(btn, video)
-}
+  }
 
-let disabledBtn = desktop.elem("#disabled-btn")
-disabledBtn.addEventListener('click', function () {
-  toggleVideo(disabledBtn, false)
-  JAK.Bridge.saveSettings("moodBackground", "disabled")
-})
+  let disabledBtn = desktop.elem("#disabled-btn")
+  disabledBtn.addEventListener('click', function () {
+    toggleVideo(disabledBtn, false)
+    JAK.Bridge.saveSettings("moodBackground", "disabled")
+  })
 
-  Jade.videos.forEach((video ) => {
+  Jade.videos.forEach((video) => {
     let btn = desktop.elem(`#${video.replace(" ", "-")}-btn`)
     btn.addEventListener('click', function () {
       toggleVideo(btn, video)
       JAK.Bridge.saveSettings("moodBackground", video.replace(" ", "-"))
-})
-   
+    })
+
   })
 
   let backgroundsBtn = desktop.elem('#video-background-btn')
@@ -464,7 +406,7 @@ disabledBtn.addEventListener('click', function () {
       classes.remove("show")
     }
   })
-  
+
   let categoriesBtn = desktop.elem('#categories-btn')
   categoriesBtn.addEventListener('click', function () {
     let categoriesMenu = desktop.elem("#categories-submenu")

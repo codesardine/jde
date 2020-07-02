@@ -11,20 +11,21 @@
   <script src="../../js/main.js"></script>
 </head>
 <style>
-.search {
-  opacity:0;
-  z-index: -2;
-}
+  .search {
+    opacity: 0;
+    z-index: -2;
+  }
 
-#screen-overlay {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 106%);
-  width: 100%;
-  position: fixed;
-  height: 100%;
-  bottom: 0;
-  z-index: -1;
-}
+  #screen-overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 106%);
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    bottom: 0;
+    z-index: -1;
+  }
 </style>
+
 <body>
   <main id="app">
     <div id="settingsPanel" class="sidenav">
@@ -48,7 +49,7 @@
                   <p v-for="(value, key) in categories" v-if="key!='Settings'">
                     <label>
                       <img v-bind:src="value.icon">
-                      <input v-bind:id="key.replace(' ', '') + '-btn'" type="checkbox" class="filled-in" />
+                      <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
                       <span>{{ key }}</span>
                     </label>
                   </p>
@@ -64,33 +65,34 @@
             </a>
           </li>
           <li class="focus-on-hover">
-              <form action="#" class="backgrounds-container">
-                <p>
-                  <label>
-                    <input id="video-background-btn" type="checkbox" class="filled-in" />
-                    <span>{{ moodBackGroundText }}</span>
-                  </label>
-                </p>
-              </form>
-              <ul id="backgrounds-submenu" class="focus-on-hover">
-                  <li>
-                    <form id="activeBackground" action="#">
-                        <p>
-                            <label>
-                              <input id="disabled-btn" type="radio"  name="activeBackground" class="filled-in" />
-                              <span>{{ disabledText }}</span>
-                            </label>
-                          </p>
-                      <p v-for="video in videos">
-                        <label>
-                          <input v-bind:id="video.replace(' ', '-') + '-btn'" type="radio"  name="activeBackground" class="filled-in" />
-                          <span>{{ video }}</span>
-                        </label>
-                      </p>
-                    </form>
-                  </li>
-                </ul>
-                <li>
+            <form action="#" class="backgrounds-container">
+              <p>
+                <label>
+                  <input id="video-background-btn" type="checkbox" class="filled-in" />
+                  <span>{{ moodBackGroundText }}</span>
+                </label>
+              </p>
+            </form>
+            <ul id="backgrounds-submenu" class="focus-on-hover">
+              <li>
+                <form id="activeBackground" action="#">
+                  <p>
+                    <label>
+                      <input id="disabled-btn" type="radio" name="activeBackground" class="filled-in" />
+                      <span>{{ disabledText }}</span>
+                    </label>
+                  </p>
+                  <p v-for="video in videos">
+                    <label>
+                      <input v-bind:id="video.replace(' ', '-') + '-btn'" type="radio" name="activeBackground"
+                        class="filled-in" />
+                      <span>{{ video }}</span>
+                    </label>
+                  </p>
+                </form>
+              </li>
+            </ul>
+          <li>
           <li>
             <a class="focus-on-hover" id="defaults-btn" href="#!">
               <img id="restore-icon-btn" v-bind:src="restoreBtnIcon">
@@ -153,14 +155,14 @@
           <li>
             <h4>{{ experimentalFeaturesText }}</h4>
           </li>
-          <li class="focus-on-hover">	         
-            <div class="switch">	             
-              <label>	              
+          <li class="focus-on-hover">
+            <div class="switch">
+              <label>
                 <input id="auto-tile-btn" type="checkbox">
-                <span class="lever"></span>	
+                <span class="lever"></span>
                 {{ tileText }}
-              </label>	                
-            </div>	               
+              </label>
+            </div>
           </li>
         </ul>
       </div>
@@ -171,108 +173,7 @@
       <img v-bind:src="searchBtnIcon" id="search-icon">
       <input type="text" v-model="searchQuery">
       <ul class="collection" v-if="searchQuery">
-
-        <li v-for="item in filterAccessories">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterDevelopment">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterEducation">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterGaming">
-            <a class="collection-item" v-bind:href="'ipc:' + item.path">
-              <img v-bind:src="item.icon">
-              <span class="title">{{ item.name }}</span>
-              <div class="current-app">
-                <img class="current-icon" v-bind:src="item.icon">
-                <p class="title">{{ activeAppText }}{{ item.name }}</p>
-              </div>
-            </a>
-        </li>
-        <li v-for="item in filterGoOnline">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterGraphics">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterHelp">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterMultimedia">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterOffice">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-        <li v-for="item in filterSystem">
-            <a class="collection-item" v-bind:href="'ipc:' + item.path">
-              <img v-bind:src="item.icon">
-              <span class="title">{{ item.name }}</span>
-              <div class="current-app">
-                <img class="current-icon" v-bind:src="item.icon">
-                <p class="title">{{ activeAppText }}{{ item.name }}</p>
-              </div>
-            </a>
-        </li>
-        <li v-for="item in filterSettings">
+        <li v-for="item in filter">
           <a class="collection-item" v-bind:href="'ipc:' + item.path">
             <img v-bind:src="item.icon">
             <span class="title">{{ item.name }}</span>
