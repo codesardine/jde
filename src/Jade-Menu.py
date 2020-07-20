@@ -2,15 +2,15 @@ import gi
 import json
 gi.require_version('GMenu', '3.0')
 from gi.repository import GMenu, Gio
-import Icons as icons
+import Jade-Icons as icons
 from JAK.Utils import bindings
 if bindings() == "PyQt5":
     from PyQt5.QtCore import pyqtSlot as Slot
 
-class Get:  
+class Get:
     def __init__(self):
         self.menu_path = "/etc/xdg/menus/jade-applications.menu"
-                
+
     def build(self, menu=None, iteration=0, category=None, output={}):
         it = menu.iter()
         it_type = it
@@ -52,7 +52,7 @@ class Get:
 
                 if not description:
                     description = "Description not available"
-                
+
                 output[f'{category}']['apps'].append({
                     'category': f'{category}',
                     'name': f'{name}',
@@ -64,7 +64,7 @@ class Get:
                     })
 
             it_type = it.next()
-        
+
         return output
 
     @Slot()
@@ -74,4 +74,3 @@ class Get:
         directory = tree.get_root_directory()
         menu = self.build(directory)
         return menu
-        

@@ -3,13 +3,13 @@ import subprocess
 import pwd
 import os
 import json
-import Menu
+import Jade-Menu
 import time
 import gi
 gi.require_version('Wnck', '3.0')
 from gi.repository import Wnck
 from gi.repository import GObject
-from Settings import Options
+from Jade-Settings import Options
 from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
 
@@ -68,25 +68,25 @@ class Desktop():
         self.next_window_pos = "left"
         self.panel_open = False
         self.get_screen().connect("window-opened", self.window_open_cb)
-        
+
     def toggle(self):
-        # wnck only works on xorg                       
+        # wnck only works on xorg
         if not self.minimized_windows:
             self.minimize_windows()
             win = Instance.retrieve("win")
-            win.activateWindow()              
-            
+            win.activateWindow()
+
         elif self.minimized_windows and not self.panel_open:
             for window in self.minimized_windows:
                 if window and window.is_minimized():
                     window.unminimize(int(time.time()))
-            self.clearWindows()                  
+            self.clearWindows()
 
     def get_screen(self):
         return Wnck.Screen.get_default()
 
     def minimize_windows(self):
-        monitor = getScreenGeometry()        
+        monitor = getScreenGeometry()
         windows = self.get_screen().get_windows()
         workspace = self.get_screen().get_active_workspace()
         for window in windows:
@@ -102,7 +102,7 @@ class Desktop():
     def autoTile(self):
         settings = Desktop.loadSettings()
         if settings["autoTile"]:
-            monitor = getScreenGeometry()        
+            monitor = getScreenGeometry()
             windows = self.get_screen().get_windows()
             for window in windows:
                 half_screen = monitor.width() / 2
@@ -123,7 +123,7 @@ class Desktop():
 
                             geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
                             window.set_geometry(gravity, geometry_mask, x, 0, half_screen, monitor.height() - dock_size)
-        
+
     def setPanelVisible(self, value):
         self.panel_open = value
 
@@ -132,13 +132,13 @@ class Desktop():
         if _type == Wnck.WindowType.DESKTOP:
             pass
         elif _type == Wnck.WindowType.NORMAL:
-            monitor = getScreenGeometry()        
+            monitor = getScreenGeometry()
             self.clearWindows()
             self.autoTile()
-            
-    def clearWindows(self): 
+
+    def clearWindows(self):
         self.minimized_windows.clear()
-                              
+
     @staticmethod
     def getPath():
         return str(pathlib.Path(__file__).parent.absolute())
@@ -150,7 +150,7 @@ class Desktop():
     @staticmethod
     def toggleSearch():
         JavaScript.send("desktop.toggleSearch();")
-        
+
     @staticmethod
     def about():
         items = json.dumps({
@@ -167,7 +167,7 @@ class Desktop():
         desktop = Instance.retrieve("desktop")
         desktop.setPanelVisible(False)
         desktop.toggle()
-        
+
     @staticmethod
     def setBackground():
         from JAK.Widgets import FileChooserDialog
@@ -190,23 +190,23 @@ class Desktop():
 
     @staticmethod
     def getJS():
-        menu = Menu.Get().items()
+        menu = Jade-Menu.Get().items()
         settings = Desktop.loadSettings()
         return f"const Jade = {{}};Jade.menu = { json.dumps( menu ) };Jade.settings = { json.dumps( settings ) }"
 
     @staticmethod
     def updateMenu():
-        menu = Menu.Get().items()
+        menu = Jade-Menu.Get().items()
         JavaScript.send(f"Jade.menu = { json.dumps( menu ) }")
 
     @staticmethod
     def toggleSettings():
         JavaScript.send("desktop.toggleSettings();")
-        
+
     @staticmethod
     def toggleLauncher():
         JavaScript.send("desktop.toggleLauncher();")
-        
+
     @staticmethod
     def setBranch(branch):
         p = run(f'pkexec pacman-mirrors --api --set-branch {branch}')
@@ -249,4 +249,4 @@ class Desktop():
     @staticmethod
     def loadSettings():
         options = Options()
-        return options.load()              
+        return options.load()

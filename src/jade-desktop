@@ -6,17 +6,17 @@
  https://github.com/codesardine/Jadesktop
 
 """
-import Dbus
+import Jade-Dbus
 import gi
 import json
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
 from gi.repository import Gio
-import Icons as icons
-from Utils import Session, Desktop
+import Jade-Icons as icons
+from Jade-Utils import Session, Desktop
 from JAK import Application
 from JAK import IPC, WebEngine
-from DropEvent import event
+from Jade-DropEvent import event
 from JAK.Utils import bindings
 from JAK.Utils import Instance
 if bindings() == "PyQt5":
@@ -28,18 +28,18 @@ WebEngine.JWebView.dropEvent = event
 
 
 class Bind:
-    
+
     @staticmethod
     def get_desktop_app(file):
         desktop_file = Gio.DesktopAppInfo.new_from_filename(file)
         Gio.DesktopAppInfo.launch(desktop_file)
-        
+
 
     @staticmethod
     def listen(data):
         if data.endswith(".desktop"):
             Bind.get_desktop_app(data)
-    
+
 
 class SharedObj(QObject):
     def __init__(self):
@@ -57,7 +57,7 @@ class SharedObj(QObject):
     @Slot()
     def hideInspector(self):
         window = Instance.retrieve("win")
-        window.hideInspector()   
+        window.hideInspector()
 
     @Slot()
     def toggleDesktop(self):
@@ -106,12 +106,12 @@ class SharedObj(QObject):
     @Prop(str)
     def searchIcon(self):
         return icons.get("search-icon")
-        
+
     @Prop(str)
     def getBranch(self):
         return Desktop.getBranch()
 
-    
+
 
 class Exit():
 
@@ -138,10 +138,10 @@ class Exit():
     @staticmethod
     def sleep(self):
         Session.sleep()
-   
 
-def main(): 
-       
+
+def main():
+
     app = Application.JWebApp(
         window = {
             "title": "JADE",
@@ -167,13 +167,13 @@ def main():
             "injectJavaScript": {"JavaScript": Desktop.getJS(), "name": "JADE"},
             "addCSS": Session.userCSS()
         })
-    app.run()      
+    app.run()
 
 
 if __name__ == "__main__":
     DBusGMainLoop(set_as_default=True)
     loop = GLib.MainLoop()
-    Dbus.Service()
+    Jade-Dbus.Service()
     IPC.Bind = Bind
     main()
     loop.start()

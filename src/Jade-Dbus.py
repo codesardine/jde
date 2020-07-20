@@ -1,13 +1,13 @@
 import dbus
 import dbus.service as service
-from JAK.Utils import JavaScript  
-from Utils import Session, Desktop 
+from JAK.Utils import JavaScript
+from Jade-Utils import Session, Desktop 
 
 class Service(dbus.service.Object):
 
     def __init__(self):
         bus_name = service.BusName("org.jade.Desktop", dbus.SessionBus())
-        service.Object.__init__(self, bus_name, "/org/jade/Desktop")        
+        service.Object.__init__(self, bus_name, "/org/jade/Desktop")
 
     @dbus.service.method("org.jade.Desktop.Background", in_signature='s', out_signature='')
     def setImage(self, image):
@@ -23,10 +23,8 @@ class Service(dbus.service.Object):
 
     @dbus.service.method("org.jade.Desktop", in_signature='', out_signature='')
     def screenToggle(self):
-        Desktop.screenToggle()        
+        Desktop.screenToggle()
 
     @dbus.service.method("org.jade.Desktop", in_signature='', out_signature='')
     def toggleSearch(self):
         Desktop.toggleSearch()
-       
-   
