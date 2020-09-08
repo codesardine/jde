@@ -6,17 +6,17 @@
  https://github.com/codesardine/Jadesktop
 
 """
-import Jade-Dbus
+import Jade.Dbus
 import gi
 import json
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
 from gi.repository import Gio
-import Jade-Icons as icons
-from Jade-Utils import Session, Desktop
+import Jade.Icons as icons
+from Jade.Utils import Session, Desktop
 from JAK import Application
 from JAK import IPC, WebEngine
-from Jade-DropEvent import event
+from Jade.DropEvent import event
 from JAK.Utils import bindings
 from JAK.Utils import Instance
 if bindings() == "PyQt5":
@@ -173,7 +173,7 @@ def main():
 if __name__ == "__main__":
     DBusGMainLoop(set_as_default=True)
     loop = GLib.MainLoop()
-    Jade-Dbus.Service()
+    Jade.Dbus.Service()
     IPC.Bind = Bind
     main()
     loop.start()

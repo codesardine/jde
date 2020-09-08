@@ -1,7 +1,7 @@
 import dbus
 import dbus.service as service
 from JAK.Utils import JavaScript
-from Jade-Utils import Session, Desktop 
+from Jade.Utils import Session, Desktop 
 
 class Service(dbus.service.Object):
 

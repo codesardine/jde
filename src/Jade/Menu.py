@@ -2,7 +2,7 @@ import gi
 import json
 gi.require_version('GMenu', '3.0')
 from gi.repository import GMenu, Gio
-import Jade-Icons as icons
+import Jade.Icons as icons
 from JAK.Utils import bindings
 if bindings() == "PyQt5":
     from PyQt5.QtCore import pyqtSlot as Slot

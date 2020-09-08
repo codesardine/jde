@@ -3,13 +3,13 @@ import subprocess
 import pwd
 import os
 import json
-import Jade-Menu
+import Jade.Menu
 import time
 import gi
 gi.require_version('Wnck', '3.0')
 from gi.repository import Wnck
 from gi.repository import GObject
-from Jade-Settings import Options
+from Jade.Settings import Options
 from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
 
@@ -141,7 +141,7 @@ class Desktop():
 
     @staticmethod
     def getPath():
-        return str(pathlib.Path(__file__).parent.absolute())
+        return str(pathlib.Path(__file__).parent.parent.absolute())
 
     @staticmethod
     def getHome():
@@ -190,13 +190,13 @@ class Desktop():
 
     @staticmethod
     def getJS():
-        menu = Jade-Menu.Get().items()
+        menu = Jade.Menu.Get().items()
         settings = Desktop.loadSettings()
         return f"const Jade = {{}};Jade.menu = { json.dumps( menu ) };Jade.settings = { json.dumps( settings ) }"
 
     @staticmethod
     def updateMenu():
-        menu = Jade-Menu.Get().items()
+        menu = Jade.Menu.Get().items()
         JavaScript.send(f"Jade.menu = { json.dumps( menu ) }")
 
     @staticmethod
