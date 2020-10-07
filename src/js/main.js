@@ -63,13 +63,15 @@ Jade.Desktop = class API {
   }
 
   buildApplications(category) {
+    let categoryBtn = desktop.elem("#" + category.replace(/\s/g, "") + "-btn")
     if (category == "Settings") {
       let settingsView = desktop.elem("#Settings")
       var destination = settingsView
-    } else {
-      var destination = this.appView()
+      build(category)
+    } else if (category != "Settings" && categoryBtn.checked) {
+      var destination = desktop.elem("#Applications")  
+      build(category)
     }
-
     function build(category) {
       JAK.Bridge.updateMenu()
       let menu = Jade.menu[category]
@@ -82,15 +84,6 @@ Jade.Desktop = class API {
         let file = apps[app].path;
         let keywords = apps[app].keywords;
         desktop.buildHTML(destination, name, icon, description, keywords, file)
-      }
-    }
-
-    if (category == "Settings") {
-      build(category)
-    } else {
-      let categoryBtn = desktop.elem("#" + category.replace(/\s/g, "") + "-btn")
-      if (category != "Settings" && categoryBtn.checked) {
-        build(category)
       }
     }
   }
@@ -129,7 +122,7 @@ Jade.Desktop = class API {
   }
 
   appView() {
-    return this.elem('#Applications')
+    return this.elem('.applications-wrapper')
   }
 
   playVideo(src) {
@@ -139,21 +132,26 @@ Jade.Desktop = class API {
 
   closeSettings() {
     this.settingsSidenav().close();
-    let el = this.elem('#Settings')
-    this.empty(el)
     JAK.Bridge.setPanelVisible(false)
   }
 
   openSettings() {
     this.closeSearch()
-    this.buildApplications('Settings');
+    let el = this.elem('#Settings')
+    this.empty(el)
+    if (el.innerHTML == "") {
+      this.buildApplications('Settings');
+    }
     this.settingsSidenav().open();
   }
 
   closeApplications() {
-    this.appView().classList.remove("show")
-    this.empty(this.appView())
+    let self = this
+    this.appView().classList.remove("opacity")
     JAK.Bridge.setPanelVisible(false)
+    setTimeout(function(){ 
+      self.appView().classList.remove("show")
+     }, 300);
   }
 
   get_categories() {
@@ -178,25 +176,23 @@ Jade.Desktop = class API {
   }
 
   openApplications() {
+    let applications = this.elem("#Applications")
+    this.empty(applications)
     for (let category in Jade.menu) {
       if (category != "Settings") {
         desktop.buildApplications(category);
       }
     }
-    let appView = this.appView()
-    if (appView.innerHTML != "") {
+    if (applications.innerHTML != "") {
       this.closeSearch()
       desktop.closeSettings()
-      setTimeout(function () {
-        appView.classList.add("show");
-      }, 100);
-    }
+    } 
+    let appView = this.appView()
+    appView.classList.add("show", "opacity");
   }
 
   empty(el) {
-    setTimeout(function () {
-      el.innerHTML = ""
-    }, 400);
+    el.innerHTML = ""
   }
 
   matchQuery(item, searchQuery) {

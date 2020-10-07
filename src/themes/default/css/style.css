@@ -45,21 +45,37 @@ body * {
   filter: brightness(0.8);
 }
 
-#Applications {
+#Applications {  
+  overflow: scroll;  
   position: fixed;
   top: 0;
   bottom: 50px;
   left: 0;
   right: 0;
-  overflow: scroll;
-  transform: translateY(-100%);
-  transition: transform 0.4s linear;
-  will-change: transform;
+  padding-top: 50px;
+}
+
+.applications-spacer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+.applications-wrapper {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+  transition: opacity 0.4s ease-in-out;
+  transform: translateY(-100%);
+  will-change: opacity;
+  opacity: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  padding: 4%;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e91e63;
 }
 
 .grid {
@@ -77,8 +93,12 @@ body * {
 }
 
 
-#Applications.show {
+.applications-wrapper.show {
   transform: translateY(0%);
+}
+
+.applications-wrapper.opacity {
+  opacity: 1;
 }
 
 *:focus {
@@ -95,7 +115,7 @@ body * {
 
 #settingsPanel {
   width: 100%;
-  transition: transform 0.3s linear;
+  transition: transform 0.3s ease-in-out;
   overflow: hidden;
   background-color: transparent;
   height: calc(100% - 50px);
@@ -284,18 +304,16 @@ input[type="file"] {
 }
 
 #options,
-#Settings,
-#Applications {
+#Settings {
   filter: grayscale(1);
-  transition: all 0.4s ease-in-out;
+  transition: filter 0.4s ease-in-out;
 }
 
 #options:hover,
 #Settings:hover,
 #Applications:hover,
 #options:active,
-#Settings:active,
-#Applications:active {
+#Settings:active {
   filter: grayscale(0);
 }
 
@@ -419,11 +437,12 @@ input[type="file"] {
   position: fixed;
   top: calc(50% - 56px);
   left: 50%;
-  z-index: 9992;
   padding: 4px 10px;
   background-color: transparent;
   transform: translate(-50%);
   padding-top: 0;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
 }
 
 .search input[type="text"] {
@@ -489,8 +508,7 @@ input[type="file"] {
 }
 
 .search.show {
-  opacity: 1 !important;
-  z-index: 9999;
+  opacity: 1;
 }
 
 .collection-item {
