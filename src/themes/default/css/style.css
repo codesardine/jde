@@ -45,8 +45,8 @@ body * {
   filter: brightness(0.8);
 }
 
-#Applications {  
-  overflow: scroll;  
+#Applications {
+  overflow: scroll;
   position: fixed;
   top: 0;
   bottom: 50px;
@@ -131,12 +131,11 @@ body * {
   margin-top: 0;
   line-height: 48px;
   color: white;
-  border-bottom: 2px solid #26a69a;
 }
 
 #settingsPanel h2 {
   text-transform: uppercase;
-  background-color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(0, 0, 0, 0.70);
 }
 
 #settingsPanel h4 {
@@ -242,11 +241,23 @@ body * {
   overflow: scroll;
 }
 
-#options {
+#settingsPanel #options {
   width: 240px;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#settingsPanel #options .tile {
+  list-style: none;
+}
+
+#settingsPanel .background {
   background: #eeeeee;
+  overflow: scroll;
+  position: relative;
+  height: 100%;
 }
 
 input[type="file"] {
@@ -254,8 +265,16 @@ input[type="file"] {
 }
 
 #settingsPanel form,
-#settingsPanel .switch {
-  padding: 0 32px;
+#settingsPanel .switch,
+#categories-submenu,
+#backgrounds-submenu,
+.sidenav li > a {
+  padding: 0 15px;
+}
+
+[type="radio"]+span:before,
+[type="radio"]+span:after {
+  margin-left: 2px;
 }
 
 #settingsPanel .switch .lever {
@@ -412,7 +431,6 @@ input[type="file"] {
   margin-top: 100px;
   z-index: 999;
   width: 260px;
-  padding: 0 32px;
   transform: translateX(-100%);
   transition: all 0.4s ease-in-out;
   padding: 0;
@@ -448,7 +466,7 @@ input[type="file"] {
 .search input[type="text"] {
   margin-bottom: 0;
   height: 26px;
-  background-color: rgba(250, 250, 250, 0.8);
+  background-color: rgba(250, 250, 250, 0.9);
   padding: 2px 12px;
   border-bottom: 1px solid #E53935;
   box-shadow: 0 1px 0 0 #E53935;
@@ -456,6 +474,12 @@ input[type="file"] {
   font-weight: bold;
   padding: 14px 30px;
   width: 400px;
+}
+
+.search input[type="text"],
+.collection-item,
+.search ul .current-app {
+  background-color: rgba(250, 250, 250, 0.90) !important;
 }
 
 .search input[type=text]:not(.browser-default):focus:not([readonly]) {
@@ -487,7 +511,6 @@ input[type="file"] {
   left: 10px;
   width: calc(100% - 20px);
   padding-top: 22px;
-  background-color: rgba(250, 250, 250, 0.8);
 }
 
 .current-app .title {
@@ -513,7 +536,6 @@ input[type="file"] {
 
 .collection-item {
   position: relative;
-  background-color: rgba(250, 250, 250, 0.8) !important;
   color: #212121 !important;
 }
 
