@@ -1,11 +1,11 @@
 import pathlib
 import subprocess
-import pwd
 import os
 import json
 import Jade.Menu
 import time
 import gi
+
 gi.require_version('Wnck', '3.0')
 from gi.repository import Wnck
 from gi.repository import GObject
@@ -62,12 +62,13 @@ class Session():
                 print(err)
 
 
-class Desktop():
+class Desktop:
     def __init__(self):
         self.minimized_windows = []
         self.next_window_pos = "left"
         self.panel_open = False
         self.get_screen().connect("window-opened", self.window_open_cb)
+        self.ignore_windows = ["Guake!"]
 
     def toggle(self):
         # wnck only works on xorg
@@ -90,14 +91,15 @@ class Desktop():
         windows = self.get_screen().get_windows()
         workspace = self.get_screen().get_active_workspace()
         for window in windows:
-            if window.has_name() and window.get_name() != "Guake!":
-                window_position = window.get_geometry()
-                if window.is_in_viewport(workspace) and not window.is_minimized():
-                    _type = window.get_window_type()
-                    # remove dock windows and select only windows on primary screen
-                    if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
-                        self.minimized_windows.append(window)
-                        window.minimize()
+            for ignored_window in self.ignore_windows:
+                if window.has_name() and window.get_name() != ignored_window:
+                    window_position = window.get_geometry()
+                    if window.is_in_viewport(workspace) and not window.is_minimized():
+                        _type = window.get_window_type()
+                        # remove dock windows and select only windows on primary screen
+                        if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
+                            self.minimized_windows.append(window)
+                            window.minimize()
 
     def autoTile(self):
         settings = Desktop.loadSettings()
@@ -105,12 +107,16 @@ class Desktop():
             monitor = getScreenGeometry()
             windows = self.get_screen().get_windows()
             for window in windows:
-                half_screen = monitor.width() / 2
-                window_x = window.get_geometry()[0]
-                if window_x != half_screen or window_x != 0:
-                    if not window.is_maximized() and not window.is_minimized():
+                for ignored_window in self.ignore_windows:
+                    if window.has_name() and window.get_name() != ignored_window:
+                        half_screen_size = monitor.width() / 2
+                        window_x = float(window.get_geometry()[0])
+                        widthp = float(window.get_geometry()[2])
                         _type = window.get_window_type()
-                        if _type == Wnck.WindowType.NORMAL:
+                        if not window.is_skip_tasklist() and window_x != half_screen_size and window_x != 0.0 \
+                                or widthp != half_screen_size and not window.is_maximized() \
+                                and not window.is_minimized() and not window.is_fullscreen() \
+                                and _type == Wnck.WindowType.NORMAL:
                             gravity = Wnck.WindowGravity.STATIC
                             dock_size = 50
                             if self.next_window_pos == "left":
@@ -119,10 +125,13 @@ class Desktop():
 
                             elif self.next_window_pos == "right":
                                 self.next_window_pos = "left"
-                                x = half_screen
+                                x = half_screen_size
 
-                            geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
-                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen, monitor.height() - dock_size)
+                            geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | \
+                                            Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
+
+                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
+                                                - dock_size)
 
     def setPanelVisible(self, value):
         self.panel_open = value
@@ -187,17 +196,16 @@ class Desktop():
             background = f"{Desktop.getPath()}/themes/default/backgrounds/background.jpg"
         return background
 
-
     @staticmethod
     def getJS():
         menu = Jade.Menu.Get().items()
         settings = Desktop.loadSettings()
-        return f"const Jade = {{}};Jade.menu = { json.dumps( menu ) };Jade.settings = { json.dumps( settings ) }"
+        return f"const Jade = {{}};Jade.menu = {json.dumps(menu)};Jade.settings = {json.dumps(settings)}"
 
     @staticmethod
     def updateMenu():
         menu = Jade.Menu.Get().items()
-        JavaScript.send(f"Jade.menu = { json.dumps( menu ) }")
+        JavaScript.send(f"Jade.menu = {json.dumps(menu)}")
 
     @staticmethod
     def toggleSettings():
