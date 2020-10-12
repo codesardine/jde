@@ -68,6 +68,7 @@ class Desktop:
         self.next_window_pos = "left"
         self.panel_open = False
         self.get_screen().connect("window-opened", self.window_open_cb)
+        self.get_screen().connect('window-closed', self.window_closed_cb)
         self.ignore_windows = ["Guake!"]
 
     def toggle(self):
@@ -111,10 +112,10 @@ class Desktop:
                     if window.has_name() and window.get_name() != ignored_window:
                         half_screen_size = monitor.width() / 2
                         window_x = float(window.get_geometry()[0])
-                        widthp = float(window.get_geometry()[2])
+                        window_width = float(window.get_geometry()[2])
                         _type = window.get_window_type()
                         if not window.is_skip_tasklist() and window_x != half_screen_size and window_x != 0.0 \
-                                or widthp != half_screen_size and not window.is_maximized() \
+                                or window_width != half_screen_size and not window.is_maximized() \
                                 and not window.is_minimized() and not window.is_fullscreen() \
                                 and _type == Wnck.WindowType.NORMAL:
                             gravity = Wnck.WindowGravity.STATIC
@@ -145,7 +146,13 @@ class Desktop:
             self.clearWindows()
             self.autoTile()
 
+    def window_closed_cb(self, screen, closed_window):
+        for w in self.minimized_windows:
+            if w is closed_window:
+                self.minimized_windows.remove(closed_window)
+
     def clearWindows(self):
+        print(self.minimized_windows)
         self.minimized_windows.clear()
 
     @staticmethod
