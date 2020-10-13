@@ -75,7 +75,6 @@ body * {
   transform: translateY(-100%);
   will-change: opacity;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .grid {
@@ -135,7 +134,16 @@ body * {
 
 #settingsPanel h2 {
   text-transform: uppercase;
-  background-color: rgba(0, 0, 0, 0.70);
+}
+
+.applications-wrapper,
+#settingsPanel h2,
+#Settings {
+  background-color: rgba(0, 0, 0, 0.66);
+  }
+
+.sidenav-overlay {
+  background: transparent;
 }
 
 #settingsPanel h4 {
@@ -186,7 +194,6 @@ body * {
 #Settings {
   width: calc(100% - 240px);
   padding-top: 40px;
-  background: rgba(0, 0, 0, 0.70);
   height: 100%;
 }
 
