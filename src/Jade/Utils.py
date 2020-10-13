@@ -5,10 +5,9 @@ import json
 import Jade.Menu
 import time
 import gi
-
+import dbus
 gi.require_version('Wnck', '3.0')
 from gi.repository import Wnck
-from gi.repository import GObject
 from Jade.Settings import Options
 from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
@@ -87,7 +86,14 @@ class Desktop:
     def get_screen(self):
         return Wnck.Screen.get_default()
 
+    def hide_terminal(self):
+        bus = dbus.SessionBus()
+        service = bus.get_object('org.guake3.RemoteControl', '/org/guake3/RemoteControl')
+        interface = dbus.Interface(service, dbus_interface='org.guake3.RemoteControl')
+        interface.hide()
+
     def minimize_windows(self):
+        self.hide_terminal()
         monitor = getScreenGeometry()
         windows = self.get_screen().get_windows()
         workspace = self.get_screen().get_active_workspace()
@@ -152,7 +158,6 @@ class Desktop:
                 self.minimized_windows.remove(closed_window)
 
     def clearWindows(self):
-        print(self.minimized_windows)
         self.minimized_windows.clear()
 
     @staticmethod
