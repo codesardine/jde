@@ -455,12 +455,13 @@ input[type="file"] {
   position: fixed;
   top: calc(50% - 56px);
   left: 50%;
-  padding: 4px 10px;
+  padding: 0;
   background-color: transparent;
   transform: translate(-50%);
   padding-top: 0;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
+  box-shadow: 0 1px 1px rgba(0,0,0,.15), 0 2px 2px rgba(0,0,0,.15), 0 4px 4px rgba(0,0,0,.15), 0 8px 8px rgba(0,0,0,.15);
 }
 
 .search input[type="text"] {
@@ -498,8 +499,9 @@ input[type="file"] {
   overflow: scroll;
   margin: 0;
   margin-top: 1px;
-  height: 39.8vh;
   border: 0;
+  max-height: 39.8vh;
+  border-radius: 0;
 }
 
 .search ul .current-app {
@@ -508,8 +510,8 @@ input[type="file"] {
   height: 114px;
   display: none;
   text-align: center;
-  left: 10px;
-  width: calc(100% - 20px);
+  left: 0;
+  width: 100%;
   padding-top: 22px;
 }
 
@@ -523,7 +525,7 @@ input[type="file"] {
 
 .search ul .current-icon {
   width: 60px;
-  filter: drop-shadow(1px 1px 4px black);
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.4));
 }
 
 .search ul a:hover .current-app {
