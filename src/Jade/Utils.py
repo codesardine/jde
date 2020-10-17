@@ -13,8 +13,8 @@ from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
 
 
-def run(command):
-    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+def run(command, shell=False):
+    proc = subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE)
     return proc
 
 
@@ -24,27 +24,27 @@ class Session():
 
     @staticmethod
     def logOut():
-        run('loginctl terminate-session $XDG_SESSION_ID')
+        run('loginctl terminate-session $XDG_SESSION_ID', shell=True)
 
     @staticmethod
     def powerOff():
-        run('systemctl poweroff')
+        run(['systemctl', 'poweroff'])
 
     @staticmethod
     def reboot():
-        run('systemctl reboot')
+        run(['systemctl', 'reboot'])
 
     @staticmethod
     def hibernate():
-        run('systemctl hibernate')
+        run(['systemctl', ' hibernate'])
 
     @staticmethod
     def suspend():
-        run('systemctl suspend')
+        run(['systemctl', 'suspend'])
 
     @staticmethod
     def sleep():
-        run('systemctl hybrid-sleep')
+        run(['systemctl', 'hybrid-sleep'])
 
     def get_desktop_session(self):
         return self.desktop_session
@@ -228,16 +228,23 @@ class Desktop:
 
     @staticmethod
     def setBranch(branch):
-        p = run(f'pkexec pacman-mirrors --api --set-branch {branch}')
-        result = p.stdout.readline().decode("utf-8")
+        p = run(['pkexec', 'pacman-mirrors', '--api', '--set-branch', f'{branch}'])
+        while p.poll() is None:
+            print("")
         from JAK.Widgets import InfoDialog
         window = Instance.retrieve("win")
-        msg = f"You are now set on {Desktop.getBranch().capitalize()}, Please sync your new mirrors."
-        InfoDialog(window, "Software Branch", msg)
+        branch = Desktop.getBranch()        
+        if p.returncode == 0:
+            msg = f"You are now set on {branch.capitalize()}, Please sync your new mirrors."
+            InfoDialog(window, "Software Branch", msg)
+        else:
+             JavaScript.send(f"""
+             desktop.elem(`#{branch}-btn`).checked = true
+             """)
 
     @staticmethod
     def getBranch():
-        p = run('cat /etc/pacman-mirrors.conf | grep "Branch ="')
+        p = run('cat /etc/pacman-mirrors.conf | grep "Branch ="', shell=True)
         output = p.stdout.readline().decode(
             "utf-8").replace("Branch = ", "").replace("#", "").strip()
         return output
@@ -254,7 +261,7 @@ class Desktop:
     def restoreDefaults():
         home = os.path.expanduser("~")
         # TODO backup old files
-        run(f"cp -r /etc/skel {home}")
+        run(f"cp -r /etc/skel {home}", shell=True)
         from JAK.Widgets import InfoDialog
         window = Instance.retrieve("win")
         msg = "Profile defaults have been set on your home directory."

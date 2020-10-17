@@ -273,7 +273,6 @@ function init() {
       Appearance: "Appearance",
       Behavior: "Behavior",
       System: "System"
-
     },
 
     computed: {
