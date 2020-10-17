@@ -247,7 +247,6 @@ function init() {
       moodBackGroundText: "Mood Background",
       restoreText: "Restore Defaults",
       restoreBtnIcon: JAK.Bridge.restoreIcon,
-      aboutText: "About",
       devToolsText: "DevTools",
       inspectorText: "Inspector",
       branchTitle: "Software Branch",
@@ -262,7 +261,6 @@ function init() {
       url: about["url"],
       aboutLicense: "License: " + about["license"],
       aboutAuthor: "Copyright © 2020 " + about["author"],
-      ok: "OK",
       aboutBtnIcon: JAK.Bridge.infoIcon,
       warranty: "This program comes with absolutely no warranty.",
       categoriesTittle: "Visible Applications",
@@ -272,6 +270,10 @@ function init() {
       videos: Jade.videos,
       "disabledText": "Disabled",
       "tileText": "Auto Tiling",
+      Appearance: "Appearance",
+      Behavior: "Behavior",
+      System: "System"
+
     },
 
     computed: {
@@ -300,7 +302,12 @@ function init() {
     JAK.Bridge.saveSettings("autoTile", autoTileBtn.checked)
   })
 
-  M.Modal.init(desktop.elem('.modal'))
+  let aboutPanel = M.Modal.init(desktop.elem('.modal'), { onOpenEnd: function() {
+    let about = desktop.elem('.modal-overlay')
+    about.onmouseleave = function() {
+      aboutPanel.close();
+    };
+  }});
   desktop.elem(`#${JAK.Bridge.getBranch}-btn`).checked = true
 
   M.Sidenav.init(desktop.elems('.sidenav'), {
@@ -308,6 +315,8 @@ function init() {
     edge: 'left',
     draggable: true
   })
+
+  var instance = M.Tabs.init(desktop.elems('.tabs'), { swipeable: true });
 
   desktop.elem(".drag-target").onmouseenter = function () {
     desktop.toggleSettings()

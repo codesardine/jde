@@ -25,144 +25,149 @@
   <main id="app">
     <div id="settingsPanel" class="sidenav">
       <div id="options">
-        <li class="tile">
-          <h2>{{ title }}</h2>
-        </li>
+        <ul id="tabs-swipe-demo" class="tabs">
+          <li class="tab col s3"><a class="active" href="#swipe-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 4.007C2 3.45 2.455 3 2.992 3h18.016c.548 0 .992.45.992 1.007V17H2V4.007zM1 19h22v2H1v-2z"/></svg>
+          </a></li>
+          <li class="tab col s3"><a href="#swipe-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z"/></svg>
+          </a></li>
+          <li class="tab col s3"><a href="#swipe-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+          </a></li>
+          <li class="tab col s3"><a href="#swipe-4" id="devtools-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm13.464 12.536L20 12l-3.536-3.536L15.05 9.88 17.172 12l-2.122 2.121 1.414 1.415zM6.828 12L8.95 9.879 7.536 8.464 4 12l3.536 3.536L8.95 14.12 6.828 12zm4.416 5l3.64-10h-2.128l-3.64 10h2.128z"/></svg>          </a></li>
+          <li class="not-tab col s3"><a class="modal-trigger text-color" href="#about" data-target="about">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
+          </a></li>
+        </ul>
         <div class="background">
-        <ul>
-          <li class="focus-on-hover">
-            <form action="#" class="categories-container">
-              <p>
-                <label>
-                  <input id="categories-btn" type="checkbox" class="filled-in" />
-                  <span>{{ categoriesTittle }}</span>
-                </label>
-              </p>
-            </form>
-            <ul id="categories-submenu" class="focus-on-hover">
+          <div id="swipe-1" class="col s12 carousel-item">
+            <h2>{{ Appearance }}</h2>
+            <ul>
               <li>
-                <form id="activeCategories" action="#">
-                  <p v-for="(value, key) in categories" v-if="key!='Settings'">
-                    <label>
-                      <img v-bind:src="value.icon">
-                      <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
-                      <span>{{ key }}</span>
-                    </label>
-                  </p>
-                </form>
+                <a id="background-btn" href="#about" class=" text-color">
+                  <label for="background-btn">
+                    <img v-bind:src="backgroundBtnIcon" id="background-icon-btn">
+                    {{ backgroundBtnText }}
+                </a>
               </li>
-            </ul>
-          </li>
-          <li>
-            <a id="background-btn" href="#about" class="focus-on-hover">
-              <label for="background-btn">
-                <img v-bind:src="backgroundBtnIcon" id="background-icon-btn">
-                {{ backgroundBtnText }}
-            </a>
-          </li>
-          <li class="focus-on-hover">
-            <form action="#" class="backgrounds-container">
-              <p>
-                <label>
-                  <input id="video-background-btn" type="checkbox" class="filled-in" />
-                  <span>{{ moodBackGroundText }}</span>
-                </label>
-              </p>
-            </form>
-            <ul id="backgrounds-submenu" class="focus-on-hover">
               <li>
-                <form id="activeBackground" action="#">
+                <form action="#" class="backgrounds-container">
                   <p>
                     <label>
-                      <input id="disabled-btn" type="radio" name="activeBackground" class="filled-in" />
-                      <span>{{ disabledText }}</span>
+                      <input id="video-background-btn" type="checkbox" class="filled-in" />
+                      <span >{{ moodBackGroundText }}</span>
                     </label>
                   </p>
-                  <p v-for="video in videos">
+                </form>
+                <ul id="backgrounds-submenu">
+                  <li>
+                    <form id="activeBackground" action="#">
+                      <p>
+                        <label>
+                          <input id="disabled-btn" type="radio" name="activeBackground" class="filled-in" />
+                          <span >{{ disabledText }}</span>
+                        </label>
+                      </p>
+                      <p v-for="video in videos">
+                        <label>
+                          <input v-bind:id="video.replace(' ', '-') + '-btn'" type="radio" name="activeBackground"
+                            class="filled-in" />
+                          <span>{{ video }}</span>
+                        </label>
+                      </p>
+                    </form>
+                  </li>
+                </ul>
+          </div>
+          <div id="swipe-2" class="col s12 carousel-item">
+            <h2>{{ Behavior }}</h2>
+            <ul>
+              <li>
+                <div class="switch">
+                  <label class="text-color">
+                    <input id="auto-tile-btn" type="checkbox">
+                    <span class="lever"></span>
+                    {{ tileText }}
+                  </label>
+                </div>
+              </li>
+              <li>
+                <form action="#" class="categories-container">
+                  <p>
                     <label>
-                      <input v-bind:id="video.replace(' ', '-') + '-btn'" type="radio" name="activeBackground"
-                        class="filled-in" />
-                      <span>{{ video }}</span>
+                      <input id="categories-btn" type="checkbox" class="filled-in" />
+                      <span >{{ categoriesTittle }}</span>
+                    </label>
+                  </p>
+                </form>
+                <ul id="categories-submenu">
+                  <li>
+                    <form id="activeCategories" action="#">
+                      <p v-for="(value, key) in categories" v-if="key!='Settings'">
+                        <label>
+                          <img v-bind:src="value.icon">
+                          <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
+                          <span >{{ key }}</span>
+                        </label>
+                      </p>
+                    </form>
+                  </li>
+                </ul>
+          </div>
+          <div id="swipe-3" class="col s12 carousel-item">
+            <h2>{{ System }}</h2>
+            <ul>
+              <li>
+                <a class=" text-color" id="defaults-btn" href="#!">
+                  <img id="restore-icon-btn" v-bind:src="restoreBtnIcon">
+                  {{ restoreText }}
+                </a>
+              </li>
+              <h2 >{{ branchTitle }}</h2>
+              <li>
+                <form id="branches" action="#">
+                  <p>
+                    <label>
+                      <input name="branches" type="radio" id="stable-btn" />
+                      <span >{{ stable }}</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input name="branches" type="radio" id="testing-btn" />
+                      <span  for="testing">{{ testing }}</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input name="branches" type="radio" id="unstable-btn" />
+                      <span  for="unstable">{{ unstable }}</span>
                     </label>
                   </p>
                 </form>
               </li>
             </ul>
-          <li>
-          <li>
-            <a class="focus-on-hover" id="defaults-btn" href="#!">
-              <img id="restore-icon-btn" v-bind:src="restoreBtnIcon">
-              {{ restoreText }}
-            </a>
-          </li>
-          <li>
-            <a class="focus-on-hover modal-trigger" href="#about" data-target="about">
-              <img v-bind:src="aboutBtnIcon" id="about-icon-btn">
-              {{ aboutText }}
-            </a>
-          </li>
-          <li class="focus-on-hover">
-            <form action="#" class="devtools">
-              <p>
-                <label>
-                  <input id="devtools-btn" type="checkbox" class="filled-in" />
-                  <span>{{ devToolsText }}</span>
-                </label>
-              </p>
-            </form>
-          </li>
-        </ul>
-        <ul id="devtools">
-          <li class="focus-on-hover">
-            <form action="#">
-              <p>
-                <label>
-                  <input id="inspector-btn" type="checkbox" class="filled-in" />
-                  <span>{{ inspectorText }}</span>
-                </label>
-              </p>
-            </form>
-          </li>
-          <li>
-            <h4>{{ branchTitle }}</h4>
-          </li>
-          <li class="focus-on-hover">
-            <form id="branches" action="#">
-              <p>
-                <label>
-                  <input name="branches" type="radio" id="stable-btn" />
-                  <span>{{ stable }}</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input name="branches" type="radio" id="testing-btn" />
-                  <span for="testing">{{ testing }}</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input name="branches" type="radio" id="unstable-btn" />
-                  <span for="unstable">{{ unstable }}</span>
-                </label>
-              </p>
-            </form>
-          </li>
-          <li>
-            <h4>{{ experimentalFeaturesText }}</h4>
-          </li>
-          <li class="focus-on-hover">
-            <div class="switch">
-              <label>
-                <input id="auto-tile-btn" type="checkbox">
-                <span class="lever"></span>
-                {{ tileText }}
-              </label>
-            </div>
-          </li>
+          </div>
+          <div id="swipe-4" class="col s12 carousel-item">
+            <h2 >{{ devToolsText }}</h2>
+            <ul id="devtools">
+              <li>
+                <form action="#">
+                  <p>
+                    <label>
+                      <input id="inspector-btn" type="checkbox" class="filled-in" />
+                      <span >{{ inspectorText }}</span>
+                    </label>
+                  </p>
+                </form>
+              </li>
+              <h2 >{{ experimentalFeaturesText }}</h2>
+          </div>
+        </div>
         </ul>
       </div>
-    </div>
       <section id="Settings" class="grid"></section>
     </div>
     <section class="applications-wrapper">
@@ -176,10 +181,10 @@
         <li v-for="item in filter">
           <a class="collection-item" v-bind:href="'ipc:' + item.path">
             <img v-bind:src="item.icon">
-            <span class="title">{{ item.name }}</span>
+            <span >{{ item.name }}</span>
             <div class="current-app">
               <img class="current-icon" v-bind:src="item.icon">
-              <p class="title">{{ activeAppText }}{{ item.name }}</p>
+              <p >{{ activeAppText }}{{ item.name }}</p>
             </div>
           </a>
         </li>
@@ -187,19 +192,17 @@
     </div>
     <video id="video-background" loop autoplay>
     </video>
-    <div id="about" class="modal speech-bubble">
+    <div id="about" class="modal">
+      <img class="logo" src="../../images/logo.svg">
       <div class="modal-content">
         <h4>{{ aboutTitle }}</h4>
         <p>
-          {{ aboutAuthor }}
-          <br>{{ aboutDescription }}
-          <br>{{ aboutLicense }}
-          <br><a v-bind:href="url">{{ urlText }}</a>
+          <p>{{ aboutAuthor }}</p>
+            <p>{{ aboutLicense }}</p>
         </p>
       </div>
       <div class="modal-footer">
         {{ warranty }}
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">{{ ok }}</a>
       </div>
     </div>
     <div id="screen-overlay"></div>

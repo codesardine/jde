@@ -34,7 +34,6 @@ body * {
 .app-title {
   padding: 6px;
   min-height: 48px;
-  color: #bbbaba;
   max-width: 120px;
   font-weight: bold;
 }
@@ -49,10 +48,11 @@ body * {
   overflow: scroll;
   position: fixed;
   top: 0;
-  bottom: 50px;
+  bottom: 10%;
   left: 0;
   right: 0;
-  padding-top: 50px;
+  padding: 8% 4%;
+  padding-bottom: 0;
 }
 
 .applications-spacer {
@@ -61,6 +61,19 @@ body * {
   left: 0;
   right: 0;
   height: 50px;
+}
+
+.text-color, .app-title, #options form, #options h2 {
+  color: #e4e4e4 !important;
+}
+
+[type="radio"]:not(:checked) + span:before, [type="radio"]:not(:checked) + span:after,
+[type="checkbox"].filled-in:not(:checked) + span:not(.lever):after {
+  border: 1px solid  #e4e4e4;
+}
+
+[type="radio"]:not(:checked) + span, [type="radio"]:checked + span {
+  padding-left: 46px;
 }
 
 .applications-wrapper {
@@ -72,7 +85,7 @@ body * {
   right: 0;
   width: 100%;
   transition: opacity 0.4s ease-in-out;
-  transform: translateY(-100%);
+  transform: translateY(-200%);
   will-change: opacity;
   opacity: 0;
 }
@@ -124,20 +137,20 @@ body * {
 }
 
 #settingsPanel h2 {
-  text-align: center;
   margin-bottom: 0;
   font-size: 1rem;
-  margin-top: 0;
+  margin-top: 20px;
   line-height: 48px;
   color: white;
+  padding-left: 18px;
 }
 
 #settingsPanel h2 {
-  text-transform: uppercase;
+  font-size: 14px !important;
 }
 
 .applications-wrapper,
-#settingsPanel h2,
+#settingsPanel .title,
 #Settings {
   background-color: rgba(0, 0, 0, 0.66);
   }
@@ -164,6 +177,42 @@ body * {
   margin-right: 22px;
   margin-top: -4px;
   margin-left: -3px;
+}
+
+#Settings {
+  overflow: scroll;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: transparent;
+    }
+
+#options {
+border-right: 1px solid transparent;
+}
+
+.tabs .indicator {
+  background-color: #009688;
+}
+
+.tabs-content {
+  height: inherit !important;
+}
+
+.carousel-item {
+  overflow-y: scroll;
+}
+
+.carousel-item, .background {
+  background-color: transparent !important;
+}
+
+.tabs, .tabs-content {
+background-color: rgba(0, 0, 0, 0.66) !important;
+}
+
+.tabs h2 {
+ background:transparent !important;
 }
 
 #settingsPanel ul,
@@ -241,13 +290,6 @@ body * {
   padding-left: 46px;
 }
 
-#settingsPanel ul,
-#settingsPanel #Settings,
-#categories-submenu,
-#backgrounds-submenu {
-  overflow: scroll;
-}
-
 #settingsPanel #options {
   width: 240px;
   height: 100%;
@@ -256,13 +298,8 @@ body * {
   flex-direction: column;
 }
 
-#settingsPanel #options .tile {
-  list-style: none;
-}
-
 #settingsPanel .background {
   background: #eeeeee;
-  overflow: scroll;
   position: relative;
   height: 100%;
 }
@@ -315,20 +352,6 @@ input[type="file"] {
   z-index: -2;
 }
 
-#devtools {
-  transform: translateX(-100%);
-  transition: all 0.4s ease-in-out;
-}
-
-#devtools.show {
-  transform: translateX(0);
-}
-
-.focus-on-hover:hover,
-.focus-on-hover:active {
-  background-color: white !important;
-}
-
 #options,
 #Settings {
   filter: grayscale(1);
@@ -362,83 +385,70 @@ input[type="file"] {
   overflow: visible;
 }
 
-#about:before {
-  content: "";
-  background-image: url(../../../images/logo.svg);
+#about .logo {
   width: 80px;
   height: 80px;
-  display: block;
-  background-size: contain;
-  border-radius: 100%;
-  position: absolute;
-  filter: drop-shadow(2px 4px 6px black);
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: -140px;
+  text-align: center;
 }
 
 #about {
-  max-width: 600px;
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+    padding: 0 8px !important;
+    max-width: 600px;
 }
 
 #about p {
-  color: darkslategray;
+  font-size: 18px;
+}
+
+.sidenav li > a:hover {
+  background-color: transparent;
+}
+
+#about * {
+  background: transparent !important;
+  font-weight: bold;
+  color: white !important;
+  text-align: center !important;
+}
+
+.modal-content {
+  padding-bottom: 0px !important;
+}
+
+.not-tab {
+  display: inline-block;
+}
+
+.not-tab a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.not-tab a, .tabs a {
+  padding: 6px 8px !important;
+}
+
+.not-tab svg, .tabs svg {
+  width: 28px;
+  height: 28px;
+  fill: silver;
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 #about p a:hover, #about p a:active, #about p a:focus {
   text-decoration: underline;
 }
 
-#about a {
-  color:brown;
-}
-
-.speech-bubble {
-  background: #90caf9;
-}
-
-.speech-bubble .modal-footer {
-  padding-bottom: 0;
-  padding-left: 40px;
-  padding-right: 40px;
-  text-align: center;
-}
-
-.speech-bubble .modal-footer a {
-  margin-left: 10px !important;
-}
-
-.speech-bubble h4 {
-  font-size: 1.2rem;
-}
-
-.speech-bubble .modal-content {
-  padding-bottom: 0;
-}
-
-.speech-bubble:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border: 20px solid transparent;
-  border-right-color: #90caf9;
-  border-left: 0;
-  border-bottom: 0;
-  margin-top: -50px;
-  margin-left: -20px;
-}
-
 #categories-submenu,
 #backgrounds-submenu {
   position: absolute;
-  background: #eeeeee;
   margin-top: 100px;
   z-index: 999;
   width: 260px;
-  transform: translateX(-100%);
+  transform: translateX(-200%);
   transition: all 0.4s ease-in-out;
   padding: 0;
 }
@@ -553,10 +563,6 @@ input[type="file"] {
 .collection-item:focus {
   background-color: white !important;
   color: #00897B !important;
-}
-
-.collection-item:active {
-  outline: 2px solid black;
 }
 
 .collection-item img:not(.current-icon) {

@@ -177,7 +177,6 @@ class Desktop:
         items = json.dumps({
             "author": "Vitor Lopes",
             "title": "Just Another Desktop Enviroment",
-            "description": "Built with Web Technologies",
             "url": "https://github.com/codesardine/Jadesktop/",
             "license": "GPL"
         })
