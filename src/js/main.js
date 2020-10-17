@@ -355,20 +355,6 @@ function init() {
     desktop.setBranch("unstable")
   })
 
-  let devTools = desktop.elem('#devtools')
-  let devToolsBtn = desktop.elem('#devtools-btn')
-  devToolsBtn.addEventListener('click', function () {
-    screen = desktop.elem('#screen-overlay')
-    let classes = devTools.classList
-    if (devToolsBtn.checked) {
-      classes.add("show")
-      screen.classList.add("devtools-on")
-    } else {
-      classes.remove("show")
-      screen.classList.remove("devtools-on")
-    }
-  })
-
   function toggleVideo(btn, name) {
     if (btn.checked && name != false) {
       desktop.playVideo(`../../mood-backgrounds/${name.replace(" ", "-").toLowerCase()}.mp4`)

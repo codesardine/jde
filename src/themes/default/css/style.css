@@ -337,10 +337,6 @@ input[type="file"] {
   line-height: 34px !important;
 }
 
-.devtools-on {
-  box-shadow: inset 0 0 10px #fb8c00;
-}
-
 #video-background {
   height: 100%;
   width: 177.77777778vh;
