@@ -148,7 +148,7 @@ def main():
             "setAttribute": (Qt.WA_X11NetWmWindowTypeDesktop, Qt.WA_X11NetWmWindowTypeDesktop),
             "transparent": True,
             "backgroundImage": Desktop.getBackground(),
-            "icon": f"{Desktop.getPath()}/images/logo.svg",
+            "icon": f"{Desktop.getPath()}/images/logo-panel.svg",
             "SystemTrayIcon": [ {"trayIcon": icons.get("exit")},
                 {"title": "Log Out", "action": Exit.logOut, "icon": icons.get("system-log-out")},
                 {"title": "Power Off", "action": Exit.powerOff, "icon": icons.get("system-shutdown")},
