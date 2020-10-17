@@ -262,7 +262,7 @@ function init() {
       aboutLicense: "License: " + about["license"],
       aboutAuthor: "Copyright © 2020 " + about["author"],
       aboutBtnIcon: JAK.Bridge.infoIcon,
-      warranty: "This program comes with absolutely no warranty.",
+      warranty: "This software comes with no warranty.",
       categoriesTittle: "Visible Applications",
       searchQuery: '',
       categories: Jade.menu,
