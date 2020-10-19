@@ -7,10 +7,16 @@ import time
 import gi
 import dbus
 gi.require_version('Wnck', '3.0')
-from gi.repository import Wnck
+gi.require_version('Notify', '0.7')
+from gi.repository import Wnck, Gio, Notify
 from Jade.Settings import Options
 from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
+Notify.init("Jade")
+
+
+def notify(title, msg):
+    Notify.Notification.new(title, msg, "dialog-information").show()
 
 
 def run(command, shell=False):
@@ -148,7 +154,6 @@ class Desktop:
         if _type == Wnck.WindowType.DESKTOP:
             pass
         elif _type == Wnck.WindowType.NORMAL:
-            monitor = getScreenGeometry()
             self.clearWindows()
             self.autoTile()
 
@@ -227,20 +232,30 @@ class Desktop:
         JavaScript.send("desktop.toggleLauncher();")
 
     @staticmethod
-    def setBranch(branch):
-        p = run(['pkexec', 'pacman-mirrors', '--api', '--set-branch', f'{branch}'])
-        while p.poll() is None:
-            print("")
+    def setBranch(desired_branch):
+        notify(f"Setting branch to {desired_branch.upper()}.", "Might take a while.")
+
         from JAK.Widgets import InfoDialog
-        window = Instance.retrieve("win")
-        branch = Desktop.getBranch()        
-        if p.returncode == 0:
-            msg = f"You are now set on {branch.capitalize()}, Please sync your new mirrors."
-            InfoDialog(window, "Software Branch", msg)
-        else:
-             JavaScript.send(f"""
-             desktop.elem(`#{branch}-btn`).checked = true
-             """)
+        def update():
+            run(["pamac-manager", "--updates"])
+
+        cmd = ['pkexec', 'pacman-mirrors', '--fasttrack', '--api', '--set-branch', f'{desired_branch}']
+        def callback(sucprocess: Gio.Subprocess, result: Gio.AsyncResult, data):
+            proc.communicate_utf8_finish(result)
+            current_branch = Desktop.getBranch()
+            if current_branch != desired_branch:
+                JavaScript.send(f"""
+            desktop.elem(`#{current_branch}-btn`).checked = true
+            """)
+                notify("Something went wrong", "")
+            else:
+                from JAK.Widgets import JCancelConfirmDialog
+                window = Instance.retrieve("win")
+                msg = f"All Done, would you like to update your software and operating system from {current_branch.upper()} branch now?"
+                JCancelConfirmDialog(window, " ", msg, update)
+
+        proc = Gio.Subprocess.new(cmd, Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
+        proc.communicate_utf8_async('Shell Command', None, callback, None)            
 
     @staticmethod
     def getBranch():
@@ -254,7 +269,7 @@ class Desktop:
         from JAK.Widgets import JCancelConfirmDialog
         window = Instance.retrieve("win")
         msg = "Some of your manual configuration under your HOME folder will be lost, Would you like to proceed?"
-        JCancelConfirmDialog(window, "Restore Defaults",
+        JCancelConfirmDialog(window, " ",
                              msg, Desktop.restoreDefaults)
 
     @staticmethod
