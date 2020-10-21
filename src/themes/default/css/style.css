@@ -233,6 +233,10 @@ background-color: rgba(0, 0, 0, 0.66) !important;
  background:transparent !important;
 }
 
+#swipe-2 ul .workspace:first-of-type {
+  padding-top: 18px;
+}
+
 #settingsPanel ul,
 #categories-submenu,
 #backgrounds-submenu {
