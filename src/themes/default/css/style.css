@@ -63,8 +63,14 @@ body * {
   height: 50px;
 }
 
-.text-color, .app-title, #options form, #options h2 {
+.text-color, .app-title,
+#options form,
+.workspace input {
   color: #e4e4e4 !important;
+}
+
+.workspace label, #options h2 {
+  color: #ffa726 !important;
 }
 
 [type="radio"]:not(:checked) + span:before, [type="radio"]:not(:checked) + span:after,
@@ -139,7 +145,7 @@ body * {
 #settingsPanel h2 {
   margin-bottom: 0;
   font-size: 1rem;
-  margin-top: 20px;
+  margin-top: 0;
   line-height: 48px;
   color: white;
   padding-left: 18px;
@@ -201,6 +207,18 @@ border-right: 1px solid transparent;
 
 .carousel-item {
   overflow-y: scroll;
+  padding-top: 10px;
+}
+
+input.valid[type=text]:not(.browser-default) {
+  border-bottom: 1px solid #9e9e9e;
+  box-shadow: none;
+}
+
+input.valid[type=text]:not(.browser-default):focus,
+input.valid[type=text]:not(.browser-default):active {
+  border-bottom: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
 }
 
 .carousel-item, .background {
@@ -352,6 +370,10 @@ input[type="file"] {
 #Settings {
   filter: grayscale(1);
   transition: filter 0.4s ease-in-out;
+}
+
+.workspace {
+  padding: 0 15px;
 }
 
 #options:hover,

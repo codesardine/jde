@@ -29,7 +29,11 @@ class Options():
             "Help": True,
             "Multimedia": True,
             "Office": True,
-            "System": False
+            "System": False,
+            "workspace1": "",
+            "workspace2": "",
+            "workspace3": "",
+            "workspace4": ""
         }
         if os.path.exists(self.settings):
             for key, value in self.config.items('DEFAULT'):

@@ -241,7 +241,6 @@ function init() {
   new Vue({
     el: '#app',
     data: {
-      title: "Settings",
       backgroundBtnIcon: JAK.Bridge.backgroundIcon,
       backgroundBtnText: "Change Wallpaper",
       moodBackGroundText: "Mood Background",
@@ -285,6 +284,44 @@ function init() {
     }
   })
 
+function debounce(callback, wait) {
+  let timeout;
+  return (...args) => {
+      const context = this;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => callback.apply(context, args), wait);
+  };
+}
+
+workspace1 = desktop.elem("#workspace1")
+workspace1.value = Jade.settings.workspace1
+workspace1.addEventListener("keyup", debounce(() => {
+    JAK.Bridge.saveSettings("workspace1", workspace1.value)
+    console.log('works')
+  }, 500))
+
+  workspace2 = desktop.elem("#workspace2")
+  workspace2.value = Jade.settings.workspace2
+  workspace2.addEventListener("keyup", debounce(() => {
+      JAK.Bridge.saveSettings("workspace2", workspace2.value)
+      console.log('works')
+    }, 500))
+
+    workspace3 = desktop.elem("#workspace3")
+workspace3.value = Jade.settings.workspace3
+workspace3.addEventListener("keyup", debounce(() => {
+    JAK.Bridge.saveSettings("workspace3", workspace3.value)
+    console.log('works')
+  }, 500))
+
+  workspace4 = desktop.elem("#workspace4")
+  workspace4.value = Jade.settings.workspace4
+  workspace4.addEventListener("keyup", debounce(() => {
+    JAK.Bridge.saveSettings("workspace4", workspace4.value)
+    console.log('works')
+  }, 500))
+
+
   for (let [key, value] of Object.entries(Jade.settings)) {
     let button = desktop.elem(`#${key}-btn`)
     if (button != null) {
@@ -315,7 +352,7 @@ function init() {
     draggable: true
   })
 
-  var instance = M.Tabs.init(desktop.elems('.tabs'), { swipeable: true });
+  M.Tabs.init(desktop.elems('.tabs'), { swipeable: true });
 
   desktop.elem(".drag-target").onmouseenter = function () {
     desktop.toggleSettings()
@@ -406,7 +443,7 @@ function init() {
     }
   })
 
-  let appView = desktop.elem("#Applications")
+  let appView = desktop.elem(".applications-wrapper")
   appView.onmouseleave = function () {
     desktop.closeApplications()
   }

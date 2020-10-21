@@ -74,7 +74,30 @@ class Desktop:
         self.panel_open = False
         self.get_screen().connect("window-opened", self.window_open_cb)
         self.get_screen().connect('window-closed', self.window_closed_cb)
+        self.get_screen().connect('active-workspace-changed', self.active_workspace_changed_cb)
         self.ignore_windows = ["Guake!"]
+
+
+    def workspace_exec(self, cmd):
+        run(f"""
+                if pgrep -x '{cmd}' > /dev/null; 
+                then echo "Running"; 
+                else {cmd};
+                fi
+                exit 0
+                """, shell=True)
+
+
+    def active_workspace_changed_cb(self, screen, previously_active_space):
+        workspace_name = screen.get_active_workspace().get_name()
+        workspaces = ["workspace1", "workspace2", "workspace3", "workspace4"]
+        for space in workspaces:
+            if workspace_name.lower().replace(" ", "") == space:
+                config = Desktop.loadSettings()[space].split(" ")
+                for cmd in config:
+                    print(workspace_name, config, cmd)
+                    self.workspace_exec(cmd)
+
 
     def toggle(self):
         # wnck only works on xorg
@@ -92,6 +115,9 @@ class Desktop:
     def get_screen(self):
         return Wnck.Screen.get_default()
 
+    def workspace(self):
+        self.get_screen().get_active_workspace()
+
     def hide_terminal(self):
         bus = dbus.SessionBus()
         service = bus.get_object('org.guake3.RemoteControl', '/org/guake3/RemoteControl')
@@ -102,12 +128,11 @@ class Desktop:
         self.hide_terminal()
         monitor = getScreenGeometry()
         windows = self.get_screen().get_windows()
-        workspace = self.get_screen().get_active_workspace()
         for window in windows:
             for ignored_window in self.ignore_windows:
                 if window.has_name() and window.get_name() != ignored_window:
                     window_position = window.get_geometry()
-                    if window.is_in_viewport(workspace) and not window.is_minimized():
+                    if not window.is_minimized():
                         _type = window.get_window_type()
                         # remove dock windows and select only windows on primary screen
                         if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
