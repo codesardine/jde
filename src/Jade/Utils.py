@@ -151,7 +151,7 @@ class Desktop:
                         window_x = float(window.get_geometry()[0])
                         window_width = float(window.get_geometry()[2])
                         _type = window.get_window_type()
-                        if not window.is_skip_tasklist() and window_x != half_screen_size and window_x != 0.0 \
+                        if not window.is_skip_tasklist() and window_x != half_screen_size or window_x != 0.0 \
                                 or window_width != half_screen_size and not window.is_maximized() \
                                 and not window.is_minimized() and not window.is_fullscreen() \
                                 and _type == Wnck.WindowType.NORMAL:
