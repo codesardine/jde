@@ -293,6 +293,12 @@ function debounce(callback, wait) {
   };
 }
 
+let search = desktop.searchBar()
+search.addEventListener("keyup", (e) => {
+  if(e.key === "Escape") {
+    desktop.closeSearch()
+}})
+
 workspace1 = desktop.elem("#workspace1")
 workspace1.value = Jade.settings.workspace1
 workspace1.addEventListener("keyup", debounce(() => {
