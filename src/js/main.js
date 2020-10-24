@@ -202,12 +202,18 @@ Jade.Desktop = class API {
   }
 }
 
+function appDrag(ev) {
+  el = ev.target
+  img = el.querySelector("img")
+  ev.dataTransfer.setDragImage(img, 30, 30)  
+}
+
 function appTemplate(name, icon, description, keywords, file) {
   let template = `
   <div class="grid-item">
     <div class="app">
       <div class="icons-container">
-          <a class="ipc" onclick="JAK.IPC('${file}');return false;"><img class="app-icon" src="${icon}">
+          <a href="${file}" ondragstart="appDrag(event)" class="ipc" onclick="JAK.IPC('${file}');return false;"><img class="app-icon" draggable="false" src="${icon}">
               <div class="app-title">
                 ${name}
               </div>
