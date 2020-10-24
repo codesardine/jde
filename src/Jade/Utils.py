@@ -75,7 +75,7 @@ class Desktop:
         self.get_screen().connect("window-opened", self.window_open_cb)
         self.get_screen().connect('window-closed', self.window_closed_cb)
         self.get_screen().connect('active-workspace-changed', self.active_workspace_changed_cb)
-        self.ignore_windows = ["Guake!"]
+        self.ignore_windows = ("Guake!", "plank")
 
 
     def workspace_exec(self, cmd):
@@ -129,47 +129,46 @@ class Desktop:
         monitor = getScreenGeometry()
         windows = self.get_screen().get_windows()
         for window in windows:
-            for ignored_window in self.ignore_windows:
-                if window.has_name() and window.get_name() != ignored_window:
-                    window_position = window.get_geometry()
-                    if not window.is_minimized():
-                        _type = window.get_window_type()
-                        # remove dock windows and select only windows on primary screen
-                        if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
-                            self.minimized_windows.append(window)
-                            window.minimize()
+            w_name = window.get_name()
+            if not w_name.startswith(self.ignore_windows):
+                window_position = window.get_geometry()
+                if not window.is_minimized():
+                    _type = window.get_window_type()
+                    if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
+                        self.minimized_windows.append(window)
+                        window.minimize()
 
     def autoTile(self):
         settings = Desktop.loadSettings()
         if settings["autoTile"]:
             monitor = getScreenGeometry()
-            windows = self.get_screen().get_windows()
-            for window in windows:
-                for ignored_window in self.ignore_windows:
-                    if window.has_name() and window.get_name() != ignored_window:
-                        half_screen_size = monitor.width() / 2
-                        window_x = float(window.get_geometry()[0])
-                        window_width = float(window.get_geometry()[2])
-                        _type = window.get_window_type()
-                        if not window.is_skip_tasklist() and window_x != half_screen_size or window_x != 0.0 \
-                                or window_width != half_screen_size and not window.is_maximized() \
-                                and not window.is_minimized() and not window.is_fullscreen() \
-                                and _type == Wnck.WindowType.NORMAL:
-                            gravity = Wnck.WindowGravity.STATIC
-                            dock_size = 50
-                            if self.next_window_pos == "left":
-                                self.next_window_pos = "right"
-                                x = 0
+            windows = self.get_screen().get_windows()            
+            for window in windows:                                
+                w_name = window.get_name()
+                if not w_name.startswith(self.ignore_windows):
+                    half_screen_size = monitor.width() / 2
+                    window_x = float(window.get_geometry()[0])
+                    window_width = float(window.get_geometry()[2])
+                    _type = window.get_window_type()
+                    if not window.is_skip_tasklist() and window_x != half_screen_size or window_x != 0.0 \
+                            or window_width != half_screen_size and not window.is_maximized() \
+                            and not window.is_minimized() and not window.is_fullscreen() \
+                            and _type == Wnck.WindowType.NORMAL:
+                        gravity = Wnck.WindowGravity.STATIC
+                        dock_size = 50
+                        if self.next_window_pos == "left":
+                            self.next_window_pos = "right"
+                            x = 0
 
-                            elif self.next_window_pos == "right":
-                                self.next_window_pos = "left"
-                                x = half_screen_size
+                        elif self.next_window_pos == "right":
+                            self.next_window_pos = "left"
+                            x = half_screen_size
 
-                            geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | \
-                                            Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
+                        geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | \
+                                        Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
 
-                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
-                                                - dock_size)
+                        window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
+                                            - dock_size)
 
     def setPanelVisible(self, value):
         self.panel_open = value
