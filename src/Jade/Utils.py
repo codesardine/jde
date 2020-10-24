@@ -134,7 +134,7 @@ class Desktop:
                 window_position = window.get_geometry()
                 if not window.is_minimized():
                     _type = window.get_window_type()
-                    if _type == Wnck.WindowType.NORMAL and monitor.width() > window_position[0]:
+                    if _type != Wnck.WindowType.DESKTOP and monitor.width() > window_position[0]:
                         self.minimized_windows.append(window)
                         window.minimize()
 
