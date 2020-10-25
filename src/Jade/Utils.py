@@ -155,7 +155,7 @@ class Desktop:
                             and not window.is_minimized() and not window.is_fullscreen() \
                             and _type == Wnck.WindowType.NORMAL:
                         gravity = Wnck.WindowGravity.STATIC
-                        dock_size = 50
+                        dock_size = 48
                         if self.next_window_pos == "left":
                             self.next_window_pos = "right"
                             x = 0
