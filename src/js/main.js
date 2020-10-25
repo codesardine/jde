@@ -274,7 +274,7 @@ function init() {
       activeAppText: "Press enter to run ",
       videos: Jade.videos,
       "disabledText": "Disabled",
-      "tileText": "Auto Tiling",
+      "tileText": "Auto Tile Windows",
       Appearance: "Appearance",
       Behavior: "Behavior",
       System: "System"
