@@ -195,8 +195,8 @@
       <input type="text" v-model="searchQuery">
       <ul class="collection" v-if="searchQuery">
         <li v-for="item in filter">
-          <a class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img v-bind:src="item.icon">
+          <a ondragstart="appDrag(event)" class="collection-item" v-bind:href="'ipc:' + item.path">
+            <img draggable="false" v-bind:src="item.icon">
             <span >{{ item.name }}</span>
             <div class="current-app">
               <img class="current-icon" v-bind:src="item.icon">

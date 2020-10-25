@@ -205,7 +205,12 @@ Jade.Desktop = class API {
 function appDrag(ev) {
   el = ev.target
   img = el.querySelector("img")
-  ev.dataTransfer.setDragImage(img, 30, 30)  
+  if (el.href.includes("ipc:")) {
+    ev.dataTransfer.setDragImage(img, 10, 10)
+    ev.dataTransfer.setData("url", ev.target.href.replace("ipc:", "file://"))
+  } else {
+    ev.dataTransfer.setDragImage(img, 25, 25)  
+  }
 }
 
 function appTemplate(name, icon, description, keywords, file) {
