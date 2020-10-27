@@ -18,8 +18,9 @@ from Jade.DropEvent import event
 from JAK.Utils import bindings
 from JAK.Utils import Instance
 if bindings() == "PyQt5":
-    from PyQt5.QtCore import Qt
-    from PyQt5.QtCore import pyqtSlot as Slot, QObject, pyqtProperty as Prop
+    from PyQt5.QtCore import Qt, pyqtSlot as Slot, QObject, pyqtProperty as Prop
+else:
+    from PySide2.QtCore import Qt, Slot, QObject, Property as Prop
 
 Instance.auto("desktop", Desktop())
 WebEngine.JWebView.dropEvent = event
