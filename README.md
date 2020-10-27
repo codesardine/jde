@@ -17,9 +17,8 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 [![Video](youtube.png)](https://www.youtube.com/watch?v=_dqusjF4oqM)
 
 ## Acknowledgments
-* State Alpha
+* State Beta
 * Small codebase anyone with HTML/CSS skills can change the desktop to look and behave differently.
-* Built for my own personal use.
 
 ### Packaging
 * Any related packages can be found on [gitlab](https://gitlab.manjaro.org/packages/community/jade).
@@ -35,6 +34,13 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Dbus integration
 * UI inspector
 * Animated Backgrounds
+* Drag and Drop
+* Optional Window auto tile
+* Desktop Tour on first run
+* Auto start pre defined applications per workspace
+
+### Upcomming
+* Entertainment mode
 
 ### Manjaro Integration
 * Restore factory profile settings
@@ -52,7 +58,6 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 * Gnome Menu GObject Introspection
 * A compositing window manager
 * Xorg
-* Wayland (work in progress)
 * Manjaro Linux Base
 
 ## Contributing
