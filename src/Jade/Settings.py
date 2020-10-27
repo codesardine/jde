@@ -33,7 +33,8 @@ class Options():
             "workspace1": "",
             "workspace2": "",
             "workspace3": "",
-            "workspace4": ""
+            "workspace4": "",
+            "tourDone": False
         }
         if os.path.exists(self.settings):
             for key, value in self.config.items('DEFAULT'):

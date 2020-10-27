@@ -9,6 +9,8 @@
   <script src="js/materialize.js"></script>
   <script src="js/vue.min.js"></script>
   <script src="../../js/main.js"></script>
+  <script src="../../js/intro.js"></script>
+  <link rel="stylesheet" href="../../js/introjs.css">
 </head>
 <style>
   #screen-overlay {
@@ -24,7 +26,7 @@
 <body>
   <main id="app">
     <div id="settingsPanel" class="sidenav">
-      <div id="options">
+      <div id="options" class="tour-step3">
         <ul id="tabs-swipe-demo" class="tabs">
           <li class="tab col s3"><a class="active" href="#swipe-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 4.007C2 3.45 2.455 3 2.992 3h18.016c.548 0 .992.45.992 1.007V17H2V4.007zM1 19h22v2H1v-2z"/></svg>
@@ -190,7 +192,7 @@
       <span id="Applications" class="grid"></span>
       <div class="applications-spacer"></div>
     </section>
-    <div class="search">
+    <div class="search tour-step6">
       <img v-bind:src="searchBtnIcon" id="search-icon">
       <input type="text" v-model="searchQuery">
       <ul class="collection" v-if="searchQuery">
@@ -208,13 +210,13 @@
     </div>
     <video id="video-background" loop autoplay>
     </video>
-    <div id="about" class="modal">
+    <div id="about" class="modal tour-step0">
       <img class="logo" src="../../images/logo.svg">
       <div class="modal-content">
         <h4>{{ aboutTitle }}</h4>
         <p>
           <p>{{ aboutAuthor }}</p>
-            <p>{{ aboutLicense }}</p>
+          <p>{{ aboutLicense }}</p>
         </p>
       </div>
       <div class="modal-footer">
@@ -224,6 +226,10 @@
     <div id="screen-overlay"></div>
     <div class="app-view-drag-target"></div>
   </main>
+  <div id="tour">
+    <div class="tour-step1"></div>
+    <div class="tour-step2"></div>
+  </div>
 </body>
 
 </html>

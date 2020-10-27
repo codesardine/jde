@@ -419,6 +419,7 @@ input[type="file"] {
     text-align: center;
     padding: 0 8px !important;
     max-width: 600px;
+    padding-top: 20px !important;
 }
 
 #about p {
@@ -607,4 +608,33 @@ input[type="file"] {
   #settingsPanel {
     width: 50%;
   }
+}
+
+/* tour */
+.tour-step1 {
+  position: absolute;
+  bottom: 0;
+    left: 5px;
+    height: 34px;
+    width: 350px;
+}
+.tour-step2 {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  height: 34px;
+  width: 240px;
+}
+
+.introjs-helperLayer {
+  background-color: transparent !important;
+  border: 1px solid rgb(255, 255, 255) !important;
+}
+
+.introjs-skipbutton, .introjs-prevbutton {
+  display: none !important;
+}
+
+.introjs-donebutton {
+  display: inline-block !important;
 }
