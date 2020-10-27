@@ -598,12 +598,6 @@ input[type="file"] {
   margin-top: 0;
 }
 
-@media only screen and (min-width: 1400px) {
-  #settingsPanel {
-    width: 80%;
-  }
-}
-
 @media only screen and (min-width: 1800px) {
   #settingsPanel {
     width: 50%;
