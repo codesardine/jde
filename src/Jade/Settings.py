@@ -1,19 +1,20 @@
 import configparser
 import os
 import pathlib
+from Jade import Utils
 
 
 class Options():
     def __init__(self):
         self.config = configparser.ConfigParser()
         self.config.optionxform = str
-        self.settings = f"{str(pathlib.Path.home())}/.config/jade/desktop.conf"
-        self.config.read(self.settings)
+        self.config_file = f"{str(pathlib.Path.home())}/.config/jade/desktop.conf"
+        self.config.read(self.config_file)
 
     def save(self, key, value):
         self.config.set('DEFAULT', f'{key}', f'{value}')
-        with open(self.settings, 'w') as file:
-            self.config.write(file)
+        with open(self.config_file, 'w+') as f:
+            self.config.write(f)
 
     def load(self):
         defaults = {
@@ -36,7 +37,7 @@ class Options():
             "workspace4": "",
             "tourDone": False
         }
-        if os.path.exists(self.settings):
+        if os.path.exists(self.config_file):
             for key, value in self.config.items('DEFAULT'):
                 if value == "true" or value == "false":
                     defaults[key] = self.config.getboolean('DEFAULT', key)
