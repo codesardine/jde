@@ -14,7 +14,7 @@ Read more about it here (https://forum.manjaro.org/t/just-another-desktop-enviro
 ![desktop](jade.jpg)
 ![desktop](jade1.jpg)
 ![desktop](jade2.jpg)
-[![Video](youtube.png)](https://www.youtube.com/watch?v=_dqusjF4oqM)
+[![Video](youtube.png)](https://www.youtube.com/watch?v=E1MAXftilSs)
 
 ## Acknowledgments
 * State Beta
