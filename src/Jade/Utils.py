@@ -49,6 +49,10 @@ class Session():
         run(['systemctl', 'suspend'])
 
     @staticmethod
+    def lock():
+        run(['light-locker-command', '-l'])
+
+    @staticmethod
     def sleep():
         run(['systemctl', 'hybrid-sleep'])
 

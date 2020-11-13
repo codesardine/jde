@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="50"
+   height="50"
+   version="1"
+   id="svg12"
+   sodipodi:docname="cancel.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:export-filename="/home/vlopes/Music/cancel.png"
+   inkscape:export-xdpi="57.599998"
+   inkscape:export-ydpi="57.599998">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1004"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="26.21875"
+     inkscape:cx="-2.3456496"
+     inkscape:cy="9.5486302"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0" />
+  <path
+     style="color:#444444;fill:#cccccc;stroke-width:2.85713"
+     class="ColorScheme-Text"
+     d="M 27,7 C 15.962858,7 7.0000003,15.962858 7.0000003,27 7.0000003,38.037142 15.962858,47 27,47 38.037142,47 47,38.037142 47,27 47,15.962858 38.037142,7 27,7 Z m 0,5.714287 c 2.912571,0 5.597142,0.8218 7.857142,2.321429 L 15.035715,34.857142 C 13.536086,32.597087 12.714286,29.912571 12.714286,27 12.714286,19.116286 19.116571,12.714287 27,12.714287 Z m 11.964287,6.428571 c 1.499627,2.260055 2.321427,4.944571 2.321427,7.857142 0,7.883429 -6.402285,14.285713 -14.285714,14.285713 -2.912571,0 -5.597142,-0.8218 -7.857142,-2.321427 z"
+     id="path5" />
+</svg>

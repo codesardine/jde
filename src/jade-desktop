@@ -148,18 +148,8 @@ def main():
             "fullScreen": True,
             "setAttribute": (Qt.WA_X11NetWmWindowTypeDesktop, Qt.WA_X11NetWmWindowTypeDesktop),
             "transparent": True,
-            "backgroundImage": Desktop.getBackground(),
-            "icon": f"{Desktop.getPath()}/images/logo-panel.svg",
-            "SystemTrayIcon": [ {"trayIcon": icons.get("exit")},
-                {"title": "Log Out", "action": Exit.logOut, "icon": icons.get("system-log-out")},
-                {"title": "Power Off", "action": Exit.powerOff, "icon": icons.get("system-shutdown")},
-                {"title": "Reboot", "action": Exit.reboot, "icon": icons.get("system-reboot")},
-                {"title": "Hibernate", "action": Exit.hibernate, "icon": icons.get("system-hibernate-symbolic")},
-                {"title": "Suspend", "action": Exit.suspend, "icon": icons.get("system-suspend")},
-                {"title": "Sleep", "action": Exit.sleep, "icon": icons.get("system-hibernate")}
-                ]
+            "backgroundImage": Desktop.getBackground()
         },
-
         webview = {
             "webContents": f"{Desktop.getPath()}/themes/default/main.html",
             "webChannel": { "active": True, "sharedOBJ": SharedObj() },

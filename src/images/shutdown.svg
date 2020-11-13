@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="50"
+   height="50"
+   version="1"
+   id="svg12"
+   sodipodi:docname="shutdown.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1004"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="6.5546875"
+     inkscape:cx="-14.422974"
+     inkscape:cy="16"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0" />
+  <path
+     fill="#fff"
+     d="M 25,5 A 20,20 0 0 0 5,25 20,20 0 0 0 25,45 20,20 0 0 0 45,25 20,20 0 0 0 25,5 Z m 0,4.444444 A 15.555556,15.555556 0 0 1 40.555556,25 15.555556,15.555556 0 0 1 25,40.555556 15.555556,15.555556 0 0 1 9.444444,25 15.555556,15.555556 0 0 1 25,9.444444 Z m 0,6.666667 c -1.231111,0 -2.222222,0.991111 -2.222222,2.222222 v 13.333334 c 0,1.231111 0.991111,2.222222 2.222222,2.222222 1.231111,0 2.222222,-0.991111 2.222222,-2.222222 V 18.333333 c 0,-1.231111 -0.991111,-2.222222 -2.222222,-2.222222 z"
+     id="path6"
+     style="fill:#cccccc;stroke-width:2.22222" />
+</svg>

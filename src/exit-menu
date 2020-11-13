@@ -1,0 +1,133 @@
+#!/usr/bin/python3
+import gi
+gi.require_version("Gtk", "3.0")
+gi.require_version('Gdk', '3.0')
+from gi.repository import Gtk, Gdk
+from Jade.Utils import Session
+
+
+class ExitMenu(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.set_border_width(10)
+        self.fullscreen()
+        self.get_style_context().add_class("background")
+        self.set_keep_above(True)
+
+        self.innerpanel = Gtk.HBox()
+        self.buttonpanel = Gtk.HButtonBox()
+        self.buttonpanel.set_spacing(40)
+
+        self.innerpanel.pack_start(Gtk.VBox(), False, False, 0)
+        self.innerpanel.pack_start(self.buttonpanel, True, False, 0)
+        self.innerpanel.pack_start(Gtk.VBox(), False, False, 0)
+        self.add(self.innerpanel)
+
+        btn = Gtk.Button.new_with_label("Log Out")
+        btn.get_style_context().add_class("buttons")
+        btn.get_style_context().add_class("logout")
+        btn.connect("clicked", self.on_log_out)
+        self.buttonpanel.add(btn)
+
+        btn = Gtk.Button.new_with_label("Reboot")
+        btn.get_style_context().add_class("buttons")
+        btn.get_style_context().add_class("reboot")
+        btn.connect("clicked", self.on_reboot)
+        self.buttonpanel.add(btn)
+
+        btn = Gtk.Button.new_with_label("Shut Down")
+        btn.get_style_context().add_class("buttons")
+        btn.get_style_context().add_class("shutdown")
+        btn.connect("clicked", self.on_shutdown)
+        self.buttonpanel.add(btn)
+
+        btn = Gtk.Button.new_with_label("Standby")
+        btn.get_style_context().add_class("buttons")
+        btn.get_style_context().add_class("standby")
+        btn.connect("clicked", self.on_standby)
+        self.buttonpanel.add(btn)
+
+        btn = Gtk.Button.new_with_label("Lock")
+        btn.get_style_context().add_class("buttons")
+        btn.get_style_context().add_class("lock")
+        btn.connect("clicked", self.on_lock)
+        self.buttonpanel.add(btn)
+
+        btn = Gtk.Button.new_with_label("Cancel")
+        btn.get_style_context().add_class("buttons")
+        btn.get_style_context().add_class("cancel")
+        btn.connect("clicked", self.on_cancel)
+        self.buttonpanel.add(btn)
+
+        provider = Gtk.CssProvider()
+        css = b"""
+        .background, .buttons {
+          background-color:#212121;
+          }
+        .buttons {
+          border: none;
+          color: #cccccc;
+          font-weight: bold;
+          font: 20px "Roboto";
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 40px;
+          padding-top:100px; 
+          border-bottom: 2px solid transparent; 
+          border-radius: 0;
+          padding-left: 0;   
+          padding-right: 0;
+          padding-bottom:8px;   
+        }
+        .buttons:hover {
+            border-bottom: 2px solid #009688;
+          }
+        .logout {
+          background-image: url("/usr/share/jadesktop/images/logout.svg");
+        }
+        .reboot {
+          background-image: url("/usr/share/jadesktop/images/reboot.svg");
+        }
+        .shutdown {
+          background-image: url("/usr/share/jadesktop/images/shutdown.svg");
+        }
+        .standby {
+          background-image: url("/usr/share/jadesktop/images/standby.svg");
+        }
+        .lock {
+          background-image: url("/usr/share/jadesktop/images/lock.svg");
+        }
+        .cancel {
+          background-image: url("/usr/share/jadesktop/images/cancel.svg");
+        }
+        """
+
+        provider.load_from_data(css)
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
+                                                 provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+    def on_log_out(self, btn):
+        Session.logOut()
+
+    def on_reboot(self, btn):
+        Session.reboot()
+
+    def on_shutdown(self, btn):
+        Session.powerOff()
+
+    def on_standby(self, btn):
+        Session.suspend()
+        Gtk.main_quit()
+
+    def on_lock(self, btn):
+        Session.lock()
+        Gtk.main_quit()
+
+    def on_cancel(self, btn):
+        Gtk.main_quit()
+
+
+app = ExitMenu()
+app.connect("destroy", Gtk.main_quit)
+app.show_all()
+Gtk.main()

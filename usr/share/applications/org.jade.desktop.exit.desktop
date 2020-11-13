@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Icon=exit
+Terminal=false
+Exec=/usr/share/jadesktop/exit-menu
+X-AppStream-Ignore=true
+StartupNotify=false
+Name=Exit

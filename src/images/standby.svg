@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="50"
+   height="50"
+   version="1"
+   id="svg12"
+   sodipodi:docname="standby.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1004"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="4.634864"
+     inkscape:cx="-54.234982"
+     inkscape:cy="16"
+     inkscape:window-x="1280"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0" />
+  <path
+     fill="#fff"
+     d="M 25,5 C 13.954222,5 5,13.954222 5,25 5,36.045778 13.954222,45 25,45 36.045778,45 45,36.045778 45,25 45,13.954222 36.045778,5 25,5 Z m 0,4.444444 c 8.591111,0 15.555556,6.964445 15.555556,15.555556 0,8.591111 -6.964445,15.555556 -15.555556,15.555556 C 16.408889,40.555556 9.444444,33.591111 9.444444,25 9.444444,16.408889 16.408889,9.444444 25,9.444444 Z m 0,11.111112 A 4.4444444,4.4444444 0 0 0 20.555556,25 4.4444444,4.4444444 0 0 0 25,29.444444 4.4444444,4.4444444 0 0 0 29.444444,25 4.4444444,4.4444444 0 0 0 25,20.555556 Z"
+     id="path6"
+     style="fill:#cccccc;stroke-width:2.22222" />
+</svg>
