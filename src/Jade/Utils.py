@@ -79,7 +79,9 @@ class Desktop:
         self.get_screen().connect("window-opened", self.window_open_cb)
         self.get_screen().connect('window-closed', self.window_closed_cb)
         self.get_screen().connect('active-workspace-changed', self.active_workspace_changed_cb)
-        self.ignore_windows = ("Guake!", "plank")
+        self.ignore_windows = (
+            "Guake!", "plank", "Steam Login", "Manjaro Hello", "Manjaro Linux Installer"
+            )
 
 
     def workspace_exec(self, cmd):
@@ -149,6 +151,7 @@ class Desktop:
             windows = self.get_screen().get_windows()            
             for window in windows:                                
                 w_name = window.get_name()
+                print("title:" + w_name)
                 if not w_name.startswith(self.ignore_windows):
                     half_screen_size = monitor.width() / 2
                     window_x = float(window.get_geometry()[0])
@@ -173,6 +176,12 @@ class Desktop:
 
                         window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
                                             - dock_size)
+
+                elif w_name == "Manjaro Linux Installer":
+                    window.make_above()
+                    window.set_fullscreen(True)
+                    window.set_window_type(Wnck.WindowType.SPLASHSCREEN)
+
 
     def setPanelVisible(self, value):
         self.panel_open = value
