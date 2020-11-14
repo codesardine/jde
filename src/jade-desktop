@@ -6,6 +6,7 @@
  https://github.com/codesardine/Jadesktop
 
 """
+import sys
 import Jade.Dbus
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
@@ -141,12 +142,19 @@ class Exit():
 
 def main():
 
+    if "--profile" in sys.argv:
+        setFlags = (Qt.NoDropShadowWindowHint | Qt.WindowStaysOnBottomHint)
+        setAttribute = ""
+    else:
+        setFlags = (Qt.NoDropShadowWindowHint | Qt.WindowStaysOnBottomHint | Qt.FramelessWindowHint)
+        setAttribute = (Qt.WA_X11NetWmWindowTypeDesktop, Qt.WA_X11NetWmWindowTypeDesktop)
+
     app = Application.JWebApp(
         window = {
             "title": "JADE",
-            "setFlags": (Qt.NoDropShadowWindowHint | Qt.WindowStaysOnBottomHint | Qt.FramelessWindowHint),
+            "setFlags": setFlags,
             "fullScreen": True,
-            "setAttribute": (Qt.WA_X11NetWmWindowTypeDesktop, Qt.WA_X11NetWmWindowTypeDesktop),
+            "setAttribute": setAttribute,
             "transparent": True,
             "backgroundImage": Desktop.getBackground()
         },
@@ -164,5 +172,9 @@ if __name__ == "__main__":
     loop = GLib.MainLoop()
     Jade.Dbus.Service()
     IPC.Bind = Bind
-    main()
+    if "--profile" in sys.argv:
+        import cProfile
+        cProfile.run("main()")
+    else:
+        main()
     loop.start()
