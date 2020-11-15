@@ -30,31 +30,54 @@ class Session():
 
     @staticmethod
     def logOut():
-        run('loginctl terminate-session $XDG_SESSION_ID', shell=True)
+        if not Session.get_pkg_manager_state():
+            run('loginctl terminate-session $XDG_SESSION_ID', shell=True)
+        else:
+            notify("Warnning", "Cannot log out, instalation or update in progress.")
 
     @staticmethod
     def powerOff():
-        run(['systemctl', 'poweroff'])
+        if not Session.get_pkg_manager_state():
+            run(['systemctl', 'poweroff'])
+        else:
+            notify("Information", "Instalation or update in progress, your session is scheduled to shutdown, locking in 10s Goodbye.")
+            time.sleep(10)
+            Session.lock()
+            while Session.get_pkg_manager_state() == True:
+                time.sleep(0.2)
+            Session.powerOff()
 
     @staticmethod
     def reboot():
-        run(['systemctl', 'reboot'])
-
-    @staticmethod
-    def hibernate():
-        run(['systemctl', ' hibernate'])
+        if not Session.get_pkg_manager_state():
+            run(['systemctl', 'reboot'])
+        else:
+            notify("Information", "Instalation or update in progress, your session is scheduled to reboot, locking in 10s Goodbye.")
+            time.sleep(10)
+            Session.lock()
+            while Session.get_pkg_manager_state() == True:
+                time.sleep(0.2)
+            Session.reboot()
 
     @staticmethod
     def suspend():
-        run(['systemctl', 'suspend'])
+        if not Session.get_pkg_manager_state():
+            run(['systemctl', 'suspend'])
+        else:
+            notify("Information", "Instalation or update in progress, your session is scheduled to standby, locking in 10s Goodbye.")
+            time.sleep(10)
+            Session.lock()
+            while Session.get_pkg_manager_state() == True:
+                time.sleep(0.2)
+            Session.suspend()
 
     @staticmethod
     def lock():
         run(['light-locker-command', '-l'])
 
     @staticmethod
-    def sleep():
-        run(['systemctl', 'hybrid-sleep'])
+    def get_pkg_manager_state():
+        return os.path.isfile("/var/lib/pacman/db.lck")
 
     def get_desktop_session(self):
         return self.desktop_session
