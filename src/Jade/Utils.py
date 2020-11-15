@@ -85,10 +85,8 @@ class Desktop:
 
 
     def workspace_exec(self, cmd):
-        run(f"""
-                if pgrep -x '{cmd}' > /dev/null; 
-                then echo "Running"; 
-                else {cmd};
+        run(f"""if ! pgrep -x '{cmd}' > /dev/null; 
+                then {cmd};
                 fi
                 exit 0
                 """, shell=True)
