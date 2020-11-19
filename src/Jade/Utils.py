@@ -12,6 +12,7 @@ from gi.repository import Wnck, Gio, Notify
 from Jade.Settings import Options
 from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
+from JAK.Widgets import Dialog
 Notify.init("Jade")
 
 
@@ -297,8 +298,6 @@ class Desktop:
     @staticmethod
     def setBranch(desired_branch):
         notify(f"Setting branch to {desired_branch.upper()}.", "Might take a while.")
-
-        from JAK.Widgets import InfoDialog
         def update():
             run(["pamac-manager", "--updates"])
 
@@ -312,10 +311,9 @@ class Desktop:
             """)
                 notify("Something went wrong", "")
             else:
-                from JAK.Widgets import JCancelConfirmDialog
                 window = Instance.retrieve("win")
                 msg = f"All Done, would you like to update your software and operating system from {current_branch.upper()} branch now?"
-                JCancelConfirmDialog(window, " ", msg, update)
+                Dialog.question(window, " ", msg, update)
 
         proc = Gio.Subprocess.new(cmd, Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
         proc.communicate_utf8_async('Shell Command', None, callback, None)            
@@ -329,21 +327,20 @@ class Desktop:
 
     @staticmethod
     def restoreDefaultsDialog():
-        from JAK.Widgets import JCancelConfirmDialog
         window = Instance.retrieve("win")
         msg = "Some of your manual configuration under your HOME folder will be lost, Would you like to proceed?"
-        JCancelConfirmDialog(window, " ",
+        Dialog.question(window, " ",
                              msg, Desktop.restoreDefaults)
 
     @staticmethod
     def restoreDefaults():
         home = os.path.expanduser("~")
         # TODO backup old files
-        run(f"cp -r /etc/skel {home}", shell=True)
-        from JAK.Widgets import InfoDialog
+        run(f"cp -r /etc/skel {home}/", shell=True)
+        from JAK.Widgets import Dialog
         window = Instance.retrieve("win")
         msg = "Profile defaults have been set on your home directory."
-        InfoDialog(window, "Set Defaults", msg)
+        Dialog.information(window, "Set Defaults", msg)
 
     @staticmethod
     def saveSettings(key, value):
@@ -354,3 +351,4 @@ class Desktop:
     def loadSettings():
         options = Options()
         return options.load()
+
