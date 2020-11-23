@@ -9,14 +9,13 @@ from Jade.Utils import Session
 class ExitMenu(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self)
-        self.set_border_width(10)
         self.fullscreen()
         self.get_style_context().add_class("background")
         self.set_keep_above(True)
 
         self.innerpanel = Gtk.HBox()
         self.buttonpanel = Gtk.HButtonBox()
-        self.buttonpanel.set_spacing(40)
+        self.buttonpanel.set_spacing(20)
 
         self.innerpanel.pack_start(Gtk.VBox(), False, False, 0)
         self.innerpanel.pack_start(self.buttonpanel, True, False, 0)
@@ -68,15 +67,15 @@ class ExitMenu(Gtk.Window):
           border: none;
           color: #cccccc;
           font-weight: bold;
-          font: 20px "Roboto";
-          background-position: center;
+          font: 18px "Roboto";
+          background-position: center 8px;
           background-repeat: no-repeat;
           background-size: 40px;
-          padding-top:100px; 
+          padding-top:60px; 
           border-bottom: 2px solid transparent; 
           border-radius: 0;
-          padding-left: 0;   
-          padding-right: 0;
+          padding-left: 6;   
+          padding-right: 6;
           padding-bottom:8px;   
         }
         .buttons:hover {
