@@ -9,7 +9,7 @@ Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, 
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/jadesktop.svg)](https://repology.org/metapackage/jadesktop)
 
-Read more about it here (https://forum.manjaro.org/t/re-call-for-testers-jade-desktop/)
+Read more about it here (https://forum.manjaro.org/t/call-for-testers-jade-desktop/)
 
 ![desktop](jade.jpg)
 ![desktop](jade1.jpg)
