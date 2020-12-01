@@ -103,6 +103,8 @@ class Desktop:
         self.get_screen().connect("window-opened", self.window_open_cb)
         self.get_screen().connect('window-closed', self.window_closed_cb)
         self.get_screen().connect('active-workspace-changed', self.active_workspace_changed_cb)
+        self.get_screen().connect('active-window-changed', self.active_window_changed_cb)
+
         self.ignore_windows = (
             "Guake!", "plank", "Steam Login", "Manjaro Hello", "Manjaro Linux Installer"
             )
@@ -114,6 +116,12 @@ class Desktop:
                 fi
                 exit 0
                 """, shell=True)
+
+
+    def active_window_changed_cb(self, screen, previously_active_window):
+        old_window_name = previously_active_window.get_name()
+        if old_window_name == "Guake!":
+            self.hide_terminal()
 
 
     def active_workspace_changed_cb(self, screen, previously_active_space):
@@ -209,6 +217,8 @@ class Desktop:
         self.panel_open = value
 
     def window_open_cb(self, screen, window):
+        if window.get_name() != "Guake!":
+            self.hide_terminal()
         if Desktop.loadSettings()["tourDone"]:
             _type = window.get_window_type()
             if _type == Wnck.WindowType.DESKTOP:
