@@ -501,6 +501,7 @@ input[type="file"] {
   padding-top: 0;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
+  z-index: -1;
   box-shadow: 0 1px 1px rgba(0,0,0,.15), 0 2px 2px rgba(0,0,0,.15), 0 4px 4px rgba(0,0,0,.15), 0 8px 8px rgba(0,0,0,.15);
 }
 
@@ -573,6 +574,7 @@ input[type="file"] {
 }
 
 .search.show {
+  z-index: 2;
   opacity: 1;
 }
 
