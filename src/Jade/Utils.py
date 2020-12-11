@@ -180,38 +180,42 @@ class Desktop:
         if settings["autoTile"]:
             monitor = getScreenGeometry()
             windows = self.get_screen().get_windows()            
-            for window in windows:                                
-                w_name = window.get_name()
-                print("title:" + w_name)
-                if not w_name.startswith(self.ignore_windows):
-                    half_screen_size = monitor.width() / 2
-                    window_x = float(window.get_geometry()[0])
-                    window_width = float(window.get_geometry()[2])
-                    _type = window.get_window_type()
-                    if not window.is_skip_tasklist() and window_x != half_screen_size or window_x != 0.0 \
-                            or window_width != half_screen_size and not window.is_maximized() \
-                            and not window.is_minimized() and not window.is_fullscreen() \
-                            and _type == Wnck.WindowType.NORMAL:
-                        gravity = Wnck.WindowGravity.STATIC
-                        dock_size = 48
-                        if self.next_window_pos == "left":
-                            self.next_window_pos = "right"
-                            x = 0
+            for window in windows: 
+                actions = window.get_actions()  
+                if not actions.MAXIMIZE:
+                    w_name = window.get_name()
+                    maximize_sensitive = Wnck.WindowActions.MAXIMIZE
+                    
+                    if not w_name.startswith(self.ignore_windows):
+                        half_screen_size = float(monitor.width() / 2)
+                        window_x = float(window.get_geometry()[0])
+                        window_width = float(window.get_geometry()[2])
+                        print(window_width)
+                        _type = window.get_window_type()
+                        if not window.is_skip_tasklist() and window_x != half_screen_size or window_x != 0.0 \
+                                or window_width != half_screen_size and not window.is_maximized() \
+                                and not window.is_minimized() and not window.is_fullscreen() \
+                                and _type == Wnck.WindowType.NORMAL:
+                            gravity = Wnck.WindowGravity.STATIC
+                            dock_size = 48
+                            if self.next_window_pos == "left":
+                                self.next_window_pos = "right"
+                                x = 0
 
-                        elif self.next_window_pos == "right":
-                            self.next_window_pos = "left"
-                            x = half_screen_size
+                            elif self.next_window_pos == "right":
+                                self.next_window_pos = "left"
+                                x = half_screen_size
 
-                        geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | \
-                                        Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
+                            geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | \
+                                            Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
 
-                        window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
-                                            - dock_size)
+                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
+                                                - dock_size)
 
-                elif w_name == "Manjaro Linux Installer":
-                    window.make_above()
-                    window.set_fullscreen(True)
-                    window.set_window_type(Wnck.WindowType.SPLASHSCREEN)
+                    elif w_name == "Manjaro Linux Installer":
+                        window.make_above()
+                        window.set_fullscreen(True)
+                        window.set_window_type(Wnck.WindowType.SPLASHSCREEN)
 
 
     def setPanelVisible(self, value):
