@@ -120,9 +120,9 @@ class Desktop:
 
 
     def active_window_changed_cb(self, screen, previously_active_window):
-        old_window_name = previously_active_window.get_name()
-        if old_window_name == "Guake!":
-            self.hide_terminal()
+        if previously_active_window is not None:
+            if previously_active_window.get_name() == "Guake!":
+                self.hide_terminal()
 
 
     def active_workspace_changed_cb(self, screen, previously_active_space):
