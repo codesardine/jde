@@ -112,11 +112,11 @@ class Desktop:
 
 
     def workspace_exec(self, cmd):
-        run(f"""if ! pgrep -x '{cmd}' > /dev/null; 
-                then {cmd};
-                fi
-                exit 0
-                """, shell=True)
+        run(f"""
+            if ! pgrep -x '{cmd}' > /dev/null; then
+                {cmd}
+            fi
+            """, shell=True)
 
 
     def active_window_changed_cb(self, screen, previously_active_window):
@@ -132,8 +132,8 @@ class Desktop:
             if workspace_name.lower().replace(" ", "") == space:
                 config = Desktop.loadSettings()[space].split(" ")
                 for cmd in config:
-                    print(workspace_name, config, cmd)
-                    self.workspace_exec(cmd)
+                    if cmd:
+                        self.workspace_exec(cmd)
 
 
     def toggle(self):
