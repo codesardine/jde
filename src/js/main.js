@@ -8,6 +8,12 @@ Jade.Desktop = class API {
         JAK.Bridge.setBranch(branch)
     }
 
+    isCurrentBranchChecked(branch) {
+        let t = desktop.elem(`#${branch}-btn`).checked
+        console.log(t)
+        return t
+    }
+
     elem(element) {
         return document.querySelector(element)
     }
@@ -410,15 +416,15 @@ function init() {
     })
 
     desktop.elem('#stable-btn').addEventListener('click', function () {
-        desktop.setBranch("stable")
+            desktop.setBranch("stable")
     })
 
     desktop.elem('#testing-btn').addEventListener('click', function () {
-        desktop.setBranch("testing")
+            desktop.setBranch("testing")
     })
 
     desktop.elem('#unstable-btn').addEventListener('click', function () {
-        desktop.setBranch("unstable")
+            desktop.setBranch("unstable")
     })
 
     function toggleVideo(btn, name) {

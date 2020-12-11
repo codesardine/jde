@@ -100,6 +100,7 @@ class Desktop:
         self.minimized_windows = []
         self.next_window_pos = "left"
         self.panel_open = False
+        self.branch_lock = {"branch":""}
         self.get_screen().connect("window-opened", self.window_open_cb)
         self.get_screen().connect('window-closed', self.window_closed_cb)
         self.get_screen().connect('active-workspace-changed', self.active_workspace_changed_cb)
@@ -305,28 +306,43 @@ class Desktop:
     def toggleLauncher():
         JavaScript.send("desktop.toggleLauncher();")
 
-    @staticmethod
-    def setBranch(desired_branch):
-        notify(f"Setting branch to {desired_branch.upper()}.", "Might take a while.")
-        def update():
-            run(["pamac-manager", "--updates"])
+    def setBranch(self, desired_branch):
+        current_branch = Desktop.getBranch()
+        if current_branch != desired_branch:
+            if self.branch_lock["branch"] == "":
+                self.branch_lock["branch"] = desired_branch.upper()
+                notify(f"Setting branch to {desired_branch.upper()} and synchronising mirrors.", "Might take a while.")
+               
+                def update():
+                    run(["pamac-manager", "--updates"])
 
-        cmd = ['pkexec', 'pacman-mirrors', '--fasttrack', '--api', '--set-branch', f'{desired_branch}']
-        def callback(sucprocess: Gio.Subprocess, result: Gio.AsyncResult, data):
-            proc.communicate_utf8_finish(result)
-            current_branch = Desktop.getBranch()
-            if current_branch != desired_branch:
-                JavaScript.send(f"""
-            desktop.elem(`#{current_branch}-btn`).checked = true
-            """)
-                notify("Something went wrong", "")
+                def package_sync_callback(*args):
+                    print(args)
+                    window = Instance.retrieve("win")
+                    msg = f"Would you like to update your software and operating system from {self.branch_lock['branch']} branch now?"
+                    Dialog.question(window, " ", msg, update)  
+                    self.branch_lock["branch"] = "" 
+                    JavaScript.send(f"""
+                    desktop.elem(`#{self.branch_lock["branch"]}-btn`).checked = true
+                    """)
+
+                def branch_sync_callback(sucprocess: Gio.Subprocess, result: Gio.AsyncResult, data):
+                    proc1.communicate_utf8_finish(result) 
+                    notify("Mirrors done, Synchronising packages", "") 
+                    proc2 = Gio.Subprocess.new([
+                        'pkexec', 'pacman', '-Sy'
+                        ], Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
+                    proc2.communicate_utf8_async('package sync', None, package_sync_callback, None)                                  
+                
+                cmd = ['pkexec', 'pacman-mirrors', '--fasttrack', '--api', '--set-branch', f'{desired_branch}']
+                proc1 = Gio.Subprocess.new(cmd, Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
+                proc1.communicate_utf8_async('mirrors sync', None, branch_sync_callback, None) 
+
             else:
-                window = Instance.retrieve("win")
-                msg = f"All Done, would you like to update your software and operating system from {current_branch.upper()} branch now?"
-                Dialog.question(window, " ", msg, update)
-
-        proc = Gio.Subprocess.new(cmd, Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
-        proc.communicate_utf8_async('Shell Command', None, callback, None)            
+                notify(f"Hold on, still changing to {self.branch_lock['branch']}.", "") 
+                JavaScript.send(f"""
+                    desktop.elem(`#{current_branch}-btn`).checked = true
+                    """)
 
     @staticmethod
     def getBranch():
