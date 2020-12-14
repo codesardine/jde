@@ -8,7 +8,7 @@ import gi
 import dbus
 gi.require_version('Wnck', '3.0')
 gi.require_version('Notify', '0.7')
-from gi.repository import Wnck, Gio, Notify
+from gi.repository import Wnck, Gio, Notify, Gdk
 from Jade.Settings import Options
 from JAK.Utils import JavaScript, Instance
 from JAK.Utils import getScreenGeometry
@@ -105,10 +105,19 @@ class Desktop:
         self.get_screen().connect('window-closed', self.window_closed_cb)
         self.get_screen().connect('active-workspace-changed', self.active_workspace_changed_cb)
         self.get_screen().connect('active-window-changed', self.active_window_changed_cb)
+        self.screen = Gdk.Screen.get_default()
+        self.screen.connect('size-changed', self._ajust_size_window_cb)
+        self.screen.connect('monitors-changed', self._ajust_size_window_cb)
 
         self.ignore_windows = (
             "Guake!", "plank", "Steam Login", "Manjaro Hello", "Manjaro Linux Installer"
             )
+
+
+    def _ajust_size_window_cb(self, gdk_screen):
+        primary_screen = getScreenGeometry()
+        win = Instance.retrieve("win")
+        win.resize(primary_screen.width(), primary_screen.height())
 
 
     def workspace_exec(self, cmd):
@@ -184,7 +193,6 @@ class Desktop:
                 actions = window.get_actions()  
                 if not actions.MAXIMIZE:
                     w_name = window.get_name()
-                    maximize_sensitive = Wnck.WindowActions.MAXIMIZE
                     
                     if not w_name.startswith(self.ignore_windows):
                         half_screen_size = float(monitor.width() / 2)
