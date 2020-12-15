@@ -19,9 +19,9 @@ from Jade.DropEvent import event
 from JAK.Utils import bindings
 from JAK.Utils import Instance
 if bindings() == "PyQt5":
-    from PyQt5.QtCore import Qt, pyqtSlot as Slot, QObject, pyqtProperty as Prop
+    from PyQt5.QtCore import Qt, pyqtSlot as Slot, QObject, pyqtProperty as Property
 else:
-    from PySide2.QtCore import Qt, Slot, QObject, Property as Prop
+    from PySide2.QtCore import Qt, Slot, QObject, Property 
 
 Instance.auto("desktop", Desktop())
 WebEngine.JWebView.dropEvent = event
@@ -82,7 +82,7 @@ class SharedObj(QObject):
     def updateMenu(self):
         Desktop.updateMenu()
 
-    @Prop(str)
+    @Property(str)
     def about(self):
         return Desktop.about()
 
@@ -92,23 +92,23 @@ class SharedObj(QObject):
 
     """ Icons """
 
-    @Prop(str)
+    @Property(str)
     def backgroundIcon(self):
         return icons.get("desktop")
 
-    @Prop(str)
+    @Property(str)
     def infoIcon(self):
         return icons.get("dialog-information")
 
-    @Prop(str)
+    @Property(str)
     def restoreIcon(self):
         return icons.get("backup")
 
-    @Prop(str)
+    @Property(str)
     def searchIcon(self):
         return icons.get("search-icon")
 
-    @Prop(str)
+    @Property(str)
     def getBranch(self):
         return Desktop.getBranch()
 
