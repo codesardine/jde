@@ -281,7 +281,7 @@ class Desktop:
         desktop.toggle()
 
     @staticmethod
-    def setBackground():
+    def setBackground(image):
         from JAK.Widgets import FileChooserDialog
         window = Instance.retrieve("win")
         image = FileChooserDialog(

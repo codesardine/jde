@@ -7,6 +7,7 @@
 
 """
 import sys
+import json
 import Jade.Dbus
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
@@ -93,20 +94,12 @@ class SharedObj(QObject):
     """ Icons """
 
     @Property(str)
-    def backgroundIcon(self):
-        return icons.get("desktop")
-
-    @Property(str)
-    def infoIcon(self):
-        return icons.get("dialog-information")
-
-    @Property(str)
-    def restoreIcon(self):
-        return icons.get("backup")
-
-    @Property(str)
-    def searchIcon(self):
-        return icons.get("search-icon")
+    def icons(self):
+        return json.dumps({
+            "background": f"{icons.get('desktop')}",
+            "restore": f"{icons.get('backup')}",
+            "search": f"{icons.get('search-icon')}"
+        })
 
     @Property(str)
     def getBranch(self):

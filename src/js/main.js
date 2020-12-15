@@ -245,6 +245,7 @@ function appTemplate(name, icon, description, keywords, file) {
 function init() {
     desktop = new Jade.Desktop();
     let about = JSON.parse(JAK.Bridge.about)
+    let icons = JSON.parse(JAK.Bridge.icons)
 
     Jade.videos = [
         "Beach",
@@ -263,11 +264,11 @@ function init() {
     new Vue({
         el: '#app',
         data: {
-            backgroundBtnIcon: JAK.Bridge.backgroundIcon,
+            backgroundBtnIcon: icons["background"],
             backgroundBtnText: "Change Wallpaper",
             moodBackGroundText: "Mood Background",
             restoreText: "Restore Defaults",
-            restoreBtnIcon: JAK.Bridge.restoreIcon,
+            restoreBtnIcon: icons["restore"],
             devToolsText: "DevTools",
             inspectorText: "Inspector",
             branchTitle: "Software Branch",
@@ -275,14 +276,13 @@ function init() {
             testing: "Testing",
             unstable: "Unstable",
             experimentalFeaturesText: "Experimental features",
-            searchBtnIcon: JAK.Bridge.searchIcon,
+            searchBtnIcon: icons["search"],
             aboutTitle: about["title"],
             aboutDescription: about["description"],
             urlText: "Project URL and reporting bugs.",
             url: about["url"],
             aboutLicense: "License: " + about["license"],
             aboutAuthor: "Copyright © 2020 " + about["author"],
-            aboutBtnIcon: JAK.Bridge.infoIcon,
             warranty: "This software comes with no warranty.",
             categoriesTittle: "Visible Applications",
             searchQuery: '',
