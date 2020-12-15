@@ -6,6 +6,8 @@ import Jade.Icons as icons
 from JAK.Utils import bindings
 if bindings() == "PyQt5":
     from PyQt5.QtCore import pyqtSlot as Slot
+else:
+    from PySide2.QtCore import Slot
 
 class Get:
     def __init__(self):

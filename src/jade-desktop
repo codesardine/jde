@@ -53,7 +53,8 @@ class SharedObj(QObject):
 
     @Slot()
     def setBackgroundImage(self):
-        Desktop.setBackground()
+        desktop = Instance.retrieve("desktop")
+        desktop.setBackground()
 
     @Slot()
     def hideInspector(self):

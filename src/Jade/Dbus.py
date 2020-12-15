@@ -1,6 +1,6 @@
 import dbus
 import dbus.service as service
-from JAK.Utils import JavaScript
+from JAK.Utils import JavaScript, Instance
 from Jade.Utils import Session, Desktop 
 
 class Service(dbus.service.Object):
@@ -11,7 +11,8 @@ class Service(dbus.service.Object):
 
     @dbus.service.method("org.jade.Desktop.Background", in_signature='s', out_signature='')
     def setImage(self, image):
-        Desktop.setBackground(image)
+        desktop = Instance.retrieve("desktop")
+        desktop.setBackground(image)
 
     @dbus.service.method("org.jade.Desktop", in_signature='', out_signature='')
     def toggleLauncher(self):
