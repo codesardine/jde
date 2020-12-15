@@ -9,11 +9,6 @@ class Service(dbus.service.Object):
         bus_name = service.BusName("org.jade.Desktop", dbus.SessionBus())
         service.Object.__init__(self, bus_name, "/org/jade/Desktop")
 
-    @dbus.service.method("org.jade.Desktop.Background", in_signature='s', out_signature='')
-    def setImage(self, image):
-        desktop = Instance.retrieve("desktop")
-        desktop.setBackground(image)
-
     @dbus.service.method("org.jade.Desktop", in_signature='', out_signature='')
     def toggleLauncher(self):
         Desktop.toggleLauncher()
