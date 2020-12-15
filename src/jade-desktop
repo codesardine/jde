@@ -122,16 +122,8 @@ class Exit():
         Session.reboot()
 
     @staticmethod
-    def hibernate(self):
-        Session.hibernate()
-
-    @staticmethod
     def suspend(self):
         Session.suspend()
-
-    @staticmethod
-    def sleep(self):
-        Session.sleep()
 
 
 def main():
