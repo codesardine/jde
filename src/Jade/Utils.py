@@ -66,8 +66,6 @@ class Session():
             run(['systemctl', 'suspend'])
         else:
             notify("Information", "Instalation or update in progress, your session is scheduled to standby, locking in 10s Goodbye.")
-            time.sleep(10)
-            Session.lock()
             while Session.get_pkg_manager_state() == True:
                 time.sleep(0.2)
             Session.suspend()
