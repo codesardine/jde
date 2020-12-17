@@ -264,6 +264,8 @@ function init() {
         el: '#app',
         data: {
             backgroundBtnIcon: icons["background"],
+            arrowUp: icons["arrow-up"],
+            arrowDown: icons["arrow-down"],
             backgroundBtnText: "Change Wallpaper",
             moodBackGroundText: "Mood Background",
             restoreText: "Restore Defaults",
@@ -316,6 +318,19 @@ function init() {
         };
     }
 
+    let arrowDown = desktop.elem(".arrowDown")
+    arrowDown.addEventListener("click", () => {
+        let apps = desktop.elem(".grid")
+        let height = apps.getBoundingClientRect()["height"]
+        apps.scrollBy(0, height)
+    })
+    let arrowUp = desktop.elem(".arrowUp")
+    arrowUp.addEventListener("click", () => {
+        let apps = desktop.elem(".grid")
+        let height = apps.getBoundingClientRect()["height"]
+        apps.scrollBy(0, -height)
+    })
+
     let search = desktop.searchBar()
     search.addEventListener("keyup", (e) => {
         if (e.key === "Escape") {
@@ -323,18 +338,17 @@ function init() {
         }
     })
 
+    desktop.elem("#Applications").getBoundingClientRect()["height"]
     workspace1 = desktop.elem("#workspace1")
     workspace1.value = Jade.settings.workspace1
     workspace1.addEventListener("keyup", debounce(() => {
         JAK.Bridge.saveSettings("workspace1", workspace1.value)
-        console.log('works')
     }, 500))
 
     workspace2 = desktop.elem("#workspace2")
     workspace2.value = Jade.settings.workspace2
     workspace2.addEventListener("keyup", debounce(() => {
         JAK.Bridge.saveSettings("workspace2", workspace2.value)
-        console.log('works')
     }, 500))
 
     workspace3 = desktop.elem("#workspace3")
@@ -348,7 +362,6 @@ function init() {
     workspace4.value = Jade.settings.workspace4
     workspace4.addEventListener("keyup", debounce(() => {
         JAK.Bridge.saveSettings("workspace4", workspace4.value)
-        console.log('works')
     }, 500))
 
 
