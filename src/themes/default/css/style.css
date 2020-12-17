@@ -47,11 +47,11 @@ body * {
 #Applications {
   overflow: scroll;
   position: fixed;
-  top: 0;
+  top: 10%;
   bottom: 10%;
   left: 0;
   right: 0;
-  padding: 8% 4%;
+  padding: 0 4%;
   padding-bottom: 0;
 }
 
