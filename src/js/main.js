@@ -73,8 +73,7 @@ Jade.Desktop = class API {
     buildApplications(category) {
         let categoryBtn = desktop.elem("#" + category.replace(/\s/g, "") + "-btn")
         if (category == "Settings") {
-            let settingsView = desktop.elem("#Settings")
-            var destination = settingsView
+            var destination = desktop.elem(".settings-grid")
             build(category)
         } else if (category != "Settings" && categoryBtn.checked) {
             var destination = desktop.elem("#Applications")
@@ -149,7 +148,7 @@ Jade.Desktop = class API {
 
     openSettings() {
         this.closeSearch()
-        let el = this.elem('#Settings')
+        let el = this.elem('.settings-grid')
         this.empty(el)
         if (el.innerHTML == "") {
             this.buildApplications('Settings');

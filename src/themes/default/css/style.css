@@ -51,7 +51,7 @@ body * {
   bottom: 10%;
   left: 0;
   right: 0;
-  padding: 0 4%;
+  padding: 0 5%;
   padding-bottom: 0;
 }
 
@@ -96,7 +96,7 @@ body * {
   opacity: 0;
 }
 
-.grid {
+.grid, .settings-grid {
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
@@ -264,8 +264,12 @@ background-color: rgba(0, 0, 0, 0.66) !important;
 
 #Settings {
   width: calc(100% - 240px);
-  padding-top: 40px;
   height: 100%;
+}
+
+#Settings .settings-grid {
+  position: relative;
+  top: 10%;
 }
 
 .devtools [type="checkbox"]:checked+span:after {

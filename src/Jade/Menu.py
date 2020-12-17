@@ -16,8 +16,8 @@ class Get:
     def build(self, menu=None, iteration=0, category=None, output={}):
         it = menu.iter()
         it_type = it
-        while it_type != GMenu.TreeItemType.INVALID:
-            if it_type == GMenu.TreeItemType.DIRECTORY:
+        while it_type is not GMenu.TreeItemType.INVALID:
+            if it_type is GMenu.TreeItemType.DIRECTORY:
 
                 item = it.get_directory()
                 icon = icons.get(item.get_icon().get_names()[0])
@@ -30,7 +30,7 @@ class Get:
                 output[f'{category}']['apps'] = []
                 self.build(item, iteration + 1, category, output)
 
-            elif it_type == GMenu.TreeItemType.ENTRY:
+            elif it_type is GMenu.TreeItemType.ENTRY:
 
                 item         = it.get_entry()
                 app          = item.get_app_info()
