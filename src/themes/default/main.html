@@ -27,19 +27,19 @@
   <main id="app">
     <div id="settingsPanel" class="sidenav">
       <div id="options" class="tour-step3">
-        <ul id="tabs-swipe-demo" class="tabs">
-          <li class="tab col s3"><a class="active" href="#swipe-1">
+        <ul id="tabs-swipe" class="tabs">
+          <li class="tab col s3"><a draggable="false" class="active" href="#swipe-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 4.007C2 3.45 2.455 3 2.992 3h18.016c.548 0 .992.45.992 1.007V17H2V4.007zM1 19h22v2H1v-2z"/></svg>
           </a></li>
-          <li class="tab col s3"><a href="#swipe-2">
+          <li class="tab col s3"><a draggable="false" href="#swipe-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z"/></svg>
           </a></li>
-          <li class="tab col s3"><a href="#swipe-3">
+          <li class="tab col s3"><a draggable="false" href="#swipe-3">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
           </a></li>
-          <li class="tab col s3"><a href="#swipe-4" id="devtools-btn">
+          <li class="tab col s3"><a draggable="false" href="#swipe-4" id="devtools-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm13.464 12.536L20 12l-3.536-3.536L15.05 9.88 17.172 12l-2.122 2.121 1.414 1.415zM6.828 12L8.95 9.879 7.536 8.464 4 12l3.536 3.536L8.95 14.12 6.828 12zm4.416 5l3.64-10h-2.128l-3.64 10h2.128z"/></svg>          </a></li>
-          <li class="not-tab col s3"><a class="modal-trigger text-color" href="#about" data-target="about">
+          <li class="not-tab col s3"><a draggable="false" class="modal-trigger text-color" href="#about" data-target="about">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
           </a></li>
         </ul>
@@ -192,8 +192,8 @@
     </div>
     <section class="applications-wrapper">
       <div class="arrow-container">
-        <img class="arrowUp" v-bind:src="arrowUp">
-        <img class="arrowDown" v-bind:src="arrowDown">
+        <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
+        <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
       </div>
       <span id="Applications" class="grid"></span>
     </section>
