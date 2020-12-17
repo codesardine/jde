@@ -189,7 +189,7 @@ class Desktop:
             windows = self.get_screen().get_windows()            
             for window in windows: 
                 actions = window.get_actions()  
-                if actions.MAXIMIZE:
+                if actions & Wnck.WindowActions.MAXIMIZE:
                     w_name = window.get_name()                    
                     if not w_name.startswith(self.ignore_windows):
                         half_screen_size = float(monitor.width() / 2)
