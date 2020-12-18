@@ -23,15 +23,6 @@ body * {
   font-size: 33px;
 }
 
-.icons-container {
-  padding-top: 6px;
-}
-
-.icons-container:hover,
-.icons-container:active {
-  background: rgba(0,0,0,0.2);
-}
-
 .app {
   font-size: 12px;
   overflow: hidden;
@@ -67,7 +58,32 @@ body * {
 .text-color, .app-title,
 #options form,
 .workspace input {
-  color: #e4e4e4 !important;
+color: #e4e4e4 !important;
+}
+
+.app-title { 
+  text-shadow: 2px 2px 1px black !important;
+}
+
+
+.icons-container {
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+.icons-container:hover,
+.icons-container:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.icons-container:hover *,
+.icons-container:active * {
+  color: white !important;
+}
+
+.grid-item:hover,
+.grid-item:active {
+  transform: scale(1.1);
 }
 
 .workspace label, #options h2 {
@@ -109,7 +125,9 @@ body * {
   margin-right: 1.8rem;
   margin-bottom: 2.6rem;
   min-width: 120px;
+  transition: transform 0.1s ease-in-out;
 }
+
 
 
 .applications-wrapper.show {
