@@ -27,7 +27,7 @@ Read more about it here (https://forum.manjaro.org/t/call-for-testers-jade-deskt
 * Clean and minimalistic interface
 * Hot corners
 * Settings panel
-* Show/Hide application type
+* Show/Hide application categories
 * Keyboard application search
 * Visual application search
 * Settings panel integrates with individual applications settings
@@ -38,9 +38,6 @@ Read more about it here (https://forum.manjaro.org/t/call-for-testers-jade-deskt
 * Optional Window auto tile
 * Desktop Tour on first run
 * Auto start pre defined applications per workspace
-
-### Upcomming
-* Entertainment mode
 
 ### Manjaro Integration
 * Restore factory profile settings
@@ -66,10 +63,11 @@ Please read [CONTRIBUTING.md](https://github.com/codesardine/Jadesktop/blob/mast
 
 ## Development
 #### Some ideas  
+* Entertainment mode
 * Plugins support
 * Pamac partial integration
 * Gamepad integration
-* Touchscreen integration
+* ~Touchscreen integration~
 * Voice control (Mycroft)
 * Mobile UI support
 * File search
