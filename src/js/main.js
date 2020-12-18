@@ -384,6 +384,7 @@ function init() {
     desktop.aboutPanel = M.Modal.init(desktop.elem('.modal'), {
         onOpenEnd: function () {
             if (Jade.settings.tourDone) {
+                desktop.closeSettings()
                 let about = desktop.elem('.modal-overlay')
                 about.onmouseleave = function () {
                     desktop.aboutPanel.close();
