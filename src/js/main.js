@@ -318,17 +318,34 @@ function init() {
         };
     }
 
+    function appsScrolllAnimation(direction) {
+        clearInterval(scroll)
+        let apps = desktop.elem(".grid") 
+        let height = apps.getBoundingClientRect()["height"]
+        let pixels = 1;
+        let timer = 1;
+        let speed = 6
+
+        scroll = setInterval(function() { 
+            if ( direction === "down" ) {
+                apps.scrollBy(0, pixels);
+            } else if ( direction === "up" ) {
+                apps.scrollBy(0, - pixels);   
+            }         
+            pixels += speed;
+            if ( pixels > height ) {
+                clearInterval(scroll)
+            }
+        }, timer);
+    }
+
     let arrowDown = desktop.elem(".arrowDown")
     arrowDown.addEventListener("click", () => {
-        let apps = desktop.elem(".grid")
-        let height = apps.getBoundingClientRect()["height"]
-        apps.scrollBy(0, height)
+        appsScrolllAnimation("down")
     })
     let arrowUp = desktop.elem(".arrowUp")
     arrowUp.addEventListener("click", () => {
-        let apps = desktop.elem(".grid")
-        let height = apps.getBoundingClientRect()["height"]
-        apps.scrollBy(0, -height)
+        appsScrolllAnimation("up")
     })
 
     let search = desktop.searchBar()

@@ -86,6 +86,10 @@ color: #e4e4e4 !important;
   transform: scale(1.1);
 }
 
+.grid-item {
+  scroll-behavior: smooth;
+}
+
 .workspace label, #options h2 {
   color: #ffa726 !important;
 }
