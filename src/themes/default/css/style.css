@@ -23,6 +23,15 @@ body * {
   font-size: 33px;
 }
 
+.icons-container {
+  padding-top: 6px;
+}
+
+.icons-container:hover,
+.icons-container:active {
+  background: rgba(0,0,0,0.2);
+}
+
 .app {
   font-size: 12px;
   overflow: hidden;
