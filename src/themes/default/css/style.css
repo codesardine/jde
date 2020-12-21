@@ -48,7 +48,7 @@ body * {
   left: 0;
   right: 0;
   padding: 0 5%;
-  padding-bottom: 0;
+  padding-bottom: 6px;
 }
 
 .text-color, .app-title,
@@ -63,7 +63,7 @@ color: #e4e4e4 !important;
 
 
 .icons-container {
-    padding-top: 10px;
+    padding-top: 11px;
     overflow: hidden;
 }
 
@@ -123,7 +123,7 @@ color: #e4e4e4 !important;
 .grid-item {
   margin-left: 1.8rem;
   margin-right: 1.8rem;
-  margin-bottom: 2.6rem;
+  margin-bottom: 40px;
   min-width: 120px;
   transition: transform 0.1s ease-in-out;
 }

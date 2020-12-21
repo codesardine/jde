@@ -320,21 +320,20 @@ function init() {
 
     function appsScrolllAnimation(direction) {
         clearInterval(scroll)
-        let apps = desktop.elem(".grid") 
-        let height = apps.getBoundingClientRect()["height"]
+        let scroll = 76
         let pixels = 1;
         let timer = 1;
         let speed = 6
 
-        scroll = setInterval(function() { 
+        interval = setInterval(function() { 
             if ( direction === "down" ) {
                 apps.scrollBy(0, pixels);
             } else if ( direction === "up" ) {
                 apps.scrollBy(0, - pixels);   
             }         
             pixels += speed;
-            if ( pixels > height ) {
-                clearInterval(scroll)
+            if ( pixels >= scroll ) {
+                clearInterval(interval)
             }
         }, timer);
     }
