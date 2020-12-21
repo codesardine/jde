@@ -319,7 +319,9 @@ function init() {
     }
 
     function appsScrolllAnimation(direction) {
-        clearInterval(scroll)
+        let apps = desktop.elem("#Applications")
+        interval = undefined
+        clearInterval(interval)
         let scroll = 76
         let pixels = 1;
         let timer = 1;
