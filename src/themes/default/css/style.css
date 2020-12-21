@@ -16,6 +16,8 @@ body * {
 
 .app .icons-container .app-icon {
   font-weight: bold;
+  width: 48px;
+  filter: drop-shadow(1px 1px 1px black) brightness(0.8);
 }
 
 .app .icons-container .icon.info {
@@ -36,12 +38,6 @@ body * {
   min-height: 48px;
   max-width: 120px;
   font-weight: bold;
-}
-
-.app-icon {
-  width: 48px;
-  filter: drop-shadow(1px 1px 1px black);
-  filter: brightness(0.8);
 }
 
 #Applications {
