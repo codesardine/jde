@@ -171,7 +171,7 @@ class Desktop:
     def minimize_windows(self):
         self.hide_terminal()
         monitor = getScreenGeometry()
-        windows = self.get_screen().get_windows()
+        windows = self.get_windows()
         for window in windows:
             w_name = window.get_name()
             if not w_name.startswith(self.ignore_windows):
@@ -186,16 +186,15 @@ class Desktop:
         settings = Desktop.loadSettings()
         if settings["autoTile"]:
             monitor = getScreenGeometry()
-            windows = self.get_screen().get_windows()            
+            windows = self.get_windows()            
             for window in windows: 
                 actions = window.get_actions()  
                 if actions & Wnck.WindowActions.MAXIMIZE:
-                    w_name = window.get_name()                    
+                    w_name = window.get_name()                                        
                     if not w_name.startswith(self.ignore_windows):
                         half_screen_size = float(monitor.width() / 2)
                         window_x = float(window.get_geometry()[0])
                         window_width = float(window.get_geometry()[2])
-                        print(window_width)
                         _type = window.get_window_type()
                         if not window.is_skip_tasklist() and window_x != half_screen_size or window_x != 0.0 \
                                 or window_width != half_screen_size and not window.is_maximized() \
@@ -223,8 +222,22 @@ class Desktop:
                         window.set_window_type(Wnck.WindowType.SPLASHSCREEN)
 
 
-    def setPanelVisible(self, value):
-        self.panel_open = value
+    def show_de_panel(self, state):
+        windows = self.get_windows()
+        for window in windows:
+            if window.get_name() == "wingpanel":
+                if not state:
+                     window.unminimize(int(time.time()))
+                else:
+                     window.minimize()
+
+    def get_windows(self):
+        return self.get_screen().get_windows()    
+    
+    def setPanelVisible(self, state):
+        self.panel_open = state
+        self.show_de_panel(state)
+            
 
     def window_open_cb(self, screen, window):
         if window.get_name() != "Guake!":
