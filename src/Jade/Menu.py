@@ -1,13 +1,10 @@
 import gi
 import json
+from functools import lru_cache
 gi.require_version('GMenu', '3.0')
 from gi.repository import GMenu, Gio
 import Jade.Icons as icons
-from JAK.Utils import bindings
-if bindings() == "PyQt5":
-    from PyQt5.QtCore import pyqtSlot as Slot
-else:
-    from PySide2.QtCore import Slot
+
 
 class Get:
     def __init__(self):
@@ -20,56 +17,41 @@ class Get:
             if it_type is GMenu.TreeItemType.DIRECTORY:
 
                 item = it.get_directory()
-                icon = icons.get(item.get_icon().get_names()[0])
-                comment = item.get_comment()
                 category = item.get_name()
                 #dump(categorie, iteration)
                 output[f'{category}'] = {}
-                output[f'{category}']['icon'] = icon
-                output[f'{category}']['description'] = comment
+                output[f'{category}']['icon'] = icons.get(item.get_icon().get_names()[0])
+                output[f'{category}']['description'] = item.get_comment()
                 output[f'{category}']['apps'] = []
                 self.build(item, iteration + 1, category, output)
 
             elif it_type is GMenu.TreeItemType.ENTRY:
 
-                item         = it.get_entry()
-                app          = item.get_app_info()
-                name         = app.get_display_name()
-                generic      = app.get_generic_name()
-                description  = app.get_description()
-                icon         = app.get_icon()
-                keywords     = " ".join(app.get_keywords())
-                path         = item.get_desktop_file_path()
-
+                item = it.get_entry()
+                app = item.get_app_info()
+                icon = app.get_icon()
+              
                 if isinstance(icon, Gio.ThemedIcon):
                     icon = icon.get_names()[0]
                 elif isinstance(icon, Gio.FileIcon):
                     icon = icon.get_file().get_path()
-
-                icon = icons.get(icon)
+                
                 #dump(name, iteration+1)
-
-                if not generic:
-                    generic = "Generic name not available"
-
-                if not description:
-                    description = "Description not available"
-
                 output[f'{category}']['apps'].append({
                     'category': f'{category}',
-                    'name': f'{name}',
-                    'generic': f'{generic}',
-                    'description': f'{description}',
-                    'icon': f'{icon}',
-                    'keywords': f'{keywords}',
-                    'path': f'{path}'
+                    'name': f'{app.get_display_name()}',
+                    'generic': f'{app.get_generic_name()}',
+                    'description': f'{app.get_description()}',
+                    'icon': f'{icons.get(icon)}',
+                    'keywords': f'{" ".join(app.get_keywords())}',
+                    'path': f'{item.get_desktop_file_path()}'
                     })
 
             it_type = it.next()
 
         return output
 
-    @Slot()
+    @lru_cache(maxsize=200)
     def items(self):
         tree = GMenu.Tree.new_for_path(self.menu_path, 0)
         tree.load_sync()

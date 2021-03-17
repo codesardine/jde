@@ -16,6 +16,8 @@ body * {
 
 .app .icons-container .app-icon {
   font-weight: bold;
+  width: 48px;
+  filter: drop-shadow(1px 1px 1px black) brightness(0.8);
 }
 
 .app .icons-container .icon.info {
@@ -38,12 +40,6 @@ body * {
   font-weight: bold;
 }
 
-.app-icon {
-  width: 48px;
-  filter: drop-shadow(1px 1px 1px black);
-  filter: brightness(0.8);
-}
-
 #Applications {
   overflow: scroll;
   position: fixed;
@@ -52,7 +48,7 @@ body * {
   left: 0;
   right: 0;
   padding: 0 5%;
-  padding-bottom: 0;
+  padding-bottom: 6px;
 }
 
 .text-color, .app-title,
@@ -67,7 +63,7 @@ color: #e4e4e4 !important;
 
 
 .icons-container {
-    padding-top: 10px;
+    padding-top: 11px;
     overflow: hidden;
 }
 
@@ -127,7 +123,7 @@ color: #e4e4e4 !important;
 .grid-item {
   margin-left: 1.8rem;
   margin-right: 1.8rem;
-  margin-bottom: 2.6rem;
+  margin-bottom: 40px;
   min-width: 120px;
   transition: transform 0.1s ease-in-out;
 }
