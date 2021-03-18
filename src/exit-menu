@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import os
+import sys
 import gi
 gi.require_version("Gtk", "3.0")
 gi.require_version('Gdk', '3.0')
@@ -106,27 +108,44 @@ class ExitMenu(Gtk.Window):
                                                  provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     def on_log_out(self, btn):
+        os.remove(lock)
         Session.logOut()
 
     def on_reboot(self, btn):
+        os.remove(lock)
         Session.reboot()
 
     def on_shutdown(self, btn):
+        os.remove(lock)
         Session.powerOff()
 
     def on_standby(self, btn):
+        os.remove(lock)
         Session.suspend()
         Gtk.main_quit()
 
     def on_lock(self, btn):
+        os.remove(lock)
         Session.lock()
         Gtk.main_quit()
 
     def on_cancel(self, btn):
+        os.remove(lock)
         Gtk.main_quit()
 
 
-app = ExitMenu()
-app.connect("destroy", Gtk.main_quit)
-app.show_all()
-Gtk.main()
+def on_destroy(self):
+      os.remove(lock)
+      Gtk.main_quit()    
+
+
+lock = "/tmp/jde-exit.lock"
+if os.path.exists(lock):
+  sys.exit
+else:
+  f = open(lock,"w+")
+  f.close
+  app = ExitMenu()
+  app.connect("destroy", on_destroy)
+  app.show_all()
+  Gtk.main()
