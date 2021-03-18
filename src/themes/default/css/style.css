@@ -433,20 +433,6 @@ input[type="file"] {
   filter: grayscale(0);
 }
 
-.app-view-drag-target {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 98%;
-  height: 10px;
-}
-
-.drag-target {
-  height: 95%;
-  top: auto;
-  bottom: 0;
-}
-
 .modal {
   top: 25% !important;
   overflow: visible;

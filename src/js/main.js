@@ -418,16 +418,8 @@ function init() {
     M.Sidenav.init(desktop.elems('.sidenav'), {
         menuWidth: 300,
         edge: 'left',
-        draggable: true
+        draggable: false
     })
-
-    desktop.elem(".drag-target").onmouseenter = function () {
-        desktop.toggleSettings()
-    }
-
-    desktop.elem(".app-view-drag-target").onmouseenter = function () {
-        desktop.toggleLauncher()
-    }
 
     desktop.elem('#background-btn').addEventListener('click', function () {
         JAK.Bridge.setBackgroundImage()
