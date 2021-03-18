@@ -20,7 +20,3 @@ class Service(dbus.service.Object):
     @dbus.service.method("org.jade.Desktop", in_signature='', out_signature='')
     def screenToggle(self):
         Desktop.screenToggle()
-
-    @dbus.service.method("org.jade.Desktop", in_signature='', out_signature='')
-    def toggleSearch(self):
-        Desktop.toggleSearch()

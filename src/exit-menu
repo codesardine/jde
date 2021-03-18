@@ -72,12 +72,12 @@ class ExitMenu(Gtk.Window):
           font: 18px "Roboto";
           background-position: center 8px;
           background-repeat: no-repeat;
-          background-size: 40px;
-          padding-top:60px; 
+          background-size: 50px;
+          padding-top: 68px; 
           border-bottom: 2px solid transparent; 
           border-radius: 0;
-          padding-left: 6;   
-          padding-right: 6;
+          padding-left: 0;
+          padding-right: 0;
           padding-bottom:8px;   
         }
         .buttons:hover {
@@ -85,6 +85,7 @@ class ExitMenu(Gtk.Window):
           }
         .logout {
           background-image: url("/usr/share/jadesktop/images/logout.svg");
+          min-width: 40px;
         }
         .reboot {
           background-image: url("/usr/share/jadesktop/images/reboot.svg");

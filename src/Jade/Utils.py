@@ -271,10 +271,6 @@ class Desktop:
         return str(pathlib.Path.home())
 
     @staticmethod
-    def toggleSearch():
-        JavaScript.send("desktop.toggleSearch();")
-
-    @staticmethod
     def about():
         items = json.dumps({
             "author": "Vitor Lopes",

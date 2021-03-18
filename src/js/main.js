@@ -2,6 +2,7 @@ Jade.Desktop = class API {
 
     constructor() {
         this.visible = true
+        this.searchActive = false
     }
 
     setBranch(branch) {
@@ -38,24 +39,6 @@ Jade.Desktop = class API {
             }
             this.toggleDesktop()
         }
-    }
-
-    toggleSearch() {
-        if (this.searchBar().classList.contains("show")) {
-            this.closeSearch()
-        } else {
-            if (this.settingsSidenav().isOpen == true) {
-                this.closeSettings()
-            }
-            let appView = this.appView()
-            if (appView.classList.contains("show")) {
-                this.closeApplications()
-            }
-            this.openSearch()
-            this.searchBar().querySelector("input").focus()
-            JAK.Bridge.setPanelVisible(true)
-        }
-        this.toggleDesktop()
     }
 
     toggleLauncher() {
@@ -99,19 +82,6 @@ Jade.Desktop = class API {
         el.insertAdjacentHTML('beforeend', appTemplate(name, icon, description, keywords, file))
     }
 
-    closeSearch() {
-        if (Jade.settings.tourDone == true || Jade.settings.tourDone == "step7") {
-            this.searchBar().classList.remove("show")
-            JAK.Bridge.setPanelVisible(false)
-        }
-    }
-
-    openSearch() {
-        if (Jade.settings.tourDone == true || Jade.settings.tourDone == "step6") {
-            this.searchBar().classList.add("show")
-        }
-    }
-
     toggleDesktop() {
         JAK.Bridge.toggleDesktop()
     }
@@ -126,10 +96,6 @@ Jade.Desktop = class API {
 
     about() {
         return M.Modal.getInstance(this.elem('#about'))
-    }
-
-    searchBar() {
-        return this.elem('.search')
     }
 
     appView() {
@@ -147,7 +113,6 @@ Jade.Desktop = class API {
     }
 
     openSettings() {
-        this.closeSearch()
         let el = this.elem('.settings-grid')
         this.empty(el)
         if (el.innerHTML == "") {
@@ -189,14 +154,15 @@ Jade.Desktop = class API {
     openApplications() {
         if (Jade.settings.tourDone == true) {
             let applications = this.elem("#Applications")
-            this.empty(applications)
-            for (let category in Jade.menu) {
-                if (category != "Settings") {
-                    desktop.buildApplications(category);
+            if (this.searchActive !== true) {
+                this.empty(applications)
+                for (let category in Jade.menu) {
+                    if (category != "Settings") {
+                        desktop.buildApplications(category);
+                    }
                 }
             }
             if (applications.innerHTML != "") {
-                this.closeSearch()
                 desktop.closeSettings()
             }
             let appView = this.appView()
@@ -206,10 +172,6 @@ Jade.Desktop = class API {
 
     empty(el) {
         el.innerHTML = ""
-    }
-
-    matchQuery(item, searchQuery) {
-        return item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase()) || item.keywords.toLowerCase().includes(searchQuery.toLowerCase())
     }
 }
 function appDrag(ev) {
@@ -286,37 +248,50 @@ function init() {
             aboutAuthor: "Copyright © 2020 " + about["author"],
             warranty: "This software comes with no warranty.",
             categoriesTittle: "Visible Applications",
-            searchQuery: '',
             categories: Jade.menu,
-            activeAppText: "Press enter to run ",
             videos: Jade.videos,
             "disabledText": "Disabled",
             "tileText": "Auto Tile Windows",
             Appearance: "Appearance",
             Behavior: "Behavior",
-            System: "System"
+            System: "System",
+            isTyping : false,
+            searchQuery: null
+
         },
 
-        computed: {
-            filter() {
-                let applications = desktop.get_search_items()
-                return applications.filter(item => {
-                    return desktop.matchQuery(item, this.searchQuery)
-                })
+        watch : {
+            searchQuery: function (query) {  
+                this.matchQuery(query)
+            }
+        }, 
+
+        methods : {
+            matchQuery(query) {
+                this.isTyping = true
+                destination = desktop.elem("#Applications")
+                setTimeout(() => {
+                    desktop.empty(destination)
+                    this.isTyping = false
+                    desktop.searchActive = true
+                    let apps = desktop.get_search_items()
+                    for (app of apps) {
+                        if (app.category != "Settings") {
+                            if (
+                                app.name.toLowerCase().includes(query.toLowerCase()) ||
+                                app.description.toLowerCase().includes(query.toLowerCase()) ||
+                                app.keywords.toLowerCase().includes(query.toLowerCase())
+                                ) {
+                                    desktop.buildHTML(destination, app.name, app.icon, app.description, app.keywords, app.path)
+                                }
+                    }
+                }
+                }, 1000)
             }
         }
     })
 
     M.Tabs.init(desktop.elems('.tabs'), {swipeable: true});
-
-    function debounce(callback, wait) {
-        let timeout;
-        return(...args) => {
-            const context = this;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => callback.apply(context, args), wait);
-        };
-    }
 
     function appsScrolllAnimation(direction) {
         let apps = desktop.elem("#Applications")
@@ -349,36 +324,38 @@ function init() {
         appsScrolllAnimation("up")
     })
 
-    let search = desktop.searchBar()
-    search.addEventListener("keyup", (e) => {
-        if (e.key === "Escape") {
-            desktop.closeSearch()
-        }
-    })
+    function _debounce(callback, wait) {
+        let timeout;
+        return(...args) => {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => callback.apply(context, args), wait);
+        };
+    }
 
     desktop.elem("#Applications").getBoundingClientRect()["height"]
     workspace1 = desktop.elem("#workspace1")
     workspace1.value = Jade.settings.workspace1
-    workspace1.addEventListener("keyup", debounce(() => {
+    workspace1.addEventListener("keyup", _debounce(() => {
         JAK.Bridge.saveSettings("workspace1", workspace1.value)
     }, 500))
 
     workspace2 = desktop.elem("#workspace2")
     workspace2.value = Jade.settings.workspace2
-    workspace2.addEventListener("keyup", debounce(() => {
+    workspace2.addEventListener("keyup", _debounce(() => {
         JAK.Bridge.saveSettings("workspace2", workspace2.value)
     }, 500))
 
     workspace3 = desktop.elem("#workspace3")
     workspace3.value = Jade.settings.workspace3
-    workspace3.addEventListener("keyup", debounce(() => {
+    workspace3.addEventListener("keyup", _debounce(() => {
         JAK.Bridge.saveSettings("workspace3", workspace3.value)
         console.log('works')
     }, 500))
 
     workspace4 = desktop.elem("#workspace4")
     workspace4.value = Jade.settings.workspace4
-    workspace4.addEventListener("keyup", debounce(() => {
+    workspace4.addEventListener("keyup", _debounce(() => {
         JAK.Bridge.saveSettings("workspace4", workspace4.value)
     }, 500))
 
@@ -605,7 +582,6 @@ function startTour() {
             desktop.openSearch()
         } else if (this._currentStep == 7) {
             Jade.settings.tourDone = "step7"
-            desktop.closeSearch()
             Jade.settings.tourDone = true
             JAK.Bridge.saveSettings("tourDone", true)
         }

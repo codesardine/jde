@@ -48,7 +48,7 @@
             <h2>{{ Appearance }}</h2>
             <ul>
               <li>
-                <a id="background-btn" href="#about" class=" text-color">
+                <a id="background-btn" href="#about" class="text-color">
                   <label for="background-btn">
                     <img v-bind:src="backgroundBtnIcon" id="background-icon-btn">
                     {{ backgroundBtnText }}
@@ -191,30 +191,21 @@
       </section>
     </div>
     <section class="applications-wrapper">
+
+      <div class="search tour-step6">
+        <img v-bind:src="searchBtnIcon">
+        <input type="text" v-model="searchQuery">
+      </div>
+
       <div class="arrow-container">
         <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
         <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
       </div>
       <span id="Applications" class="grid"></span>
     </section>
-    <div class="search tour-step6">
-      <img v-bind:src="searchBtnIcon" id="search-icon">
-      <input type="text" v-model="searchQuery">
-      <ul class="collection" v-if="searchQuery">
-        <li v-for="item in filter">
-          <a ondragstart="appDrag(event)" class="collection-item" v-bind:href="'ipc:' + item.path">
-            <img draggable="false" v-bind:src="item.icon">
-            <span >{{ item.name }}</span>
-            <div class="current-app">
-              <img class="current-icon" v-bind:src="item.icon">
-              <p >{{ activeAppText }}{{ item.name }}</p>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <video id="video-background" loop autoplay>
-    </video>
+    
+    <video id="video-background" loop autoplay></video>
+    
     <div id="about" class="modal tour-step0">
       <img class="logo" src="../../images/logo.svg">
       <div class="modal-content">
