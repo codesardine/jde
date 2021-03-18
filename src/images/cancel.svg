@@ -7,12 +7,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="50"
-   height="50"
+   width="30"
+   height="30"
    version="1"
    id="svg12"
    sodipodi:docname="cancel.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    inkscape:export-filename="/home/vlopes/Music/cancel.png"
    inkscape:export-xdpi="57.599998"
    inkscape:export-ydpi="57.599998">
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39,21 +39,21 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1280"
-     inkscape:window-height="1004"
+     inkscape:window-width="1920"
+     inkscape:window-height="980"
      id="namedview14"
      showgrid="false"
-     inkscape:zoom="26.21875"
-     inkscape:cx="-2.3456496"
-     inkscape:cy="9.5486302"
+     inkscape:zoom="9.269728"
+     inkscape:cx="23.880626"
+     inkscape:cy="18.702385"
      inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
      inkscape:current-layer="svg12"
      inkscape:document-rotation="0" />
   <path
-     style="color:#444444;fill:#cccccc;stroke-width:2.85713"
+     style="color:#444444;fill:#cccccc;stroke-width:1.42857"
      class="ColorScheme-Text"
-     d="M 27,7 C 15.962858,7 7.0000003,15.962858 7.0000003,27 7.0000003,38.037142 15.962858,47 27,47 38.037142,47 47,38.037142 47,27 47,15.962858 38.037142,7 27,7 Z m 0,5.714287 c 2.912571,0 5.597142,0.8218 7.857142,2.321429 L 15.035715,34.857142 C 13.536086,32.597087 12.714286,29.912571 12.714286,27 12.714286,19.116286 19.116571,12.714287 27,12.714287 Z m 11.964287,6.428571 c 1.499627,2.260055 2.321427,4.944571 2.321427,7.857142 0,7.883429 -6.402285,14.285713 -14.285714,14.285713 -2.912571,0 -5.597142,-0.8218 -7.857142,-2.321427 z"
+     d="M 15,5 C 9.4814294,5 5.0000001,9.4814293 5.0000001,15 5.0000001,20.518571 9.4814294,25 15,25 20.518571,25 25,20.518571 25,15 25,9.4814293 20.518571,5 15,5 Z m 0,2.8571435 c 1.456285,0 2.798571,0.4109 3.928571,1.1607145 L 9.0178574,18.928571 C 8.268043,17.798543 7.857143,16.456285 7.857143,15 7.857143,11.058143 11.058285,7.8571435 15,7.8571435 Z m 5.982143,3.2142855 c 0.749814,1.130028 1.160714,2.472286 1.160714,3.928571 0,3.941715 -3.201142,7.142857 -7.142857,7.142857 -1.456285,0 -2.798571,-0.4109 -3.928571,-1.160714 z"
      id="path5" />
 </svg>

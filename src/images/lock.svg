@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="50"
-   height="50"
-   viewBox="0 0 50 50"
+   width="30"
+   height="30"
+   viewBox="0 0 30 30"
    version="1.1"
    id="svg7"
    sodipodi:docname="lock.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
   <metadata
      id="metadata11">
     <rdf:RDF>
@@ -35,17 +35,18 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1004"
+     inkscape:window-width="1920"
+     inkscape:window-height="980"
      id="namedview9"
      showgrid="false"
-     inkscape:zoom="38.136364"
+     inkscape:zoom="9.534091"
      inkscape:cx="4.693683"
      inkscape:cy="5.7556615"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="36"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg7" />
+     inkscape:current-layer="svg7"
+     inkscape:document-rotation="0" />
   <defs
      id="defs3">
     <style
@@ -55,8 +56,8 @@
   </style>
   </defs>
   <path
-     style="fill:#cccccc;stroke-width:2.85714"
+     style="fill:#cccccc;stroke-width:1.42857"
      class="ColorScheme-Text"
-     d="M 25,5 C 18.668572,5 13.571429,10.204571 13.571429,16.607143 v 5.535714 H 10.714286 C 9.1314287,22.142857 7.857143,23.417143 7.857143,25 V 42.142857 C 7.857143,43.725714 9.1314287,45 10.714286,45 h 28.571428 c 1.582858,0 2.857143,-1.274286 2.857143,-2.857143 V 25 c 0,-1.582857 -1.274285,-2.857143 -2.857143,-2.857143 H 36.428572 V 16.607143 C 36.428572,10.207143 31.331429,5 25,5 Z m 0,5.714286 c 3.165714,0 5.714286,2.548571 5.714286,5.714285 v 5.714286 H 19.285714 v -5.714286 c 0,-3.165714 2.548572,-5.714285 5.714286,-5.714285 z"
+     d="M 15,5 C 11.834286,5 9.2857141,7.6022855 9.2857141,10.803571 v 2.767858 h -1.428571 c -0.7914284,0 -1.4285713,0.637142 -1.4285713,1.428571 v 8.571429 C 6.4285718,24.362857 7.0657147,25 7.8571431,25 H 22.142856 c 0.79143,0 1.428572,-0.637143 1.428572,-1.428571 V 15 c 0,-0.791429 -0.637142,-1.428571 -1.428571,-1.428571 H 20.714286 V 10.803571 C 20.714286,7.6035715 18.165714,5 15,5 Z m 0,2.857143 c 1.582856,0 2.857142,1.2742857 2.857142,2.857142 v 2.857144 h -5.714286 v -2.857144 c 0,-1.5828563 1.274286,-2.857142 2.857144,-2.857142 z"
      id="path5" />
 </svg>
