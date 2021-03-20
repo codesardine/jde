@@ -254,7 +254,7 @@ input.valid[type=text]:not(.browser-default):active {
 }
 
 #time {
-  font-size: 1300%;
+  font-size: 1000%;
 }
 
 #date {
