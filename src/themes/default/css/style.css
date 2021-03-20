@@ -172,12 +172,6 @@ color: #e4e4e4 !important;
   font-size: 14px !important;
 }
 
-.applications-wrapper,
-#settingsPanel .title,
-#Settings {
-  background-color: rgba(0, 0, 0, 0.66);
-  }
-
 .sidenav-overlay {
   background: transparent;
 }
@@ -242,8 +236,31 @@ input.valid[type=text]:not(.browser-default):active {
   background-color: transparent !important;
 }
 
-.tabs, .tabs-content {
-background-color: rgba(0, 0, 0, 0.66) !important;
+.tabs, .tabs-content,
+.applications-wrapper,
+#settingsPanel.title,
+#Settings {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+#clock {
+  color: white;
+  font-weight: bold;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  text-shadow: 1px 1px rgb(0 0 0 / 50%);
+}
+
+#time {
+  font-size: 1300%;
+}
+
+#date {
+  font-size: 300%;
+  text-align: right;
+  margin-top: -50px;
 }
 
 .tabs h2 {

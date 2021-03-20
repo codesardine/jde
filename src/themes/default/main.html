@@ -14,7 +14,6 @@
 </head>
 <style>
   #screen-overlay {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 106%);
     width: 100%;
     position: fixed;
     height: 100%;
@@ -205,7 +204,7 @@
     </section>
     
     <video id="video-background" loop autoplay></video>
-    
+
     <div id="about" class="modal tour-step0">
       <img class="logo" src="../../images/logo.svg">
       <div class="modal-content">
@@ -220,6 +219,12 @@
       </div>
     </div>
     <div id="screen-overlay"></div>
+    <div id="floating-items">
+      <div id="clock">
+        <div id="time"></div>
+        <div id="date"></div>
+      </div>
+    </div>
   </main>
   <div id="tour">
     <div class="tour-step1"></div>

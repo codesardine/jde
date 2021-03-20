@@ -108,11 +108,13 @@ Jade.Desktop = class API {
     }
 
     closeSettings() {
+        this.openWidgets()
         this.settingsSidenav().close();
         JAK.Bridge.setPanelVisible(false)
     }
 
     openSettings() {
+        this.closeWidgets()
         let el = this.elem('.settings-grid')
         this.empty(el)
         if (el.innerHTML == "") {
@@ -122,6 +124,7 @@ Jade.Desktop = class API {
     }
 
     closeApplications() {
+        this.openWidgets()
         let self = this
         this.appView().classList.remove("opacity")
         JAK.Bridge.setPanelVisible(false)
@@ -168,12 +171,22 @@ Jade.Desktop = class API {
             let appView = this.appView()
             appView.classList.add("show", "opacity");
         }
+        this.closeWidgets()
+    }
+
+    closeWidgets() {
+        desktop.elem("#floating-items").style.display = "none"
+    }
+
+    openWidgets() {
+        desktop.elem("#floating-items").style.display = "block";
     }
 
     empty(el) {
         el.innerHTML = ""
     }
 }
+
 function appDrag(ev) {
     el = ev.target
     img = el.querySelector("img")
@@ -184,6 +197,7 @@ function appDrag(ev) {
         ev.dataTransfer.setDragImage(img, 25, 25)
     }
 }
+
 function appTemplate(name, icon, description, keywords, file) {
     let template = `
   <div class="grid-item">
@@ -203,11 +217,24 @@ function appTemplate(name, icon, description, keywords, file) {
   `
     return template
 }
+
 function init() {
     desktop = new Jade.Desktop();
     let about = JSON.parse(JAK.Bridge.about)
     let icons = JSON.parse(JAK.Bridge.icons)
 
+    setInterval(showTime, 1000)
+    function showTime() {
+        let time = new Date()
+        let hour = time.getHours()
+        let min = time.getMinutes()       
+        hour = hour < 10 ? "0" + hour : hour
+        min = min < 10 ? "0" + min : min
+        let currentTime = hour + ":" + min
+        desktop.elem("#time").innerHTML = currentTime
+    }
+
+    showTime()
     Jade.videos = [
         "Beach",
         "Blue Sky",
