@@ -144,8 +144,7 @@ def main():
             "setFlags": setFlags,
             "fullScreen": True,
             "setAttribute": setAttribute,
-            "transparent": True,
-            "backgroundImage": Desktop.getBackground()
+            "transparent": True
         },
         webview = {
             "webContents": f"{Desktop.getPath()}/themes/default/main.html",

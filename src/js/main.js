@@ -255,7 +255,6 @@ function init() {
             backgroundBtnIcon: icons["background"],
             arrowUp: icons["arrow-up"],
             arrowDown: icons["arrow-down"],
-            backgroundBtnText: "Change Wallpaper",
             moodBackGroundText: "Mood Background",
             restoreText: "Restore Defaults",
             restoreBtnIcon: icons["restore"],
@@ -423,10 +422,6 @@ function init() {
         menuWidth: 300,
         edge: 'left',
         draggable: false
-    })
-
-    desktop.elem('#background-btn').addEventListener('click', function () {
-        JAK.Bridge.setBackgroundImage()
     })
 
     let inspectorBtn = desktop.elem('#inspector-btn')
