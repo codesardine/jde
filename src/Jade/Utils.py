@@ -134,6 +134,7 @@ class Desktop:
 
     def active_workspace_changed_cb(self, screen, previously_active_space):
         workspace_name = screen.get_active_workspace().get_name()
+        self.workspace_exec(f"notify-send 'You are on {workspace_name}'")
         workspaces = ["workspace1", "workspace2", "workspace3", "workspace4"]
         for space in workspaces:
             if workspace_name.lower().replace(" ", "") == space:

@@ -281,6 +281,8 @@ function init() {
             Appearance: "Appearance",
             Behavior: "Behavior",
             System: "System",
+            workspaceText: "WorkSpaces",
+            workspaceDescription: "Run applications or script your workspaces, usage: executable or script path.",
             isTyping : false,
             searchApplications: null,
             searchSettings : null

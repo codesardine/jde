@@ -90,6 +90,17 @@ color: #e4e4e4 !important;
   color: #ffa726 !important;
 }
 
+.workspace {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.workspace label {
+  margin-right: 10px;
+}
+
+
 [type="radio"]:not(:checked) + span:before, [type="radio"]:not(:checked) + span:after,
 [type="checkbox"].filled-in:not(:checked) + span:not(.lever):after {
   border: 1px solid  #e4e4e4;
@@ -267,10 +278,6 @@ input.valid[type=text]:not(.browser-default):active {
  background:transparent !important;
 }
 
-#swipe-2 ul .workspace:first-of-type {
-  padding-top: 18px;
-}
-
 #settingsPanel ul,
 #categories-submenu,
 #backgrounds-submenu {
@@ -438,6 +445,11 @@ input[type="file"] {
 
 .workspace {
   padding: 0 15px;
+}
+
+#options p {
+  margin-top: 0;
+  padding-left: 16px;
 }
 
 #options:hover,
