@@ -153,7 +153,7 @@ color: #e4e4e4 !important;
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
   background-color: transparent;
-  height: calc(100% - 50px);
+  height: 100%;
   padding-bottom: 0;
   background: transparent;
   display: flex;
@@ -247,7 +247,7 @@ input.valid[type=text]:not(.browser-default):active {
   color: white;
   font-weight: bold;
   left: 50%;
-  top: 50%;
+  bottom: 5%;
   transform: translate(-50%, -50%);
   position: fixed;
   text-shadow: 1px 1px rgb(0 0 0 / 50%);
@@ -575,12 +575,6 @@ input[type="file"] {
 .search.show {
   z-index: 2;
   opacity: 1;
-}
-
-@media only screen and (min-width: 1800px) {
-  #settingsPanel {
-    width: 50%;
-  }
 }
 
 /* tour */

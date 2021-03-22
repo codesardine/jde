@@ -282,36 +282,53 @@ function init() {
             Behavior: "Behavior",
             System: "System",
             isTyping : false,
-            searchQuery: null
+            searchApplications: null,
+            searchSettings : null
+
 
         },
 
         watch : {
-            searchQuery: function (query) {  
-                this.matchQuery(query)
+            searchApplications : function (query) {
+                    this.matchQuery("#Applications", query)
+            },
+            searchSettings : function (query) {
+                    this.matchQuery(".settings-grid", query)
             }
+
         }, 
 
         methods : {
-            matchQuery(query) {
+            matchQuery(_type, query) {
                 this.isTyping = true
-                destination = desktop.elem("#Applications")
                 setTimeout(() => {
+                    destination = desktop.elem(`${_type}`)
                     desktop.empty(destination)
                     this.isTyping = false
                     desktop.searchActive = true
                     let apps = desktop.get_search_items()
-                    for (app of apps) {
-                        if (app.category != "Settings") {
-                            if (
-                                app.name.toLowerCase().includes(query.toLowerCase()) ||
-                                app.description.toLowerCase().includes(query.toLowerCase()) ||
-                                app.keywords.toLowerCase().includes(query.toLowerCase())
-                                ) {
-                                    desktop.buildHTML(destination, app.name, app.icon, app.description, app.keywords, app.path)
-                                }
+                    function match(app) {
+                        if (
+                            app.name.toLowerCase().includes(query.toLowerCase()) |
+                            app.description.toLowerCase().includes(query.toLowerCase()) ||
+                            app.keywords.toLowerCase().includes(query.toLowerCase())
+                            ) {
+                                desktop.buildHTML(destination, app.name, app.icon, app.description, app.keywords, app.path)
+                            }
                     }
-                }
+                    if (_type == "#Applications") { 
+                        for (app of apps) {
+                            if (app.category != "Settings") {
+                                match(app)
+                            }
+                        }
+                    } else if (_type == ".settings-grid") {
+                        for (app of apps) {
+                            if (app.category == "Settings") {
+                                match(app)
+                            }
+                        }
+                    }
                 }, 1000)
             }
         }

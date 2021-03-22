@@ -180,6 +180,10 @@
         </ul>
       </div>
       <section id="Settings">
+        <div class="search tour-step6">
+          <img v-bind:src="searchBtnIcon">
+        <input type="text" v-model="searchSettings">
+      </div>
         <span class="settings-grid"></span>
       </section>
     </div>
@@ -187,7 +191,7 @@
 
       <div class="search tour-step6">
         <img v-bind:src="searchBtnIcon">
-        <input type="text" v-model="searchQuery">
+        <input type="text" v-model="searchApplications">
       </div>
 
       <div class="arrow-container">
