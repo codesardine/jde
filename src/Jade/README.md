@@ -1,6 +1,6 @@
 <img src="./src/images/logo.svg" alt="drawing" width="80"/>  
 
-## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,css,manjaro,jde)
+## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,css,manjaro,org)
 
 Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, backend is QT and GTK.
 
@@ -45,7 +45,7 @@ Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, 
 * ISO images can be found on [ODSN](https://osdn.net/projects/manjaro-community/storage/webdad/).
 
 ### Prerequisites
-* [Menu Data](https://github.com/Manjaro-WebDad/jde-menu-data)
+* [Menu Data](https://github.com/Manjaro-WebDad/org-menu-data)
 * [JAK](https://github.com/Manjaro-WebDad/jak) 
 * Python GObject Introspection 
 * Python-Dbus
@@ -56,7 +56,7 @@ Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, 
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/Manjaro-WebDad/jde/blob/master/CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](https://github.com/Manjaro-WebDad/org/blob/master/CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
 
 ## Development
 #### Some ideas  
@@ -75,7 +75,7 @@ Please read [CONTRIBUTING.md](https://github.com/Manjaro-WebDad/jde/blob/master/
 * Remote desktop
 * Creamy espresso maker
 
-* Also visit the [Wiki](https://github.com/Manjaro-WebDad/jde/wiki) for more detailed information. 
+* Also visit the [Wiki](https://github.com/Manjaro-WebDad/org/wiki) for more detailed information. 
 
 ## Versioning
 
@@ -85,7 +85,7 @@ Please read [CONTRIBUTING.md](https://github.com/Manjaro-WebDad/jde/blob/master/
 
 * **Vitor Lopes** - [Twitter Codesardine](https://twitter.com/codesardine) 
 
-See also the list of [contributors](https://github.com/Manjaro-WebDad/jde/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Manjaro-WebDad/org/graphs/contributors) who participated in this project.
 
 ## License
 

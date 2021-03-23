@@ -8,7 +8,7 @@ class Options():
     def __init__(self):
         self.config = configparser.ConfigParser()
         self.config.optionxform = str
-        self.config_file = f"{str(pathlib.Path.home())}/.config/jade/desktop.conf"
+        self.config_file = f"{str(pathlib.Path.home())}/.config/jde/desktop.conf"
         self.config.read(self.config_file)
 
     def save(self, key, value):

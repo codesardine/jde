@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Icon=preferences-desktop
 Terminal=false
-Exec=dbus-send --session --dest=org.jade.Desktop --type=method_call /org/jade/Desktop org.jade.Desktop.toggleSettings
+Exec=dbus-send --session --dest=org.jde.Desktop --type=method_call /org/jde/Desktop org.jde.Desktop.toggleSettings
 X-AppStream-Ignore=true
 StartupNotify=false
 Name=Settings

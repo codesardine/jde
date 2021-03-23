@@ -84,7 +84,7 @@ class Session():
     @staticmethod
     def userCSS():
         user_folder = Desktop.getHome()
-        path = f"{user_folder}/.config/jade/theme/style.css"
+        path = f"{user_folder}/.config/jde/theme/style.css"
         if os.path.exists(path):
             try:
                 with open(path, "r", encoding='utf-8') as file:

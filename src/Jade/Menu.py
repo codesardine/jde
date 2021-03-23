@@ -8,7 +8,7 @@ import Jade.Icons as icons
 
 class Get:
     def __init__(self):
-        self.menu_path = "/etc/xdg/menus/jade-applications.menu"
+        self.menu_path = "/etc/xdg/menus/jde-applications.menu"
 
     def build(self, menu=None, iteration=0, category=None, output={}):
         it = menu.iter()

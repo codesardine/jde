@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Icon=desktop
 Terminal=false
-Exec=dbus-send --session --dest=org.jade.Desktop --type=method_call /org/jade/Desktop org.jade.Desktop.screenToggle
+Exec=dbus-send --session --dest=org.jde.Desktop --type=method_call /org/jde/Desktop org.jde.Desktop.screenToggle
 X-AppStream-Ignore=true
 StartupNotify=false
 Name=Show/Hide Desktop
