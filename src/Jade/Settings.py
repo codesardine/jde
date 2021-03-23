@@ -13,7 +13,7 @@ class Options():
 
     def save(self, key, value):
         self.config.set('DEFAULT', f'{key}', f'{value}')
-        with open(self.config_file, 'w+') as f:
+        with open(self.config_file, 'w') as f:
             self.config.write(f)
 
     def load(self):
