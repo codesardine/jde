@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Icon=/usr/share/jde/images/app-launcher.svg
 Terminal=false
-Exec=dbus-send --session --dest=org.jde.Desktop --type=method_call /org/jde/Desktop org.jde.Desktop.toggleLauncher
+Exec=dbus-send --session --dest=io.jde.Desktop --type=method_call /io/jde/Desktop io.jde.Desktop.toggleLauncher
 X-AppStream-Ignore=true
 StartupNotify=false
 Name=Applications

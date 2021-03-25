@@ -5,7 +5,6 @@ import json
 import Jade.Menu
 import time
 import gi
-import dbus
 gi.require_version('Wnck', '3.0')
 gi.require_version('Notify', '0.7')
 from gi.repository import Wnck, Gio, Notify, Gdk
@@ -164,10 +163,7 @@ class Desktop:
         self.get_screen().get_active_workspace()
 
     def hide_terminal(self):
-        bus = dbus.SessionBus()
-        service = bus.get_object('org.guake3.RemoteControl', '/org/guake3/RemoteControl')
-        interface = dbus.Interface(service, dbus_interface='org.guake3.RemoteControl')
-        interface.hide()
+        Jade.Dbus.client("org.guake3.RemoteControl").hide()
 
     def minimize_windows(self):
         self.hide_terminal()
