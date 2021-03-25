@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Icon=search-icon
-Terminal=false
-Exec=dbus-send --session --dest=org.jde.Desktop --type=method_call /org/jde/Desktop org.jde.Desktop.toggleSearch
-X-AppStream-Ignore=true
-StartupNotify=false
-Name=Search

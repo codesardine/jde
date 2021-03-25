@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Icon=/usr/share/jadesktop/images/app-launcher.svg
+Icon=/usr/share/jde/images/app-launcher.svg
 Terminal=false
 Exec=dbus-send --session --dest=org.jde.Desktop --type=method_call /org/jde/Desktop org.jde.Desktop.toggleLauncher
 X-AppStream-Ignore=true

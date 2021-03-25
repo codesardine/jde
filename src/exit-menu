@@ -84,23 +84,23 @@ class ExitMenu(Gtk.Window):
             border-bottom: 2px solid #009688;
           }
         .logout {
-          background-image: url("/usr/share/jadesktop/images/logout.svg");
+          background-image: url("/usr/share/jde/images/logout.svg");
           min-width: 40px;
         }
         .reboot {
-          background-image: url("/usr/share/jadesktop/images/reboot.svg");
+          background-image: url("/usr/share/jde/images/reboot.svg");
         }
         .shutdown {
-          background-image: url("/usr/share/jadesktop/images/shutdown.svg");
+          background-image: url("/usr/share/jde/images/shutdown.svg");
         }
         .standby {
-          background-image: url("/usr/share/jadesktop/images/standby.svg");
+          background-image: url("/usr/share/jde/images/standby.svg");
         }
         .lock {
-          background-image: url("/usr/share/jadesktop/images/lock.svg");
+          background-image: url("/usr/share/jde/images/lock.svg");
         }
         .cancel {
-          background-image: url("/usr/share/jadesktop/images/cancel.svg");
+          background-image: url("/usr/share/jde/images/cancel.svg");
         }
         """
 
