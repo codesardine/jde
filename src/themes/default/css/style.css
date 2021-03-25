@@ -40,7 +40,7 @@ body * {
   font-weight: bold;
 }
 
-#Applications {
+#Applications, .settings-grid {
   overflow: scroll;
   position: fixed;
   top: 10%;
@@ -207,10 +207,6 @@ color: #e4e4e4 !important;
   margin-left: -3px;
 }
 
-#Settings {
-  overflow: scroll;
-}
-
 .tabs .tab a:focus, .tabs .tab a:focus.active {
     background-color: transparent;
     }
@@ -306,11 +302,6 @@ input.valid[type=text]:not(.browser-default):active {
 #Settings {
   width: calc(100% - 240px);
   height: 100%;
-}
-
-#Settings .settings-grid {
-  position: relative;
-  top: 10%;
 }
 
 .arrow-container {
