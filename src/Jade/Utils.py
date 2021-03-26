@@ -239,17 +239,17 @@ class Desktop:
     def window_open_cb(self, screen, window):
         if window.get_name() != "Guake!":
             self.hide_terminal()
-        if Desktop.loadSettings()["tourDone"]:
-            _type = window.get_window_type()
-            if _type == Wnck.WindowType.DESKTOP:
-                pass
-            elif _type == Wnck.WindowType.NORMAL:
-                self.clearWindows()
+            if Desktop.loadSettings()["tourDone"]:
+                _type = window.get_window_type()
+                if _type == Wnck.WindowType.DESKTOP:
+                    pass
+                elif _type == Wnck.WindowType.NORMAL:
+                    self.clearWindows()
+                    self.autoTile()
+            else:
                 self.autoTile()
-        else:
-            self.autoTile()
-            time.sleep(0.50)
-            self.minimize_windows()
+                time.sleep(0.50)
+                self.minimize_windows()
 
     def window_closed_cb(self, screen, closed_window):
         for w in self.minimized_windows:

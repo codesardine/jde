@@ -584,21 +584,23 @@ input[type="file"] {
 .tour-step1 {
   position: absolute;
   bottom: 0;
-    left: 5px;
-    height: 34px;
-    width: 350px;
+  left: 50%;
+  height: 34px;
+  width: 350px;
+  transform: translateX(-50%);
 }
 .tour-step2 {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 15px;
   height: 34px;
-  width: 240px;
+  width: 100px;
 }
 
 .introjs-helperLayer {
   background-color: transparent !important;
-  border: 1px solid rgb(255, 255, 255) !important;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: none !important;
 }
 
 .introjs-skipbutton, .introjs-prevbutton {
@@ -607,4 +609,27 @@ input[type="file"] {
 
 .introjs-donebutton {
   display: inline-block !important;
+}
+
+.introjs-tooltip:before {
+    display: block;
+    content: "";
+    background-image: url(../../../images/companion.png);
+    background-size: contain;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 80%;
+    height: 80%;
+    background-repeat: no-repeat;
+}
+
+.introjs-tooltip {
+  max-width: 400px !important;
+  min-width: 400px !important;
+}
+
+.introjs-tooltiptext {
+  margin-left: 34%;
+  width: auto;
 }
