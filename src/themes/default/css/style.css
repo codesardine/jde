@@ -617,8 +617,8 @@ input[type="file"] {
     background-image: url(../../../images/companion.png);
     background-size: contain;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 10%;
+    left: 5%;
     width: 80%;
     height: 80%;
     background-repeat: no-repeat;

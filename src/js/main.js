@@ -561,68 +561,76 @@ function startTour() {
         disableInteraction: true,
         steps: [
             {
-                element: '.tour-step0',
-                intro: "Hi welcome, lets do a quick tour to get you more familiar with your new desktop. You can Install/Remove/Update applications using Pamac under the settings menu.",
+                element: '.tour-step1',
+                intro: "Hi, lets get you more familiar with your desktop, wallpapers won't work in a VM, due to saving space on the live image no applications are installed, after instalation a wizard will finish the process.",
                 position: 'bottom'
             },
             {
                 element: '.tour-step1',
-                intro: "You will find all important shortcuts here. You can change Workspace, access your Applications, Settings, Search and open Windows. Click CTRL + Right mouse Key to open dock options.",
+                intro: "All important shortcuts are found here, you can add more and switch between apps, CTRL + right mouse Key opens dock options.",
                 position: 'top'
             },
             {
                 element: '.tour-step2',
-                intro: "This is your notifications area, information about Updates, Wifi network connections and Exit menu. You can configure it under settings Panel Manager.",
+                intro: "Sound, wifi, bluetooth and battery widgets live here.",
                 position: 'top'
             },
             {
                 element: '.tour-step3',
-                intro: "Here you can configure Desktop behaviour, appearance and auto start your favorite applications per workspace.",
+                intro: "Some desktop options are available here and you can script your workspaces.",
                 position: 'right'
             }, {
                 element: '.tour-step4',
-                intro: "Any installed dedicated settings applications are accessible here. You can Drag and Drop the icons to your dock bellow.",
+                intro: "Other settings are accessible here, you can drag the icons to the dock.",
                 position: 'right'
             }, {
                 element: '.tour-step5',
-                intro: "Applications can be dragged to the dock bellow.",
+                intro: "Applications can also be dragged to the dock.",
                 position: 'bottom'
             }, {
                 element: '.tour-step6',
-                intro: "Search items appear under the search bar, they can be launched using the mouse or keyboard, they can also be dragged to the dock.",
-                position: 'bottom'
-            }, {
-                element: '.tour-step7',
-                intro: "This tour is finished. Thanks for watching.",
+                intro: "All done, now build something cool.",
                 position: 'bottom'
             }
         ]
     })
     intro.onchange(function (el) {
+        function change_border_color(color) {
+            setTimeout( ()=> {
+                desktop.elem(".introjs-helperLayer").style.borderColor = color
+            }, 80)
+        }
         if (this._currentStep == 0) {
-            console.log("intro started")
+            change_border_color("transparent")
             desktop.aboutPanel.open()
+            desktop.elem("#floating-items").style.display = "none"
         } else if (this._currentStep == 1) {
             desktop.aboutPanel.close()
+            change_border_color("transparent")
         } else if (this._currentStep == 2) {
+            change_border_color("transparent")
+            JAK.Bridge.setPanelVisible(false)
             desktop.elem("#settingsPanel").style.opacity = 0
             desktop.elem("#settingsPanel").style.transform = "translateX(0)"
         } else if (this._currentStep == 3) {
             desktop.elem("#settingsPanel").style.opacity = 1
             desktop.buildApplications('Settings')
+            JAK.Bridge.setPanelVisible(true)
+            change_border_color("transparent")
         } else if (this._currentStep == 4) {
+            change_border_color("white")
             desktop.elem("#Applications .grid-item").classList.add("tour-step5")
         } else if (this._currentStep == 5) {
+            change_border_color("white")
             desktop.elem("#settingsPanel").style.transform = "translateX(-105%)"
             el4.style.opacity = 0
         } else if (this._currentStep == 6) {
+            JAK.Bridge.setPanelVisible(false)
+            desktop.elem("#floating-items").style.display = "block"
             Jade.settings.tourDone = "step6"
             el4.style.transform = "translateX(-200%)"
             el2.setAttribute('style', '')
             el4.setAttribute('style', '')
-            desktop.openSearch()
-        } else if (this._currentStep == 7) {
-            Jade.settings.tourDone = "step7"
             Jade.settings.tourDone = true
             JAK.Bridge.saveSettings("tourDone", true)
         }
