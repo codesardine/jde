@@ -103,7 +103,7 @@ color: #e4e4e4 !important;
 
 [type="radio"]:not(:checked) + span:before, [type="radio"]:not(:checked) + span:after,
 [type="checkbox"].filled-in:not(:checked) + span:not(.lever):after {
-  border: 1px solid  #e4e4e4;
+  border: 2px solid  #e4e4e4;
 }
 
 [type="radio"]:not(:checked) + span, [type="radio"]:checked + span {
@@ -159,7 +159,7 @@ color: #e4e4e4 !important;
   outline: none;
 }
 
-#settingsPanel {
+org{
   width: 100%;
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
@@ -170,7 +170,7 @@ color: #e4e4e4 !important;
   display: flex;
 }
 
-#settingsPanel h2 {
+orgh2 {
   margin-bottom: 0;
   font-size: 1rem;
   margin-top: 0;
@@ -179,7 +179,7 @@ color: #e4e4e4 !important;
   padding-left: 18px;
 }
 
-#settingsPanel h2 {
+orgh2 {
   font-size: 14px !important;
 }
 
@@ -187,11 +187,11 @@ color: #e4e4e4 !important;
   background: transparent;
 }
 
-#settingsPanel h4 {
+orgh4 {
   margin-bottom: 24px;
 }
 
-#settingsPanel h4 {
+orgh4 {
   padding: 0 32px;
   margin-bottom: 5px;
   margin-bottom: 0;
@@ -199,7 +199,7 @@ color: #e4e4e4 !important;
   margin-top: 0;
 }
 
-#settingsPanel ul img {
+orgul img {
   width: 26px;
   vertical-align: middle;
   margin-right: 22px;
@@ -245,7 +245,7 @@ input.valid[type=text]:not(.browser-default):active {
 
 .tabs, .tabs-content,
 .applications-wrapper,
-#settingsPanel.title,
+org.title,
 #Settings {
     background-color: rgba(0, 0, 0, 0.50);
 }
@@ -274,29 +274,29 @@ input.valid[type=text]:not(.browser-default):active {
  background:transparent !important;
 }
 
-#settingsPanel ul,
+orgul,
 #categories-submenu,
 #backgrounds-submenu {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-#settingsPanel ul li label,
+orgul li label,
 #categories-submenu li label,
 #backgrounds-submenu li label {
   color: inherit;
   cursor: pointer;
 }
 
-#settingsPanel ul li p,
+orgul li p,
 #categories-submenu li p,
 #backgrounds-submenu li p {
   margin-bottom: 0;
 }
 
-#settingsPanel * {
+org* {
   font-size: 12px !important;
-  font-weight: 500 !important;
+  font-weight: bold !important;
 }
 
 #Settings {
@@ -364,13 +364,13 @@ input.valid[type=text]:not(.browser-default):active {
   background-color: #f44336;
 }
 
-#settingsPanel [type="checkbox"].filled-in+span:not(.lever) {
+org[type="checkbox"].filled-in+span:not(.lever) {
   height: 20px;
   line-height: 20px;
   padding-left: 46px;
 }
 
-#settingsPanel #options {
+org#options {
   width: 240px;
   height: 100%;
   overflow-y: hidden;
@@ -378,7 +378,7 @@ input.valid[type=text]:not(.browser-default):active {
   flex-direction: column;
 }
 
-#settingsPanel .background {
+org.background {
   background: #eeeeee;
   position: relative;
   height: 100%;
@@ -388,8 +388,8 @@ input[type="file"] {
   display: none;
 }
 
-#settingsPanel form,
-#settingsPanel .switch,
+orgform,
+org.switch,
 #categories-submenu,
 #backgrounds-submenu,
 .sidenav li > a {
@@ -401,11 +401,11 @@ input[type="file"] {
   margin-left: 2px;
 }
 
-#settingsPanel .switch .lever {
+org.switch .lever {
   margin-left: -8px;
 }
 
-#settingsPanel form p,
+orgform p,
 #categories-submenu p,
 #backgrounds-submenu p {
   margin-top: 0;
