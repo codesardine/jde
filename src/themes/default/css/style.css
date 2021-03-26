@@ -159,7 +159,7 @@ color: #e4e4e4 !important;
   outline: none;
 }
 
-org{
+#settingsPanel {
   width: 100%;
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
@@ -170,7 +170,7 @@ org{
   display: flex;
 }
 
-orgh2 {
+#settingsPanel h2 {
   margin-bottom: 0;
   font-size: 1rem;
   margin-top: 0;
@@ -179,7 +179,7 @@ orgh2 {
   padding-left: 18px;
 }
 
-orgh2 {
+#settingsPanel h2 {
   font-size: 14px !important;
 }
 
@@ -187,11 +187,11 @@ orgh2 {
   background: transparent;
 }
 
-orgh4 {
+#settingsPanel h4 {
   margin-bottom: 24px;
 }
 
-orgh4 {
+#settingsPanel h4 {
   padding: 0 32px;
   margin-bottom: 5px;
   margin-bottom: 0;
@@ -199,7 +199,7 @@ orgh4 {
   margin-top: 0;
 }
 
-orgul img {
+#settingsPanel ul img {
   width: 26px;
   vertical-align: middle;
   margin-right: 22px;
@@ -245,7 +245,7 @@ input.valid[type=text]:not(.browser-default):active {
 
 .tabs, .tabs-content,
 .applications-wrapper,
-org.title,
+#settingsPanel.title,
 #Settings {
     background-color: rgba(0, 0, 0, 0.50);
 }
@@ -274,27 +274,27 @@ org.title,
  background:transparent !important;
 }
 
-orgul,
+#settingsPanel ul,
 #categories-submenu,
 #backgrounds-submenu {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-orgul li label,
+#settingsPanel ul li label,
 #categories-submenu li label,
 #backgrounds-submenu li label {
   color: inherit;
   cursor: pointer;
 }
 
-orgul li p,
+#settingsPanel ul li p,
 #categories-submenu li p,
 #backgrounds-submenu li p {
   margin-bottom: 0;
 }
 
-org* {
+#settingsPanel * {
   font-size: 12px !important;
   font-weight: bold !important;
 }
@@ -364,13 +364,13 @@ org* {
   background-color: #f44336;
 }
 
-org[type="checkbox"].filled-in+span:not(.lever) {
+#settingsPanel [type="checkbox"].filled-in+span:not(.lever) {
   height: 20px;
   line-height: 20px;
   padding-left: 46px;
 }
 
-org#options {
+#settingsPanel #options {
   width: 240px;
   height: 100%;
   overflow-y: hidden;
@@ -378,7 +378,7 @@ org#options {
   flex-direction: column;
 }
 
-org.background {
+#settingsPanel .background {
   background: #eeeeee;
   position: relative;
   height: 100%;
@@ -388,8 +388,8 @@ input[type="file"] {
   display: none;
 }
 
-orgform,
-org.switch,
+#settingsPanel form,
+#settingsPanel .switch,
 #categories-submenu,
 #backgrounds-submenu,
 .sidenav li > a {
@@ -401,11 +401,11 @@ org.switch,
   margin-left: 2px;
 }
 
-org.switch .lever {
+#settingsPanel .switch .lever {
   margin-left: -8px;
 }
 
-orgform p,
+#settingsPanel form p,
 #categories-submenu p,
 #backgrounds-submenu p {
   margin-top: 0;
