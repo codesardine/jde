@@ -217,6 +217,7 @@ function init() {
         el: '#app',
         data: {
             backgroundBtnIcon: icons["background"],
+            settingsIcon: icons["settings"],
             arrowUp: icons["arrow-up"],
             arrowDown: icons["arrow-down"],
             moodBackGroundText: "Mood Background",
@@ -285,7 +286,9 @@ function init() {
                     if (_type == "#Applications") { 
                         for (app of apps) {
                             if (app.category != "Settings") {
-                                match(app)
+                                if (desktop.elem(`#${app.category.replace(" ", "")}-btn`).checked) {
+                                    match(app)
+                                }                                
                             }
                         }
                     } else if (_type == ".settings-grid") {
@@ -373,8 +376,28 @@ function init() {
         let button = desktop.elem(`#${key}-btn`)
         if (button != null) {
             button.checked = value
-            button.addEventListener('click', function () {
-                JAK.Bridge.saveSettings(key, button.checked)
+        }
+    }
+
+    let categories = desktop.get_categories()
+    for (let category of categories) {
+        if (category != "Settings") {
+            category = category.replace(" ", "")
+            let button = desktop.elem(`#${category}-btn`)
+            button.addEventListener('click', () => {
+                const last_search = jde.searchApplications
+                let search = desktop.elem("#app-search input")
+                search.style.color = "transparent"
+                jde.searchApplications = "reset"
+                JAK.Bridge.saveSettings(category, button.checked)
+                setTimeout(() => {
+                    search.style.color = "white"
+                    if (last_search) {
+                        jde.searchApplications = last_search
+                    } else {
+                        jde.searchApplications = ""
+                    }
+                }, 20)
             })
         }
     }
@@ -478,14 +501,14 @@ function init() {
         }
     })
 
-    let categoriesBtn = desktop.elem('#categories-btn')
+    let categoriesBtn = desktop.elem('.search .settingsIcon')
     categoriesBtn.addEventListener('click', function () {
         let categoriesMenu = desktop.elem("#categories-submenu")
         let classes = categoriesMenu.classList
-        if (categoriesBtn.checked) {
-            classes.add("show")
-        } else {
+        if (classes.contains("show")) {
             classes.remove("show")
+        } else {
+            classes.add("show")
         }
     })
 

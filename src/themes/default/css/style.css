@@ -53,6 +53,7 @@ body * {
 
 .text-color, .app-title,
 #options form,
+#categories-submenu form,
 .workspace input {
 color: #e4e4e4 !important;
 }
@@ -128,7 +129,7 @@ color: #e4e4e4 !important;
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  align-content: space-around;
+  align-content: flex-start;
 }
 
 .grid-item {
@@ -199,12 +200,19 @@ color: #e4e4e4 !important;
   margin-top: 0;
 }
 
-#settingsPanel ul img {
+#settingsPanel ul img,
+#categories-submenu img {
   width: 26px;
   vertical-align: middle;
   margin-right: 22px;
   margin-top: -4px;
   margin-left: -3px;
+}
+
+#categories-submenu img {
+    margin-top: -6px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
@@ -364,7 +372,8 @@ input.valid[type=text]:not(.browser-default):active {
   background-color: #f44336;
 }
 
-#settingsPanel [type="checkbox"].filled-in+span:not(.lever) {
+#settingsPanel [type="checkbox"].filled-in+span:not(.lever),
+#categories-submenu [type="checkbox"].filled-in+span:not(.lever) {
   height: 20px;
   line-height: 20px;
   padding-left: 46px;
@@ -534,10 +543,25 @@ input[type="file"] {
   transform: translateX(0);
 }
 
-.categories-container [type="checkbox"]:checked+span:after,
-.backgrounds-container [type="checkbox"]:checked+span:after  {
-  border: 2px solid #2196f3 !important;
-  background-color: #2196f3 !important;
+#categories-submenu {
+  align-self: center;
+  margin-top: 0;
+  position: initial;
+}
+
+#categories-submenu [type="checkbox"].filled-in+span:not(.lever) {
+  padding-left: 30px;
+  font-size: 0.8rem;
+  color: #ffa726;
+}
+
+#categories-submenu label {
+    font-weight: bold;
+    margin-left: 20%;
+}
+
+.applications-wrapper {
+  display: flex;
 }
 
 .search {
@@ -577,6 +601,12 @@ input[type="file"] {
   width: 28px;
   right: 6px;
   top: 3px;
+}
+
+.search .settingsIcon {
+  left: -60px;
+  width: 42px;
+  top: -4px;
 }
 
 .search.show {

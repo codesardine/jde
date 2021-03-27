@@ -107,27 +107,6 @@
                 <input id="workspace4" type="text" class="validate">
               </div>
               <li>
-                <form action="#" class="categories-container">
-                  <p>
-                    <label>
-                      <input id="categories-btn" type="checkbox" class="filled-in" />
-                      <span >{{ categoriesTittle }}</span>
-                    </label>
-                  </p>
-                </form>
-                <ul id="categories-submenu">
-                  <li>
-                    <form id="activeCategories" action="#">
-                      <p v-for="(value, key) in categories" v-if="key!='Settings'">
-                        <label>
-                          <img v-bind:src="value.icon">
-                          <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
-                          <span >{{ key }}</span>
-                        </label>
-                      </p>
-                    </form>
-                  </li>
-                </ul>
           </div>
           <div id="swipe-3" class="col s12 carousel-item">
             <h2>{{ System }}</h2>
@@ -190,13 +169,28 @@
       </section>
     </div>
     <section class="applications-wrapper">
+
+      <ul id="categories-submenu">
+        <li>
+          <form id="activeCategories" action="#">
+            <p v-for="(value, key) in categories" v-if="key!='Settings'">
+              <label>
+                <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
+                <span>{{ key }}</span>
+              </label>
+            </p>
+          </form>
+        </li>
+      </ul>
+
       <div class="arrow-container">
         <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
         <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
       </div>
       <span id="Applications" class="grid"></span>
-      <div class="search">
+      <div id="app-search" class="search">
         <img v-bind:src="searchBtnIcon">
+        <a href="#"><img class="settingsIcon" v-bind:src="settingsIcon"></a>
         <input type="text" v-model="searchApplications">
       </div>
     </section>
