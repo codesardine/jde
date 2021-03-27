@@ -53,31 +53,6 @@ Jade.Desktop = class API {
         this.toggleDesktop()
     }
 
-    buildApplications(category) {
-        let categoryBtn = desktop.elem("#" + category.replace(/\s/g, "") + "-btn")
-        if (category == "Settings") {
-            var destination = desktop.elem(".settings-grid")
-            build(category)
-        } else if (category != "Settings" && categoryBtn.checked) {
-            var destination = desktop.elem("#Applications")
-            build(category)
-        }
-        function build(category) {
-            JAK.Bridge.updateMenu()
-            let menu = Jade.menu[category]
-            let apps = menu['apps'];
-            for (let app in apps) {
-                let name = apps[app].name;
-                let icon = apps[app].icon;
-                let description = apps[app].description;
-                let category = apps[app].category;
-                let file = apps[app].path;
-                let keywords = apps[app].keywords;
-                desktop.buildHTML(destination, name, icon, description, keywords, file)
-            }
-        }
-    }
-
     buildHTML(el, name, icon, description, keywords, file) {
         el.insertAdjacentHTML('beforeend', appTemplate(name, icon, description, keywords, file))
     }
@@ -115,11 +90,9 @@ Jade.Desktop = class API {
 
     openSettings() {
         this.closeWidgets()
-        let el = this.elem('.settings-grid')
-        this.empty(el)
-        if (el.innerHTML == "") {
-            this.buildApplications('Settings');
-        }
+        if (jde.searchSettings == null) {
+            jde.searchSettings = ""
+        } 
         this.settingsSidenav().open();
     }
 
@@ -156,22 +129,13 @@ Jade.Desktop = class API {
 
     openApplications() {
         if (Jade.settings.tourDone == true) {
-            let applications = this.elem("#Applications")
-            if (this.searchActive !== true) {
-                this.empty(applications)
-                for (let category in Jade.menu) {
-                    if (category != "Settings") {
-                        desktop.buildApplications(category);
-                    }
-                }
+            desktop.closeSettings()
+            this.closeWidgets()
+            if (jde.searchApplications == null) {
+                jde.searchApplications = ""
             }
-            if (applications.innerHTML != "") {
-                desktop.closeSettings()
-            }
-            let appView = this.appView()
-            appView.classList.add("show", "opacity");
+            this.appView().classList.add("show", "opacity");
         }
-        this.closeWidgets()
     }
 
     closeWidgets() {
@@ -249,7 +213,7 @@ function init() {
         "Ink Mix"
     ]
 
-    new Vue({
+    jde = new Vue({
         el: '#app',
         data: {
             backgroundBtnIcon: icons["background"],
@@ -603,7 +567,7 @@ function startTour() {
         if (this._currentStep == 0) {
             change_border_color("transparent")
             desktop.aboutPanel.open()
-            desktop.elem("#floating-items").style.display = "none"
+            closeWidgets()
         } else if (this._currentStep == 1) {
             desktop.aboutPanel.close()
             change_border_color("transparent")
@@ -626,7 +590,7 @@ function startTour() {
             el4.style.opacity = 0
         } else if (this._currentStep == 6) {
             JAK.Bridge.setPanelVisible(false)
-            desktop.elem("#floating-items").style.display = "block"
+            openWidgets()
             Jade.settings.tourDone = "step6"
             el4.style.transform = "translateX(-200%)"
             el2.setAttribute('style', '')
@@ -639,9 +603,6 @@ function startTour() {
 }
 document.addEventListener('DOMContentLoaded', () => {
     init()
-    for (let category in Jade.menu) {
-        desktop.buildApplications(category);
-    }
     if (Jade.settings.tourDone == false) {
         startTour()
     }
