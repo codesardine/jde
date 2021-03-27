@@ -190,17 +190,15 @@
       </section>
     </div>
     <section class="applications-wrapper">
-
-      <div class="search">
-        <img v-bind:src="searchBtnIcon">
-        <input type="text" v-model="searchApplications">
-      </div>
-
       <div class="arrow-container">
         <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
         <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
       </div>
       <span id="Applications" class="grid"></span>
+      <div class="search">
+        <img v-bind:src="searchBtnIcon">
+        <input type="text" v-model="searchApplications">
+      </div>
     </section>
     
     <video id="video-background" loop autoplay muted></video>
