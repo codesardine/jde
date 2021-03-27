@@ -308,7 +308,7 @@ input.valid[type=text]:not(.browser-default):active {
   position: fixed;
   z-index: 99;
   display: flex;
-  right: calc(4% - 32px);
+  right: 0;
   height: 100%;
   flex-direction: column;
   justify-content: center;
