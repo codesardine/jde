@@ -102,7 +102,9 @@ class SharedObj(QObject):
             "arrow-up": f"{icons.get('arrow-up')}",
             "arrow-down": f"{icons.get('arrow-down')}",
             "search": f"{icons.get('search-icon')}",
-            "settings": f"{icons.get('settings')}"
+            "app-settings": f"{icons.get('settings')}",
+            "app-menu": f"{icons.get('application-menu')}",
+            "category-settings": f"{icons.get('view-categories')}"
         })
 
     @Property(str)

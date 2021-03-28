@@ -217,7 +217,9 @@ function init() {
         el: '#app',
         data: {
             backgroundBtnIcon: icons["background"],
-            settingsIcon: icons["settings"],
+            appSettingsIcon: icons["app-settings"],
+            appMenuIcon: icons["app-menu"],
+            categorySettingsIcon: icons["category-settings"],
             arrowUp: icons["arrow-up"],
             arrowDown: icons["arrow-down"],
             moodBackGroundText: "Mood Background",
@@ -501,7 +503,7 @@ function init() {
         }
     })
 
-    let categoriesBtn = desktop.elem('.search .settingsIcon')
+    let categoriesBtn = desktop.elem('.search .categorySettingsIcon')
     categoriesBtn.addEventListener('click', function () {
         let categoriesMenu = desktop.elem("#categories-submenu")
         let classes = categoriesMenu.classList
@@ -511,6 +513,24 @@ function init() {
             classes.add("show")
         }
     })
+
+    let appMenuBtn = desktop.elem('.search .appmenuIcon')
+    appMenuBtn.addEventListener('click', function () {
+        let apps = desktop.elem("#apps-container")
+        let classes = apps.classList
+        desktop.elem("#settingsPanel").classList.remove("show")
+        classes.remove("shift")
+    })
+
+    let appSettingsBtn = desktop.elem('.appSettingsIcon')
+    appSettingsBtn.addEventListener('click', function () {
+        let settings = desktop.elem("#settingsPanel")
+        let classes = settings.classList
+        classes.add("show")
+        desktop.elem("#apps-container").classList.add("shift")
+    })
+
+
 
     let appView = desktop.elem(".applications-wrapper")
     appView.onmouseleave = function () {

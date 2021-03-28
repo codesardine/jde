@@ -24,8 +24,12 @@
 </style>
 
 <body>
+  <div class="sidenav"></div>
   <main id="app">
-    <div id="settingsPanel" class="sidenav">
+
+    <section class="applications-wrapper">
+
+    <div id="settingsPanel" class="">
       <div id="options" class="tour-step3">
         <ul id="tabs-swipe" class="tabs">
           <li class="tab col s3"><a draggable="false" class="active" href="#swipe-1">
@@ -163,37 +167,41 @@
       <section id="Settings">
         <div class="search">
           <img v-bind:src="searchBtnIcon">
-        <input type="text" v-model="searchSettings">
+          <a href="#"><img class="appmenuIcon" v-bind:src="appMenuIcon"></a>
+          <input type="text" v-model="searchSettings">
       </div>
         <span class="settings-grid"></span>
       </section>
     </div>
-    <section class="applications-wrapper">
+    
 
-      <ul id="categories-submenu">
-        <li>
-          <form id="activeCategories" action="#">
-            <p v-for="(value, key) in categories" v-if="key!='Settings'">
-              <label>
-                <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
-                <span>{{ key }}</span>
-              </label>
-            </p>
-          </form>
-        </li>
-      </ul>
-
-      <div class="arrow-container">
-        <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
-        <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
+      <div id="apps-container">
+        <ul id="categories-submenu">
+          <li>
+            <form id="activeCategories" action="#">
+              <p v-for="(value, key) in categories" v-if="key!='Settings'">
+                <label>
+                  <input v-bind:id="key.replace(/\s/g, '') + '-btn'" type="checkbox" class="filled-in" />
+                  <span>{{ key }}</span>
+                </label>
+              </p>
+            </form>
+          </li>
+        </ul>
+        
+        <div class="arrow-container">
+          <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
+          <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
+        </div>
+        <span id="Applications" class="grid"></span>
+        <div id="app-search" class="search">
+          <img v-bind:src="searchBtnIcon">
+          <a href="#"><img class="appSettingsIcon" v-bind:src="appSettingsIcon"></a>
+          <a href="#"><img class="categorySettingsIcon" v-bind:src="categorySettingsIcon"></a>
+          <input type="text" v-model="searchApplications">
+        </div>
+        </section>
       </div>
-      <span id="Applications" class="grid"></span>
-      <div id="app-search" class="search">
-        <img v-bind:src="searchBtnIcon">
-        <a href="#"><img class="settingsIcon" v-bind:src="settingsIcon"></a>
-        <input type="text" v-model="searchApplications">
-      </div>
-    </section>
     
     <video id="video-background" loop autoplay muted></video>
 

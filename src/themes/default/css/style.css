@@ -123,6 +123,7 @@ color: #e4e4e4 !important;
   transform: translateY(-200%);
   will-change: opacity;
   opacity: 0;
+  display: flex;
 }
 
 .grid, .settings-grid {
@@ -251,11 +252,12 @@ input.valid[type=text]:not(.browser-default):active {
   background-color: transparent !important;
 }
 
-.tabs, .tabs-content,
-.applications-wrapper,
-#settingsPanel.title,
-#Settings {
+.applications-wrapper {
     background-color: rgba(0, 0, 0, 0.50);
+}
+
+.tabs {
+  background-color: transparent;
 }
 
 #clock {
@@ -316,6 +318,7 @@ input.valid[type=text]:not(.browser-default):active {
   position: fixed;
   z-index: 99;
   display: flex;
+  top: 0;
   right: 0;
   height: 100%;
   flex-direction: column;
@@ -534,6 +537,10 @@ input[type="file"] {
   padding: 0;
 }
 
+#categories-submenu {
+  transform: translateX(-500%);
+}
+
 #backgrounds-submenu {
   z-index: 998;
 }
@@ -560,8 +567,24 @@ input[type="file"] {
     margin-left: 20%;
 }
 
-.applications-wrapper {
+#apps-container, #settingsPanel {
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  transition: transform 0.5s ease-in-out;
+}
+
+#settingsPanel {
+  transform: translateX(-105%);
+}
+
+#settingsPanel.show {
+  transform: translateX(0);
+}
+
+#apps-container.shift {
+  transform: translateX(+300%);
+  transition: transform 0.5s ease-in-out;
 }
 
 .search {
@@ -601,10 +624,18 @@ input[type="file"] {
   width: 28px;
   right: 6px;
   top: 3px;
+  filter: drop-shadow(1px 1px 1px black) brightness(0.8);
 }
 
-.search .settingsIcon {
+.search .categorySettingsIcon {
   left: -60px;
+  width: 42px;
+  top: -4px;
+}
+
+.search .appMenuIcon,
+.search .appSettingsIcon{
+  right: -60px;
   width: 42px;
   top: -4px;
 }
