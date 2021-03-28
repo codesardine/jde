@@ -24,11 +24,8 @@
 </style>
 
 <body>
-  <div class="sidenav"></div>
   <main id="app">
-
     <section class="applications-wrapper">
-
     <div id="settingsPanel" class="">
       <div id="options" class="tour-step3">
         <ul id="tabs-swipe" class="tabs">
@@ -167,14 +164,12 @@
       <section id="Settings">
         <div class="search">
           <img v-bind:src="searchBtnIcon">
-          <a href="#"><img class="appmenuIcon" v-bind:src="appMenuIcon"></a>
+          <a href="#"><img class="appMenuIcon" v-bind:src="appMenuIcon"></a>
           <input type="text" v-model="searchSettings">
       </div>
         <span class="settings-grid"></span>
       </section>
-    </div>
-    
-
+    </div>  
       <div id="apps-container">
         <ul id="categories-submenu">
           <li>
@@ -187,8 +182,7 @@
               </p>
             </form>
           </li>
-        </ul>
-        
+        </ul>        
         <div class="arrow-container">
           <img draggable="false" class="arrowUp" v-bind:src="arrowUp">
           <img draggable="false" class="arrowDown" v-bind:src="arrowDown">
@@ -201,10 +195,8 @@
           <input type="text" v-model="searchApplications">
         </div>
         </section>
-      </div>
-    
+      </div>    
     <video id="video-background" loop autoplay muted></video>
-
     <div id="about" class="modal">
       <img class="logo" src="../../images/logo.svg">
       <div class="modal-content">
@@ -231,5 +223,4 @@
     <div class="tour-step2"></div>
   </div>
 </body>
-
 </html>

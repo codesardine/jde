@@ -21,9 +21,5 @@ class Service(dbus.service.Object):
         Desktop.toggleLauncher()
 
     @dbus.service.method("io.jde.Desktop", in_signature='', out_signature='')
-    def toggleSettings(self):
-        Desktop.toggleSettings()
-
-    @dbus.service.method("io.jde.Desktop", in_signature='', out_signature='')
     def screenToggle(self):
         Desktop.screenToggle()

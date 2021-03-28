@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Icon=preferences-desktop
-Terminal=false
-Exec=dbus-send --session --dest=io.jde.Desktop --type=method_call /io/jde/Desktop io.jde.Desktop.toggleSettings
-X-AppStream-Ignore=true
-StartupNotify=false
-Name=Settings

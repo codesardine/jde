@@ -119,11 +119,13 @@ color: #e4e4e4 !important;
   left: 0;
   right: 0;
   width: 100%;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   transform: translateY(-200%);
   will-change: opacity;
   opacity: 0;
   display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 
 .grid, .settings-grid {
@@ -161,17 +163,6 @@ color: #e4e4e4 !important;
   outline: none;
 }
 
-#settingsPanel {
-  width: 100%;
-  transition: transform 0.3s ease-in-out;
-  overflow: hidden;
-  background-color: transparent;
-  height: 100%;
-  padding-bottom: 0;
-  background: transparent;
-  display: flex;
-}
-
 #settingsPanel h2 {
   margin-bottom: 0;
   font-size: 1rem;
@@ -183,10 +174,6 @@ color: #e4e4e4 !important;
 
 #settingsPanel h2 {
   font-size: 14px !important;
-}
-
-.sidenav-overlay {
-  background: transparent;
 }
 
 #settingsPanel h4 {
@@ -404,7 +391,7 @@ input[type="file"] {
 #settingsPanel .switch,
 #categories-submenu,
 #backgrounds-submenu,
-.sidenav li > a {
+#settingsPanel ul li > a {
   padding: 0 15px;
 }
 
@@ -487,7 +474,7 @@ input[type="file"] {
   font-size: 18px;
 }
 
-.sidenav li > a:hover {
+#settingsPanel ul li > a:hover {
   background-color: transparent;
 }
 
@@ -513,6 +500,7 @@ input[type="file"] {
 
 .not-tab a, .tabs a {
   padding: 6px 8px !important;
+  display: flex !important;
 }
 
 .not-tab svg, .tabs svg {
@@ -532,13 +520,9 @@ input[type="file"] {
   margin-top: 100px;
   z-index: 999;
   width: 260px;
-  transform: translateX(-200%);
+  transform: translateX(-905%);
   transition: all 0.4s ease-in-out;
   padding: 0;
-}
-
-#categories-submenu {
-  transform: translateX(-500%);
 }
 
 #backgrounds-submenu {
@@ -571,7 +555,8 @@ input[type="file"] {
   display: flex;
   width: 100vw;
   height: 100vh;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.6s ease-in-out;
+  position: fixed;
 }
 
 #settingsPanel {
@@ -583,8 +568,7 @@ input[type="file"] {
 }
 
 #apps-container.shift {
-  transform: translateX(+300%);
-  transition: transform 0.5s ease-in-out;
+  transform: translateX(+105%);
 }
 
 .search {
@@ -627,17 +611,16 @@ input[type="file"] {
   filter: drop-shadow(1px 1px 1px black) brightness(0.8);
 }
 
-.search .categorySettingsIcon {
+.search .categorySettingsIcon, 
+.search .appMenuIcon,
+.search .appSettingsIcon {
   left: -60px;
   width: 42px;
   top: -4px;
 }
 
-.search .appMenuIcon,
-.search .appSettingsIcon{
-  right: -60px;
-  width: 42px;
-  top: -4px;
+.search .appSettingsIcon {
+  left: -120px;
 }
 
 .search.show {

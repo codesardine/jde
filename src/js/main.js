@@ -23,24 +23,6 @@ Jade.Desktop = class API {
         return document.querySelectorAll(elements)
     }
 
-    toggleSettings() {
-        if (Jade.settings.tourDone === true) {
-            let settingsSidenav = this.settingsSidenav()
-            if (settingsSidenav.isOpen == true) {
-                this.closeSettings()
-            } else {
-                let appView = this.appView()
-                let classes = appView.classList
-                if (classes.contains("show")) {
-                    this.closeApplications()
-                }
-                this.openSettings()
-                JAK.Bridge.setPanelVisible(true)
-            }
-            this.toggleDesktop()
-        }
-    }
-
     toggleLauncher() {
         let appView = this.appView()
         let classes = appView.classList
@@ -65,10 +47,6 @@ Jade.Desktop = class API {
         JAK.Bridge.hideInspector();
     }
 
-    settingsSidenav() {
-        return M.Sidenav.getInstance(this.elem('.sidenav'))
-    }
-
     about() {
         return M.Modal.getInstance(this.elem('#about'))
     }
@@ -82,18 +60,22 @@ Jade.Desktop = class API {
         video.src = src
     }
 
-    closeSettings() {
-        this.openWidgets()
-        this.settingsSidenav().close();
-        JAK.Bridge.setPanelVisible(false)
+    showApplications() {
+        let apps = desktop.elem("#apps-container")
+        let classes = apps.classList
+        desktop.elem("#settingsPanel").classList.remove("show")
+        classes.remove("shift")
     }
 
-    openSettings() {
+    showSettings() {
         this.closeWidgets()
+        let settings = desktop.elem("#settingsPanel")
+        let classes = settings.classList
+        classes.add("show")
+        desktop.elem("#apps-container").classList.add("shift")
         if (jde.searchSettings == null) {
             jde.searchSettings = ""
         } 
-        this.settingsSidenav().open();
     }
 
     closeApplications() {
@@ -129,7 +111,6 @@ Jade.Desktop = class API {
 
     openApplications() {
         if (Jade.settings.tourDone == true) {
-            desktop.closeSettings()
             this.closeWidgets()
             if (jde.searchApplications == null) {
                 jde.searchApplications = ""
@@ -413,7 +394,6 @@ function init() {
     desktop.aboutPanel = M.Modal.init(desktop.elem('.modal'), {
         onOpenEnd: function () {
             if (Jade.settings.tourDone) {
-                desktop.closeSettings()
                 let about = desktop.elem('.modal-overlay')
                 about.onmouseleave = function () {
                     desktop.aboutPanel.close();
@@ -425,12 +405,6 @@ function init() {
     desktop.elem(`#${
         JAK.Bridge.getBranch
     }-btn`).checked = true
-
-    M.Sidenav.init(desktop.elems('.sidenav'), {
-        menuWidth: 300,
-        edge: 'left',
-        draggable: false
-    })
 
     let inspectorBtn = desktop.elem('#inspector-btn')
     inspectorBtn.addEventListener('click', function () {
@@ -514,32 +488,20 @@ function init() {
         }
     })
 
-    let appMenuBtn = desktop.elem('.search .appmenuIcon')
+    let appMenuBtn = desktop.elem('.search .appMenuIcon')
     appMenuBtn.addEventListener('click', function () {
-        let apps = desktop.elem("#apps-container")
-        let classes = apps.classList
-        desktop.elem("#settingsPanel").classList.remove("show")
-        classes.remove("shift")
+        desktop.showApplications()
     })
 
     let appSettingsBtn = desktop.elem('.appSettingsIcon')
     appSettingsBtn.addEventListener('click', function () {
-        let settings = desktop.elem("#settingsPanel")
-        let classes = settings.classList
-        classes.add("show")
-        desktop.elem("#apps-container").classList.add("shift")
+        desktop.showSettings()
     })
-
 
 
     let appView = desktop.elem(".applications-wrapper")
     appView.onmouseleave = function () {
         desktop.closeApplications()
-    }
-
-    let dashboardSettings = desktop.elem("#settingsPanel")
-    dashboardSettings.onmouseleave = function () {
-        desktop.closeSettings()
     }
 }
 function startTour() {
