@@ -120,11 +120,11 @@ Jade.Desktop = class API {
     }
 
     closeWidgets() {
-        desktop.elem("#floating-items").style.display = "none"
+        desktop.elem("#floating-items").style.opacity = 0
     }
 
     openWidgets() {
-        desktop.elem("#floating-items").style.display = "block";
+        desktop.elem("#floating-items").style.opacity = 1
     }
 
     empty(el) {

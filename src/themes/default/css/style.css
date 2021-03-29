@@ -260,18 +260,22 @@ input.valid[type=text]:not(.browser-default):active {
   width: auto;
 }
 
+#floating-items {
+  transition: opacity 0.5s ease-in-out;
+}
+
 #clock {
   color: white;
   font-weight: bold;
   left: 50%;
-  bottom: 5%;
+  bottom: 11%;
   transform: translate(-50%, -50%);
   position: fixed;
   text-shadow: 1px 1px rgb(0 0 0 / 50%);
 }
 
 #time {
-  font-size: 1000%;
+  font-size: 500%;
 }
 
 #date {
