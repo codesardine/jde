@@ -185,12 +185,12 @@ function init() {
         "Blue Sky",
         "Burning Fire",
         "Foggy Mountain",
-        "Lightning",
-        "Lake",
+        "WaterFall",
+        "Sleeping Cat",
         "Yellow Flower",
         "Shark Tank",
-        "Aurora Borealis",
-        "Ink Splash",
+        "Sunset",
+        "The Web",
         "Ink Mix"
     ]
 
