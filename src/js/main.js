@@ -498,7 +498,6 @@ function init() {
         desktop.showSettings()
     })
 
-
     let appView = desktop.elem(".applications-wrapper")
     appView.onmouseleave = function () {
         desktop.closeApplications()

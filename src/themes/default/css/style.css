@@ -44,11 +44,14 @@ body * {
   overflow: scroll;
   position: fixed;
   top: 10%;
-  bottom: 20%;
+  bottom: 12%;
   left: 0;
   right: 0;
-  padding: 0 5%;
   padding-bottom: 6px;
+}
+
+#Applications {
+    padding: 0 5%;
 }
 
 .text-color, .app-title,
@@ -221,7 +224,6 @@ border-right: 1px solid transparent;
 
 .carousel-item {
   overflow-y: scroll;
-  padding-top: 10px;
 }
 
 input.valid[type=text]:not(.browser-default) {
@@ -245,6 +247,17 @@ input.valid[type=text]:not(.browser-default):active {
 
 .tabs {
   background-color: transparent;
+}
+
+.tabs .tab {
+  height: auto !important;
+}
+
+#tabs-swipe {
+  position: absolute;
+  left: -200px;
+  top: -3px;
+  width: auto;
 }
 
 #clock {
@@ -371,10 +384,13 @@ input.valid[type=text]:not(.browser-default):active {
 
 #settingsPanel #options {
   width: 240px;
-  height: 100%;
+  height: 520px;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
 }
 
 #settingsPanel .background {
@@ -398,10 +414,6 @@ input[type="file"] {
 [type="radio"]+span:before,
 [type="radio"]+span:after {
   margin-left: 2px;
-}
-
-#settingsPanel .switch .lever {
-  margin-left: -8px;
 }
 
 #settingsPanel form p,
@@ -572,7 +584,7 @@ input[type="file"] {
 }
 
 .search {
-  bottom: 10%;
+  bottom: 5%;
   position: fixed;
   left:50%;
   padding: 0;
@@ -611,16 +623,37 @@ input[type="file"] {
   filter: drop-shadow(1px 1px 1px black) brightness(0.8);
 }
 
-.search .categorySettingsIcon, 
+ .search .categorySettingsIcon,
 .search .appMenuIcon,
 .search .appSettingsIcon {
-  left: -60px;
   width: 42px;
   top: -4px;
 }
 
 .search .appSettingsIcon {
   left: -120px;
+}
+
+.search .categorySettingsIcon {
+  left: -60px;
+}
+
+.search .appMenuIcon {
+  right: -60px;
+}
+
+#info {
+  right: -100px;
+  position: absolute;
+  font-size: 20px !important;
+  bottom: -2px;
+}
+
+#info svg {
+  width: 28px;
+  height: 28px;
+  fill: silver;
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 .search.show {
