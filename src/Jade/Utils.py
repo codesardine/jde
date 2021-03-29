@@ -157,7 +157,7 @@ class Desktop:
             self.clearWindows()
 
     def get_screen(self):
-        return Wnck.Screen.get_default()
+        return Wnck.Screen.get(0)
 
     def workspace(self):
         self.get_screen().get_active_workspace()
@@ -198,7 +198,6 @@ class Desktop:
                                 and not window.is_minimized() and not window.is_fullscreen() \
                                 and _type == Wnck.WindowType.NORMAL:
                             gravity = Wnck.WindowGravity.STATIC
-                            dock_size = 48
                             if self.next_window_pos == "left":
                                 self.next_window_pos = "right"
                                 x = 0
@@ -210,8 +209,7 @@ class Desktop:
                             geometry_mask = Wnck.WindowMoveResizeMask.X | Wnck.WindowMoveResizeMask.Y | \
                                             Wnck.WindowMoveResizeMask.WIDTH | Wnck.WindowMoveResizeMask.HEIGHT
 
-                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height()
-                                                - dock_size)
+                            window.set_geometry(gravity, geometry_mask, x, 0, half_screen_size, monitor.height())
 
                     elif w_name == "Manjaro Linux Installer":
                         window.make_above()
