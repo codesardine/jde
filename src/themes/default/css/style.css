@@ -325,6 +325,10 @@ input.valid[type=text]:not(.browser-default):active {
   justify-content: center;
 }
 
+.arrowDown {
+  transform: rotate(180deg);
+}
+
 .arrow-container img {
   width: 80px;
 }
