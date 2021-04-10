@@ -175,7 +175,7 @@
                 </svg> </a></li>
           </ul>
 
-          <img v-bind:src="searchBtnIcon">
+          <img class="searchSettingsIcon" v-bind:src="searchBtnIcon">
           <a href="#" draggable="false"><img draggable="false" class="appMenuIcon" v-bind:src="appMenuIcon"></a>
           <a id="info" draggable="false" class="modal-trigger text-color" href="#about" data-target="about">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -208,7 +208,7 @@
         </div>
         <span id="Applications" class="grid"></span>
         <div id="app-search" class="search">
-          <img v-bind:src="searchBtnIcon">
+          <img class="searchApplicationsIcon" v-bind:src="searchBtnIcon">
           <a draggable="false" href="#"><img draggable="false" class="appSettingsIcon" v-bind:src="appSettingsIcon"></a>
           <a draggable="false" href="#"><img draggable="false" class="categorySettingsIcon" v-bind:src="categorySettingsIcon"></a>
           <input type="text" v-model="searchApplications">

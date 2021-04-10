@@ -634,6 +634,15 @@ input[type="file"] {
   left: -120px;
 }
 
+.search .searchSettingsIcon,
+.search .searchApplicationsIcon {
+  cursor: pointer;
+}
+
+img.searchSettingsIcon:active {
+    filter: drop-shadow(1px 1px 2px white);
+}
+
 .search .categorySettingsIcon {
   left: -60px;
 }

@@ -487,6 +487,18 @@ function init() {
             classes.add("show")
         }
     })
+    
+    let searchSettingsIcon = desktop.elem('.search .searchSettingsIcon')
+    searchSettingsIcon.addEventListener('click', function () {
+        desktop.elem("#Settings input").focus()
+        jde.searchSettings = ""
+    })
+
+    let searchApplicationsIcon = desktop.elem('.search .searchApplicationsIcon')
+    searchApplicationsIcon.addEventListener('click', function () {
+        desktop.elem("#app-search input").focus()
+        jde.searchApplications = ""
+    })
 
     let appMenuBtn = desktop.elem('.search .appMenuIcon')
     appMenuBtn.addEventListener('click', function () {
