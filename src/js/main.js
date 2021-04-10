@@ -504,16 +504,7 @@ function init() {
     }
 }
 function startTour() {
-    desktop.aboutPanel.open()
-    let el1 = desktop.elem('.grid-item')
-    el1.classList.add('tour-step4')
-    let el2 = desktop.elem('#Applications')
-    el3 = desktop.elem('#Applications .grid-item:nth-child(4)')
-    el3.classList.add('tour-step5')
-    let el4 = desktop.elem('.applications-wrapper')
-    el4.style.transform = "translateX(0)"
-    el2.style.margin = '50px 0 0 0'
-
+    desktop.aboutPanel.open()  
     let intro = introJs()
     intro.onexit(function() {
       desktop.toggleDesktop()
@@ -535,7 +526,7 @@ function startTour() {
             },
             {
                 element: '.tour-step1',
-                intro: "All important shortcuts are found here, you can add more and switch between apps, CTRL + right mouse Key opens dock options.",
+                intro: "The dock is hidden in the bottom center, you can switch between apps or add more, CTRL + right mouse Key opens dock options.",
                 position: 'top'
             },
             {
@@ -545,16 +536,8 @@ function startTour() {
             },
             {
                 element: '.tour-step3',
-                intro: "Some desktop options are available here and you can script your workspaces.",
+                intro: "Some desktop options are available here and you can script your workspaces, icons can be dragged to the dock.",
                 position: 'right'
-            }, {
-                element: '.tour-step4',
-                intro: "Other settings are accessible here, you can drag the icons to the dock.",
-                position: 'right'
-            }, {
-                element: '.tour-step5',
-                intro: "Applications can also be dragged to the dock.",
-                position: 'bottom'
             }, {
                 element: '.tour-step6',
                 intro: "All done, now build something cool.",
@@ -563,6 +546,7 @@ function startTour() {
         ]
     })
     intro.onchange(function (el) {
+        console.log(this._currentStep)
         function change_border_color(color) {
             setTimeout( ()=> {
                 desktop.elem(".introjs-helperLayer").style.borderColor = color
@@ -571,34 +555,26 @@ function startTour() {
         if (this._currentStep == 0) {
             change_border_color("transparent")
             desktop.aboutPanel.open()
-            closeWidgets()
+            desktop.closeWidgets()
         } else if (this._currentStep == 1) {
             desktop.aboutPanel.close()
             change_border_color("transparent")
         } else if (this._currentStep == 2) {
             change_border_color("transparent")
             JAK.Bridge.setPanelVisible(false)
-            desktop.elem("#settingsPanel").style.opacity = 0
-            desktop.elem("#settingsPanel").style.transform = "translateX(0)"
-        } else if (this._currentStep == 3) {
-            desktop.elem("#settingsPanel").style.opacity = 1
-            desktop.buildApplications('Settings')
+        } else if (this._currentStep == 3) {            
+            desktop.openApplications()
+            desktop.showSettings()
             JAK.Bridge.setPanelVisible(true)
+            setTimeout(function () {
+                intro.refresh();
+            }, 700)
             change_border_color("transparent")
         } else if (this._currentStep == 4) {
-            change_border_color("white")
-            desktop.elem("#Applications .grid-item").classList.add("tour-step5")
-        } else if (this._currentStep == 5) {
-            change_border_color("white")
-            desktop.elem("#settingsPanel").style.transform = "translateX(-105%)"
-            el4.style.opacity = 0
-        } else if (this._currentStep == 6) {
+            desktop.closeApplications()
+            desktop.showApplications()
             JAK.Bridge.setPanelVisible(false)
-            openWidgets()
             Jade.settings.tourDone = "step6"
-            el4.style.transform = "translateX(-200%)"
-            el2.setAttribute('style', '')
-            el4.setAttribute('style', '')
             Jade.settings.tourDone = true
             JAK.Bridge.saveSettings("tourDone", true)
         }
@@ -607,6 +583,8 @@ function startTour() {
 }
 document.addEventListener('DOMContentLoaded', () => {
     init()
+    jde.searchApplications = ""
+    jde.searchSettings = ""
     if (Jade.settings.tourDone == false) {
         startTour()
     }

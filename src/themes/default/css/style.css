@@ -666,8 +666,8 @@ input[type="file"] {
   position: absolute;
   bottom: 0;
   left: 50%;
-  height: 34px;
-  width: 350px;
+  height: 1px;
+  width: 1px;
   transform: translateX(-50%);
 }
 .tour-step2 {
