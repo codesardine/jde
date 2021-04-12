@@ -252,8 +252,8 @@ input.valid[type=text]:not(.browser-default):active {
 
 #tabs-swipe {
   position: absolute;
-  left: -200px;
-  top: -3px;
+  left: -182px;
+  top: -2px;
   width: auto;
 }
 
@@ -515,9 +515,9 @@ input[type="file"] {
   display: flex !important;
 }
 
-.not-tab svg, .tabs svg {
-  width: 28px;
-  height: 28px;
+.not-tab svg, .tabs svg, #info svg {
+  width: 24px;
+  height: 24px;
   fill: silver;
   filter: drop-shadow(1px 1px 1px black);
 }
@@ -623,15 +623,19 @@ input[type="file"] {
   filter: drop-shadow(1px 1px 1px black) brightness(0.8);
 }
 
- .search .categorySettingsIcon,
-.search .appMenuIcon,
+.search .categorySettingsIcon,
 .search .appSettingsIcon {
-  width: 42px;
-  top: -4px;
+  width: 38px;
+  top: -1px;
+}
+
+.search .appMenuIcon {
+  width: 32px;
+  top: 1px;
 }
 
 .search .appSettingsIcon {
-  left: -120px;
+  left: -100px;
 }
 
 .search .searchSettingsIcon,
@@ -644,25 +648,18 @@ img.searchSettingsIcon:active {
 }
 
 .search .categorySettingsIcon {
-  left: -60px;
+  left: -50px;
 }
 
 .search .appMenuIcon {
-  right: -60px;
+  right: -50px;
 }
 
 #info {
-  right: -100px;
+  right: -90px;
   position: absolute;
   font-size: 20px !important;
-  bottom: -2px;
-}
-
-#info svg {
-  width: 28px;
-  height: 28px;
-  fill: silver;
-  filter: drop-shadow(1px 1px 1px black);
+  bottom: 0;
 }
 
 .search.show {
