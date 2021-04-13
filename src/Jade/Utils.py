@@ -294,12 +294,8 @@ class Desktop:
 
     @staticmethod
     def getBackground():
-        try:
-            background = Desktop.loadSettings()["background"]
-        except Exception:
-            background = f"{Desktop.getPath()}/themes/default/backgrounds/background.jpg"
-        return background
-
+        return Desktop.loadSettings()["background"]
+        
     @staticmethod
     def getJS():
         menu = Jade.Menu.Get().items()
