@@ -66,11 +66,6 @@ class SharedObj(QObject):
         desktop = Instance.retrieve("desktop")
         desktop.toggle()
 
-    @Slot(str)
-    def setBranch(self, branch):
-        desktop = Instance.retrieve("desktop")
-        desktop.setBranch(branch)
-
     @Slot(bool)
     def setPanelVisible(self, value):
         desktop = Instance.retrieve("desktop")
@@ -104,12 +99,6 @@ class SharedObj(QObject):
             "app-menu": f"{icons.get('application-menu')}",
             "category-settings": f"{icons.get('view-categories')}"
         })
-
-    @Property(str)
-    def getBranch(self):
-        return Desktop.getBranch()
-
-
 
 class Exit():
 

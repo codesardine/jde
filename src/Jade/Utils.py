@@ -72,7 +72,7 @@ class Session():
     @staticmethod
     def lock():
         run(['light-locker-command', '-l'])
-
+        
     @staticmethod
     def get_pkg_manager_state():
         return os.path.isfile("/var/lib/pacman/db.lck")
@@ -318,51 +318,6 @@ class Desktop:
     @staticmethod
     def toggleLauncher():
         JavaScript.send("desktop.toggleLauncher();")
-
-    def setBranch(self, desired_branch):
-        current_branch = Desktop.getBranch()
-        if current_branch != desired_branch:
-            if self.branch_lock["branch"] == "":
-                self.branch_lock["branch"] = desired_branch.upper()
-                notify(f"Setting branch to {desired_branch.upper()} and synchronising mirrors.", "Might take a while.")
-               
-                def update():
-                    run(["pamac-manager", "--updates"])
-
-                def package_sync_callback(*args):
-                    print(args)
-                    window = Instance.retrieve("win")
-                    msg = f"Would you like to update your software and operating system from {self.branch_lock['branch']} branch now?"
-                    Dialog.question(window, " ", msg, update)  
-                    self.branch_lock["branch"] = "" 
-                    JavaScript.send(f"""
-                    desktop.elem(`#{self.branch_lock["branch"]}-btn`).checked = true
-                    """)
-
-                def branch_sync_callback(sucprocess: Gio.Subprocess, result: Gio.AsyncResult, data):
-                    proc1.communicate_utf8_finish(result) 
-                    notify("Mirrors done, Synchronising packages", "") 
-                    proc2 = Gio.Subprocess.new([
-                        'pkexec', 'pacman', '-Sy'
-                        ], Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
-                    proc2.communicate_utf8_async('package sync', None, package_sync_callback, None)                                  
-                
-                cmd = ['pkexec', 'pacman-mirrors', '--fasttrack', '--api', '--set-branch', f'{desired_branch}']
-                proc1 = Gio.Subprocess.new(cmd, Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE)
-                proc1.communicate_utf8_async('mirrors sync', None, branch_sync_callback, None) 
-
-            else:
-                notify(f"Hold on, still changing to {self.branch_lock['branch']}.", "") 
-                JavaScript.send(f"""
-                    desktop.elem(`#{current_branch}-btn`).checked = true
-                    """)
-
-    @staticmethod
-    def getBranch():
-        p = run('cat /etc/pacman-mirrors.conf | grep "Branch ="', shell=True)
-        output = p.stdout.readline().decode(
-            "utf-8").replace("Branch = ", "").replace("#", "").strip()
-        return output
 
     @staticmethod
     def restoreDefaultsDialog():

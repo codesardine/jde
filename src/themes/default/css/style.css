@@ -347,39 +347,6 @@ input.valid[type=text]:not(.browser-default):active {
   background-color: #fb8c00 !important;
 }
 
-#branches p:first-child [type="radio"]:not(:checked)+span:before,
-[type="radio"]:not(:checked)+span:after {
-  border: 2px solid #26a69a;
-}
-
-#branches p:last-child [type="radio"]:not(:checked)+span:before,
-[type="radio"]:not(:checked)+span:after {
-  border: 2px solid #f44336;
-}
-
-#branches p:nth-child(2) [type="radio"]:not(:checked)+span:before,
-[type="radio"]:not(:checked)+span:after {
-  border: 2px solid #fb8c00;
-}
-
-#branches p:first-child [type="radio"]:checked+span:before,
-#branches p:first-child [type="radio"]:checked+span:after {
-  border: 2px solid #26a69a;
-  background-color: #26a69a;
-}
-
-#branches p:nth-child(2) [type="radio"]:checked+span:before,
-#branches p:nth-child(2) [type="radio"]:checked+span:after {
-  border: 2px solid #fb8c00;
-  background-color: #fb8c00;
-}
-
-#branches p:last-child [type="radio"]:checked+span:before,
-#branches p:last-child [type="radio"]:checked+span:after {
-  border: 2px solid #f44336;
-  background-color: #f44336;
-}
-
 #settingsPanel [type="checkbox"].filled-in+span:not(.lever),
 #categories-submenu [type="checkbox"].filled-in+span:not(.lever) {
   height: 20px;
@@ -428,7 +395,6 @@ input[type="file"] {
   line-height: 48px;
 }
 
-#branches p,
 #backgrounds-submenu p {
   line-height: 34px !important;
 }

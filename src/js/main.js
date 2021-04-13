@@ -5,16 +5,6 @@ Jade.Desktop = class API {
         this.searchActive = false
     }
 
-    setBranch(branch) {
-        JAK.Bridge.setBranch(branch)
-    }
-
-    isCurrentBranchChecked(branch) {
-        let t = desktop.elem(`#${branch}-btn`).checked
-        console.log(t)
-        return t
-    }
-
     elem(element) {
         return document.querySelector(element)
     }
@@ -208,10 +198,6 @@ function init() {
             restoreBtnIcon: icons["restore"],
             devToolsText: "DevTools",
             inspectorText: "Inspector",
-            branchTitle: "Software Branch",
-            stable: "Stable",
-            testing: "Testing",
-            unstable: "Unstable",
             experimentalFeaturesText: "Experimental features",
             searchBtnIcon: icons["search"],
             aboutTitle: about["title"],
@@ -402,10 +388,6 @@ function init() {
         }
     })
 
-    desktop.elem(`#${
-        JAK.Bridge.getBranch
-    }-btn`).checked = true
-
     let inspectorBtn = desktop.elem('#inspector-btn')
     inspectorBtn.addEventListener('click', function () {
         if (inspectorBtn.checked) {
@@ -417,18 +399,6 @@ function init() {
 
     desktop.elem('#defaults-btn').addEventListener('click', function () {
         JAK.Bridge.restoreDefaults()
-    })
-
-    desktop.elem('#stable-btn').addEventListener('click', function () {
-            desktop.setBranch("stable")
-    })
-
-    desktop.elem('#testing-btn').addEventListener('click', function () {
-            desktop.setBranch("testing")
-    })
-
-    desktop.elem('#unstable-btn').addEventListener('click', function () {
-            desktop.setBranch("unstable")
     })
 
     function toggleVideo(btn, name) {
