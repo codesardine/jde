@@ -2,7 +2,7 @@
 
 ## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,css,manjaro,jde)
 
-Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, backend is QT and GTK.
+Desktop Environment built with Web Technologies, JDE takes over your desktop to manage applications a dock or panel is still needed to complement it.
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codesardine/Jadesktop&amp;utm_campaign=Badge_Grade)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/JustAnotherDesktopEnviroment/Lobby)
@@ -34,15 +34,14 @@ Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, 
 * Drag and Drop
 * Optional Window auto tile
 * Desktop Tour on first run
-* Auto start or scriptable workspaces
+* Scriptable workspaces
 
 ### Manjaro Integration
 * Restore factory profile settings
-* Software branch integration
 * Settings panel [MSM](https://wiki.manjaro.org/index.php?title=Manjaro_Settings_Manager) integration
 
 ### Getting Started
-* ISO images can be found on [ODSN](https://osdn.net/projects/manjaro-community/storage/webdad/).
+* ISO images TODO
 
 ### Prerequisites
 * [Menu Data](https://github.com/Manjaro-WebDad/jde-menu-data)
@@ -50,9 +49,6 @@ Desktop Environment built with Web Technologies, HTML/CSS and VueJS for the UI, 
 * Python GObject Introspection 
 * Python-Dbus
 * Gnome Menu GObject Introspection
-* A compositing window manager
-* Xorg
-* Manjaro Linux Base
 
 ## Contributing
 
@@ -62,7 +58,7 @@ Please read [CONTRIBUTING.md](https://github.com/Manjaro-WebDad/jde/blob/master/
 #### Some ideas  
 * Entertainment mode
 * Plugins support
-* Pamac partial integration
+* Pamac partial integration (partialy done)
 * Gamepad integration
 * ~Touchscreen integration~
 * Voice control (Mycroft)
@@ -73,7 +69,6 @@ Please read [CONTRIBUTING.md](https://github.com/Manjaro-WebDad/jde/blob/master/
 * Virtual machines integration
 * GTK broadway backend integration 
 * Remote desktop
-* Creamy espresso maker
 
 * Also visit the [Wiki](https://github.com/Manjaro-WebDad/jde/wiki) for more detailed information. 
 
