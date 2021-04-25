@@ -7,7 +7,7 @@ Desktop Environment built with Web Technologies, JDE takes over your desktop to 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7197c9d3255543d39ec9a15623ee0e51)](https://www.codacy.com/app/codesardine/Jadesktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codesardine/Jadesktop&amp;utm_campaign=Badge_Grade)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/JustAnotherDesktopEnviroment/Lobby)
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/jadesktop.svg)](https://repology.org/metapackage/jde)
+[![Packaging status](https://repology.org/badge/vertical-allrepos/jde.svg)](https://repology.org/metapackage/jde)
 
 ![desktop](jade.jpg)
 ![desktop](jade1.jpg)
