@@ -1,6 +1,6 @@
 <img src="./src/images/logo.svg" alt="drawing" width="80"/>  
 
-## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/codesardine/Jadesktop/&via=codesardine&hashtags=linux,html,javascript,python,css,manjaro,jde)
+## Just Another Desktop Environment  &nbsp;&nbsp;[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Just%20Another%20Desktop%20Environment%20for%20Manjaro%20WebDad%20Community%20Edition.&url=https://github.com/Manjaro-WebDad/jde/&via=codesardine&hashtags=linux,html,javascript,python,css,manjaro,jde)
 
 Desktop Environment built with Web Technologies, JDE takes over your desktop to manage applications a dock or panel is still needed to complement it.
 
